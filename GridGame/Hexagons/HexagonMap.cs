@@ -75,7 +75,7 @@ namespace GridGame.Hexagons {
                     new Vector2(
                         hexTexture.Width / 2f,
                         hexTexture.Height / 2f),
-                    1f,
+                    hexConstants.GetScale(),
                     SpriteEffects.None,
                     0f);
 
@@ -88,7 +88,7 @@ namespace GridGame.Hexagons {
                     new Vector2(
                         hexTexture.Width / 2f,
                         hexTexture.Height / 2f),
-                    1f,
+                    hexConstants.GetScale(),
                     SpriteEffects.None,
                     0f);
 
