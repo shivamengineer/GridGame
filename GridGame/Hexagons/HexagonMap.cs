@@ -13,9 +13,21 @@ namespace GridGame.Hexagons {
         private Texture2D hexTexture;
         private Texture2D tex2;
 
+        private Dictionary<(int, int), Hex> hexMap;
+
         private HexagonConstants hexConstants;
 
-        private float camPos = 0;
+        private float camPosX = 0;
+        private float camPosY = 0;
+
+        public static readonly Hex[] Directions = {
+            new Hex(1, 0),
+            new Hex(1, -1),
+            new Hex(0, -1),
+            new Hex(-1, 0),
+            new Hex(-1, 1),
+            new Hex(0, 1)
+        };
 
         public HexagonMap(Texture2D hexTexture, Texture2D texture2) {
             hexConstants = new HexagonConstants();
@@ -25,14 +37,20 @@ namespace GridGame.Hexagons {
         }
 
         public Vector2 HexToPixel(Hex hex) {
-            float x = hexConstants.HexRadius * MathF.Sqrt(3) * (hex.Q + hex.R / 2f) - camPos;
-            float y = hexConstants.HexRadius * 1.5f * hex.R;
+            float x = 1.5f * hexConstants.HexRadius * MathF.Sqrt(3) * (hex.Q + hex.R / 2f) - camPosX;
+            float y = 0.5f * hexConstants.HexRadius * 1.5f * hex.R - camPosY;
 
             return new Vector2(x, y);
         }
 
+        public static Hex GetNeighbor(Hex hex, int direction) {
+            var d = Directions[direction];
+            return new Hex(hex.Q + d.Q, hex.R + d.R);
+        }
+
         private void InitializeHexagons() {
-            hexes = new();
+            hexes = new List<Hex>();
+            hexMap = new Dictionary<(int, int), Hex>();
 
             int width = 10;
             int height = 10;
@@ -75,8 +93,8 @@ namespace GridGame.Hexagons {
                     0f);
 
                 hexConstants.Update();
-                camPos += 0.001f;
-                
+                //camPosX += 0.001f;
+                camPosY -= 0.002f;
             }
         }
 

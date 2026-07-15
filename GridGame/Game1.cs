@@ -27,9 +27,9 @@ namespace GridGame {
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            hexTexture = Content.Load<Texture2D>("hexagon");
-            hexTexture2 = Content.Load<Texture2D>("hexagon2");
-            hexagonMap = new HexagonMap(hexTexture2, hexTexture);
+            hexTexture = Content.Load<Texture2D>("hexagon2");
+            hexTexture2 = Content.Load<Texture2D>("hexagon");
+            hexagonMap = new HexagonMap(hexTexture, hexTexture2);
 
             // TODO: use this.Content to load your game content here
         }
