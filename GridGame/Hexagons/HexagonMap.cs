@@ -20,6 +20,9 @@ namespace GridGame.Hexagons {
         private float camPosX = 0;
         private float camPosY = 0;
 
+        private bool posSet = false;
+        private (int, int) setPOS;
+
         public static readonly Hex[] Directions = {
             new Hex(1, 0),
             new Hex(1, -1),
@@ -41,6 +44,43 @@ namespace GridGame.Hexagons {
             float y = 0.5f * hexConstants.HexRadius * 1.5f * hex.R - camPosY;
 
             return new Vector2(x, y);
+        }
+
+        public void SetSelected(int x, int y) {
+            setPOS = (x, y);
+
+            posSet = hexMap.ContainsKey(setPOS);
+        }
+
+        public (int, int) PixelToHex(Vector2 mousePos) {
+            // Undo camera offset
+            float x = mousePos.X + camPosX;
+            float y = mousePos.Y + camPosY;
+
+            float q = (MathF.Sqrt(3) / 3f * x - 1f / 3f * y) / hexConstants.HexRadius;
+            float r = (2f / 3f * y) / hexConstants.HexRadius;
+
+            return HexRound(q, r);
+        }
+
+        private (int, int) HexRound(float q, float r) {
+            float s = -q - r;
+
+            int rq = (int)MathF.Round(q);
+            int rr = (int)MathF.Round(r);
+            int rs = (int)MathF.Round(s);
+
+            float qDiff = MathF.Abs(rq - q);
+            float rDiff = MathF.Abs(rr - r);
+            float sDiff = MathF.Abs(rs - s);
+
+            if(qDiff > rDiff && qDiff > sDiff)
+                rq = -rr - rs;
+            else if(rDiff > sDiff)
+                rr = -rq - rs;
+
+            Console.WriteLine("Q = " + rq + " | R = " + rr);
+            return (rq, rr);
         }
 
         public static Hex GetNeighbor(Hex hex, int direction) {
@@ -67,12 +107,17 @@ namespace GridGame.Hexagons {
                 Vector2 position = HexToPixel(hex);
                 Vector2 origin = new Vector2(hexTexture.Width / 2f, hexTexture.Height / 2f);
 
-                spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
-                spriteBatch.Draw(hexTexture, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
+                Color fillColor = Color.White;
+                if(posSet/* && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2*/) {
+                    fillColor = Color.Red;
+                }
 
-                hexConstants.Update();
+                spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
+                spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
+
+                //hexConstants.Update();
                 //camPosX += 0.001f;
-                camPosY -= 0.002f;
+                //camPosY -= 0.002f;
             }
         }
 
