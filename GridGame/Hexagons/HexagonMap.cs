@@ -63,6 +63,8 @@ namespace GridGame.Hexagons {
             float q = (MathF.Sqrt(3) / 3f * x - 1f / 3f * y) / hexConstants.HexRadius;
             float r = (2f / 3f * y) / hexConstants.HexRadius;
 
+
+
             return HexRound(q, r);
         }
 
