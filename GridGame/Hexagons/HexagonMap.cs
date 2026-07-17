@@ -65,32 +65,10 @@ namespace GridGame.Hexagons {
         public void Draw(SpriteBatch spriteBatch) {
             foreach(var hex in hexes) {
                 Vector2 position = HexToPixel(hex);
+                Vector2 origin = new Vector2(hexTexture.Width / 2f, hexTexture.Height / 2f);
 
-                spriteBatch.Draw(
-                    tex2,
-                    position,
-                    null,
-                    Color.White,
-                    0f,
-                    new Vector2(
-                        hexTexture.Width / 2f,
-                        hexTexture.Height / 2f),
-                    hexConstants.GetScale(),
-                    SpriteEffects.None,
-                    0f);
-
-                spriteBatch.Draw(
-                    hexTexture,
-                    position,
-                    null,
-                    Color.White,
-                    0f,
-                    new Vector2(
-                        hexTexture.Width / 2f,
-                        hexTexture.Height / 2f),
-                    hexConstants.GetScale(),
-                    SpriteEffects.None,
-                    0f);
+                spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
+                spriteBatch.Draw(hexTexture, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
 
                 hexConstants.Update();
                 //camPosX += 0.001f;
