@@ -21,7 +21,6 @@ namespace GridGame {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            mouseController = new MouseController(hexagonMap);
         }
 
         protected override void Initialize(){
@@ -36,6 +35,7 @@ namespace GridGame {
             hexTexture = Content.Load<Texture2D>("hexagon2");
             hexTexture2 = Content.Load<Texture2D>("hexagon");
             hexagonMap = new HexagonMap(hexTexture, hexTexture2);
+            mouseController = new MouseController(hexagonMap);
 
             // TODO: use this.Content to load your game content here
         }

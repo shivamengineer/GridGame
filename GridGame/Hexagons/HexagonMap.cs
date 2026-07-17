@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,8 @@ namespace GridGame.Hexagons {
         public void SetSelected(int x, int y) {
             setPOS = (x, y);
 
+            Debug.WriteLine("SET POS " + x + ", " + y);
+
             posSet = hexMap.ContainsKey(setPOS);
         }
 
@@ -93,11 +96,13 @@ namespace GridGame.Hexagons {
             hexMap = new Dictionary<(int, int), Hex>();
 
             int width = 10;
-            int height = 10;
+            int height = 20;
 
             for(int r = 0; r < height; r++) {
-                for(int q = 0; q < width; q++) {
-                    hexes.Add(new Hex(q, r));
+                for(int q = -10; q < width; q++) {
+                    Hex hex = new Hex(q, r);
+                    hexes.Add(hex);
+                    hexMap.Add((q, r), hex);
                 }
             }
         }
@@ -108,9 +113,11 @@ namespace GridGame.Hexagons {
                 Vector2 origin = new Vector2(hexTexture.Width / 2f, hexTexture.Height / 2f);
 
                 Color fillColor = Color.White;
-                if(posSet/* && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2*/) {
+                if(posSet && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2) {
                     fillColor = Color.Red;
                 }
+
+                //Debug.WriteLine("THIS NODE POS X: " + hex.Q + "| Y: " + hex.R);
 
                 spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
                 spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);

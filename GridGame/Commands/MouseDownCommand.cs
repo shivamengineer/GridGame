@@ -21,6 +21,7 @@ namespace GridGame.Commands {
 
         public void Execute() {
             (int, int) clickedHex = hexagonMap.PixelToHex(pos);
+            hexagonMap.SetSelected(clickedHex.Item1, clickedHex.Item2);
         }
 
     }

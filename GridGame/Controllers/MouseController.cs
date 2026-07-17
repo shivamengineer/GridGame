@@ -38,6 +38,7 @@ namespace GridGame.Controllers {
         }
 
         public void OnLeftMouseDown(MouseState mouseState) {
+            //(int, int) clickedHex = hexagonMap.PixelToHex(new Vector2(mouseState.X, mouseState.Y));
             Commands.ICommand command = new MouseDownCommand(hexagonMap, mouseState.X, mouseState.Y);
             command.Execute();
         }
