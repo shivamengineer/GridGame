@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 
 namespace GridGame {
     public class Game1 : Game {
@@ -20,7 +21,7 @@ namespace GridGame {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            mouseController = new MouseController();
+            mouseController = new MouseController(hexagonMap);
         }
 
         protected override void Initialize(){
@@ -43,10 +44,9 @@ namespace GridGame {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Vector2 mousePos = Mouse.GetState().Position.ToVector2();
 
-            (int, int) clickedHex = hexagonMap.PixelToHex(mousePos);
-            Console.WriteLine("POS IS " + clickedHex.Item1 + " | " + clickedHex.Item2);
+            mouseController.Update(gameTime);
+            //Vector2 mousePos = Mouse.GetState().Position.ToVector2();
 
             base.Update(gameTime);
         }

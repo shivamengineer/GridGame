@@ -1,18 +1,24 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Commands;
+using GridGame.Hexagons;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace GridGame.Controllers {
     public class MouseController : IController {
 
         private MouseState lastMouseState;
+        private HexagonMap hexagonMap;
 
-        public MouseController() {
+        public MouseController(HexagonMap hexagonMap) {
             lastMouseState = Mouse.GetState();
+            this.hexagonMap = hexagonMap;
         }
 
         public void Update(GameTime gameTime) {
@@ -32,7 +38,8 @@ namespace GridGame.Controllers {
         }
 
         public void OnLeftMouseDown(MouseState mouseState) {
-            //
+            Commands.ICommand command = new MouseDownCommand(hexagonMap, mouseState.X, mouseState.Y);
+            command.Execute();
         }
 
         public void OnLeftMouseStay(MouseState mouseState) {
