@@ -42,7 +42,7 @@ namespace GridGame {
 
             hexTexture = Content.Load<Texture2D>("hexagon2");
             hexTexture2 = Content.Load<Texture2D>("hexagon");
-            hexagonMap = new HexagonMap(hexTexture, hexTexture2, textureRect);
+            hexagonMap = new HexagonMap(hexTexture, hexTexture2);
             mouseController = new MouseController(hexagonMap);
 
             // TODO: use this.Content to load your game content here
