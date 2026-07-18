@@ -15,6 +15,8 @@ namespace GridGame {
         private Texture2D hexTexture2;
         private HexagonMap hexagonMap;
 
+        private Texture2D textureRect;
+
         private MouseController mouseController;
 
         public Game1(){
@@ -36,9 +38,11 @@ namespace GridGame {
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            textureRect = Content.Load<Texture2D>("rect_blue");
+
             hexTexture = Content.Load<Texture2D>("hexagon2");
             hexTexture2 = Content.Load<Texture2D>("hexagon");
-            hexagonMap = new HexagonMap(hexTexture, hexTexture2);
+            hexagonMap = new HexagonMap(hexTexture, hexTexture2, textureRect);
             mouseController = new MouseController(hexagonMap);
 
             // TODO: use this.Content to load your game content here
