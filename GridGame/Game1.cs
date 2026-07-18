@@ -52,9 +52,7 @@ namespace GridGame {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
             mouseController.Update(gameTime);
-            //Vector2 mousePos = Mouse.GetState().Position.ToVector2();
 
             base.Update(gameTime);
         }
