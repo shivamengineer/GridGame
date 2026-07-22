@@ -25,6 +25,8 @@ namespace GridGame.Controllers {
             keyboardController.AddHeldBinding(Keys.Right, new MoveCameraRightCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.Up, new MoveCameraUpCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.Down, new MoveCameraDownCommand(hexagonMap));
+            keyboardController.AddHeldBinding(Keys.P, new ZoomInCommand(hexagonMap));
+            keyboardController.AddHeldBinding(Keys.O, new ZoomOutCommand(hexagonMap));
         }
 
         public void Update(GameTime gameTime) {

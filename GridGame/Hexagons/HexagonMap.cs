@@ -158,5 +158,13 @@ namespace GridGame.Hexagons {
             camPosX += hexConstants.CameraMoveSpeedX;
         }
 
+        public void ZoomIn() {
+            hexConstants.ZoomIn();
+        }
+
+        public void ZoomOut() {
+            hexConstants.ZoomOut();
+        }
+
     }
 }

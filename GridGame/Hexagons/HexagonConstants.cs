@@ -18,6 +18,10 @@ namespace GridGame.Hexagons {
         private float counter;
         private float offset;
 
+        private float zoomSpeed;
+        private float minScale;
+        private float maxScale;
+
         public HexagonConstants() {
             CameraMoveSpeedX = 3;
             CameraMoveSpeedY = 3;
@@ -29,6 +33,10 @@ namespace GridGame.Hexagons {
 
             offset = 0;
             counter = 0;
+
+            zoomSpeed = 0.02f;
+            minScale = 1f;
+            maxScale = 5f;
         }
 
         public void Update() {
@@ -40,13 +48,25 @@ namespace GridGame.Hexagons {
             HexRadius = HexRadiusScaled + offset;
         }
 
-        public void SetScale(float newScale) {
+        private void SetScale(float newScale) {
             Scale = newScale;
             HexRadiusScaled = baseHexRadius * Scale;
+
+            HexRadius = HexRadiusScaled + offset;
         }
 
         public float GetScale() {
             return Scale;
+        }
+
+        public void ZoomIn() {
+            if(Scale >= maxScale) return;
+            SetScale(Scale + zoomSpeed);
+        }
+
+        public void ZoomOut() {
+            if(Scale <= minScale) return;
+            SetScale(Scale - zoomSpeed);
         }
 
     }
