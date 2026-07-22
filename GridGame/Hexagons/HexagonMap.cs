@@ -135,7 +135,7 @@ namespace GridGame.Hexagons {
 
             Color fillColor = Color.White;
             if(posSet && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2) {
-                fillColor = Color.Red;
+                fillColor = Color.Green;
             }
 
             spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
