@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons {
     public class HexagonConstants {
 
+        public int CameraMoveSpeedX;
+        public int CameraMoveSpeedY;
+
         public float HexRadius;
         private float HexRadiusScaled;
         private float baseHexRadius;
@@ -16,6 +19,9 @@ namespace GridGame.Hexagons {
         private float offset;
 
         public HexagonConstants() {
+            CameraMoveSpeedX = 3;
+            CameraMoveSpeedY = 3;
+
             Scale = 1;
             baseHexRadius = 35f;
             HexRadiusScaled = baseHexRadius * Scale;

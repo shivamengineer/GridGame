@@ -19,7 +19,7 @@ namespace GridGame {
         private Texture2D textureRect;
 
         private MouseController mouseController;
-        private KeyboardController keyboardController;
+        private KeyboardBindings keyBindings;
 
         public Game1(){
             _graphics = new GraphicsDeviceManager(this);
@@ -46,7 +46,7 @@ namespace GridGame {
             hexTexture2 = Content.Load<Texture2D>("hexagon");
             hexagonMap = new HexagonMap(hexTexture, hexTexture2);
             mouseController = new MouseController(hexagonMap);
-            keyboardController = new KeyboardController();
+            keyBindings = new KeyboardBindings(hexagonMap);
 
             // TODO: use this.Content to load your game content here
         }
@@ -56,6 +56,7 @@ namespace GridGame {
                 Exit();
 
             mouseController.Update(gameTime);
+            keyBindings.Update(gameTime);
 
             base.Update(gameTime);
         }
