@@ -1,4 +1,5 @@
-﻿using GridGame.Controllers;
+﻿using GridGame.Constants;
+using GridGame.Controllers;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,8 +23,8 @@ namespace GridGame {
         public Game1(){
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.PreferredBackBufferWidth = 1600;
-            _graphics.PreferredBackBufferHeight = 800;
+            _graphics.PreferredBackBufferWidth = GameConstants.WINDOW_WIDTH;
+            _graphics.PreferredBackBufferHeight = GameConstants.WINDOW_HEIGHT;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
