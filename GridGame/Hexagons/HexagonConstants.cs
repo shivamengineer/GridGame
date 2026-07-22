@@ -17,16 +17,16 @@ namespace GridGame.Hexagons {
 
         public HexagonConstants() {
             Scale = 1;
-            HexRadius = 35f;
-            HexRadiusScaled = baseHexRadius * Scale;
             baseHexRadius = 35f;
+            HexRadiusScaled = baseHexRadius * Scale;
+            HexRadius = HexRadiusScaled + offset;
 
             offset = 0;
             counter = 0;
         }
 
         public void Update() {
-            SetScale(Scale + 0.00003f);
+            SetScale(Scale + 0.002f);
 
             counter += 0.001f;
             offset = 2 * MathF.Sin(counter);

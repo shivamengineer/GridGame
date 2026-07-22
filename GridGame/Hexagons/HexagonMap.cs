@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Constants;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,15 @@ namespace GridGame.Hexagons {
 
         private HexagonConstants hexConstants;
 
-        private int camPosX = -300;
-        private int camPosY = -100;
+        private int camPosX = 0; //-300
+        private int camPosY = 0; //-100
+
+        private (int, int) topLeftXY = (0, 0);
 
         private bool posSet = false;
         private (int, int) setPOS;
+
+        private Vector2 origin;
 
         public static readonly Hex[] Directions = {
             new Hex(1, 0),
@@ -37,6 +42,8 @@ namespace GridGame.Hexagons {
             hexConstants = new HexagonConstants();
             this.hexTexture = hexTexture;
             tex2 = texture2;
+
+            origin = new Vector2(hexTexture.Width / 2f, hexTexture.Height / 2f);
             InitializeHexagons();
         }
 
@@ -96,26 +103,43 @@ namespace GridGame.Hexagons {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            Vector2 origin = new Vector2(hexTexture.Width / 2f, hexTexture.Height / 2f);
-            //Vector2 origin = Vector2.Zero;
+            topLeftXY = PixelToHex(new Vector2(camPosX, camPosY));
 
-            foreach(var hex in hexes) {
-                Vector2 position = HexToPixel(hex);
+            float dxQ = hexConstants.HexRadius * (MathF.Sqrt(3) - 0.5f);
+            float dyQ = hexConstants.HexRadius * 0.75f;
+            float dyR = hexConstants.HexRadius * MathF.Sqrt(3) * 0.9f;
 
-                Color fillColor = Color.White;
-                if(posSet && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2) {
-                    fillColor = Color.Red;
+            int qMin = (int)MathF.Floor(camPosX / dxQ) - 2;
+            float qMax = (int)MathF.Ceiling((camPosX + GameConstants.WINDOW_WIDTH) / dxQ) + 2;
+
+            for(int q = qMin; q <= qMax; q++) {
+                float top = camPosY;
+                float bottom = camPosY + GameConstants.WINDOW_HEIGHT;
+
+                int rMin = (int)MathF.Floor((top - q * dyQ) / dyR) - 2;
+                int rMax = (int)MathF.Ceiling((bottom - q * dyQ) / dyR) + 2;
+
+                for(int r = rMin; r <= rMax; r++) {
+                    if(!hexMap.ContainsKey((q, r))) {
+                        Hex hex = new Hex(q, r);
+                        hexes.Add(hex);
+                        hexMap.Add((q, r), hex);
+                    }
+                    DrawHex(spriteBatch, new Hex(q, r));
                 }
-
-                spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
-                spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
-
-                //hexConstants.Update();
-                //camPosX += 0.001f;
-                //camPosY -= 0.002f;
             }
-
         }
 
+        private void DrawHex(SpriteBatch spriteBatch, Hex hex) {
+            Vector2 position = HexToPixel(hex);
+
+            Color fillColor = Color.White;
+            if(posSet && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2) {
+                fillColor = Color.Red;
+            }
+
+            spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
+            spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
+        }
     }
 }
