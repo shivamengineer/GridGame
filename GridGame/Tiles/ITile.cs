@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using SharpDX.Direct3D9;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +11,7 @@ namespace GridGame.Tiles {
         public void GetResources();
 
         public void SetTile(ITile tile);
+
+        public void Draw(SpriteBatch spriteBatch);
     }
 }
