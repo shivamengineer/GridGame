@@ -12,5 +12,6 @@ namespace GridGame.Tiles.Buildings {
         Laboratory,
         Farm,
         Empty,
+        NIL
     }
 }

@@ -10,6 +10,6 @@ namespace GridGame.Resources {
         Production,
         Food,
         Science,
-
+        Morale,
     }
 }
