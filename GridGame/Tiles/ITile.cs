@@ -9,7 +9,16 @@ using System.Threading.Tasks;
 
 namespace GridGame.Tiles {
     public interface ITile {
-        public void GetResources();
+
+        public void AddPeople(int numPeople);
+
+        public void RemovePeople(int numPeople);
+
+        public int GetNumPeople();
+
+        public int GetMaxPeople();
+
+        public int GetResources();
 
         public void SetTile(ITile tile);
 

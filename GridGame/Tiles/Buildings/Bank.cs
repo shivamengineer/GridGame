@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Tiles.Buildings {
-    public class Factory : AbstractBuilding {
+    public class Bank : AbstractBuilding {
 
-        public Factory() {
+        public Bank() {
             //
         }
 
@@ -36,5 +36,6 @@ namespace GridGame.Tiles.Buildings {
         public override void Draw(SpriteBatch spriteBatch) {
             //
         }
+
     }
 }
