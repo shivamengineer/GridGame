@@ -10,5 +10,7 @@ namespace GridGame.Tiles.Buildings {
         Bank,
         Hospital,
         Laboratory,
+        Farm,
+        Empty,
     }
 }

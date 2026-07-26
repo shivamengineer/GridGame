@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Tiles.Buildings {
-    public interface IBuilding : ITile {
-
-        public void Build();
+namespace GridGame.Resources {
+    public enum ResourceType {
+        Gold,
+        Production,
+        Food,
+        Science,
 
     }
 }
