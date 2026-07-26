@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Tiles.Buildings {
-    public class Bank : AbstractBuilding {
+namespace GridGame.Tiles.Buildings.BuildingClasses {
+    public class Factory : AbstractBuilding {
 
-        public Bank() {
+        public Factory() {
             //
         }
 
@@ -36,6 +36,5 @@ namespace GridGame.Tiles.Buildings {
         public override void Draw(SpriteBatch spriteBatch) {
             //
         }
-
     }
 }
