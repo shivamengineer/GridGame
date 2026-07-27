@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GridGame.Resources {
     public abstract class AbstractResource : IResource {
 
-        private int Count;
+        public int Count;
 
         public int GetCount() {
             return Count;
