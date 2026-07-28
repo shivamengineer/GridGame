@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Constants;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override int GetMaxPeople() {
-            return 0;
+            return BuildingLimits.HOSPITAL_MAX_PEOPLE;
         }
 
         public override void Build() {

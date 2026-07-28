@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Tiles.Buildings.BuildingClasses {
-    public class Laboratory : AbstractBuilding {
+    public class NIL : AbstractBuilding {
 
-        public Laboratory() {
+        public NIL() {
             //
         }
 
         public override int GetMaxPeople() {
-            return BuildingLimits.LABORATORY_MAX_PEOPLE;
+            return BuildingLimits.NIL_MAX_PEOPLE;
         }
 
         public override void Build() {
