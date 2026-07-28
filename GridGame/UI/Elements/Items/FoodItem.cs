@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Items {
     public class FoodItem : AbstractItem {
 
+        public FoodItem() {
+            //
+        }
+
         public override void ShowItemData() {
             //
         }
