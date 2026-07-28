@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Buttons {
     public class LaboratoryButton : IButton {
 
+        public LaboratoryButton() {
+            //
+        }
+
         public void OnClick() {
             //
         }

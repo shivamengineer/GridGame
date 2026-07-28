@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Buttons {
     public class FarmButton : IButton {
 
+        public FarmButton() {
+            //
+        }
+
         public void OnClick() {
             //
         }

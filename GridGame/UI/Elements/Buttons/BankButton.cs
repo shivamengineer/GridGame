@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Buttons {
     public class BankButton : IButton {
 
+        public BankButton() {
+            //
+        }
+
         public void OnClick() {
             //
         }
