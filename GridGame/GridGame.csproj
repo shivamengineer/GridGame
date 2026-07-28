@@ -15,4 +15,9 @@
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\Elements\Buttons\" />
+    <Folder Include="UI\Overlay\SelectActions\" />
+    <Folder Include="UI\Overlay\ResourcesDisplay\" />
+  </ItemGroup>
 </Project>

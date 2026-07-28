@@ -47,8 +47,6 @@ namespace GridGame {
             hexagonMap = new HexagonMap(hexTexture, hexTexture2);
             mouseController = new MouseController(hexagonMap);
             keyBindings = new KeyboardBindings(hexagonMap);
-
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime){

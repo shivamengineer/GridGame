@@ -1,4 +1,4 @@
-﻿using GridGame.Commands;
+﻿using GridGame.Commands.CameraCommands;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;

@@ -142,29 +142,13 @@ namespace GridGame.Hexagons {
             spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
         }
 
-        public void MoveCameraUp() {
-            camPosY -= hexConstants.CameraMoveSpeedY;
-        }
+        public void MoveCameraUp() { camPosY -= hexConstants.CameraMoveSpeedY; }
+        public void MoveCameraDown() { camPosY += hexConstants.CameraMoveSpeedY; }
+        public void MoveCameraLeft() { camPosX -= hexConstants.CameraMoveSpeedX; }
+        public void MoveCameraRight() { camPosX += hexConstants.CameraMoveSpeedX; }
 
-        public void MoveCameraDown() {
-            camPosY += hexConstants.CameraMoveSpeedY;
-        }
-
-        public void MoveCameraLeft() {
-            camPosX -= hexConstants.CameraMoveSpeedX;
-        }
-
-        public void MoveCameraRight() {
-            camPosX += hexConstants.CameraMoveSpeedX;
-        }
-
-        public void ZoomIn() {
-            hexConstants.ZoomIn();
-        }
-
-        public void ZoomOut() {
-            hexConstants.ZoomOut();
-        }
+        public void ZoomIn() { hexConstants.ZoomIn(); }
+        public void ZoomOut() { hexConstants.ZoomOut(); }
 
     }
 }
