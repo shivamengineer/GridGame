@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements.Items {
-    public class Gold : AbstractItem {
+    public class ProductionItem : AbstractItem {
 
         public override void ShowItemData() {
             //
