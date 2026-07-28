@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements.Items {
-    public class Gold : IItem {
+    public class Gold : AbstractItem {
 
-        public void OnMouseHover() {
+        public override void ShowItemData() {
             //
         }
 
-        public void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch) {
             //
         }
 
