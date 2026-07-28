@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace GridGame.UI.Button {
 
         public void OnClick();
 
-        public void Draw();
+        public void Draw(SpriteBatch spriteBatch);
 
     }
 }
