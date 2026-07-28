@@ -16,7 +16,6 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\Elements\Buttons\" />
     <Folder Include="UI\Overlay\SelectActions\" />
   </ItemGroup>
 </Project>
