@@ -20,7 +20,7 @@ namespace GridGame.Commands.CameraCommands {
         }
 
         public void Execute() {
-            (int, int) clickedHex = hexagonMap.PixelToHex(pos);
+            (int, int) clickedHex = hexagonMap.HexMath.PixelToHex(pos);
             hexagonMap.SetSelected(clickedHex.Item1, clickedHex.Item2);
         }
 

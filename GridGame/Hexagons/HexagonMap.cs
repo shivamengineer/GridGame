@@ -17,10 +17,7 @@ namespace GridGame.Hexagons {
 
         private Dictionary<(int, int), Hex> hexMap;
 
-        private HexagonConstants hexConstants;
-
-        private int camPosX = 0; //-300
-        private int camPosY = 0; //-100
+        public HexagonMath HexMath;
 
         private (int, int) topLeftXY = (0, 0);
 
@@ -29,61 +26,20 @@ namespace GridGame.Hexagons {
 
         private Vector2 origin;
 
-        public static readonly Hex[] Directions = {
-            new Hex(1, 0),
-            new Hex(1, -1),
-            new Hex(0, -1),
-            new Hex(-1, 0),
-            new Hex(-1, 1),
-            new Hex(0, 1)
-        };
-
         public HexagonMap(Texture2D hexTexture, Texture2D texture2) {
-            hexConstants = new HexagonConstants();
             this.hexTexture = hexTexture;
             tex2 = texture2;
 
+            HexMath = new HexagonMath();
+
             origin = new Vector2(hexTexture.Width / 2f, hexTexture.Height / 2f);
             InitializeHexagons();
-        }
-
-        public Vector2 HexToPixel(Hex hex) {
-            float rad = hexConstants.HexRadius;
-
-            float x = hex.Q * (rad * MathF.Sqrt(3) - (rad / 2)) - camPosX;
-            float y = (hex.R * rad * MathF.Sqrt(3)) * 0.9f + (hex.Q * rad / 2) * 1.5f - camPosY;
-
-            return new Vector2(x, y);
         }
 
         public void SetSelected(int x, int y) {
             setPOS = (x, y);
 
             posSet = hexMap.ContainsKey(setPOS);
-        }
-
-        public (int, int) PixelToHex(Vector2 mousePos) {
-            float radius = hexConstants.HexRadius;
-
-            float x = mousePos.X + camPosX;
-            float y = mousePos.Y + camPosY;
-
-            float A = radius * (MathF.Sqrt(3f) - 0.5f);
-            float B = radius * 0.75f;
-            float C = radius * 0.9f * MathF.Sqrt(3f);
-
-            float q = x / A;
-            float r = (y - B * q) / C;
-
-            return (
-                (int)MathF.Round(q),
-                (int)MathF.Round(r)
-            );
-        }
-
-        public static Hex GetNeighbor(Hex hex, int direction) {
-            var d = Directions[direction];
-            return new Hex(hex.Q + d.Q, hex.R + d.R);
         }
 
         private void InitializeHexagons() {
@@ -103,11 +59,16 @@ namespace GridGame.Hexagons {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            topLeftXY = PixelToHex(new Vector2(camPosX, camPosY));
+            int camPosX = HexMath.camPosX;
+            int camPosY = HexMath.camPosY;
 
-            float dxQ = hexConstants.HexRadius * (MathF.Sqrt(3) - 0.5f);
-            float dyQ = hexConstants.HexRadius * 0.75f;
-            float dyR = hexConstants.HexRadius * MathF.Sqrt(3) * 0.9f;
+            float rad = HexMath.hexConstants.HexRadius;
+
+            topLeftXY = HexMath.PixelToHex(new Vector2(camPosX, camPosY));
+
+            float dxQ = rad * (MathF.Sqrt(3) - 0.5f);
+            float dyQ = rad * 0.75f;
+            float dyR = rad * MathF.Sqrt(3) * 0.9f;
 
             int qMin = (int)MathF.Floor(camPosX / dxQ) - 2;
             float qMax = (int)MathF.Ceiling((camPosX + GameConstants.WINDOW_WIDTH) / dxQ) + 2;
@@ -131,24 +92,15 @@ namespace GridGame.Hexagons {
         }
 
         private void DrawHex(SpriteBatch spriteBatch, Hex hex) {
-            Vector2 position = HexToPixel(hex);
+            Vector2 position = HexMath.HexToPixel(hex);
 
             Color fillColor = Color.White;
             if(posSet && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2) {
                 fillColor = Color.Green;
             }
 
-            spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
-            spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, hexConstants.GetScale(), SpriteEffects.None, 0f);
+            spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, HexMath.GetScale(), SpriteEffects.None, 0f);
+            spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, HexMath.GetScale(), SpriteEffects.None, 0f);
         }
-
-        public void MoveCameraUp() { camPosY -= hexConstants.CameraMoveSpeedY; }
-        public void MoveCameraDown() { camPosY += hexConstants.CameraMoveSpeedY; }
-        public void MoveCameraLeft() { camPosX -= hexConstants.CameraMoveSpeedX; }
-        public void MoveCameraRight() { camPosX += hexConstants.CameraMoveSpeedX; }
-
-        public void ZoomIn() { hexConstants.ZoomIn(); }
-        public void ZoomOut() { hexConstants.ZoomOut(); }
-
     }
 }

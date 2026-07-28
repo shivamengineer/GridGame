@@ -18,6 +18,5 @@
   <ItemGroup>
     <Folder Include="UI\Elements\Buttons\" />
     <Folder Include="UI\Overlay\SelectActions\" />
-    <Folder Include="UI\Overlay\ResourcesDisplay\" />
   </ItemGroup>
 </Project>
