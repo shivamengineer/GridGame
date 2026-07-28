@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Commands {
-    public class ZoomInCommand : ICommand {
+namespace GridGame.Commands.CameraCommands {
+    public class ZoomOutCommand : ICommand {
 
         private HexagonMap hexagonMap;
 
-        public ZoomInCommand(HexagonMap hexagonMap) {
+        public ZoomOutCommand(HexagonMap hexagonMap) {
             this.hexagonMap = hexagonMap;
         }
 
         public void Execute() {
-            hexagonMap.ZoomIn();
+            hexagonMap.ZoomOut();
         }
 
     }

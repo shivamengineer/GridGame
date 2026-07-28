@@ -7,7 +7,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Commands {
+namespace GridGame.Commands.CameraCommands {
     public class MouseDownCommand : ICommand {
 
         private HexagonMap hexagonMap;

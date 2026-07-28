@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Commands {
+namespace GridGame.Commands.CameraCommands {
     public class MoveCameraDownCommand : ICommand {
 
         private HexagonMap hexagonMap;
