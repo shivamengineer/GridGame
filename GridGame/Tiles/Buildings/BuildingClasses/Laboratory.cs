@@ -1,0 +1,41 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GridGame.Tiles.Buildings.BuildingClasses {
+    public class Laboratory : AbstractBuilding {
+
+        public Laboratory() {
+            //
+        }
+
+        public override int GetMaxPeople() {
+            return 0;
+        }
+
+        public override void Build() {
+            //
+        }
+
+        public override void SetTile(ITile tile) {
+            //
+        }
+
+        public override int GetResources() {
+            return 0;
+        }
+
+        public override void Update(GameTime gameTime) {
+            //
+        }
+
+        public override void Draw(SpriteBatch spriteBatch) {
+            //
+        }
+
+    }
+}
