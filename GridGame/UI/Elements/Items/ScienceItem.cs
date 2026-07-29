@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Items {
     public class ScienceItem : AbstractItem {
 
-        public ScienceItem() {
-            //
+        private SpriteFont font;
+        private string text;
+
+        public ScienceItem(SpriteFont font) {
+            this.font = font;
+
+            text = "Science: ";
         }
 
         public override void ShowItemData() {

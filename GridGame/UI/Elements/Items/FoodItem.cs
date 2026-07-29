@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,14 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Items {
     public class FoodItem : AbstractItem {
 
-        public FoodItem() {
-            //
+        private SpriteFont font;
+        private string text;
+        private Vector2 position;
+
+        public FoodItem(SpriteFont font) {
+            this.font = font;
+
+            text = "Food: ";
         }
 
         public override void ShowItemData() {
@@ -17,7 +24,8 @@ namespace GridGame.UI.Elements.Items {
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
-            //
+            string drawText = text;
+            spriteBatch.DrawString(font, drawText, position, Color.White);
         }
 
     }

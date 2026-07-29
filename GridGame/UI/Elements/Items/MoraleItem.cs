@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Items {
     public class MoraleItem : AbstractItem {
 
-        public MoraleItem() {
-            //
+        private SpriteFont font;
+        private string text;
+
+        public MoraleItem(SpriteFont font) {
+            this.font = font;
+
+            text = "Morale: ";
         }
 
         public override void ShowItemData() {
