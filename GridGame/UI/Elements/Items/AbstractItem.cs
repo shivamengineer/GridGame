@@ -2,15 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements.Items {
     public abstract class AbstractItem : IItem {
 
+        public Vector2 Position;
+
         public void OnMouseHover() {
             //if condition
             //  ShowItemData();
+        }
+
+        public void SetPosition(int x, int y) {
+            Position = new Vector2(x, y);
         }
 
         public abstract void ShowItemData();

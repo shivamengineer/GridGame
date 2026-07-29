@@ -10,6 +10,8 @@ namespace GridGame.UI.Elements {
 
         public void OnMouseHover();
 
+        public void SetPosition(int x, int y);
+
         public void Draw(SpriteBatch spriteBatch);
 
     }
