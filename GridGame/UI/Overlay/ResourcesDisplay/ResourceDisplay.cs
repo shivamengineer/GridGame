@@ -1,6 +1,8 @@
-﻿using GridGame.Resources;
+﻿using GridGame.Constants;
+using GridGame.Resources;
 using GridGame.UI.Elements;
 using GridGame.UI.Elements.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,8 +15,15 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
 
         private Dictionary<ResourceType, IItem> resourceItems;
 
-        public ResourceDisplay() {
+        private Rectangle resourcesBar;
+        private Texture2D blankTexture;
+
+        public ResourceDisplay(Texture2D blankTexture) {
             InitializeResources();
+            InitializeItemPositions();
+            resourcesBar = new Rectangle(0, 0, GameConstants.WINDOW_WIDTH, UIOverlayDetails.RESOURCE_BAR_HEIGHT);
+            this.blankTexture = blankTexture;
+
         }
 
         private void InitializeResources() {
@@ -27,7 +36,13 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
             };
         }
 
+        private void InitializeItemPositions() {
+            
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
+            //spriteBatch.Draw(blankTexture, );
+
             //foreach IItem item in resourceItems
             //item.Draw
         }
