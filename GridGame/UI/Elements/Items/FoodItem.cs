@@ -23,7 +23,7 @@ namespace GridGame.UI.Elements.Items {
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
-            string drawText = text;
+            string drawText = text + Count;
             spriteBatch.DrawString(font, drawText, Position, Color.Red);
         }
 
