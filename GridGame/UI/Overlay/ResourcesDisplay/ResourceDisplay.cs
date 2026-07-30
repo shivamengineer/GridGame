@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,12 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
         private SpriteFont font;
 
         public ResourceDisplay(Texture2D blankTexture, SpriteFont font) {
+            this.blankTexture = blankTexture;
+            this.font = font;
+
             InitializeResources();
             InitializeItemPositions();
             resourcesBar = new Rectangle(0, 0, GameConstants.WINDOW_WIDTH, UIOverlayDetails.RESOURCE_BAR_HEIGHT);
-            this.blankTexture = blankTexture;
-            this.font = font;
         }
 
         private void InitializeResources() {
@@ -49,7 +51,7 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            //spriteBatch.Draw(blankTexture, );
+            spriteBatch.Draw(blankTexture, resourcesBar, Color.White);
 
             foreach(var item in resourceItems) {
                 item.Value.Draw(spriteBatch);

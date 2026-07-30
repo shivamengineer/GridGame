@@ -11,7 +11,6 @@ namespace GridGame.UI.Elements.Items {
 
         private SpriteFont font;
         private string text;
-        private Vector2 position;
 
         public FoodItem(SpriteFont font) {
             this.font = font;
@@ -25,7 +24,7 @@ namespace GridGame.UI.Elements.Items {
 
         public override void Draw(SpriteBatch spriteBatch) {
             string drawText = text;
-            spriteBatch.DrawString(font, drawText, position, Color.White);
+            spriteBatch.DrawString(font, drawText, Position, Color.Red);
         }
 
     }
