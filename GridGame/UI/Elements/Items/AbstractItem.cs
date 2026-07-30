@@ -10,6 +10,7 @@ namespace GridGame.UI.Elements.Items {
     public abstract class AbstractItem : IItem {
 
         public Vector2 Position;
+        public int Count;
 
         public void OnMouseHover() {
             //if condition
@@ -18,6 +19,10 @@ namespace GridGame.UI.Elements.Items {
 
         public void SetPosition(int x, int y) {
             Position = new Vector2(x, y);
+        }
+
+        public void SetCount(int amount) {
+            Count = amount;
         }
 
         public abstract void ShowItemData();

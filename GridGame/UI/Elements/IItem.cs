@@ -12,6 +12,8 @@ namespace GridGame.UI.Elements {
 
         public void SetPosition(int x, int y);
 
+        public void SetCount(int amount);
+
         public void Draw(SpriteBatch spriteBatch);
 
     }
