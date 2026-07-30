@@ -15,6 +15,7 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
     public class ResourceDisplay {
 
         private Dictionary<ResourceType, IItem> resourceItems;
+        private List<Rectangle> resourceItemBackgrounds;
 
         private Rectangle resourcesBar;
         private Texture2D blankTexture;
@@ -24,6 +25,7 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
         public ResourceDisplay(Texture2D blankTexture, SpriteFont font) {
             this.blankTexture = blankTexture;
             this.font = font;
+            resourceItemBackgrounds = new List<Rectangle>();
 
             InitializeResources();
             InitializeItemPositions();
@@ -44,14 +46,20 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
             int index = 0;
             int spacing = GameConstants.WINDOW_WIDTH / resourceItems.Count;
             foreach(var item in resourceItems) {
-                item.Value.SetPosition(index * spacing, UIOverlayDetails.RESOURCE_BAR_ITEM_Y);
+                Rectangle background = new Rectangle((spacing * index) + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, UIOverlayDetails.RESOURCE_BAR_ITEM_Y, 
+                    spacing - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X), UIOverlayDetails.RESOURCE_BAR_HEIGHT - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_Y));
+                resourceItemBackgrounds.Add(background);
+                item.Value.SetPosition(background.X + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, UIOverlayDetails.RESOURCE_BAR_ITEM_Y * 2);
                 index++;
             }
-            resourceItems[ResourceType.Food].SetPosition(0, UIOverlayDetails.RESOURCE_BAR_Y);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(blankTexture, resourcesBar, Color.LightGray);
+            spriteBatch.Draw(blankTexture, resourcesBar, Color.Gray);
+
+            foreach(var rect in resourceItemBackgrounds) {
+                spriteBatch.Draw(blankTexture, rect, Color.LightGray);
+            }
 
             foreach(var item in resourceItems) {
                 item.Value.Draw(spriteBatch);
