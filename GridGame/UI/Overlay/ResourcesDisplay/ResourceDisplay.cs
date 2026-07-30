@@ -54,6 +54,16 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
             }
         }
 
+        public void UpdateAllResources(Dictionary<ResourceType, IResource> resourceMap) {
+            foreach(var resource in resourceMap) {
+                resourceItems[resource.Key].SetCount(resource.Value.GetCount());
+            }
+        }
+
+        public void UpdateResource(ResourceType resourceType, int newAmount) {
+            resourceItems[resourceType].SetCount(newAmount);
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(blankTexture, resourcesBar, Color.Gray);
 

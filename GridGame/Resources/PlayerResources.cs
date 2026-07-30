@@ -15,12 +15,25 @@ namespace GridGame.Resources {
         }
 
         private void InitializeResources() {
-            resources = new Dictionary<ResourceType, IResource>();
-            resources.Add(ResourceType.Food, new Food());
-            resources.Add(ResourceType.Gold, new Gold());
-            resources.Add(ResourceType.Production, new Production());
-            resources.Add(ResourceType.Science, new Science());
-            resources.Add(ResourceType.Morale, new Morale());
+            resources = new Dictionary<ResourceType, IResource> {
+                [ResourceType.Food] = new Food(),
+                [ResourceType.Gold] = new Gold(),
+                [ResourceType.Production] = new Production(),
+                [ResourceType.Science] = new Science(),
+                [ResourceType.Morale] = new Morale(),
+            };
+        }
+
+        public Dictionary<ResourceType, IResource> GetResourceCounts() {
+            return resources;
+        }
+
+        public void AddResource(ResourceType resource, int amount) {
+            resources[resource].AddResource(amount);
+        }
+
+        public void SubtractResource(ResourceType resource, int amount) {
+            resources[resource].SubtractResource(amount);
         }
 
     }
