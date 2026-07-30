@@ -51,7 +51,7 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(blankTexture, resourcesBar, Color.White);
+            spriteBatch.Draw(blankTexture, resourcesBar, Color.LightGray);
 
             foreach(var item in resourceItems) {
                 item.Value.Draw(spriteBatch);
