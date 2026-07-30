@@ -45,7 +45,7 @@ namespace GridGame {
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            textureRect = Content.Load<Texture2D>("rect_blue");
+            textureRect = Content.Load<Texture2D>("rect_blank");
 
             hexTexture = Content.Load<Texture2D>("hexagon_white");
             hexTexture2 = Content.Load<Texture2D>("hexagon");

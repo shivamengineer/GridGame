@@ -56,7 +56,7 @@
 /processorParam:TextureFormat=Color
 /build:hexagon2.png
 
-#begin rect_blue.png
+#begin rect_blank.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -66,5 +66,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:rect_blue.png
+/build:rect_blank.png
 
