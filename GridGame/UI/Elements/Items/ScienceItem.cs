@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Items {
     public class ScienceItem : AbstractItem {
 
+        private Texture2D texture;
         private SpriteFont font;
         private string text;
 
-        public ScienceItem(SpriteFont font) {
+        public ScienceItem(Texture2D texture, SpriteFont font) {
+            this.texture = texture;
             this.font = font;
 
             text = "Science: ";
@@ -23,6 +25,7 @@ namespace GridGame.UI.Elements.Items {
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
+            spriteBatch.Draw(texture, backgroundRect, Color.LightGray);
             string drawText = text + Count;
             spriteBatch.DrawString(font, drawText, Position, Color.Red);
         }

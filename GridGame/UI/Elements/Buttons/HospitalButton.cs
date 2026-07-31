@@ -7,17 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements.Buttons {
-    public class HospitalButton : IButton {
+    public class HospitalButton : AbstractButton {
 
         public HospitalButton() {
             //
         }
 
-        public void OnClick() {
+        public override void OnClick() {
             //
         }
 
-        public void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch) {
             //
         }
 

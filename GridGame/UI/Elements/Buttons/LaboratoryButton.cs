@@ -8,17 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements.Buttons {
-    public class LaboratoryButton : IButton {
+    public class LaboratoryButton : AbstractButton {
 
         public LaboratoryButton() {
             //
         }
 
-        public void OnClick() {
+        public override void OnClick() {
             //
         }
 
-        public void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch) {
             //
         }
 

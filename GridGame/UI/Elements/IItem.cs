@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace GridGame.UI.Elements {
         public void SetPosition(int x, int y);
 
         public void SetCount(int amount);
+
+        public void SetRect(Rectangle rect);
 
         public void Draw(SpriteBatch spriteBatch);
 

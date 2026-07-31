@@ -3,6 +3,7 @@ using GridGame.Controllers;
 using GridGame.Hexagons;
 using GridGame.Resources;
 using GridGame.UI.Overlay.ResourcesDisplay;
+using GridGame.UI.Overlay.SelectActions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,6 +27,7 @@ namespace GridGame {
         private KeyboardBindings keyBindings;
 
         private ResourcesManager resourcesManager;
+        private ButtonDisplay buttonDisplay;
 
         public Game1(){
             _graphics = new GraphicsDeviceManager(this);
@@ -58,6 +60,7 @@ namespace GridGame {
             keyBindings = new KeyboardBindings(hexagonMap);
 
             resourcesManager = new ResourcesManager(textureRect, font);
+            buttonDisplay = new ButtonDisplay(textureRect, font);
         }
 
         protected override void Update(GameTime gameTime){
@@ -77,6 +80,7 @@ namespace GridGame {
 
             hexagonMap.Draw(_spriteBatch);
             resourcesManager.Draw(_spriteBatch);
+            buttonDisplay.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

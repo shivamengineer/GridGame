@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Items {
     public class ProductionItem : AbstractItem {
 
+        private Texture2D texture;
         private SpriteFont font;
         private string text;
 
-        public ProductionItem(SpriteFont font) {
+        public ProductionItem(Texture2D texture, SpriteFont font) {
+            this.texture = texture;
             this.font = font;
 
             text = "Production: ";
@@ -23,6 +25,7 @@ namespace GridGame.UI.Elements.Items {
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
+            spriteBatch.Draw(texture, backgroundRect, Color.LightGray);
             string drawText = text + Count;
             spriteBatch.DrawString(font, drawText, Position, Color.Red);
         }

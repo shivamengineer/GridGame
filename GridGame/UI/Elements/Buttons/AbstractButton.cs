@@ -1,4 +1,5 @@
 ﻿using GridGame.UI.Button;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -7,19 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements.Buttons {
-    public class BankButton : AbstractButton {
+    public abstract class AbstractButton : IButton {
 
-        public BankButton() {
+        public void SetRect(Rectangle rect) {
             //
         }
 
-        public override void OnClick() {
-            //
-        }
+        public abstract void OnClick();
 
-        public override void Draw(SpriteBatch spriteBatch) {
-            //
-        }
+        public abstract void Draw(SpriteBatch spriteBatch);
 
     }
 }

@@ -7,17 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements.Buttons {
-    public class FarmButton : IButton {
+    public class FarmButton : AbstractButton {
 
         public FarmButton() {
             //
         }
 
-        public void OnClick() {
+        public override void OnClick() {
             //
         }
 
-        public void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch) {
             //
         }
 
