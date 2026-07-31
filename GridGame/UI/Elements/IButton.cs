@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Button {
     public interface IButton {
 
+        public void SetPosition(int x, int y);
+
         public void SetRect(Rectangle rect);
 
         public void OnClick();

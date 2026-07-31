@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Overlay.SelectActions {
     public class ButtonDisplay {
 
-        private List<Rectangle> buildingButtonBackgrounds;
         private Dictionary<BuildingType, IButton> buildingButtons;
 
         private Rectangle buttonBackground;
@@ -25,7 +24,6 @@ namespace GridGame.UI.Overlay.SelectActions {
             this.blankTexture = blankTexture;
             this.font = font;
 
-            buildingButtonBackgrounds = new List<Rectangle>();
             InitializeBuildingTypes();
             InitializeButtonBackgrounds();
 
@@ -35,11 +33,11 @@ namespace GridGame.UI.Overlay.SelectActions {
 
         private void InitializeBuildingTypes() {
             buildingButtons = new Dictionary<BuildingType, IButton> {
-                [BuildingType.Farm] = new FarmButton(),
-                [BuildingType.Bank] = new BankButton(),
-                [BuildingType.Hospital] = new HospitalButton(),
-                [BuildingType.Factory] = new FactoryButton(),
-                [BuildingType.Laboratory] = new LaboratoryButton(),
+                [BuildingType.Farm] = new FarmButton(blankTexture, font),
+                [BuildingType.Bank] = new BankButton(blankTexture, font),
+                [BuildingType.Hospital] = new HospitalButton(blankTexture, font),
+                [BuildingType.Factory] = new FactoryButton(blankTexture, font),
+                [BuildingType.Laboratory] = new LaboratoryButton(blankTexture, font),
             };
         }
 
@@ -53,8 +51,9 @@ namespace GridGame.UI.Overlay.SelectActions {
             foreach(var item in buildingButtons) {
                 Rectangle background = new Rectangle((spacing * index) + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, y,
                     spacing - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X), height);
-                buildingButtonBackgrounds.Add(background);
-                //buildingButtons.
+
+                item.Value.SetPosition(background.X + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, y + (UIOverlayDetails.RESOURCE_BAR_ITEM_Y * 2));
+                item.Value.SetRect(background);
                 index++;
             }
         }
@@ -62,8 +61,8 @@ namespace GridGame.UI.Overlay.SelectActions {
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(blankTexture, buttonBackground, Color.Gray);
 
-            foreach(var rect in buildingButtonBackgrounds) {
-                spriteBatch.Draw(blankTexture, rect, Color.LightGray);
+            foreach(var button in buildingButtons) {
+                button.Value.Draw(spriteBatch);
             }
         }
 

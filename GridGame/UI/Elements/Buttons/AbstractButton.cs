@@ -10,8 +10,15 @@ using System.Threading.Tasks;
 namespace GridGame.UI.Elements.Buttons {
     public abstract class AbstractButton : IButton {
 
+        public Vector2 Position;
+        public Rectangle backgroundRect;
+
+        public void SetPosition(int x, int y) {
+            Position = new Vector2(x, y);
+        }
+
         public void SetRect(Rectangle rect) {
-            //
+            backgroundRect = rect;
         }
 
         public abstract void OnClick();

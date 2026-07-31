@@ -46,6 +46,7 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
             foreach(var item in resourceItems) {
                 Rectangle background = new Rectangle((spacing * index) + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, UIOverlayDetails.RESOURCE_BAR_ITEM_Y, 
                     spacing - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X), UIOverlayDetails.RESOURCE_BAR_HEIGHT - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_Y));
+
                 item.Value.SetPosition(background.X + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, UIOverlayDetails.RESOURCE_BAR_ITEM_Y * 2);
                 item.Value.SetRect(background);
                 index++;
