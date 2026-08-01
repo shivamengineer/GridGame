@@ -30,6 +30,10 @@ namespace GridGame.UI.Elements.Items {
             backgroundRect = rect;
         }
 
+        public Rectangle GetRect() {
+            return backgroundRect;
+        }
+
         public abstract void ShowItemData();
 
         public abstract void Draw(SpriteBatch spriteBatch);

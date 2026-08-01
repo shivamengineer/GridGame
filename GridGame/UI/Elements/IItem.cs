@@ -17,6 +17,8 @@ namespace GridGame.UI.Elements {
 
         public void SetRect(Rectangle rect);
 
+        public Rectangle GetRect();
+
         public void Draw(SpriteBatch spriteBatch);
 
     }

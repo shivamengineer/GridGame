@@ -58,6 +58,19 @@ namespace GridGame.UI.Overlay.SelectActions {
             }
         }
 
+        public bool MouseOnDisplay(Point point) {
+            return buttonBackground.Contains(point);
+        }
+
+        public IButton GetSelectedButton(Point point) {
+            foreach(var item in buildingButtons) {
+                if(item.Value.GetRect().Contains(point)) {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(blankTexture, buttonBackground, Color.Gray);
 

@@ -21,6 +21,10 @@ namespace GridGame.UI.Elements.Buttons {
             backgroundRect = rect;
         }
 
+        public Rectangle GetRect() {
+            return backgroundRect;
+        }
+
         public abstract void OnClick();
 
         public abstract void Draw(SpriteBatch spriteBatch);

@@ -53,6 +53,19 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
             }
         }
 
+        public bool MouseOnDisplay(Point point) {
+            return resourcesBar.Contains(point);
+        }
+
+        public IItem GetSelectedResource(Point point) {
+            foreach(var item in resourceItems) {
+                if(item.Value.GetRect().Contains(point)) {
+                    return item.Value;
+                }
+            }
+            return null;
+        }
+
         public void UpdateAllResources(Dictionary<ResourceType, IResource> resourceMap) {
             foreach(var resource in resourceMap) {
                 resourceItems[resource.Key].SetCount(resource.Value.GetCount());

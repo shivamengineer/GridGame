@@ -13,6 +13,8 @@ namespace GridGame.UI.Button {
 
         public void SetRect(Rectangle rect);
 
+        public Rectangle GetRect();
+
         public void OnClick();
 
         public void Draw(SpriteBatch spriteBatch);
