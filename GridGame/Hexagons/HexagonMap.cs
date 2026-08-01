@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Tiles;
+using GridGame.Tiles.Buildings.BuildingClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -15,6 +17,7 @@ namespace GridGame.Hexagons {
         private Texture2D tex2;
 
         private Dictionary<(int, int), Hex> hexMap;
+        private Dictionary<(int, int), ITile> tileMap;
 
         public HexagonMath HexMath;
 
@@ -43,6 +46,7 @@ namespace GridGame.Hexagons {
 
         private void InitializeHexagons() {
             hexMap = new Dictionary<(int, int), Hex>();
+            tileMap = new Dictionary<(int, int), ITile>();
 
             int width = 10;
             int height = 10;
@@ -51,6 +55,8 @@ namespace GridGame.Hexagons {
                 for(int q = 0; q < width; q++) {
                     Hex hex = new Hex(q, r);
                     hexMap.Add((q, r), hex);
+
+                    ITile tile = new Empty(q, r);
                 }
             }
         }

@@ -10,8 +10,12 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class Factory : AbstractBuilding {
 
-        public Factory() {
-            //
+        private int q;
+        private int r;
+
+        public Factory(int q, int r) {
+            this.q = q;
+            this.r = r;
         }
 
         public override int GetMaxPeople() {

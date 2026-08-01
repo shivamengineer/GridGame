@@ -10,8 +10,12 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class Bank : AbstractBuilding {
 
-        public Bank() {
-            //
+        private int q;
+        private int r;
+
+        public Bank(int q, int r) {
+            this.q = q;
+            this.r = r;
         }
 
         public override int GetMaxPeople() {
