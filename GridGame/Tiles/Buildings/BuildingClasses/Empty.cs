@@ -17,7 +17,6 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             this.q = q;
             this.r = r;
         }
-
         public override int GetMaxPeople() {
             return BuildingLimits.EMPTY_MAX_PEOPLE;
         }

@@ -12,6 +12,14 @@ namespace GridGame.Tiles.Buildings {
 
         private int population = 0;
 
+        public Texture2D borderTexture;
+        public Texture2D baseTexture;
+
+        public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
+            this.borderTexture = borderTexture;
+            this.baseTexture = baseTexture;
+        }
+
         public void AddPeople(int numPeople) {
             population += numPeople;
         }

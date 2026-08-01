@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles {
     public interface ITile {
 
+        public void SetTextures(Texture2D borderTexture, Texture2D baseTexture);
+
         public void AddPeople(int numPeople);
 
         public void RemovePeople(int numPeople);

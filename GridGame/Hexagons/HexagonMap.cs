@@ -56,7 +56,7 @@ namespace GridGame.Hexagons {
                     Hex hex = new Hex(q, r);
                     hexMap.Add((q, r), hex);
 
-                    ITile tile = new Empty(q, r);
+                    ITile tile = new NIL(q, r);
                 }
             }
         }
