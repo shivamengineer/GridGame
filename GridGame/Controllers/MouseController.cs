@@ -15,10 +15,12 @@ namespace GridGame.Controllers {
 
         private MouseState lastMouseState;
         private HexagonMap hexagonMap;
+        private MouseDownHandler mouseDownHandler;
 
-        public MouseController(HexagonMap hexagonMap) {
+        public MouseController(HexagonMap hexagonMap, MouseDownHandler mouseDownHandler) {
             lastMouseState = Mouse.GetState();
             this.hexagonMap = hexagonMap;
+            this.mouseDownHandler = mouseDownHandler;
         }
 
         public void Update(GameTime gameTime) {
@@ -38,7 +40,6 @@ namespace GridGame.Controllers {
         }
 
         public void OnLeftMouseDown(MouseState mouseState) {
-            //(int, int) clickedHex = hexagonMap.PixelToHex(new Vector2(mouseState.X, mouseState.Y));
             Commands.ICommand command = new MouseDownCommand(hexagonMap, mouseState.X, mouseState.Y);
             command.Execute();
         }

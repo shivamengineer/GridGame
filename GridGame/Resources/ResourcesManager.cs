@@ -18,6 +18,10 @@ namespace GridGame.Resources {
             resourceDisplay.UpdateAllResources(playerResources.GetResourceCounts());
         }
 
+        public ResourceDisplay GetResourceDisplay() {
+            return resourceDisplay;
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
             resourceDisplay.Draw(spriteBatch);
         }

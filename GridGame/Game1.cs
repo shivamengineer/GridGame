@@ -29,6 +29,8 @@ namespace GridGame {
         private ResourcesManager resourcesManager;
         private ButtonDisplay buttonDisplay;
 
+        private MouseDownHandler mouseDownHandler;
+
         public Game1(){
             _graphics = new GraphicsDeviceManager(this);
 
@@ -56,11 +58,14 @@ namespace GridGame {
             font = Content.Load<SpriteFont>("ArialFont");
 
             hexagonMap = new HexagonMap(hexTexture, hexTexture2);
-            mouseController = new MouseController(hexagonMap);
             keyBindings = new KeyboardBindings(hexagonMap);
 
             resourcesManager = new ResourcesManager(textureRect, font);
             buttonDisplay = new ButtonDisplay(textureRect, font);
+
+            mouseDownHandler = new MouseDownHandler(resourcesManager.GetResourceDisplay(), buttonDisplay);
+
+            mouseController = new MouseController(hexagonMap, mouseDownHandler);
         }
 
         protected override void Update(GameTime gameTime){
