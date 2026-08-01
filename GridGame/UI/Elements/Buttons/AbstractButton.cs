@@ -1,4 +1,5 @@
-﻿using GridGame.UI.Button;
+﻿using GridGame.Tiles.Buildings;
+using GridGame.UI.Button;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,6 +25,8 @@ namespace GridGame.UI.Elements.Buttons {
         public Rectangle GetRect() {
             return backgroundRect;
         }
+
+        public abstract BuildingType GetType();
 
         public abstract void OnClick();
 

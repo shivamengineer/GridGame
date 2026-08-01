@@ -1,4 +1,5 @@
-﻿using GridGame.UI.Button;
+﻿using GridGame.Tiles.Buildings;
+using GridGame.UI.Button;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,6 +20,10 @@ namespace GridGame.UI.Elements.Buttons {
             this.font = font;
 
             text = "Factory";
+        }
+
+        public override BuildingType GetType() {
+            return BuildingType.Factory;
         }
 
         public override void OnClick() {

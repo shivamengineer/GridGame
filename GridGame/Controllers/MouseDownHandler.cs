@@ -1,6 +1,7 @@
 ﻿using GridGame.Commands;
 using GridGame.Commands.CameraCommands;
 using GridGame.Hexagons;
+using GridGame.Tiles.Buildings;
 using GridGame.UI.Button;
 using GridGame.UI.Elements;
 using GridGame.UI.Overlay.ResourcesDisplay;
@@ -19,6 +20,8 @@ namespace GridGame.Controllers {
         private ResourceDisplay resourceDisplay;
         private ButtonDisplay buttonDisplay;
 
+        private BuildingType selectedBuilding = BuildingType.NIL;
+
         public MouseDownHandler(ResourceDisplay resourceDisplay, ButtonDisplay buttonDisplay) {
             this.resourceDisplay = resourceDisplay;
             this.buttonDisplay = buttonDisplay;
@@ -31,7 +34,10 @@ namespace GridGame.Controllers {
                 IItem item = resourceDisplay.GetSelectedResource(point);
             } else if(buttonDisplay.MouseOnDisplay(point)) {
                 IButton button = buttonDisplay.GetSelectedButton(point);
-            } else {
+                if(button != null) {
+                    selectedBuilding = button.GetType();
+                }
+            } else if(selectedBuilding != BuildingType.NIL){
                 ICommand command = new MouseDownCommand(hexagonMap, x, y);
                 command.Execute();
             }
