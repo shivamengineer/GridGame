@@ -57,6 +57,8 @@ namespace GridGame.Hexagons {
                     hexMap.Add((q, r), hex);
 
                     ITile tile = new NIL(q, r);
+                    tile.SetTextures(hexTexture, tex2);
+                    tileMap.Add((q, r), tile);
                 }
             }
         }
@@ -87,6 +89,10 @@ namespace GridGame.Hexagons {
                     if(!hexMap.ContainsKey((q, r))) {
                         Hex hex = new Hex(q, r);
                         hexMap.Add((q, r), hex);
+
+                        ITile tile = new NIL(q, r);
+                        tile.SetTextures(hexTexture, tex2);
+                        tileMap.Add((q, r), tile);
                     }
                     DrawHex(spriteBatch, hexMap[(q, r)]);
                 }
