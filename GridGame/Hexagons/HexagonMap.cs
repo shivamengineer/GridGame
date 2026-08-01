@@ -86,7 +86,7 @@ namespace GridGame.Hexagons {
                         hexes.Add(hex);
                         hexMap.Add((q, r), hex);
                     }
-                    DrawHex(spriteBatch, new Hex(q, r));
+                    DrawHex(spriteBatch, hexMap[(q, r)]);
                 }
             }
         }
