@@ -28,7 +28,7 @@ namespace GridGame.Controllers {
 
             if(mouseState.LeftButton == ButtonState.Pressed) {
                 if(lastMouseState.LeftButton == ButtonState.Released) {
-                    OnLeftMouseDown(mouseState);
+                    mouseDownHandler.OnMouseDown(mouseState.X, mouseState.Y, hexagonMap);
                 } else {
                     OnLeftMouseStay(mouseState);
                 }
@@ -37,11 +37,6 @@ namespace GridGame.Controllers {
             }
 
             lastMouseState = mouseState;
-        }
-
-        public void OnLeftMouseDown(MouseState mouseState) {
-            Commands.ICommand command = new MouseDownCommand(hexagonMap, mouseState.X, mouseState.Y);
-            command.Execute();
         }
 
         public void OnLeftMouseStay(MouseState mouseState) {
