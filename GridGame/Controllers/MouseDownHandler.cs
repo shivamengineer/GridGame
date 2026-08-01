@@ -1,11 +1,14 @@
 ﻿using GridGame.Commands;
 using GridGame.Commands.CameraCommands;
 using GridGame.Hexagons;
+using GridGame.UI.Button;
+using GridGame.UI.Elements;
 using GridGame.UI.Overlay.ResourcesDisplay;
 using GridGame.UI.Overlay.SelectActions;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +28,9 @@ namespace GridGame.Controllers {
             Point point = new Point(x, y);
 
             if(resourceDisplay.MouseOnDisplay(point)) {
-                //
+                IItem item = resourceDisplay.GetSelectedResource(point);
             } else if(buttonDisplay.MouseOnDisplay(point)) {
-                //
+                IButton button = buttonDisplay.GetSelectedButton(point);
             } else {
                 ICommand command = new MouseDownCommand(hexagonMap, x, y);
                 command.Execute();
