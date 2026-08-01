@@ -22,11 +22,15 @@ namespace GridGame.UI.Elements.Buttons {
             backgroundRect = rect;
         }
 
+        public void SetRectSelected(bool selected) {
+            //
+        }
+
         public Rectangle GetRect() {
             return backgroundRect;
         }
 
-        public abstract BuildingType GetType();
+        public abstract BuildingType GetBuildingType();
 
         public abstract void OnClick();
 

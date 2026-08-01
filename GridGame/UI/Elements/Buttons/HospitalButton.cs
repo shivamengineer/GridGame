@@ -22,7 +22,7 @@ namespace GridGame.UI.Elements.Buttons {
             text = "Hospital";
         }
 
-        public override BuildingType GetType() {
+        public override BuildingType GetBuildingType() {
             return BuildingType.Hospital;
         }
 

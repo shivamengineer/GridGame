@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons {
     public class HexagonMap {
 
-        private List<Hex> hexes;
         private Texture2D hexTexture;
         private Texture2D tex2;
 
@@ -43,7 +42,6 @@ namespace GridGame.Hexagons {
         }
 
         private void InitializeHexagons() {
-            hexes = new List<Hex>();
             hexMap = new Dictionary<(int, int), Hex>();
 
             int width = 10;
@@ -52,7 +50,6 @@ namespace GridGame.Hexagons {
             for(int r = 0; r < height; r++) {
                 for(int q = 0; q < width; q++) {
                     Hex hex = new Hex(q, r);
-                    hexes.Add(hex);
                     hexMap.Add((q, r), hex);
                 }
             }
@@ -83,7 +80,6 @@ namespace GridGame.Hexagons {
                 for(int r = rMin; r <= rMax; r++) {
                     if(!hexMap.ContainsKey((q, r))) {
                         Hex hex = new Hex(q, r);
-                        hexes.Add(hex);
                         hexMap.Add((q, r), hex);
                     }
                     DrawHex(spriteBatch, hexMap[(q, r)]);

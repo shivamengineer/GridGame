@@ -23,7 +23,7 @@ namespace GridGame.UI.Elements.Buttons {
             text = "Laboratory";
         }
 
-        public override BuildingType GetType() {
+        public override BuildingType GetBuildingType() {
             return BuildingType.Laboratory;
         }
 

@@ -35,7 +35,7 @@ namespace GridGame.Controllers {
             } else if(buttonDisplay.MouseOnDisplay(point)) {
                 IButton button = buttonDisplay.GetSelectedButton(point);
                 if(button != null) {
-                    selectedBuilding = button.GetType();
+                    selectedBuilding = button.GetBuildingType();
                 }
             } else if(selectedBuilding != BuildingType.NIL){
                 ICommand command = new MouseDownCommand(hexagonMap, x, y);

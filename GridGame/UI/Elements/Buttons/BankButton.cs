@@ -23,7 +23,7 @@ namespace GridGame.UI.Elements.Buttons {
             text = "Bank";
         }
 
-        public override BuildingType GetType() {
+        public override BuildingType GetBuildingType() {
             return BuildingType.Bank;
         }
 

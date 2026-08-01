@@ -14,9 +14,11 @@ namespace GridGame.UI.Button {
 
         public void SetRect(Rectangle rect);
 
+        public void SetRectSelected(bool selected);
+
         public Rectangle GetRect();
 
-        public BuildingType GetType();
+        public BuildingType GetBuildingType();
 
         public void OnClick();
 
