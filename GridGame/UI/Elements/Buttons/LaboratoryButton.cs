@@ -32,7 +32,7 @@ namespace GridGame.UI.Elements.Buttons {
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(texture, backgroundRect, Color.LightGray);
+            spriteBatch.Draw(texture, backgroundRect, backgroundRectColor);
             string drawText = text;
             spriteBatch.DrawString(font, drawText, Position, Color.Red);
         }

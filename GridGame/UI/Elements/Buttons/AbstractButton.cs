@@ -13,6 +13,7 @@ namespace GridGame.UI.Elements.Buttons {
 
         public Vector2 Position;
         public Rectangle backgroundRect;
+        public Color backgroundRectColor = Color.LightGray;
 
         public void SetPosition(int x, int y) {
             Position = new Vector2(x, y);
@@ -23,7 +24,8 @@ namespace GridGame.UI.Elements.Buttons {
         }
 
         public void SetRectSelected(bool selected) {
-            //
+            if(selected) backgroundRectColor = Color.Yellow;
+            else backgroundRectColor = Color.LightGray;
         }
 
         public Rectangle GetRect() {

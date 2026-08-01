@@ -22,6 +22,8 @@ namespace GridGame.Controllers {
 
         private BuildingType selectedBuilding = BuildingType.NIL;
 
+        private IButton selectedButton;
+
         public MouseDownHandler(ResourceDisplay resourceDisplay, ButtonDisplay buttonDisplay) {
             this.resourceDisplay = resourceDisplay;
             this.buttonDisplay = buttonDisplay;
@@ -33,9 +35,14 @@ namespace GridGame.Controllers {
             if(resourceDisplay.MouseOnDisplay(point)) {
                 IItem item = resourceDisplay.GetSelectedResource(point);
             } else if(buttonDisplay.MouseOnDisplay(point)) {
+                if(selectedButton != null) selectedButton.SetRectSelected(false);
+
                 IButton button = buttonDisplay.GetSelectedButton(point);
+
                 if(button != null) {
-                    selectedBuilding = button.GetBuildingType();
+                    selectedButton = button;
+                    selectedBuilding = selectedButton.GetBuildingType();
+                    selectedButton.SetRectSelected(true);
                 }
             } else if(selectedBuilding != BuildingType.NIL){
                 ICommand command = new MouseDownCommand(hexagonMap, x, y);
