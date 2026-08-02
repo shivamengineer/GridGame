@@ -57,7 +57,7 @@ namespace GridGame.Hexagons {
                     hexMap.Add((q, r), hex);
 
                     ITile tile = new NIL(q, r);
-                    tile.SetTextures(hexTexture, tex2);
+                    tile.SetTextures(tex2, hexTexture);
                     tileMap.Add((q, r), tile);
                 }
             }
@@ -91,7 +91,7 @@ namespace GridGame.Hexagons {
                         hexMap.Add((q, r), hex);
 
                         ITile tile = new NIL(q, r);
-                        tile.SetTextures(hexTexture, tex2);
+                        tile.SetTextures(tex2, hexTexture);
                         tileMap.Add((q, r), tile);
                     }
                     DrawHex(spriteBatch, hexMap[(q, r)]);

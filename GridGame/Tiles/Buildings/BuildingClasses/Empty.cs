@@ -14,9 +14,13 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         private int q;
         private int r;
 
+        private Color hexColor;
+
         public Empty(int q, int r) {
             this.q = q;
             this.r = r;
+
+            hexColor = Color.LightSlateGray;
         }
         public override int GetMaxPeople() {
             return BuildingLimits.EMPTY_MAX_PEOPLE;
@@ -39,7 +43,8 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            //
+            spriteBatch.Draw(borderTexture, position, null, Color.White, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
+            spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 
     }
