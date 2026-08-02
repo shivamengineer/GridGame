@@ -17,11 +17,11 @@ namespace GridGame.Hexagons {
             hexConstants = new HexagonConstants();
         }
 
-        public Vector2 HexToPixel(Hex hex) {
+        public Vector2 HexToPixel(int Q, int R) {
             float rad = hexConstants.HexRadius;
 
-            float x = hex.Q * (rad * MathF.Sqrt(3) - (rad / 2)) - camPosX;
-            float y = (hex.R * rad * MathF.Sqrt(3)) * 0.9f + (hex.Q * rad / 2) * 1.5f - camPosY;
+            float x = Q * (rad * MathF.Sqrt(3) - (rad / 2)) - camPosX;
+            float y = (R * rad * MathF.Sqrt(3)) * 0.9f + (Q * rad / 2) * 1.5f - camPosY;
 
             return new Vector2(x, y);
         }

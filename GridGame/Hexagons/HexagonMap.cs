@@ -16,7 +16,6 @@ namespace GridGame.Hexagons {
         private Texture2D hexTexture;
         private Texture2D tex2;
 
-        private Dictionary<(int, int), Hex> hexMap;
         private Dictionary<(int, int), ITile> tileMap;
 
         public HexagonMath HexMath;
@@ -40,12 +39,9 @@ namespace GridGame.Hexagons {
 
         public void SetSelected(int x, int y) {
             setPOS = (x, y);
-
-            posSet = hexMap.ContainsKey(setPOS);
         }
 
         private void InitializeHexagons() {
-            hexMap = new Dictionary<(int, int), Hex>();
             tileMap = new Dictionary<(int, int), ITile>();
 
             int width = 10;
@@ -53,9 +49,6 @@ namespace GridGame.Hexagons {
 
             for(int r = 0; r < height; r++) {
                 for(int q = 0; q < width; q++) {
-                    Hex hex = new Hex(q, r);
-                    hexMap.Add((q, r), hex);
-
                     ITile tile = new NIL(q, r);
                     tile.SetTextures(tex2, hexTexture);
                     tileMap.Add((q, r), tile);
@@ -86,28 +79,20 @@ namespace GridGame.Hexagons {
                 int rMax = (int)MathF.Ceiling((bottom - q * dyQ) / dyR) + 2;
 
                 for(int r = rMin; r <= rMax; r++) {
-                    if(!hexMap.ContainsKey((q, r))) {
-                        Hex hex = new Hex(q, r);
-                        hexMap.Add((q, r), hex);
-
+                    if(!tileMap.ContainsKey((q, r))) {
                         ITile tile = new NIL(q, r);
                         tile.SetTextures(tex2, hexTexture);
                         tileMap.Add((q, r), tile);
                     }
-                    DrawHex(spriteBatch, hexMap[(q, r)]);
+                    DrawHex(spriteBatch, q, r);
                 }
             }
         }
 
-        private void DrawHex(SpriteBatch spriteBatch, Hex hex) {
-            Vector2 position = HexMath.HexToPixel(hex);
+        private void DrawHex(SpriteBatch spriteBatch, int Q, int R) {
+            Vector2 position = HexMath.HexToPixel(Q, R);
 
-            Color fillColor = Color.White;
-            if(posSet && hex.Q == setPOS.Item1 && hex.R == setPOS.Item2) {
-                fillColor = Color.Green;
-            }
-
-            tileMap[(hex.Q, hex.R)].Draw(spriteBatch, position, HexMath);
+            tileMap[(Q, R)].Draw(spriteBatch, position, HexMath);
         }
     }
 }
