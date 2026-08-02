@@ -1,4 +1,5 @@
-﻿using GridGame.Tiles.Buildings;
+﻿using GridGame.Hexagons;
+using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Terrain;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -32,9 +33,9 @@ namespace GridGame.Tiles {
             building.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch) {
-            terrain.Draw(spriteBatch);
-            building.Draw(spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
+            terrain.Draw(spriteBatch, position, hexMath);
+            building.Draw(spriteBatch, position, hexMath);
         }
 
     }

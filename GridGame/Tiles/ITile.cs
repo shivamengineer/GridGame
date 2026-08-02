@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Hexagons;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX.Direct3D9;
 using System;
@@ -26,6 +27,6 @@ namespace GridGame.Tiles {
 
         public void Update(GameTime gameTime);
 
-        public void Draw(SpriteBatch spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -37,7 +38,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             //
         }
 
-        public override void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             //
         }
 

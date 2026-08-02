@@ -107,8 +107,7 @@ namespace GridGame.Hexagons {
                 fillColor = Color.Green;
             }
 
-            spriteBatch.Draw(tex2, position, null, Color.White, 0f, origin, HexMath.GetScale(), SpriteEffects.None, 0f);
-            spriteBatch.Draw(hexTexture, position, null, fillColor, 0f, origin, HexMath.GetScale(), SpriteEffects.None, 0f);
+            tileMap[(hex.Q, hex.R)].Draw(spriteBatch, position, HexMath);
         }
     }
 }
