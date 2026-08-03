@@ -20,12 +20,8 @@ namespace GridGame.Hexagons {
 
         public HexagonMath HexMath;
 
-        private (int, int) topLeftXY = (0, 0);
-
-        private bool posSet = false;
         private (int, int) setPOS;
-
-        private Vector2 origin;
+        private (int, int) topLeftXY;
 
         public HexagonMap(Texture2D hexTexture, Texture2D texture2) {
             this.hexTexture = hexTexture;
@@ -33,7 +29,6 @@ namespace GridGame.Hexagons {
 
             HexMath = new HexagonMath();
 
-            origin = new Vector2(hexTexture.Width / 2f, hexTexture.Height / 2f);
             InitializeHexagons();
         }
 
