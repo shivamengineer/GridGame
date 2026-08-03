@@ -53,7 +53,7 @@ namespace GridGame {
             textureRect = Content.Load<Texture2D>("rect_blank");
 
             hexTexture = Content.Load<Texture2D>("hexagon_white");
-            hexTexture2 = Content.Load<Texture2D>("hexagon");
+            hexTexture2 = Content.Load<Texture2D>("hexagon_white_border");
 
             font = Content.Load<SpriteFont>("ArialFont");
 
@@ -79,7 +79,7 @@ namespace GridGame {
         }
 
         protected override void Draw(GameTime gameTime){
-            GraphicsDevice.Clear(Color.Gray);
+            GraphicsDevice.Clear(Color.White);
 
             _spriteBatch.Begin();
 
