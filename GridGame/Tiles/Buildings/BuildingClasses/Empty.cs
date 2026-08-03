@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             this.q = q;
             this.r = r;
 
-            hexColor = Color.LightSlateGray;
+            hexColor = TileColors.EmptyColor;
         }
         public override int GetMaxPeople() {
             return BuildingLimits.EMPTY_MAX_PEOPLE;

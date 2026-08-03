@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             this.q = q;
             this.r = r;
 
-            hexColor = Color.Gold;
+            hexColor = TileColors.BankColor;
         }
 
         public override int GetMaxPeople() {
