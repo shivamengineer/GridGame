@@ -21,10 +21,7 @@ namespace GridGame {
         private GameManager gameManager;
 
         public Game1(){
-            _graphics = new GraphicsDeviceManager(this);
-
-            _graphics.PreferredBackBufferWidth = GameConstants.WINDOW_WIDTH;
-            _graphics.PreferredBackBufferHeight = GameConstants.WINDOW_HEIGHT;
+            GraphicsManager.InitializeGraphics(_graphics, this);
 
             gameManager = new GameManager();
 
