@@ -43,8 +43,8 @@ namespace GridGame {
             base.Initialize();
         }
 
-        protected override void LoadContent()
-        {
+        protected override void LoadContent(){
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             contentLoader = new ContentLoader(Content);
