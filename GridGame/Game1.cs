@@ -2,6 +2,7 @@
 using GridGame.Controllers;
 using GridGame.Hexagons;
 using GridGame.Resources;
+using GridGame.TextureLoading;
 using GridGame.UI.Overlay.ResourcesDisplay;
 using GridGame.UI.Overlay.SelectActions;
 using Microsoft.Xna.Framework;
@@ -15,13 +16,9 @@ namespace GridGame {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private SpriteFont font;
-
-        private Texture2D hexTexture;
-        private Texture2D hexTexture2;
         private HexagonMap hexagonMap;
 
-        private Texture2D textureRect;
+        private ContentLoader contentLoader;
 
         private MouseController mouseController;
         private KeyboardBindings keyBindings;
@@ -50,18 +47,13 @@ namespace GridGame {
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            textureRect = Content.Load<Texture2D>("rect_blank");
+            contentLoader = new ContentLoader(Content);
 
-            hexTexture = Content.Load<Texture2D>("hexagon_white");
-            hexTexture2 = Content.Load<Texture2D>("hexagon_white_border");
-
-            font = Content.Load<SpriteFont>("ArialFont");
-
-            hexagonMap = new HexagonMap(hexTexture, hexTexture2);
+            hexagonMap = new HexagonMap(contentLoader.GetTexture("BlankHexagon"), contentLoader.GetTexture("BlankHexagonBorder"));
             keyBindings = new KeyboardBindings(hexagonMap);
 
-            resourcesManager = new ResourcesManager(textureRect, font);
-            buttonDisplay = new ButtonDisplay(textureRect, font);
+            resourcesManager = new ResourcesManager(contentLoader.GetTexture("BlankRectangle"), contentLoader.GetFont("Arial"));
+            buttonDisplay = new ButtonDisplay(contentLoader.GetTexture("BlankRectangle"), contentLoader.GetFont("Arial"));
 
             mouseDownHandler = new MouseDownHandler(resourcesManager.GetResourceDisplay(), buttonDisplay);
 
