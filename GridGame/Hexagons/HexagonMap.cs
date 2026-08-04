@@ -21,7 +21,6 @@ namespace GridGame.Hexagons {
         public HexagonMath HexMath;
 
         private (int, int) setPOS;
-        private (int, int) topLeftXY;
 
         public HexagonMap(Texture2D hexTexture, Texture2D texture2) {
             this.hexTexture = hexTexture;
@@ -56,8 +55,6 @@ namespace GridGame.Hexagons {
             int camPosY = HexMath.camPosY;
 
             float rad = HexMath.hexConstants.HexRadius;
-
-            topLeftXY = HexMath.PixelToHex(new Vector2(camPosX, camPosY));
 
             float dxQ = rad * (MathF.Sqrt(3) - 0.5f);
             float dyQ = rad * 0.75f;
