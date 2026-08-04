@@ -1,6 +1,9 @@
 ﻿using GridGame.Constants;
 using GridGame.Tiles;
+using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
+using GridGame.Tiles.Terrain;
+using GridGame.Tiles.Terrain.TerrainClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,7 +19,7 @@ namespace GridGame.Hexagons {
         private Texture2D hexTexture;
         private Texture2D tex2;
 
-        private Dictionary<(int, int), ITile> tileMap;
+        private Dictionary<(int, int), Tile> tileMap;
 
         public HexagonMath HexMath;
 
@@ -36,16 +39,20 @@ namespace GridGame.Hexagons {
         }
 
         private void InitializeHexagons() {
-            tileMap = new Dictionary<(int, int), ITile>();
+            tileMap = new Dictionary<(int, int), Tile>();
 
             int width = 10;
             int height = 10;
 
             for(int r = 0; r < height; r++) {
                 for(int q = 0; q < width; q++) {
-                    ITile tile = new NIL(q, r);
-                    tile.SetTextures(tex2, hexTexture);
-                    tileMap.Add((q, r), tile);
+                    ITerrain terrain = new Land(q, r);
+                    terrain.SetTextures(tex2, hexTexture);
+
+                    IBuilding building = new Bank(q, r);
+                    building.SetTextures(tex2, hexTexture);
+
+                    tileMap.Add((q, r), new Tile(terrain, building));
                 }
             }
         }
@@ -72,9 +79,13 @@ namespace GridGame.Hexagons {
 
                 for(int r = rMin; r <= rMax; r++) {
                     if(!tileMap.ContainsKey((q, r))) {
-                        ITile tile = new NIL(q, r);
-                        tile.SetTextures(tex2, hexTexture);
-                        tileMap.Add((q, r), tile);
+                        ITerrain terrain = new Land(q, r);
+                        terrain.SetTextures(tex2, hexTexture);
+
+                        IBuilding building = new Bank(q, r);
+                        building.SetTextures(tex2, hexTexture);
+
+                        tileMap.Add((q, r), new Tile(terrain, building));
                     }
                     DrawHex(spriteBatch, q, r);
                 }

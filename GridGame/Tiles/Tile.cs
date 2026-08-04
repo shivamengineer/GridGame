@@ -34,8 +34,9 @@ namespace GridGame.Tiles {
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            terrain.Draw(spriteBatch, position, hexMath);
             building.Draw(spriteBatch, position, hexMath);
+            Vector2 offsetPos = new Vector2(position.X + 10, position.Y - 6);
+            terrain.Draw(spriteBatch, offsetPos, hexMath);
 
             //if building == null draw terrain base
         }

@@ -36,7 +36,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            spriteBatch.Draw(borderTexture, position, null, Color.White, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
+            spriteBatch.Draw(borderTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 
     }
