@@ -1,5 +1,6 @@
 ﻿using GridGame.Commands;
 using GridGame.Commands.CameraCommands;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Tiles.Buildings;
 using GridGame.UI.Button;
@@ -24,9 +25,9 @@ namespace GridGame.Controllers {
 
         private IButton selectedButton;
 
-        public MouseDownHandler(ResourceDisplay resourceDisplay, ButtonDisplay buttonDisplay) {
-            this.resourceDisplay = resourceDisplay;
-            this.buttonDisplay = buttonDisplay;
+        public MouseDownHandler(DisplayManager displayManager) {
+            resourceDisplay = displayManager.resourceManager.GetResourceDisplay();
+            buttonDisplay = displayManager.buttonDisplay;
         }
 
         public void OnMouseDown(int x, int y, HexagonMap hexagonMap) {

@@ -12,7 +12,7 @@ namespace GridGame.GameManagers {
     public static class ControllerLoader {
         
         public static void LoadMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager) {
-            MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager.resourceManager.GetResourceDisplay(), displayManager.buttonDisplay);
+            MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager);
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
         }
 
