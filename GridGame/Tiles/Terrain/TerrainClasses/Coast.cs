@@ -1,4 +1,5 @@
-﻿using GridGame.Hexagons;
+﻿using GridGame.Constants;
+using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,6 +10,18 @@ using System.Threading.Tasks;
 
 namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Coast : AbstractTerrain {
+
+        private int q;
+        private int r;
+
+        private Color hexColor;
+
+        public Coast(int q, int r) {
+            this.q = q;
+            this.r = r;
+
+            hexColor = TerrainColors.CoastColor;
+        }
 
         public override int GetResources() {
             return 0;
@@ -23,7 +36,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            //
+            spriteBatch.Draw(borderTexture, position, null, Color.White, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 
     }

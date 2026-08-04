@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             this.q = q;
             this.r = r;
 
-            hexColor = TileColors.HospitalColor;
+            hexColor = BuildingColors.HospitalColor;
         }
         public override int GetMaxPeople() {
             return BuildingLimits.HOSPITAL_MAX_PEOPLE;
