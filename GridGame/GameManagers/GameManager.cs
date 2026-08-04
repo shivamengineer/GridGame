@@ -33,8 +33,7 @@ namespace GridGame.GameManagers {
             Controllers.Add(ControllerTypes.KEYBOARD, new KeyboardController(hexagonMap));
 
             displayManager = new DisplayManager(contentLoader);
-            MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager.resourceManager.GetResourceDisplay(), displayManager.buttonDisplay);
-            Controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
+            ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);
         }
 
         public void Update(GameTime gameTime) {
