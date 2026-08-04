@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Controllers;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Resources;
 using GridGame.TextureLoading;
@@ -17,23 +18,15 @@ namespace GridGame {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private HexagonMap hexagonMap;
-
-        private ContentLoader contentLoader;
-
-        private MouseController mouseController;
-        private KeyboardBindings keyBindings;
-
-        private ResourcesManager resourcesManager;
-        private ButtonDisplay buttonDisplay;
-
-        private MouseDownHandler mouseDownHandler;
+        private GameManager gameManager;
 
         public Game1(){
             _graphics = new GraphicsDeviceManager(this);
 
             _graphics.PreferredBackBufferWidth = GameConstants.WINDOW_WIDTH;
             _graphics.PreferredBackBufferHeight = GameConstants.WINDOW_HEIGHT;
+
+            gameManager = new GameManager();
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -48,25 +41,15 @@ namespace GridGame {
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            contentLoader = new ContentLoader(Content);
+            gameManager.LoadContent(Content);
 
-            hexagonMap = new HexagonMap(contentLoader.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND), contentLoader.GetTexture(TextureNames.BLANK_HEXAGON_BORDER));
-            keyBindings = new KeyboardBindings(hexagonMap);
-
-            resourcesManager = new ResourcesManager(contentLoader.GetTexture(TextureNames.BLANK_RECTANGLE), contentLoader.GetFont(FontNames.ARIAL));
-            buttonDisplay = new ButtonDisplay(contentLoader.GetTexture(TextureNames.BLANK_RECTANGLE), contentLoader.GetFont(FontNames.ARIAL));
-
-            mouseDownHandler = new MouseDownHandler(resourcesManager.GetResourceDisplay(), buttonDisplay);
-
-            mouseController = new MouseController(hexagonMap, mouseDownHandler);
         }
 
         protected override void Update(GameTime gameTime){
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            mouseController.Update(gameTime);
-            keyBindings.Update(gameTime);
+            gameManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -76,9 +59,7 @@ namespace GridGame {
 
             _spriteBatch.Begin();
 
-            hexagonMap.Draw(_spriteBatch);
-            resourcesManager.Draw(_spriteBatch);
-            buttonDisplay.Draw(_spriteBatch);
+            gameManager.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

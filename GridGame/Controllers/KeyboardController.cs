@@ -18,10 +18,12 @@ namespace GridGame.Controllers {
         private Dictionary<Keys, ICommand> HeldMapping;
         private Dictionary<Keys, ICommand> OnReleaseMapping;
 
-        public KeyboardController() {
+        public KeyboardController(HexagonMap hexMap) {
             OnPressMapping = new Dictionary<Keys, ICommand>();
             HeldMapping = new Dictionary<Keys, ICommand>();
             OnReleaseMapping = new Dictionary<Keys, ICommand>();
+
+            KeyboardBindings.InitializeBindings(this, hexMap);
         }
 
         public void AddOnPressBinding(Keys key, ICommand command) {

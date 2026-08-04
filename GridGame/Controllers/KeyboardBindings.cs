@@ -9,28 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Controllers {
-    public class KeyboardBindings {
+    public static class KeyboardBindings {
 
-        private KeyboardController keyboardController;
-        private HexagonMap hexagonMap;
-
-        public KeyboardBindings(HexagonMap hexagonMap) {
-            keyboardController = new KeyboardController();
-            this.hexagonMap = hexagonMap;
-            InitializeBindings();
-        }
-
-        public void InitializeBindings() {
+        public static void InitializeBindings(KeyboardController keyboardController, HexagonMap hexagonMap) {
             keyboardController.AddHeldBinding(Keys.Left, new MoveCameraLeftCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.Right, new MoveCameraRightCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.Up, new MoveCameraUpCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.Down, new MoveCameraDownCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.P, new ZoomInCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.O, new ZoomOutCommand(hexagonMap));
-        }
-
-        public void Update(GameTime gameTime) {
-            keyboardController.Update(gameTime);
         }
 
     }
