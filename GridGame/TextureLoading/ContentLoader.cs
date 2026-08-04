@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using GridGame.TextureLoading.TextureEnums;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX.DirectWrite;
 using System;
@@ -10,14 +11,14 @@ using System.Threading.Tasks;
 namespace GridGame.TextureLoading {
     public class ContentLoader {
 
-        private Dictionary<string, Texture2D> textures;
-        private Dictionary<string, SpriteFont> fonts;
+        private Dictionary<TextureNames, Texture2D> textures;
+        private Dictionary<FontNames, SpriteFont> fonts;
 
         private ContentManager Content;
 
         public ContentLoader(ContentManager Content) {
-            textures = new Dictionary<string, Texture2D>();
-            fonts = new Dictionary<string, SpriteFont>();
+            textures = new Dictionary<TextureNames, Texture2D>();
+            fonts = new Dictionary<FontNames, SpriteFont>();
 
             this.Content = Content;
 
@@ -25,21 +26,21 @@ namespace GridGame.TextureLoading {
             ContentLoaderLoader.LoadAllFonts(this);
         }
 
-        public void AddTexture(string Name, string TextureFilename) {
+        public void AddTexture(TextureNames Name, string TextureFilename) {
             Texture2D texture = Content.Load<Texture2D>(TextureFilename);
             textures.Add(Name, texture);
         }
 
-        public void AddFont(string Name, string FontFilename) {
+        public void AddFont(FontNames Name, string FontFilename) {
             SpriteFont font = Content.Load<SpriteFont>(FontFilename);
             fonts.Add(Name, font);
         }
 
-        public Texture2D GetTexture(string Name) {
+        public Texture2D GetTexture(TextureNames Name) {
             return textures[Name];
         }
 
-        public SpriteFont GetFont(string Name) {
+        public SpriteFont GetFont(FontNames Name) {
             return fonts[Name];
         }
 

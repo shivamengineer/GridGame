@@ -3,6 +3,7 @@ using GridGame.Controllers;
 using GridGame.Hexagons;
 using GridGame.Resources;
 using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using GridGame.UI.Overlay.ResourcesDisplay;
 using GridGame.UI.Overlay.SelectActions;
 using Microsoft.Xna.Framework;
@@ -49,11 +50,11 @@ namespace GridGame {
 
             contentLoader = new ContentLoader(Content);
 
-            hexagonMap = new HexagonMap(contentLoader.GetTexture("BlankHexagon"), contentLoader.GetTexture("BlankHexagonBorder"));
+            hexagonMap = new HexagonMap(contentLoader.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND), contentLoader.GetTexture(TextureNames.BLANK_HEXAGON_BORDER));
             keyBindings = new KeyboardBindings(hexagonMap);
 
-            resourcesManager = new ResourcesManager(contentLoader.GetTexture("BlankRectangle"), contentLoader.GetFont("Arial"));
-            buttonDisplay = new ButtonDisplay(contentLoader.GetTexture("BlankRectangle"), contentLoader.GetFont("Arial"));
+            resourcesManager = new ResourcesManager(contentLoader.GetTexture(TextureNames.BLANK_RECTANGLE), contentLoader.GetFont(FontNames.ARIAL));
+            buttonDisplay = new ButtonDisplay(contentLoader.GetTexture(TextureNames.BLANK_RECTANGLE), contentLoader.GetFont(FontNames.ARIAL));
 
             mouseDownHandler = new MouseDownHandler(resourcesManager.GetResourceDisplay(), buttonDisplay);
 
