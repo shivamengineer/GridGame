@@ -12,6 +12,7 @@ namespace GridGame.Constants {
         public static Color LandColor = Color.Green;
         public static Color CoastColor = Color.SandyBrown;
         public static Color Land_RiverColor = Color.LightGreen;
+        public static Color UnknownColor = Color.Gray;
 
     }
 }

@@ -10,5 +10,6 @@ namespace GridGame.Tiles.Terrain {
         Land,
         Coast,
         Land_River,
+        Unknown,
     }
 }

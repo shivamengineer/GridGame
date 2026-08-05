@@ -20,6 +20,7 @@ namespace GridGame.Hexagons {
         private Texture2D tex2;
 
         private Dictionary<(int, int), Tile> tileMap;
+        private HashSet<(int, int)> discoveredTiles;
 
         public HexagonMath HexMath;
 
@@ -32,6 +33,7 @@ namespace GridGame.Hexagons {
             HexMath = new HexagonMath();
 
             InitializeHexagons();
+            discoveredTiles = new HashSet<(int, int)>();
         }
 
         public void SetSelected(int x, int y) {
