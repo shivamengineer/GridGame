@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class NIL : AbstractBuilding {
 
-        private int q;
-        private int r;
-
         private Color hexColor;
 
-        public NIL(int q, int r) {
-            this.q = q;
-            this.r = r;
-
+        public NIL() {
             hexColor = BuildingColors.NILColor;
         }
 
@@ -29,6 +23,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override void Build() {
             //
+        }
+
+        public override BuildingType GetBuildingType() {
+            return BuildingType.NIL;
         }
 
         public override void SetTile(ITile tile) {

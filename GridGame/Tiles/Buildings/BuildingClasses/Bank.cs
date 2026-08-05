@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class Bank : AbstractBuilding {
 
-        private int q;
-        private int r;
-
         private Color hexColor;
 
-        public Bank(int q, int r) {
-            this.q = q;
-            this.r = r;
-
+        public Bank() {
             hexColor = BuildingColors.BankColor;
         }
 
@@ -29,6 +23,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override void Build() {
             //
+        }
+
+        public override BuildingType GetBuildingType() {
+            return BuildingType.Bank;
         }
 
         public override void SetTile(ITile tile) {

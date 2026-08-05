@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class Laboratory : AbstractBuilding {
 
-        private int q;
-        private int r;
-
         private Color hexColor;
 
-        public Laboratory(int q, int r) {
-            this.q = q;
-            this.r = r;
-
+        public Laboratory() {
             hexColor = BuildingColors.LaboratoryColor;
         }
 
@@ -29,6 +23,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override void Build() {
             //
+        }
+
+        public override BuildingType GetBuildingType() {
+            return BuildingType.Laboratory;
         }
 
         public override void SetTile(ITile tile) {

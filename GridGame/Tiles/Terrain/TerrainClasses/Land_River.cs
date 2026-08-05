@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Land_River : AbstractTerrain {
 
-        private int q;
-        private int r;
-
         private Color hexColor;
 
-        public Land_River(int q, int r) {
-            this.q = q;
-            this.r = r;
-
+        public Land_River() {
             hexColor = TerrainColors.Land_RiverColor;
         }
 

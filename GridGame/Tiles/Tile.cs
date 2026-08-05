@@ -20,6 +20,14 @@ namespace GridGame.Tiles {
             this.building = building;
         }
 
+        public void SetTerrainTextures(Texture2D borderTexture, Texture2D backgroundTexture) {
+            terrain.SetTextures(borderTexture, backgroundTexture);
+        }
+
+        public void SetBuildingTextures(Texture2D borderTexture, Texture2D backgroundTexture) {
+            building.SetTextures(borderTexture, backgroundTexture);
+        }
+
         public void SetTerrain(ITerrain terrain) {
             this.terrain = terrain;
         }

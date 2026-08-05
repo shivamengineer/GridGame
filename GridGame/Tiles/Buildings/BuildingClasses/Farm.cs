@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class Farm : AbstractBuilding {
 
-        private int q;
-        private int r;
-
         private Color hexColor;
 
-        public Farm(int q, int r) {
-            this.q = q;
-            this.r = r;
-
+        public Farm() {
             hexColor = BuildingColors.FarmColor;
         }
 
@@ -29,6 +23,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override void Build() {
             //
+        }
+
+        public override BuildingType GetBuildingType() {
+            return BuildingType.Farm;
         }
 
         public override void SetTile(ITile tile) {

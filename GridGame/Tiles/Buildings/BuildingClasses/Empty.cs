@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class Empty : AbstractBuilding {
 
-        private int q;
-        private int r;
-
         private Color hexColor;
 
-        public Empty(int q, int r) {
-            this.q = q;
-            this.r = r;
-
+        public Empty() {
             hexColor = BuildingColors.EmptyColor;
         }
         public override int GetMaxPeople() {
@@ -28,6 +22,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override void Build() {
             //
+        }
+
+        public override BuildingType GetBuildingType() {
+            return BuildingType.Empty;
         }
 
         public override void SetTile(ITile tile) {

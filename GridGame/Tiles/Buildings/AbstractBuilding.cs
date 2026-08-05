@@ -41,6 +41,8 @@ namespace GridGame.Tiles.Buildings {
 
         public abstract void Build();
 
+        public abstract BuildingType GetBuildingType();
+
         public abstract int GetResources();
 
         public abstract void SetTile(ITile tile);

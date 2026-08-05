@@ -9,5 +9,7 @@ namespace GridGame.Tiles.Buildings {
 
         public void Build();
 
+        public BuildingType GetBuildingType();
+
     }
 }
