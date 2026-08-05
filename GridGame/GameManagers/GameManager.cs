@@ -29,7 +29,7 @@ namespace GridGame.GameManagers {
 
         public void LoadContent(ContentManager Content) {
             contentLoader = new ContentLoader(Content);
-            hexagonMap = new HexagonMap(contentLoader.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND), contentLoader.GetTexture(TextureNames.BLANK_HEXAGON_BORDER));
+            hexagonMap = new HexagonMap(contentLoader);
             Controllers.Add(ControllerTypes.KEYBOARD, new KeyboardController(hexagonMap));
 
             displayManager = new DisplayManager(contentLoader);

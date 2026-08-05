@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
 using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
@@ -16,8 +18,7 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons {
     public class HexagonMap {
 
-        private Texture2D hexTexture;
-        private Texture2D tex2;
+        private ContentLoader content;
 
         private Dictionary<(int, int), Tile> tileMap;
         private HashSet<(int, int)> discoveredTiles;
@@ -26,9 +27,8 @@ namespace GridGame.Hexagons {
 
         private (int, int) setPOS;
 
-        public HexagonMap(Texture2D hexTexture, Texture2D texture2) {
-            this.hexTexture = hexTexture;
-            tex2 = texture2;
+        public HexagonMap(ContentLoader content) {
+            this.content = content;
 
             HexMath = new HexagonMath();
 
@@ -42,21 +42,22 @@ namespace GridGame.Hexagons {
 
         private void InitializeHexagons() {
             tileMap = new Dictionary<(int, int), Tile>();
+            HexagonMapCSVReader.LoadHexagonMap(tileMap, content, "TestMap.csv");
 
-            int width = 10;
+            /*int width = 10;
             int height = 10;
 
             for(int r = 0; r < height; r++) {
                 for(int q = 0; q < width; q++) {
-                    ITerrain terrain = new Land(q, r);
-                    terrain.SetTextures(tex2, hexTexture);
+                    ITerrain terrain = new Land();
+                    terrain.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
 
-                    IBuilding building = new Bank(q, r);
-                    building.SetTextures(tex2, hexTexture);
+                    IBuilding building = new NIL();
+                    building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
 
                     tileMap.Add((q, r), new Tile(terrain, building));
                 }
-            }
+            }*/
         }
 
         public void Draw(SpriteBatch spriteBatch) {
@@ -81,11 +82,11 @@ namespace GridGame.Hexagons {
 
                 for(int r = rMin; r <= rMax; r++) {
                     if(!tileMap.ContainsKey((q, r))) {
-                        ITerrain terrain = new Land(q, r);
-                        terrain.SetTextures(tex2, hexTexture);
+                        ITerrain terrain = new Ocean();
+                        terrain.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
 
-                        IBuilding building = new Bank(q, r);
-                        building.SetTextures(tex2, hexTexture);
+                        IBuilding building = new NIL();
+                        building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
 
                         tileMap.Add((q, r), new Tile(terrain, building));
                     }
