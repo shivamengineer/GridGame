@@ -20,7 +20,7 @@ namespace GridGame.Hexagons {
         public static void LoadHexagonMap(Dictionary<(int, int), Tile> map, ContentLoader content, string filename) {
             Dictionary<string, Tile> tileDictionary = GetTileDictionary();
 
-            string path = "Content/" + filename;
+            string path = "Content/Data/" + filename;
             using(var stream = TitleContainer.OpenStream(path))
             using(var reader = new StreamReader(stream)) {
                 int j = 0;
@@ -28,6 +28,9 @@ namespace GridGame.Hexagons {
                     var line = reader.ReadLine();
                     string[] values = line.Split(',');
                     for(int i = 0; i < values.Length; i++) {
+                        if(values[i] == "|") {
+                            break;
+                        }
                         if(values[i] != "") {
                             Tile tile = tileDictionary[values[i]];
                             tile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
@@ -43,6 +46,7 @@ namespace GridGame.Hexagons {
 
         private static Dictionary<string, Tile> GetTileDictionary() {
             Dictionary<string, Tile> tileDictionary = new Dictionary<string, Tile> {
+                ["*"] = new Tile(new Ocean(), new NIL()),
                 ["0"] = new Tile(new Ocean(), new NIL()),
                 ["1"] = new Tile(new Land(), new NIL()),
                 ["2"] = new Tile(new Coast(), new NIL()),

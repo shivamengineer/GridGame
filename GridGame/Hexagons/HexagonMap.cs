@@ -42,7 +42,7 @@ namespace GridGame.Hexagons {
 
         private void InitializeHexagons() {
             tileMap = new Dictionary<(int, int), Tile>();
-            HexagonMapCSVReader.LoadHexagonMap(tileMap, content, "TestMap.csv");
+            HexagonMapCSVReader.LoadHexagonMap(tileMap, content, "Map1.csv");
         }
 
         public void Draw(SpriteBatch spriteBatch) {
