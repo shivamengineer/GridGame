@@ -35,8 +35,7 @@ namespace GridGame.Hexagons {
                             Tile tile = tileDictionary[values[i]];
                             tile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
                             tile.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-                            (int, int) pos = AdjustedPos((i, j));
-                            map.Add(pos, tile);
+                            map.Add(AdjustedPos((i, j)), tile);
                         }
                     }
                     j++;
@@ -56,8 +55,6 @@ namespace GridGame.Hexagons {
         }
 
         private static (int, int) AdjustedPos((int, int) pos) {
-            (int, int) newPos = (0, 0);
-
             int x;
 
             if(pos.Item1 % 2 == 0) {
@@ -66,10 +63,7 @@ namespace GridGame.Hexagons {
                 x = (pos.Item1 + 1) / 2;
             }
 
-            newPos.Item1 = pos.Item1;
-            newPos.Item2 = pos.Item2 - x;
-
-            return newPos;
+            return (pos.Item1, pos.Item2 - x);
         }
 
     }
