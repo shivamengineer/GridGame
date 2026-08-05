@@ -60,7 +60,7 @@ namespace GridGame.Hexagons {
 
             for(int q = qMin; q <= qMax; q++) {
                 float top = camPosY;
-                float bottom = camPosY + GameConstants.WINDOW_HEIGHT;
+                float bottom = camPosY + GameConstants.WINDOW_HEIGHT - (2 * UIOverlayDetails.RESOURCE_BAR_HEIGHT); //subtract resource bar height so it only renders to top of button display
 
                 int rMin = (int)MathF.Floor((top - q * dyQ) / dyR) - 2;
                 int rMax = (int)MathF.Ceiling((bottom - q * dyQ) / dyR) + 2;

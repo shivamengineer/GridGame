@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.Constants;
 
 namespace GridGame.Hexagons {
     public class HexagonMath {
@@ -22,6 +23,8 @@ namespace GridGame.Hexagons {
 
             float x = Q * (rad * MathF.Sqrt(3) - (rad / 2)) - camPosX;
             float y = (R * rad * MathF.Sqrt(3)) * 0.9f + (Q * rad / 2) * 1.5f - camPosY;
+
+            y += UIOverlayDetails.RESOURCE_BAR_HEIGHT;
 
             return new Vector2(x, y);
         }

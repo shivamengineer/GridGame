@@ -57,14 +57,13 @@ namespace GridGame.Hexagons {
             int x;
 
             if(pos.Item1 % 2 == 0) {
-                x = pos.Item2 / 4;
-                newPos.Item2 = x * (-3) - (pos.Item1 / 2);
+                x = pos.Item1 / 2;
             } else {
-                x = (pos.Item2 + 1) / 4;
-                newPos.Item2 = (x * (-3)) - 1 - (pos.Item1 / 2);
+                x = (pos.Item1 + 1) / 2;
             }
 
             newPos.Item1 = pos.Item1;
+            newPos.Item2 = pos.Item2 - x;
 
             return newPos;
         }
