@@ -29,6 +29,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             return BuildingType.Laboratory;
         }
 
+        public override IBuilding newInstance() {
+            return new Laboratory();
+        }
+
         public override void SetTile(ITile tile) {
             //
         }

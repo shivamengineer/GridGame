@@ -32,7 +32,7 @@ namespace GridGame.Hexagons {
                             break;
                         }
                         if(values[i] != "") {
-                            Tile tile = tileDictionary[values[i]];
+                            Tile tile = tileDictionary[values[i]].newInstance();
                             tile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
                             tile.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
                             map.Add(AdjustedPos((i, j)), tile);

@@ -42,6 +42,8 @@ namespace GridGame.Tiles.Terrain {
 
         public abstract void SetTile(ITile tile);
 
+        public abstract ITerrain newInstance();
+
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);

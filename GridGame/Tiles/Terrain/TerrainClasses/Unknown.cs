@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Unknown : AbstractTerrain {
 
-        private int q;
-        private int r;
-
         private Color hexColor;
 
-        public Unknown(int q, int r) {
-            this.q = q;
-            this.r = r;
-
+        public Unknown() {
             hexColor = TerrainColors.OceanColor;
         }
 
@@ -29,6 +23,10 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public override void SetTile(ITile tile) {
             //
+        }
+
+        public override ITerrain newInstance() {
+            return new Unknown();
         }
 
         public override void Update(GameTime gameTime) {

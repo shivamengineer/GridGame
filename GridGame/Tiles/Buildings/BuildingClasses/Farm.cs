@@ -29,6 +29,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             return BuildingType.Farm;
         }
 
+        public override IBuilding newInstance() {
+            return new Farm();
+        }
+
         public override void SetTile(ITile tile) {
             //
         }

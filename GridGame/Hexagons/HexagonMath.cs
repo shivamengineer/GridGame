@@ -33,7 +33,7 @@ namespace GridGame.Hexagons {
             float radius = hexConstants.HexRadius;
 
             float x = mousePos.X + camPosX;
-            float y = mousePos.Y + camPosY;
+            float y = mousePos.Y + camPosY - UIOverlayDetails.RESOURCE_BAR_HEIGHT;
 
             float A = radius * (MathF.Sqrt(3f) - 0.5f);
             float B = radius * 0.75f;
@@ -52,10 +52,27 @@ namespace GridGame.Hexagons {
             return hexConstants.GetScale();
         }
 
-        public void MoveCameraUp() { camPosY -= hexConstants.CameraMoveSpeedY; }
-        public void MoveCameraDown() { camPosY += hexConstants.CameraMoveSpeedY; }
-        public void MoveCameraLeft() { camPosX -= hexConstants.CameraMoveSpeedX; }
-        public void MoveCameraRight() { camPosX += hexConstants.CameraMoveSpeedX; }
+        public void MoveCameraUp() { 
+            camPosY -= hexConstants.CameraMoveSpeedY;
+            if(camPosY < 0) {
+                camPosY = 0;
+            }
+        }
+
+        public void MoveCameraDown() { 
+            camPosY += hexConstants.CameraMoveSpeedY;
+        }
+
+        public void MoveCameraLeft() { 
+            camPosX -= hexConstants.CameraMoveSpeedX;
+            if(camPosX < 0) {
+                camPosX = 0;
+            }
+        }
+
+        public void MoveCameraRight() { 
+            camPosX += hexConstants.CameraMoveSpeedX; 
+        }
 
         public void ZoomIn() { hexConstants.ZoomIn(); }
         public void ZoomOut() { hexConstants.ZoomOut(); }

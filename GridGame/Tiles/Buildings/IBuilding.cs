@@ -11,5 +11,7 @@ namespace GridGame.Tiles.Buildings {
 
         public BuildingType GetBuildingType();
 
+        public IBuilding newInstance();
+
     }
 }

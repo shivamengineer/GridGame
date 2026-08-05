@@ -28,6 +28,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             return BuildingType.Hospital;
         }
 
+        public override IBuilding newInstance() {
+            return new Hospital();
+        }
+
         public override void SetTile(ITile tile) {
             //
         }

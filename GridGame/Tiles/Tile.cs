@@ -1,5 +1,6 @@
 ﻿using GridGame.Hexagons;
 using GridGame.Tiles.Buildings;
+using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,6 +35,10 @@ namespace GridGame.Tiles {
 
         public void SetBuilding(IBuilding building) {
             this.building = building;
+        }
+
+        public Tile newInstance() {
+            return new Tile(terrain.newInstance(), building.newInstance());
         }
 
         public void Update(GameTime gameTime) {

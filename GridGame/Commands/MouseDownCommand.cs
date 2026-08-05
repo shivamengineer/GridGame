@@ -1,4 +1,5 @@
 ﻿using GridGame.Hexagons;
+using GridGame.Tiles.Buildings;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,8 +15,11 @@ namespace GridGame.Commands.CameraCommands {
 
         private Vector2 pos;
 
-        public MouseDownCommand(HexagonMap hexagonMap, int x, int y) {
+        private BuildingType buildingType;
+
+        public MouseDownCommand(HexagonMap hexagonMap, BuildingType buildingType, int x, int y) {
             this.hexagonMap = hexagonMap;
+            this.buildingType = buildingType;
             pos = new Vector2(x, y);
         }
 

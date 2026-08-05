@@ -25,6 +25,10 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             //
         }
 
+        public override ITerrain newInstance() {
+            return new Ocean();
+        }
+
         public override void Update(GameTime gameTime) {
             //
         }

@@ -37,7 +37,10 @@ namespace GridGame.Hexagons {
         }
 
         public void SetSelected(int x, int y) {
-            setPOS = (x, y);
+            IBuilding building = new Bank();
+            building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+            tileMap[(x, y)].SetBuilding(building);
+            Debug.WriteLine("SETTING BANK AT " + (x, y).ToString());
         }
 
         private void InitializeHexagons() {

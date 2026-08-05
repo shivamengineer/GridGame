@@ -46,7 +46,7 @@ namespace GridGame.Controllers {
                     selectedButton.SetRectSelected(true);
                 }
             } else if(selectedBuilding != BuildingType.NIL){
-                ICommand command = new MouseDownCommand(hexagonMap, x, y);
+                ICommand command = new MouseDownCommand(hexagonMap, selectedBuilding, x, y);
                 command.Execute();
             }
         }
