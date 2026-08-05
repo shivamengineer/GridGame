@@ -37,6 +37,14 @@ namespace GridGame.Tiles {
             this.building = building;
         }
 
+        public TerrainType GetTerrainType() {
+            return terrain.GetTerrainType();
+        }
+
+        public BuildingType GetBuildingType() {
+            return building.GetBuildingType();
+        }
+
         public Tile newInstance() {
             return new Tile(terrain.newInstance(), building.newInstance());
         }

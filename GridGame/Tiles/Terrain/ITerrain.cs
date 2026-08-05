@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Terrain {
     public interface ITerrain : ITile {
 
+        public TerrainType GetTerrainType();
+
         public ITerrain newInstance();
 
         public void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
