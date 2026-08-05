@@ -27,12 +27,13 @@ namespace GridGame.Hexagons {
                 while(!reader.EndOfStream) {
                     var line = reader.ReadLine();
                     string[] values = line.Split(',');
-                    for(int i = 0; i < values.Length - 1; i++) {
+                    for(int i = 0; i < values.Length; i++) {
                         if(values[i] != "") {
                             Tile tile = tileDictionary[values[i]];
                             tile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
                             tile.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-                            map.Add((i, j), tile);
+                            (int, int) pos = AdjustedPos((i, j));
+                            map.Add(pos, tile);
                         }
                     }
                     j++;
@@ -48,6 +49,24 @@ namespace GridGame.Hexagons {
                 ["3"] = new Tile(new Land_River(), new NIL()),
             };
             return tileDictionary;
+        }
+
+        private static (int, int) AdjustedPos((int, int) pos) {
+            (int, int) newPos = (0, 0);
+
+            int x;
+
+            if(pos.Item1 % 2 == 0) {
+                x = pos.Item2 / 4;
+                newPos.Item2 = x * (-3) - (pos.Item1 / 2);
+            } else {
+                x = (pos.Item2 + 1) / 4;
+                newPos.Item2 = (x * (-3)) - 1 - (pos.Item1 / 2);
+            }
+
+            newPos.Item1 = pos.Item1;
+
+            return newPos;
         }
 
     }

@@ -43,21 +43,6 @@ namespace GridGame.Hexagons {
         private void InitializeHexagons() {
             tileMap = new Dictionary<(int, int), Tile>();
             HexagonMapCSVReader.LoadHexagonMap(tileMap, content, "TestMap.csv");
-
-            /*int width = 10;
-            int height = 10;
-
-            for(int r = 0; r < height; r++) {
-                for(int q = 0; q < width; q++) {
-                    ITerrain terrain = new Land();
-                    terrain.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-
-                    IBuilding building = new NIL();
-                    building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-
-                    tileMap.Add((q, r), new Tile(terrain, building));
-                }
-            }*/
         }
 
         public void Draw(SpriteBatch spriteBatch) {
