@@ -27,6 +27,8 @@ namespace GridGame.Tiles {
 
         public void Update(GameTime gameTime);
 
+        public void UpdateEvent();
+
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
     }
 }

@@ -35,7 +35,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             return new Unknown();
         }
 
-        public override void Update(GameTime gameTime) {
+        public override void UpdateEvent() {
             //
         }
 

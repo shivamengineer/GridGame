@@ -8,6 +8,7 @@ namespace GridGame.Constants {
     public static class BuildingLimits {
 
         public static int BANK_MAX_PEOPLE = 2;
+        public static int CITY_CENTER_MAX_PEOPLE = 6;
         public static int FACTORY_MAX_PEOPLE = 4;
         public static int FARM_MAX_PEOPLE = 3;
         public static int HOSPITAL_MAX_PEOPLE = 5;

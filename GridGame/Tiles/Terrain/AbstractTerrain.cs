@@ -17,6 +17,8 @@ namespace GridGame.Tiles.Terrain {
 
         public Vector2 origin;
 
+        private float timeElapsed = 0f;
+
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
             this.baseTexture = baseTexture;
@@ -38,6 +40,15 @@ namespace GridGame.Tiles.Terrain {
             return 1;
         }
 
+        public void Update(GameTime gameTime) {
+            timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            
+            if(timeElapsed >= 1f) {
+                timeElapsed -= 1f;
+                UpdateEvent();
+            }
+        }
+
         public abstract int GetResources();
 
         public abstract void SetTile(ITile tile);
@@ -46,7 +57,7 @@ namespace GridGame.Tiles.Terrain {
 
         public abstract ITerrain newInstance();
 
-        public abstract void Update(GameTime gameTime);
+        public abstract void UpdateEvent();
 
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 

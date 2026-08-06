@@ -18,6 +18,8 @@ namespace GridGame.Tiles.Buildings {
 
         public Vector2 origin;
 
+        private float timeElapsed = 0f;
+
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
             this.baseTexture = baseTexture;
@@ -37,6 +39,15 @@ namespace GridGame.Tiles.Buildings {
             return population;
         }
 
+        public void Update(GameTime gameTime) {
+            timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if(timeElapsed >= 1f) {
+                timeElapsed -= 1f;
+                UpdateEvent();
+            }
+        }
+
         public abstract int GetMaxPeople();
 
         public abstract void Build();
@@ -49,7 +60,7 @@ namespace GridGame.Tiles.Buildings {
 
         public abstract void SetTile(ITile tile);
 
-        public abstract void Update(GameTime gameTime);
+        public abstract void UpdateEvent();
 
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 

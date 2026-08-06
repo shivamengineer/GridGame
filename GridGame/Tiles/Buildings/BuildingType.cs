@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GridGame.Tiles.Buildings {
     public enum BuildingType {
+        CityCenter,
         Factory,
         Bank,
         Hospital,

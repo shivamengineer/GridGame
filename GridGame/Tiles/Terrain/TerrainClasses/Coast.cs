@@ -33,7 +33,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             return new Coast();
         }
 
-        public override void Update(GameTime gameTime) {
+        public override void UpdateEvent() {
             //
         }
 

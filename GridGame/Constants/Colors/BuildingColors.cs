@@ -9,6 +9,7 @@ namespace GridGame.Constants.Colors {
     public static class BuildingColors {
 
         public static Color BankColor = Color.Gold;
+        public static Color CityCenterColor = Color.Plum;
         public static Color EmptyColor = Color.LightSlateGray;
         public static Color FactoryColor = Color.DarkOrange;
         public static Color FarmColor = Color.SaddleBrown;

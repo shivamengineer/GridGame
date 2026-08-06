@@ -41,7 +41,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             return 0;
         }
 
-        public override void Update(GameTime gameTime) {
+        public override void UpdateEvent() {
             //
         }
 

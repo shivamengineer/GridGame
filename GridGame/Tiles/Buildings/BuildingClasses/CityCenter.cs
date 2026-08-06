@@ -1,8 +1,8 @@
-﻿using GridGame.Constants;
-using GridGame.Constants.Colors;
+﻿using GridGame.Constants.Colors;
+using GridGame.Constants;
 using GridGame.Hexagons;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Tiles.Buildings.BuildingClasses {
-    public class Empty : AbstractBuilding {
+    public class CityCenter : AbstractBuilding {
 
         private Color hexColor;
 
-        public Empty() {
-            hexColor = BuildingColors.EmptyColor;
+        public CityCenter() {
+            hexColor = BuildingColors.CityCenterColor;
         }
+
         public override int GetMaxPeople() {
-            return BuildingLimits.EMPTY_MAX_PEOPLE;
+            return BuildingLimits.CITY_CENTER_MAX_PEOPLE;
         }
 
         public override void Build() {
@@ -26,11 +27,11 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override BuildingType GetBuildingType() {
-            return BuildingType.Empty;
+            return BuildingType.CityCenter;
         }
 
         public override IBuilding newInstance() {
-            return new Empty();
+            return new CityCenter();
         }
 
         public override void SetTile(ITile tile) {
