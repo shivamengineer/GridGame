@@ -36,6 +36,10 @@ namespace GridGame.Hexagons {
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
             InitializeHexagons();
             discoveredTiles = new HashSet<(int, int)>();
+
+            UnknownTile = new Tile(new Unknown(), new NIL());
+            UnknownTile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+            UnknownTile.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
         }
 
         public void SetSelected(BuildingType buildingType, int x, int y) {
@@ -87,7 +91,11 @@ namespace GridGame.Hexagons {
         private void DrawHex(SpriteBatch spriteBatch, int Q, int R) {
             Vector2 position = HexMath.HexToPixel(Q, R);
 
-            tileMap[(Q, R)].Draw(spriteBatch, position, HexMath);
+            if(discoveredTiles.Contains((Q, R))) {
+                tileMap[(Q, R)].Draw(spriteBatch, position, HexMath);
+            } else {
+                UnknownTile.Draw(spriteBatch, position, HexMath);
+            }
         }
     }
 }

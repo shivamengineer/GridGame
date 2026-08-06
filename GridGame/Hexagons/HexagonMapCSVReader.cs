@@ -35,7 +35,7 @@ namespace GridGame.Hexagons {
                             Tile tile = tileDictionary[values[i]].newInstance();
                             tile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
                             tile.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-                            map.Add(AdjustedPos((i, j)), tile);
+                            map.Add(HexAdjustedCoords.AdjustedPos((i, j)), tile);
                         }
                     }
                     j++;
@@ -52,18 +52,6 @@ namespace GridGame.Hexagons {
                 ["3"] = new Tile(new Land_River(), new NIL()),
             };
             return tileDictionary;
-        }
-
-        private static (int, int) AdjustedPos((int, int) pos) {
-            int x;
-
-            if(pos.Item1 % 2 == 0) {
-                x = pos.Item1 / 2;
-            } else {
-                x = (pos.Item1 + 1) / 2;
-            }
-
-            return (pos.Item1, pos.Item2 - x);
         }
 
     }

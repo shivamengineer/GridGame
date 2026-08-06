@@ -57,7 +57,7 @@ namespace GridGame.Tiles {
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             Vector2 offsetPos = new Vector2(position.X + hexMath.hexConstants.HexRadius - 5, position.Y + hexMath.hexConstants.HexRadius - 5);
-            if(building.GetBuildingType() != BuildingType.NIL) {
+            if(building.GetBuildingType() != BuildingType.NIL && terrain.GetTerrainType() != TerrainType.Unknown) {
                 terrain.DrawBackground(spriteBatch, position, hexMath);
                 building.Draw(spriteBatch, offsetPos, hexMath);
             } else {

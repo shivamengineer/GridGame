@@ -12,9 +12,11 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Unknown : AbstractTerrain {
 
         private Color hexColor;
+        private Color hexBorderColor;
 
         public Unknown() {
-            hexColor = TerrainColors.OceanColor;
+            hexColor = TerrainColors.UnknownColor;
+            hexBorderColor = TerrainColors.UnknownBorderColor;
         }
 
         public override int GetResources() {
@@ -38,7 +40,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            spriteBatch.Draw(borderTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
+            spriteBatch.Draw(borderTexture, position, null, hexBorderColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 
         public override void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
