@@ -1,5 +1,4 @@
-﻿using GridGame.Constants;
-using GridGame.Hexagons;
+﻿using GridGame.Hexagons;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.Constants.Colors;
 
 namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Unknown : AbstractTerrain {

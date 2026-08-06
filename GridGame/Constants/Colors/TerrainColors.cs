@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Constants {
+namespace GridGame.Constants.Colors {
     public static class TerrainColors {
 
         public static Color OceanColor = Color.CadetBlue;

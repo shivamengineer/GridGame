@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Colors;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

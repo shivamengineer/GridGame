@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Constants {
+namespace GridGame.Constants.Colors {
     public static class BuildingColors {
 
         public static Color BankColor = Color.Gold;
