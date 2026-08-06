@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,7 +42,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             return 0;
         }
 
-        public override void UpdateEvent() {
+        public override void UpdateEvent(DisplayManager displayManager) {
             //
         }
 

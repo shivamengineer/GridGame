@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GridGame.Constants.Colors;
+using GridGame.GameManagers;
 
 namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Unknown : AbstractTerrain {
@@ -35,7 +36,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             return new Unknown();
         }
 
-        public override void UpdateEvent() {
+        public override void UpdateEvent(DisplayManager displayManager) {
             //
         }
 

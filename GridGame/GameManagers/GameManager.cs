@@ -40,6 +40,7 @@ namespace GridGame.GameManagers {
             foreach(var Controller in Controllers) {
                 Controller.Value.Update(gameTime);
             }
+            hexagonMap.Update(gameTime, displayManager);
         }
 
         public void Draw(SpriteBatch spriteBatch) {

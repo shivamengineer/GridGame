@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.GameManagers;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
@@ -57,6 +58,12 @@ namespace GridGame.Hexagons {
         private void InitializeHexagons() {
             tileMap = new Dictionary<(int, int), Tile>();
             landTiles = HexagonMapCSVReader.LoadHexagonMap(tileMap, content, "Map1.csv");
+        }
+
+        public void Update(GameTime gameTime, DisplayManager displayManager) {
+            foreach((int, int) building in buildingTiles) {
+                tileMap[building].Update(gameTime, displayManager);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch) {

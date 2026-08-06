@@ -1,6 +1,9 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Resources;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -42,8 +45,9 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             return 0;
         }
 
-        public override void UpdateEvent() {
-            //
+        public override void UpdateEvent(DisplayManager displayManager) {
+            displayManager.resourceManager.playerResources.AddResource(ResourceType.Gold, BuildingStats.BANK_RATE);
+            displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Gold, displayManager.resourceManager.playerResources);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {

@@ -11,7 +11,7 @@ namespace GridGame.Constants.Resources {
         public static int GOLD_RATE = 2;
         public static int MORALE_RATE = 0;
         public static int PRODUCTION_RATE = 2;
-        public static int SCIENCE = 1;
+        public static int SCIENCE_RATE = 1;
 
     }
 }

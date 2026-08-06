@@ -1,4 +1,6 @@
-﻿using GridGame.Hexagons;
+﻿using GridGame.Constants;
+using GridGame.GameManagers;
+using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -40,12 +42,12 @@ namespace GridGame.Tiles.Terrain {
             return 1;
         }
 
-        public void Update(GameTime gameTime) {
+        public void Update(GameTime gameTime, DisplayManager displayManager) {
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
             
-            if(timeElapsed >= 1f) {
-                timeElapsed -= 1f;
-                UpdateEvent();
+            if(timeElapsed >= GameConstants.RESOURCE_TICK_SPEED) {
+                timeElapsed -= GameConstants.RESOURCE_TICK_SPEED;
+                UpdateEvent(displayManager);
             }
         }
 
@@ -57,7 +59,7 @@ namespace GridGame.Tiles.Terrain {
 
         public abstract ITerrain newInstance();
 
-        public abstract void UpdateEvent();
+        public abstract void UpdateEvent(DisplayManager displayManager);
 
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 

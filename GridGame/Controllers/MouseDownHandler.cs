@@ -26,7 +26,7 @@ namespace GridGame.Controllers {
         private IButton selectedButton;
 
         public MouseDownHandler(DisplayManager displayManager) {
-            resourceDisplay = displayManager.resourceManager.GetResourceDisplay();
+            resourceDisplay = displayManager.resourceManager.resourceDisplay;
             buttonDisplay = displayManager.buttonDisplay;
         }
 

@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.GameManagers;
+using GridGame.Constants.Resources;
+using GridGame.Resources;
 
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class CityCenter : AbstractBuilding {
@@ -42,8 +45,12 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             return 0;
         }
 
-        public override void UpdateEvent() {
-            //
+        public override void UpdateEvent(DisplayManager displayManager) {
+            displayManager.resourceManager.playerResources.AddResource(ResourceType.Food, CityBaseStats.FOOD_RATE);
+            displayManager.resourceManager.playerResources.AddResource(ResourceType.Gold, CityBaseStats.GOLD_RATE);
+            displayManager.resourceManager.playerResources.AddResource(ResourceType.Production, CityBaseStats.PRODUCTION_RATE);
+            displayManager.resourceManager.playerResources.AddResource(ResourceType.Science, CityBaseStats.SCIENCE_RATE);
+            displayManager.resourceManager.resourceDisplay.UpdateAllResources(displayManager.resourceManager.playerResources.GetResourceCounts());
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {

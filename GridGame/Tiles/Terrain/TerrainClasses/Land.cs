@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants.Colors;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,7 +34,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             return new Land();
         }
 
-        public override void UpdateEvent() {
+        public override void UpdateEvent(DisplayManager displayManager) {
             //
         }
 

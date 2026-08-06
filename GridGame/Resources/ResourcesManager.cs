@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace GridGame.Resources {
     public class ResourcesManager {
 
-        private PlayerResources playerResources;
-        private ResourceDisplay resourceDisplay;
+        public PlayerResources playerResources;
+        public ResourceDisplay resourceDisplay;
 
         public ResourcesManager(Texture2D blankTexture, SpriteFont font) {
             playerResources = new PlayerResources();

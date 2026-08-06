@@ -72,8 +72,9 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
             }
         }
 
-        public void UpdateResource(ResourceType resourceType, int newAmount) {
-            resourceItems[resourceType].SetCount(newAmount);
+        public void UpdateResource(ResourceType resourceType, PlayerResources playerResources) {
+            int count = playerResources.GetResourceAmount(resourceType);
+            resourceItems[resourceType].SetCount(count);
         }
 
         public void Draw(SpriteBatch spriteBatch) {

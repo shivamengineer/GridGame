@@ -28,6 +28,10 @@ namespace GridGame.Resources {
             return resources;
         }
 
+        public int GetResourceAmount(ResourceType resourceType) {
+            return resources[resourceType].GetCount();
+        }
+
         public void AddResource(ResourceType resource, int amount) {
             resources[resource].AddResource(amount);
         }

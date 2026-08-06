@@ -1,4 +1,5 @@
-﻿using GridGame.Hexagons;
+﻿using GridGame.GameManagers;
+using GridGame.Hexagons;
 using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain;
@@ -50,9 +51,9 @@ namespace GridGame.Tiles {
             return new Tile(terrain.newInstance(), building.newInstance());
         }
 
-        public void Update(GameTime gameTime) {
-            terrain.Update(gameTime);
-            building.Update(gameTime);
+        public void Update(GameTime gameTime, DisplayManager displayManager) {
+            terrain.Update(gameTime, displayManager);
+            building.Update(gameTime, displayManager);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
