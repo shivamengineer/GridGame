@@ -22,11 +22,10 @@ namespace GridGame.Hexagons {
 
         private ContentLoader content;
 
-        private Tile UnknownTile;
-
         public HexMap hexMap;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
+        private Tile UnknownTile;
 
         public HexagonMap(ContentLoader content) {
             this.content = content;
