@@ -24,7 +24,7 @@ namespace GridGame.Commands.CameraCommands {
         }
 
         public void Execute() {
-            (int, int) clickedHex = hexagonMap.HexMath.PixelToHex(pos);
+            (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(pos);
             hexagonMap.SetSelected(buildingType, clickedHex.Item1 - 1, clickedHex.Item2);
         }
 

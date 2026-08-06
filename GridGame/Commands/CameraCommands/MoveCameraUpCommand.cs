@@ -15,7 +15,7 @@ namespace GridGame.Commands.CameraCommands {
         }
 
         public void Execute() {
-            hexagonMap.HexMath.MoveCameraUp();
+            hexagonMap.hexMap.HexMath.MoveCameraUp();
         }
     }
 }

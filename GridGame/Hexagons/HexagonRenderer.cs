@@ -1,0 +1,66 @@
+﻿using GridGame.Constants;
+using GridGame.TextureLoading.TextureEnums;
+using GridGame.Tiles;
+using GridGame.Tiles.Buildings.BuildingClasses;
+using GridGame.Tiles.Buildings;
+using GridGame.Tiles.Terrain;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using GridGame.Tiles.Terrain.TerrainClasses;
+
+namespace GridGame.Hexagons {
+    public static class HexagonRenderer {
+
+        public static void Draw(SpriteBatch spriteBatch, HexMap hex, Tile unknown) {
+            int camPosX = hex.HexMath.camPosX;
+            int camPosY = hex.HexMath.camPosY;
+
+            float rad = hex.HexMath.hexConstants.HexRadius;
+
+            float dxQ = rad * (MathF.Sqrt(3) - 0.5f);
+            float dyQ = rad * 0.75f;
+            float dyR = rad * MathF.Sqrt(3) * 0.9f;
+
+            int qMin = (int)MathF.Floor(camPosX / dxQ) - 2;
+            float qMax = (int)MathF.Ceiling((camPosX + GameConstants.WINDOW_WIDTH) / dxQ) + 2;
+
+            for(int q = qMin; q <= qMax; q++) {
+                float top = camPosY;
+                float bottom = camPosY + GameConstants.WINDOW_HEIGHT - (2 * UIOverlayDetails.RESOURCE_BAR_HEIGHT); //subtract resource bar height so it only renders to top of button display
+
+                int rMin = (int)MathF.Floor((top - q * dyQ) / dyR) - 2;
+                int rMax = (int)MathF.Ceiling((bottom - q * dyQ) / dyR) + 2;
+
+                for(int r = rMin; r <= rMax; r++) {
+                    if(!hex.Tiles.ContainsKey((q, r))) {
+                        ITerrain terrain = new Ocean();
+                        terrain.SetTextures(hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+
+                        IBuilding building = new NIL();
+                        building.SetTextures(hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+
+                        hex.Tiles.Add((q, r), new Tile(terrain, building));
+                    }
+                    DrawHex(spriteBatch, hex, unknown, q, r);
+                }
+            }
+        }
+
+        private static void DrawHex(SpriteBatch spriteBatch, HexMap hex, Tile unknown, int Q, int R) {
+            Vector2 position = hex.HexMath.HexToPixel(Q, R);
+
+            if(hex.DiscoveredTiles.Contains((Q, R))) {
+                hex.Tiles[(Q, R)].Draw(spriteBatch, position, hex.HexMath);
+            } else {
+                unknown.Draw(spriteBatch, position, hex.HexMath);
+            }
+        }
+
+    }
+}
