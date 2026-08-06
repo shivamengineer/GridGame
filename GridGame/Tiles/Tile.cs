@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,13 +56,14 @@ namespace GridGame.Tiles {
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            Vector2 offsetPos = new Vector2(position.X + 10, position.Y - 6);
+            Vector2 offsetPos = new Vector2(position.X + hexMath.hexConstants.HexRadius - 5, position.Y + hexMath.hexConstants.HexRadius - 5);
             if(building.GetBuildingType() != BuildingType.NIL) {
-                building.Draw(spriteBatch, position, hexMath);
+                terrain.DrawBackground(spriteBatch, position, hexMath);
+                building.Draw(spriteBatch, offsetPos, hexMath);
             } else {
-                terrain.DrawBackground(spriteBatch, offsetPos, hexMath);
+                terrain.DrawBackground(spriteBatch, position, hexMath);
             }
-            terrain.Draw(spriteBatch, offsetPos, hexMath);
+            terrain.Draw(spriteBatch, position, hexMath);
         }
 
     }

@@ -13,8 +13,8 @@ namespace GridGame.Constants {
         public static Color FactoryColor = Color.DarkOrange;
         public static Color FarmColor = Color.SaddleBrown;
         public static Color HospitalColor = Color.Red;
-        public static Color LaboratoryColor = Color.AliceBlue;
-        public static Color NILColor = Color.White;
+        public static Color LaboratoryColor = Color.Aquamarine;
+        public static Color NILColor = Color.Purple;
 
     }
 }
