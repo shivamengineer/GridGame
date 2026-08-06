@@ -14,7 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Hexagons {
+namespace GridGame.Hexagons.StaticClasses {
     public static class HexagonMapCSVReader {
 
         public static HashSet<(int, int)> LoadHexagonMap(Dictionary<(int, int), Tile> map, ContentLoader content, string filename) {

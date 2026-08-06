@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.GameManagers;
+using GridGame.Hexagons.StaticClasses;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
@@ -36,9 +37,7 @@ namespace GridGame.Hexagons {
             hexMap.LandTiles = HexagonMapCSVReader.LoadHexagonMap(hexMap.Tiles, content, "Map1.csv");
             hexMap.DiscoveredTiles = DiscoveredTiles.GetTileSet(hexMap.LandTiles);
 
-            UnknownTile = new Tile(new Unknown(), new NIL());
-            UnknownTile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-            UnknownTile.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+            UnknownTile = UnknownTileGetter.GetTile(content);
         }
 
         public void SetSelected(BuildingType buildingType, int x, int y) {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Hexagons {
+namespace GridGame.Hexagons.StaticClasses {
     public static class HexAdjustedCoords {
 
         public static (int, int) AdjustedPos((int, int) pos) {

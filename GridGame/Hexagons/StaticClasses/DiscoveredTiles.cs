@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Hexagons {
+namespace GridGame.Hexagons.StaticClasses {
     public static class DiscoveredTiles {
         public static HashSet<(int, int)> GetTileSet(HashSet<(int, int)> landTiles) {
             Random random = new Random();
             int randomIndex = random.Next(landTiles.Count);
             (int, int) coords = landTiles.ElementAt(randomIndex);
-                                                                
+
             HashSet<(int, int)> tiles = TilesInRadius(coords, 2);
-            
+
             return tiles;
         }
 
@@ -24,7 +24,7 @@ namespace GridGame.Hexagons {
                 int maxY = Math.Min(radius, -i + radius);
 
                 for(int j = minY; j <= maxY; j++) {
-                    tiles.Add(((tile.Item1 + i), (tile.Item2 + j)));
+                    tiles.Add((tile.Item1 + i, tile.Item2 + j));
                 }
             }
 

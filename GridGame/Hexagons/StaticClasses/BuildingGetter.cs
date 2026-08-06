@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Hexagons {
+namespace GridGame.Hexagons.StaticClasses {
     public static class BuildingGetter {
 
         public static Dictionary<BuildingType, IBuilding> GetBuildingGetter() {
