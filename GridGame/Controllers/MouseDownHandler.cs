@@ -46,7 +46,7 @@ namespace GridGame.Controllers {
                     selectedButton.SetRectSelected(true);
                 }
             } else if(selectedBuilding != BuildingType.NIL){
-                ICommand command = new MouseDownCommand(hexagonMap, selectedBuilding, x, y);
+                ICommand command = new MouseDownCommand(hexagonMap, selectedBuilding, x + 10, y - 6); //adjust mouseclick on map to offset tiles offset
                 command.Execute();
             }
         }
