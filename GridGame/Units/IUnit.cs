@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Hexagons;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,13 @@ namespace GridGame.Units {
 
         public void MoveDownLeft();
 
-        public void SetTargetCoords();
+        public void SetMoving();
+
+        public void UpdatePos(GameTime gameTime);
 
         public void Update(GameTime gameTime);
 
-        public void Draw(SpriteBatch spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 
     }
 }
