@@ -22,35 +22,24 @@ namespace GridGame.Hexagons {
 
         private Dictionary<(int, int), Tile> tileMap;
         private HashSet<(int, int)> discoveredTiles;
+        private Tile UnknownTile;
 
         public HexagonMath HexMath;
 
-        private Dictionary<BuildingType, IBuilding> BuildingGetter;
+        private Dictionary<BuildingType, IBuilding> BuildingDictionary;
 
         public HexagonMap(ContentLoader content) {
             this.content = content;
 
             HexMath = new HexagonMath();
 
-            InitializeBuildingGetter();
+            BuildingDictionary = BuildingGetter.GetBuildingGetter();
             InitializeHexagons();
             discoveredTiles = new HashSet<(int, int)>();
         }
 
-        private void InitializeBuildingGetter() {
-            BuildingGetter = new Dictionary<BuildingType, IBuilding> {
-                [BuildingType.Bank] = new Bank(),
-                [BuildingType.Empty] = new Empty(),
-                [BuildingType.Factory] = new Factory(),
-                [BuildingType.Farm] = new Farm(),
-                [BuildingType.Hospital] = new Hospital(),
-                [BuildingType.Laboratory] = new Laboratory(),
-                [BuildingType.NIL] = new NIL(),
-            };
-        }
-
         public void SetSelected(BuildingType buildingType, int x, int y) {
-            IBuilding building = BuildingGetter[buildingType].newInstance();
+            IBuilding building = BuildingDictionary[buildingType].newInstance();
             building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
             tileMap[(x, y)].SetBuilding(building);
         }
