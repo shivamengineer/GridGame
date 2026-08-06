@@ -21,6 +21,7 @@ namespace GridGame.Hexagons {
         private ContentLoader content;
 
         private Dictionary<(int, int), Tile> tileMap;
+        private HashSet<(int, int)> landTiles;
         private HashSet<(int, int)> discoveredTiles;
         private Tile UnknownTile;
 
@@ -35,7 +36,7 @@ namespace GridGame.Hexagons {
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
             InitializeHexagons();
-            discoveredTiles = new HashSet<(int, int)>();
+            discoveredTiles = DiscoveredTiles.GetTileSet(landTiles);
 
             UnknownTile = new Tile(new Unknown(), new NIL());
             UnknownTile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
@@ -50,7 +51,7 @@ namespace GridGame.Hexagons {
 
         private void InitializeHexagons() {
             tileMap = new Dictionary<(int, int), Tile>();
-            HexagonMapCSVReader.LoadHexagonMap(tileMap, content, "Map1.csv");
+            landTiles = HexagonMapCSVReader.LoadHexagonMap(tileMap, content, "Map1.csv");
         }
 
         public void Draw(SpriteBatch spriteBatch) {
