@@ -44,6 +44,8 @@ namespace GridGame.Hexagons {
         }
 
         public void SetSelected(BuildingType buildingType, int x, int y) {
+            if(!discoveredTiles.Contains((x, y))) return;
+
             IBuilding building = BuildingDictionary[buildingType].newInstance();
             building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
             tileMap[(x, y)].SetBuilding(building);
