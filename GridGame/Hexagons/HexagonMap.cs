@@ -43,9 +43,7 @@ namespace GridGame.Hexagons {
             if(!hexMap.DiscoveredTiles.Contains((x, y)) || hexMap.BuildingTiles.Contains((x, y))) return;
 
             hexMap.BuildingTiles.Add((x, y));
-            IBuilding building = BuildingDictionary[buildingType].newInstance();
-            building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-            hexMap.Tiles[(x, y)].SetBuilding(building);
+            hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {

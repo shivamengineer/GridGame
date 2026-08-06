@@ -1,4 +1,6 @@
-﻿using GridGame.Tiles.Buildings;
+﻿using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
+using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using System;
 using System.Collections.Generic;
@@ -20,5 +22,6 @@ namespace GridGame.Hexagons.StaticClasses {
                 [BuildingType.NIL] = new NIL(),
             };
         }
+
     }
 }
