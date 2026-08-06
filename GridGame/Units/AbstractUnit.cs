@@ -47,7 +47,7 @@ namespace GridGame.Units {
         }
 
         public void SetTargetCoords() {
-            TargetCoords = 
+            // 
         }
 
         public abstract void Update(GameTime gameTime);

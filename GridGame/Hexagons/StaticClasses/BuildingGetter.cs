@@ -14,6 +14,7 @@ namespace GridGame.Hexagons.StaticClasses {
         public static Dictionary<BuildingType, IBuilding> GetBuildingGetter() {
             return new Dictionary<BuildingType, IBuilding> {
                 [BuildingType.Bank] = new Bank(),
+                [BuildingType.CityCenter] = new CityCenter(),
                 [BuildingType.Empty] = new Empty(),
                 [BuildingType.Factory] = new Factory(),
                 [BuildingType.Farm] = new Farm(),

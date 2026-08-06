@@ -33,6 +33,7 @@ namespace GridGame.UI.Overlay.SelectActions {
 
         private void InitializeBuildingTypes() {
             buildingButtons = new Dictionary<BuildingType, IButton> {
+                [BuildingType.CityCenter] = new CityCenterButton(blankTexture, font),
                 [BuildingType.Farm] = new FarmButton(blankTexture, font),
                 [BuildingType.Bank] = new BankButton(blankTexture, font),
                 [BuildingType.Hospital] = new HospitalButton(blankTexture, font),
