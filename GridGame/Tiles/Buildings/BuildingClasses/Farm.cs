@@ -19,14 +19,11 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public Farm() {
             hexColor = BuildingColors.FarmColor;
+            production_needed = BuildingCosts.FARM_PRODUCTION_COST;
         }
 
         public override int GetMaxPeople() {
             return BuildingLimits.FARM_MAX_PEOPLE;
-        }
-
-        public override void Build() {
-            //
         }
 
         public override BuildingType GetBuildingType() {

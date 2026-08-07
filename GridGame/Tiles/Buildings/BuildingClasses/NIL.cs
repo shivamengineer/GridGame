@@ -22,11 +22,6 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         public override int GetMaxPeople() {
             return BuildingLimits.NIL_MAX_PEOPLE;
         }
-
-        public override void Build() {
-            //
-        }
-
         public override BuildingType GetBuildingType() {
             return BuildingType.NIL;
         }

@@ -17,13 +17,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public Hospital() {
             hexColor = BuildingColors.HospitalColor;
+            production_needed = BuildingCosts.HOSPITAL_PRODUCTION_COST;
         }
         public override int GetMaxPeople() {
             return BuildingLimits.HOSPITAL_MAX_PEOPLE;
-        }
-
-        public override void Build() {
-            //
         }
 
         public override BuildingType GetBuildingType() {

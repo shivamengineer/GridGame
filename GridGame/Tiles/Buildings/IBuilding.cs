@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings {
     public interface IBuilding : ITile {
 
-        public void Build();
+        public int Build(int production);
 
         public BuildingType GetBuildingType();
 

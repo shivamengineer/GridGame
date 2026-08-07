@@ -19,14 +19,11 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public Bank() {
             hexColor = BuildingColors.BankColor;
+            production_needed = BuildingCosts.BANK_PRODUCTION_COST;
         }
 
         public override int GetMaxPeople() {
             return BuildingLimits.BANK_MAX_PEOPLE;
-        }
-
-        public override void Build() {
-            //
         }
 
         public override BuildingType GetBuildingType() {

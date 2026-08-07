@@ -22,6 +22,11 @@ namespace GridGame.Tiles.Buildings {
 
         private float timeElapsed = 0f;
 
+        public int production_spent = 0;
+        public int production_needed = 0;
+
+        public bool constructed = false;
+
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
             this.baseTexture = baseTexture;
@@ -42,6 +47,8 @@ namespace GridGame.Tiles.Buildings {
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
+            if(!constructed) return;
+
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if(timeElapsed >= GameConstants.RESOURCE_TICK_SPEED) {
@@ -52,7 +59,15 @@ namespace GridGame.Tiles.Buildings {
 
         public abstract int GetMaxPeople();
 
-        public abstract void Build();
+        public int Build(int production) {
+            production_spent += production;
+
+            if(production_spent >= production_needed) {
+                return production_needed - production_spent;
+                constructed = true;
+            }
+            return 0;
+        }
 
         public abstract BuildingType GetBuildingType();
 
