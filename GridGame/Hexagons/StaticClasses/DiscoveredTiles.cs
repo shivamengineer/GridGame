@@ -28,5 +28,12 @@ namespace GridGame.Hexagons.StaticClasses {
 
             return tiles;
         }
+
+        public static int DistanceBetweenTiles((int, int) pos1, (int, int) pos2) {
+            int Q = pos2.Item1 - pos1.Item1;
+            int R = pos2.Item2 - pos1.Item2;
+
+            return (Math.Abs(Q) + Math.Abs(R) + Math.Abs(Q + R)) / 2;
+        }
     }
 }
