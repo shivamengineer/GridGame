@@ -29,6 +29,8 @@ namespace GridGame.Controllers {
         public MouseDownHandler(DisplayManager displayManager) {
             resourceDisplay = displayManager.resourceManager.resourceDisplay;
             buttonDisplay = displayManager.buttonDisplay;
+            selectedButton = buttonDisplay.GetButton(selectedBuilding);
+            selectedButton.SetRectSelected(true);
         }
 
         public void OnMouseDown(int x, int y, HexagonMap hexagonMap) {
@@ -37,6 +39,8 @@ namespace GridGame.Controllers {
             if(resourceDisplay.MouseOnDisplay(point)) {
                 IItem item = resourceDisplay.GetSelectedResource(point);
             } else if(buttonDisplay.MouseOnDisplay(point)) {
+                if(!builtCityCenter) return;
+
                 if(selectedButton != null) selectedButton.SetRectSelected(false);
 
                 IButton button = buttonDisplay.GetSelectedButton(point);
@@ -51,6 +55,7 @@ namespace GridGame.Controllers {
                 if(hexagonMap.SetSelected(selectedBuilding, clickedHex.Item1 - 1, clickedHex.Item2)) {
                     selectedBuilding = BuildingType.NIL;
                     selectedButton.SetRectSelected(false);
+                    builtCityCenter = true;
                 }
             }
         }

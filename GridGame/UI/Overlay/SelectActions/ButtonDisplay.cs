@@ -72,6 +72,10 @@ namespace GridGame.UI.Overlay.SelectActions {
             return null;
         }
 
+        public IButton GetButton(BuildingType type) {
+            return buildingButtons[type];
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(blankTexture, buttonBackground, Color.Gray);
 
