@@ -32,6 +32,7 @@ namespace GridGame.Hexagons {
         private PlayerResources playerResources;
 
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
+            this.playerResources = playerResources;
             this.content = content;
 
             hexMap = new HexMap(content);
@@ -68,6 +69,8 @@ namespace GridGame.Hexagons {
             if(playerData.UnfinishedBuildingTiles.Count == 0) return;
 
             int extra = hexMap.Tiles[(playerData.UnfinishedBuildingTiles.First())].AddProduction(production);
+            playerResources.SubtractResource(ResourceType.Production, production);
+            playerResources.AddResource(ResourceType.Production, extra);
         }
 
         public void UpdateVision((int, int) position, int radius) {
@@ -78,6 +81,10 @@ namespace GridGame.Hexagons {
         public void Update(GameTime gameTime, DisplayManager displayManager) {
             foreach((int, int) building in playerData.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
+            }
+            if(playerData.UnfinishedBuildingTiles.Count > 0) {
+                AddProduction(playerResources.GetResourceAmount(ResourceType.Production));
+                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
             }
             playerData.Player.Update(gameTime);
         }
