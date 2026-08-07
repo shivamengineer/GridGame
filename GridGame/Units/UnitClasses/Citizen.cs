@@ -14,14 +14,17 @@ namespace GridGame.Units.UnitClasses {
 
         private Color unitColor;
 
-        public Citizen(int Q, int R) {
+        public Citizen(int Q, int R, HexagonMap hexagonMap) {
             Coords = (Q, R);
             unitColor = Color.Gray;
             destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
+            this.hexagonMap = hexagonMap;
         }
 
         public override void Update(GameTime gameTime) {
-            UpdatePos(gameTime);
+            if(moving) {
+                UpdatePos(gameTime);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch, HexagonMath hexMath) {

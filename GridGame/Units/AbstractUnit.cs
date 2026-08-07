@@ -2,10 +2,12 @@
 using GridGame.Hexagons;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
+using GridGame.Tiles.Terrain;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,7 @@ namespace GridGame.Units {
         public Rectangle destRect;
 
         public Vector2 origin;
+        public HexagonMap hexagonMap;
 
         public void SetTexture(ContentLoader Content) {
             texture = Content.GetTexture(TextureLoading.TextureEnums.TextureNames.BLANK_RECTANGLE);
@@ -41,6 +44,7 @@ namespace GridGame.Units {
 
             TargetCoords = Coords;
             TargetCoords.Item2--;
+
             SetMoving();
         }
 
@@ -49,6 +53,7 @@ namespace GridGame.Units {
 
             TargetCoords = Coords;
             TargetCoords.Item2++;
+
             SetMoving();
         }
 
@@ -56,6 +61,7 @@ namespace GridGame.Units {
             if(moving) return;
 
             TargetCoords = (Coords.Item1 + 1, Coords.Item2 - 1);
+
             SetMoving();
         }
 
@@ -64,6 +70,7 @@ namespace GridGame.Units {
 
             TargetCoords = Coords;
             TargetCoords.Item1++;
+
             SetMoving();
         }
 
@@ -72,6 +79,7 @@ namespace GridGame.Units {
 
             TargetCoords = Coords;
             TargetCoords.Item1--;
+
             SetMoving();
         }
 
@@ -79,10 +87,14 @@ namespace GridGame.Units {
             if(moving) return;
 
             TargetCoords = (Coords.Item1 - 1, Coords.Item2 + 1);
+
             SetMoving();
         }
 
         public void SetMoving() {
+            Debug.WriteLine("TARGET TERRAIN " + hexagonMap.hexMap.Tiles[TargetCoords].GetType().ToString());
+            if(hexagonMap.hexMap.Tiles[TargetCoords].GetTerrainType() == TerrainType.Ocean) return;
+
             moving = true;
             timeElapsed = 0f;
         }
@@ -94,6 +106,8 @@ namespace GridGame.Units {
                 progress = 1.0f;
                 Coords = TargetCoords;
                 moving = false;
+
+                hexagonMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
             }
         }
 

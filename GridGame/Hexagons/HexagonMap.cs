@@ -40,7 +40,7 @@ namespace GridGame.Hexagons {
             (int, int) StartCoords = DiscoveredTiles.GetStartTile(hexMap.LandTiles);
             hexMap.DiscoveredTiles = DiscoveredTiles.TilesInRadius(StartCoords, 2);
 
-            player = new Citizen(StartCoords.Item1, StartCoords.Item2);
+            player = new Citizen(StartCoords.Item1, StartCoords.Item2, this);
             player.SetTexture(content);
 
             UnknownTile = UnknownTileGetter.GetTile(content);
@@ -53,6 +53,11 @@ namespace GridGame.Hexagons {
 
             hexMap.BuildingTiles.Add((x, y));
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
+        }
+
+        public void UpdateVision((int, int) position, int radius) {
+            HashSet<(int, int)> newTiles = DiscoveredTiles.TilesInRadius(position, radius);
+            hexMap.DiscoveredTiles.UnionWith(newTiles);
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
