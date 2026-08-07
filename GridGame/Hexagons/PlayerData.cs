@@ -16,6 +16,7 @@ namespace GridGame.Hexagons {
         public (int, int) city;
         public HashSet<(int, int)> BuildingTiles;
         public Queue<(int, int)> UnfinishedBuildingTiles;
+        public bool SpentGold;
 
         public PlayerData((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content) {
             CityBuilt = false;
@@ -23,6 +24,7 @@ namespace GridGame.Hexagons {
             Player.SetTexture(content);
             BuildingTiles = new HashSet<(int, int)>();
             UnfinishedBuildingTiles = new Queue<(int, int)>();
+            SpentGold = false;
         }
 
     }

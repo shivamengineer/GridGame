@@ -31,7 +31,6 @@ namespace GridGame.Hexagons {
         private Dictionary<BuildingType, int> BuildingCostDictionary;
         private Tile UnknownTile;
         private PlayerResources playerResources;
-        private bool spentGold = false;
 
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
             this.playerResources = playerResources;
@@ -67,7 +66,7 @@ namespace GridGame.Hexagons {
             hexMap.Tiles[(x, y)].SetMap(this);
 
             playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
-            spentGold = true;
+            playerData.SpentGold = true;
 
             if(hexMap.Tiles[(x, y)].IsBuilding()) {
                 playerData.UnfinishedBuildingTiles.Enqueue((x, y));
@@ -92,20 +91,24 @@ namespace GridGame.Hexagons {
             foreach((int, int) building in playerData.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
-            if(playerData.UnfinishedBuildingTiles.Count > 0) {
-                AddProduction(playerResources.GetResourceAmount(ResourceType.Production));
-                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
-            }
             playerData.Player.Update(gameTime);
-            if(spentGold) {
-                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Gold, playerResources);
-                spentGold = false;
-            }
+            UpdateProduction(gameTime, displayManager);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
             playerData.Player.Draw(spriteBatch, hexMap.HexMath);
+        }
+
+        private void UpdateProduction(GameTime gameTime, DisplayManager displayManager) {
+            if(playerData.UnfinishedBuildingTiles.Count > 0) {
+                AddProduction(playerResources.GetResourceAmount(ResourceType.Production));
+                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
+            }
+            if(playerData.SpentGold) {
+                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Gold, playerResources);
+                playerData.SpentGold = false;
+            }
         }
     }
 }
