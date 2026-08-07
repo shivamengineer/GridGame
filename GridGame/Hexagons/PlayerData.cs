@@ -1,0 +1,24 @@
+﻿using GridGame.TextureLoading;
+using GridGame.Tiles.Buildings.BuildingClasses;
+using GridGame.Units.UnitClasses;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GridGame.Hexagons {
+    public class PlayerData {
+
+        public Citizen Player;
+        public CityCenter city;
+        public HashSet<(int, int)> BuildingTiles;
+
+        public PlayerData((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content) {
+            Player = new Citizen(StartPos.Item1, StartPos.Item2, hexagonMap);
+            Player.SetTexture(content);
+            BuildingTiles = new HashSet<(int, int)>();
+        }
+
+    }
+}

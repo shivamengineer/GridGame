@@ -24,6 +24,7 @@ namespace GridGame.Hexagons {
         private ContentLoader content;
 
         public HexMap hexMap;
+        public PlayerData playerData;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
@@ -40,18 +41,17 @@ namespace GridGame.Hexagons {
             (int, int) StartCoords = DiscoveredTiles.GetStartTile(hexMap.LandTiles);
             hexMap.DiscoveredTiles = DiscoveredTiles.TilesInRadius(StartCoords, 2);
 
-            player = new Citizen(StartCoords.Item1, StartCoords.Item2, this);
-            player.SetTexture(content);
+            playerData = new PlayerData(StartCoords, this, content);
 
             UnknownTile = UnknownTileGetter.GetTile(content);
         }
 
         public void SetSelected(BuildingType buildingType, int x, int y) {
             if(!hexMap.DiscoveredTiles.Contains((x, y))) return; //Can't build on undiscovered tile
-            if(hexMap.BuildingTiles.Contains((x, y))) return; //Can't build on another building
+            if(playerData.BuildingTiles.Contains((x, y))) return; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return; //Can't build on ocean tile
 
-            hexMap.BuildingTiles.Add((x, y));
+            playerData.BuildingTiles.Add((x, y));
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
         }
 
@@ -61,15 +61,15 @@ namespace GridGame.Hexagons {
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
-            foreach((int, int) building in hexMap.BuildingTiles) {
+            foreach((int, int) building in playerData.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
-            player.Update(gameTime);
+            playerData.Player.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
-            player.Draw(spriteBatch, hexMap.HexMath);
+            playerData.Player.Draw(spriteBatch, hexMap.HexMath);
         }
     }
 }

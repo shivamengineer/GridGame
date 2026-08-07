@@ -14,7 +14,6 @@ namespace GridGame.Hexagons {
         public Dictionary<(int, int), Tile> Tiles;
         public HashSet<(int, int)> DiscoveredTiles;
         public HashSet<(int, int)> LandTiles;
-        public HashSet<(int, int)> BuildingTiles;
         public HexagonMath HexMath;
 
         public HexMap(ContentLoader Content) {
@@ -23,7 +22,6 @@ namespace GridGame.Hexagons {
             Tiles = new Dictionary<(int, int), Tile>();
             DiscoveredTiles = new HashSet<(int, int)>();
             LandTiles = new HashSet<(int, int)>();
-            BuildingTiles = new HashSet<(int, int)>();
             HexMath = new HexagonMath();
         }
 
