@@ -47,7 +47,9 @@ namespace GridGame.Hexagons {
         }
 
         public void SetSelected(BuildingType buildingType, int x, int y) {
-            if(!hexMap.DiscoveredTiles.Contains((x, y)) || hexMap.BuildingTiles.Contains((x, y))) return;
+            if(!hexMap.DiscoveredTiles.Contains((x, y))) return; //Can't build on undiscovered tile
+            if(hexMap.BuildingTiles.Contains((x, y))) return; //Can't build on another building
+            if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return; //Can't build on ocean tile
 
             hexMap.BuildingTiles.Add((x, y));
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
