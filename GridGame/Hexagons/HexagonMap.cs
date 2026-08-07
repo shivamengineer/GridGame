@@ -8,6 +8,7 @@ using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain;
 using GridGame.Tiles.Terrain.TerrainClasses;
+using GridGame.Units.UnitClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -27,6 +28,8 @@ namespace GridGame.Hexagons {
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
 
+        private Citizen citizen;
+
         public HexagonMap(ContentLoader content) {
             this.content = content;
 
@@ -34,7 +37,11 @@ namespace GridGame.Hexagons {
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
             hexMap.LandTiles = HexagonMapCSVReader.LoadHexagonMap(hexMap.Tiles, content, "Map1.csv");
-            hexMap.DiscoveredTiles = DiscoveredTiles.GetTileSet(hexMap.LandTiles);
+            (int, int) StartCoords = DiscoveredTiles.GetStartTile(hexMap.LandTiles);
+            hexMap.DiscoveredTiles = DiscoveredTiles.TilesInRadius(StartCoords, 2);
+
+            citizen = new Citizen(StartCoords.Item1, StartCoords.Item2);
+            citizen.SetTexture(content);
 
             UnknownTile = UnknownTileGetter.GetTile(content);
         }
@@ -50,10 +57,12 @@ namespace GridGame.Hexagons {
             foreach((int, int) building in hexMap.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
+            citizen.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
+            citizen.Draw(spriteBatch, hexMap.HexMath);
         }
     }
 }

@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace GridGame.Hexagons.StaticClasses {
     public static class DiscoveredTiles {
-        public static HashSet<(int, int)> GetTileSet(HashSet<(int, int)> landTiles) {
+        public static (int, int) GetStartTile(HashSet<(int, int)> landTiles) {
             Random random = new Random();
             int randomIndex = random.Next(landTiles.Count);
             (int, int) coords = landTiles.ElementAt(randomIndex);
 
-            HashSet<(int, int)> tiles = TilesInRadius(coords, 2);
-
-            return tiles;
+            return coords;
         }
 
         public static HashSet<(int, int)> TilesInRadius((int, int) tile, int radius) {

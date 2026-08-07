@@ -1,5 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.Hexagons;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,12 +13,24 @@ using System.Threading.Tasks;
 namespace GridGame.Units {
     public abstract class AbstractUnit : IUnit {
 
+        public Texture2D texture;
+
         public (int, int) Coords;
         public (int, int) TargetCoords;
 
         public bool moving = false;
         public float progress = 0f;
         public float timeElapsed = 0f;
+
+        public Rectangle destRect;
+
+        public Vector2 origin;
+
+        public void SetTexture(ContentLoader Content) {
+            texture = Content.GetTexture(TextureLoading.TextureEnums.TextureNames.BLANK_RECTANGLE);
+            Texture2D BorderTexture = Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
+            origin = new Vector2(BorderTexture.Width / 3, BorderTexture.Height / 3);
+        }
 
         public void MoveTo(int q, int r) {
             //
@@ -71,7 +85,7 @@ namespace GridGame.Units {
 
         public abstract void Update(GameTime gameTime);
 
-        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath); 
+        public abstract void Draw(SpriteBatch spriteBatch, HexagonMath hexMath); 
 
     }
 }

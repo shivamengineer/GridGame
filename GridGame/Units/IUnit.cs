@@ -1,4 +1,5 @@
 ﻿using GridGame.Hexagons;
+using GridGame.TextureLoading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace GridGame.Units {
     public interface IUnit {
+
+        public void SetTexture(ContentLoader Content);
 
         public void MoveTo(int q, int r);
 
@@ -30,7 +33,7 @@ namespace GridGame.Units {
 
         public void Update(GameTime gameTime);
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
+        public void Draw(SpriteBatch spriteBatch, HexagonMath hexMath);
 
     }
 }

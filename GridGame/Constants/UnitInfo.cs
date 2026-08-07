@@ -8,6 +8,8 @@ namespace GridGame.Constants {
     public static class UnitInfo {
 
         public static float UNIT_MOVE_TIME = 1f;
+        public static int UNIT_WIDTH = 20;
+        public static int UNIT_HEIGHT = 35;
 
     }
 }
