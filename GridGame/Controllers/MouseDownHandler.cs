@@ -2,6 +2,7 @@
 using GridGame.Commands.CameraCommands;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.Hexagons.StaticClasses;
 using GridGame.Tiles.Buildings;
 using GridGame.UI.Button;
 using GridGame.UI.Elements;
@@ -37,26 +38,41 @@ namespace GridGame.Controllers {
             Point point = new Point(x, y);
 
             if(resourceDisplay.MouseOnDisplay(point)) {
-                IItem item = resourceDisplay.GetSelectedResource(point);
+                SelectResource(point);
             } else if(buttonDisplay.MouseOnDisplay(point)) {
-                if(!builtCityCenter) return;
-
-                if(selectedButton != null) selectedButton.SetRectSelected(false);
-
-                IButton button = buttonDisplay.GetSelectedButton(point);
-
-                if(button != null) {
-                    selectedButton = button;
-                    selectedBuilding = selectedButton.GetBuildingType();
-                    selectedButton.SetRectSelected(true);
-                }
+                SelectButton(point);
             } else if(selectedBuilding != BuildingType.NIL){
-                (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(new Vector2(x + 10, y - 6));
-                if(hexagonMap.SetSelected(selectedBuilding, clickedHex.Item1 - 1, clickedHex.Item2)) {
-                    selectedBuilding = BuildingType.NIL;
-                    selectedButton.SetRectSelected(false);
-                    builtCityCenter = true;
-                }
+                TryBuild(x, y, hexagonMap);
+            }
+        }
+
+        private void SelectResource(Point point) {
+            IItem item = resourceDisplay.GetSelectedResource(point);
+        }
+
+        private void SelectButton(Point point) {
+            if(!builtCityCenter) return;
+
+            if(selectedButton != null) selectedButton.SetRectSelected(false);
+
+            IButton button = buttonDisplay.GetSelectedButton(point);
+            if(button.GetBuildingType() == BuildingType.CityCenter) return;
+
+            if(button != null) {
+                selectedButton = button;
+                selectedBuilding = selectedButton.GetBuildingType();
+                selectedButton.SetRectSelected(true);
+            }
+        }
+
+        private void TryBuild(int x, int y, HexagonMap hexagonMap) {
+            (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(new Vector2(x + 10, y - 6));
+            int distance = DiscoveredTiles.DistanceBetweenTiles(clickedHex, hexagonMap.playerData.Player.Coords);
+
+            if(hexagonMap.SetSelected(selectedBuilding, clickedHex.Item1 - 1, clickedHex.Item2)) {
+                selectedBuilding = BuildingType.NIL;
+                selectedButton.SetRectSelected(false);
+                builtCityCenter = true;
             }
         }
 
