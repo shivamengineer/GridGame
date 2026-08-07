@@ -1,4 +1,5 @@
-﻿using GridGame.Tiles.Buildings;
+﻿using GridGame.Constants;
+using GridGame.Tiles.Buildings;
 using GridGame.UI.Button;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,7 +21,7 @@ namespace GridGame.UI.Elements.Buttons {
             this.texture = texture;
             this.font = font;
 
-            text = "Bank";
+            text = BuildingCosts.BANK_GOLD_COST + "G | Bank";
         }
 
         public override BuildingType GetBuildingType() {

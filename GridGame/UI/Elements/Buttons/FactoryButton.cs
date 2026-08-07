@@ -1,4 +1,5 @@
-﻿using GridGame.Tiles.Buildings;
+﻿using GridGame.Constants;
+using GridGame.Tiles.Buildings;
 using GridGame.UI.Button;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +20,7 @@ namespace GridGame.UI.Elements.Buttons {
             this.texture = texture;
             this.font = font;
 
-            text = "Factory";
+            text = BuildingCosts.FACTORY_GOLD_COST + "G | Factory";
         }
 
         public override BuildingType GetBuildingType() {

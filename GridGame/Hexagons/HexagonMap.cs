@@ -28,8 +28,10 @@ namespace GridGame.Hexagons {
         public PlayerData playerData;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
+        private Dictionary<BuildingType, int> BuildingCostDictionary;
         private Tile UnknownTile;
         private PlayerResources playerResources;
+        private bool spentGold = false;
 
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
             this.playerResources = playerResources;
@@ -38,6 +40,7 @@ namespace GridGame.Hexagons {
             hexMap = new HexMap(content);
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
+            BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
             hexMap.LandTiles = HexagonMapCSVReader.LoadHexagonMap(hexMap.Tiles, content, "Map1.csv");
             (int, int) StartCoords = DiscoveredTiles.GetStartTile(hexMap.LandTiles);
             hexMap.DiscoveredTiles = DiscoveredTiles.TilesInRadius(StartCoords, 2);
@@ -51,6 +54,9 @@ namespace GridGame.Hexagons {
             if(!hexMap.DiscoveredTiles.Contains((x, y))) return false; //Can't build on undiscovered tile
             if(playerData.BuildingTiles.Contains((x, y))) return false; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
+            if(playerResources.GetResourceAmount(ResourceType.Gold) < BuildingCostDictionary[buildingType]) {
+                return false;
+            }
 
             if(!playerData.CityBuilt && buildingType == BuildingType.CityCenter) {
                 playerData.CityBuilt = true;
@@ -59,6 +65,10 @@ namespace GridGame.Hexagons {
             playerData.BuildingTiles.Add((x, y));
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
             hexMap.Tiles[(x, y)].SetMap(this);
+
+            playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
+            spentGold = true;
+
             if(hexMap.Tiles[(x, y)].IsBuilding()) {
                 playerData.UnfinishedBuildingTiles.Enqueue((x, y));
             }
@@ -87,6 +97,10 @@ namespace GridGame.Hexagons {
                 displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
             }
             playerData.Player.Update(gameTime);
+            if(spentGold) {
+                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Gold, playerResources);
+                spentGold = false;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch) {
