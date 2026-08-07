@@ -1,5 +1,6 @@
 ﻿using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.Resources;
 using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain;
@@ -39,12 +40,24 @@ namespace GridGame.Tiles {
             this.building = building;
         }
 
+        public void SetMap(HexagonMap map) {
+            building.SetMap(map);
+        }
+
         public TerrainType GetTerrainType() {
             return terrain.GetTerrainType();
         }
 
         public BuildingType GetBuildingType() {
             return building.GetBuildingType();
+        }
+
+        public bool IsBuilding() {
+            return building.IsBuilding();
+        }
+
+        public int AddProduction(int production) {
+            return building.Build(production);
         }
 
         public Tile newInstance() {

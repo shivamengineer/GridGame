@@ -1,6 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.GameManagers;
 using GridGame.Hexagons.StaticClasses;
+using GridGame.Resources;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
@@ -28,10 +29,9 @@ namespace GridGame.Hexagons {
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
+        private PlayerResources playerResources;
 
-        public Citizen player;
-
-        public HexagonMap(ContentLoader content) {
+        public HexagonMap(ContentLoader content, PlayerResources playerResources) {
             this.content = content;
 
             hexMap = new HexMap(content);
@@ -57,7 +57,17 @@ namespace GridGame.Hexagons {
             }
             playerData.BuildingTiles.Add((x, y));
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
+            hexMap.Tiles[(x, y)].SetMap(this);
+            if(hexMap.Tiles[(x, y)].IsBuilding()) {
+                playerData.UnfinishedBuildingTiles.Enqueue((x, y));
+            }
             return true;
+        }
+
+        public void AddProduction(int production) {
+            if(playerData.UnfinishedBuildingTiles.Count == 0) return;
+
+            int extra = hexMap.Tiles[(playerData.UnfinishedBuildingTiles.First())].AddProduction(production);
         }
 
         public void UpdateVision((int, int) position, int radius) {

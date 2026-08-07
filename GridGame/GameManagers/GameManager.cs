@@ -29,10 +29,10 @@ namespace GridGame.GameManagers {
 
         public void LoadContent(ContentManager Content) {
             contentLoader = new ContentLoader(Content);
-            hexagonMap = new HexagonMap(contentLoader);
+            displayManager = new DisplayManager(contentLoader);
+            hexagonMap = new HexagonMap(contentLoader, displayManager.resourceManager.playerResources);
             Controllers.Add(ControllerTypes.KEYBOARD, new KeyboardController(hexagonMap));
 
-            displayManager = new DisplayManager(contentLoader);
             ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);
         }
 

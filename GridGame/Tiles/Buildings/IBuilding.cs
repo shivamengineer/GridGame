@@ -9,6 +9,8 @@ namespace GridGame.Tiles.Buildings {
 
         public int Build(int production);
 
+        public bool IsBuilding();
+
         public BuildingType GetBuildingType();
 
         public IBuilding newInstance();

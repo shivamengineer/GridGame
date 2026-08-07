@@ -15,12 +15,14 @@ namespace GridGame.Hexagons {
         public Citizen Player;
         public (int, int) city;
         public HashSet<(int, int)> BuildingTiles;
+        public Queue<(int, int)> UnfinishedBuildingTiles;
 
         public PlayerData((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content) {
             CityBuilt = false;
             Player = new Citizen(StartPos.Item1, StartPos.Item2, hexagonMap);
             Player.SetTexture(content);
             BuildingTiles = new HashSet<(int, int)>();
+            UnfinishedBuildingTiles = new Queue<(int, int)>();
         }
 
     }

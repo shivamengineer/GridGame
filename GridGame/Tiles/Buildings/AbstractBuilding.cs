@@ -1,6 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -27,11 +28,17 @@ namespace GridGame.Tiles.Buildings {
 
         public bool constructed = false;
 
+        public HexagonMap map;
+
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
             this.baseTexture = baseTexture;
 
             origin = new Vector2(borderTexture.Width / 2f, borderTexture.Height / 2f);
+        }
+
+        public void SetMap(HexagonMap map) {
+            this.map = map;
         }
 
         public void AddPeople(int numPeople) {
@@ -63,11 +70,13 @@ namespace GridGame.Tiles.Buildings {
             production_spent += production;
 
             if(production_spent >= production_needed) {
-                return production_needed - production_spent;
                 constructed = true;
+                return production_needed - production_spent;
             }
             return 0;
         }
+
+        public bool IsBuilding() { return !constructed; }
 
         public abstract BuildingType GetBuildingType();
 

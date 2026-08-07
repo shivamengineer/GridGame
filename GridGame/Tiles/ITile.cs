@@ -1,5 +1,6 @@
 ﻿using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX.Direct3D9;
@@ -13,6 +14,8 @@ namespace GridGame.Tiles {
     public interface ITile {
 
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture);
+
+        public void SetMap(HexagonMap map);
 
         public void AddPeople(int numPeople);
 

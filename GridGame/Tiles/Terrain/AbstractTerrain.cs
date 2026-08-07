@@ -1,6 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.Resources;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -21,9 +22,15 @@ namespace GridGame.Tiles.Terrain {
 
         private float timeElapsed = 0f;
 
+        //
+
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
             this.baseTexture = baseTexture;
+        }
+
+        public void SetMap(HexagonMap map) {
+            //
         }
 
         public void AddPeople(int numPeople) {
