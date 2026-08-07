@@ -92,7 +92,6 @@ namespace GridGame.Units {
         }
 
         public void SetMoving() {
-            Debug.WriteLine("TARGET TERRAIN " + hexagonMap.hexMap.Tiles[TargetCoords].GetType().ToString());
             if(hexagonMap.hexMap.Tiles[TargetCoords].GetTerrainType() == TerrainType.Ocean) return;
 
             moving = true;
