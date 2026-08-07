@@ -51,6 +51,10 @@ namespace GridGame.Hexagons {
             if(playerData.BuildingTiles.Contains((x, y))) return false; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
 
+            if(!playerData.CityBuilt && buildingType == BuildingType.CityCenter) {
+                playerData.CityBuilt = true;
+                playerData.city = (x, y);
+            }
             playerData.BuildingTiles.Add((x, y));
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
             return true;

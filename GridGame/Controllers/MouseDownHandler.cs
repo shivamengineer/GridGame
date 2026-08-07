@@ -1,5 +1,6 @@
 ﻿using GridGame.Commands;
 using GridGame.Commands.CameraCommands;
+using GridGame.Constants;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Hexagons.StaticClasses;
@@ -67,12 +68,24 @@ namespace GridGame.Controllers {
 
         private void TryBuild(int x, int y, HexagonMap hexagonMap) {
             (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(new Vector2(x + 10, y - 6));
-            int distance = DiscoveredTiles.DistanceBetweenTiles(clickedHex, hexagonMap.playerData.Player.Coords);
+            (int, int) playerPos = hexagonMap.playerData.Player.Coords;
+            playerPos.Item1++;
+
+            int distanceFromPlayer = DiscoveredTiles.DistanceBetweenTiles(clickedHex, playerPos);
+            int distanceFromCityCenter = 0;
+            if(builtCityCenter) {
+                distanceFromCityCenter = DiscoveredTiles.DistanceBetweenTiles(clickedHex, hexagonMap.playerData.city);
+            }
+
+            if(distanceFromPlayer > BuildingLimits.BUILDING_RADIUS_FROM_PLAYER) return; //player must be adjacent or on tile
+            if(distanceFromCityCenter > BuildingLimits.BUILDING_RADIUS_FROM_CITY) return;
 
             if(hexagonMap.SetSelected(selectedBuilding, clickedHex.Item1 - 1, clickedHex.Item2)) {
+                if(!builtCityCenter) {
+                    builtCityCenter = true;
+                }
                 selectedBuilding = BuildingType.NIL;
                 selectedButton.SetRectSelected(false);
-                builtCityCenter = true;
             }
         }
 

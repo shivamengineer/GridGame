@@ -16,5 +16,8 @@ namespace GridGame.Constants {
         public static int EMPTY_MAX_PEOPLE = 0;
         public static int NIL_MAX_PEOPLE = 1;
 
+        public static int BUILDING_RADIUS_FROM_PLAYER = 1;
+        public static int BUILDING_RADIUS_FROM_CITY = 3;
+
     }
 }
