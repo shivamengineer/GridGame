@@ -46,13 +46,14 @@ namespace GridGame.Hexagons {
             UnknownTile = UnknownTileGetter.GetTile(content);
         }
 
-        public void SetSelected(BuildingType buildingType, int x, int y) {
-            if(!hexMap.DiscoveredTiles.Contains((x, y))) return; //Can't build on undiscovered tile
-            if(playerData.BuildingTiles.Contains((x, y))) return; //Can't build on another building
-            if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return; //Can't build on ocean tile
+        public bool SetSelected(BuildingType buildingType, int x, int y) {
+            if(!hexMap.DiscoveredTiles.Contains((x, y))) return false; //Can't build on undiscovered tile
+            if(playerData.BuildingTiles.Contains((x, y))) return false; //Can't build on another building
+            if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
 
             playerData.BuildingTiles.Add((x, y));
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
+            return true;
         }
 
         public void UpdateVision((int, int) position, int radius) {

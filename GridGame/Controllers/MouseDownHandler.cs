@@ -21,7 +21,8 @@ namespace GridGame.Controllers {
         private ResourceDisplay resourceDisplay;
         private ButtonDisplay buttonDisplay;
 
-        private BuildingType selectedBuilding = BuildingType.NIL;
+        private bool builtCityCenter = false;
+        private BuildingType selectedBuilding = BuildingType.CityCenter;
 
         private IButton selectedButton;
 
@@ -46,8 +47,11 @@ namespace GridGame.Controllers {
                     selectedButton.SetRectSelected(true);
                 }
             } else if(selectedBuilding != BuildingType.NIL){
-                ICommand command = new MouseDownCommand(hexagonMap, selectedBuilding, x + 10, y - 6); //adjust mouseclick on map to offset tiles offset
-                command.Execute();
+                (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(new Vector2(x + 10, y - 6));
+                if(hexagonMap.SetSelected(selectedBuilding, clickedHex.Item1 - 1, clickedHex.Item2)) {
+                    selectedBuilding = BuildingType.NIL;
+                    selectedButton.SetRectSelected(false);
+                }
             }
         }
 
