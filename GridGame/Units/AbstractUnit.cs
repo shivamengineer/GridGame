@@ -37,36 +37,48 @@ namespace GridGame.Units {
         }
 
         public void MoveUp() {
+            if(moving) return;
+
             TargetCoords = Coords;
             TargetCoords.Item2--;
             SetMoving();
         }
 
         public void MoveDown() {
+            if(moving) return;
+
             TargetCoords = Coords;
             TargetCoords.Item2++;
             SetMoving();
         }
 
         public void MoveUpRight() {
+            if(moving) return;
+
             TargetCoords = (Coords.Item1 + 1, Coords.Item2 - 1);
             SetMoving();
         }
 
         public void MoveDownRight() {
+            if(moving) return;
+
             TargetCoords = Coords;
             TargetCoords.Item1++;
             SetMoving();
         }
 
         public void MoveUpLeft() {
+            if(moving) return;
+
             TargetCoords = Coords;
             TargetCoords.Item1--;
             SetMoving();
         }
 
         public void MoveDownLeft() {
-            TargetCoords = (Coords.Item1 - 1, Coords.Item2 - 1);
+            if(moving) return;
+
+            TargetCoords = (Coords.Item1 - 1, Coords.Item2 + 1);
             SetMoving();
         }
 
@@ -80,6 +92,8 @@ namespace GridGame.Units {
             progress = timeElapsed / UnitInfo.UNIT_MOVE_TIME;
             if(progress > 1.0f) {
                 progress = 1.0f;
+                Coords = TargetCoords;
+                moving = false;
             }
         }
 

@@ -28,7 +28,7 @@ namespace GridGame.Hexagons {
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
 
-        private Citizen citizen;
+        public Citizen player;
 
         public HexagonMap(ContentLoader content) {
             this.content = content;
@@ -40,8 +40,8 @@ namespace GridGame.Hexagons {
             (int, int) StartCoords = DiscoveredTiles.GetStartTile(hexMap.LandTiles);
             hexMap.DiscoveredTiles = DiscoveredTiles.TilesInRadius(StartCoords, 2);
 
-            citizen = new Citizen(StartCoords.Item1, StartCoords.Item2);
-            citizen.SetTexture(content);
+            player = new Citizen(StartCoords.Item1, StartCoords.Item2);
+            player.SetTexture(content);
 
             UnknownTile = UnknownTileGetter.GetTile(content);
         }
@@ -59,12 +59,12 @@ namespace GridGame.Hexagons {
             foreach((int, int) building in hexMap.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
-            citizen.Update(gameTime);
+            player.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
-            citizen.Draw(spriteBatch, hexMap.HexMath);
+            player.Draw(spriteBatch, hexMap.HexMath);
         }
     }
 }
