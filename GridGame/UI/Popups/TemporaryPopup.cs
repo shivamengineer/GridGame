@@ -41,7 +41,7 @@ namespace GridGame.UI.Popups {
             if(!Active) return;
 
             position.X -= 20;
-            position.Y -= 10;
+            position.Y -= 10 + (10 * timeElapsed);
 
             //spriteBatch.Draw(background, destRect, Color.LightGray);
             spriteBatch.DrawString(font, text, position, Color.Red);
