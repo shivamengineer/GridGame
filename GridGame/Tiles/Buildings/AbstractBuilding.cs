@@ -27,7 +27,6 @@ namespace GridGame.Tiles.Buildings {
 
         private float timeElapsed = 0f;
 
-        //public int production_spent = 0;
         public int production_needed = 0;
 
         public TemporaryPopup resourcePopup;
@@ -35,7 +34,11 @@ namespace GridGame.Tiles.Buildings {
 
         public HexagonMap map;
 
+        public ContentLoader content;
+
         public void SetContent(ContentLoader content) {
+            this.content = content;
+            
             progressBar = new ProgressBar(content);
 
             borderTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);

@@ -18,9 +18,9 @@ namespace GridGame.UI.Popups {
         private float timeElapsed;
         private float maxTime;
 
-        public TemporaryPopup(ContentLoader content, string text, int time) {
+        public TemporaryPopup(ContentLoader content, string text, float time) {
             background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
-            font = content.GetFont(FontNames.ARIAL);
+            font = content.GetFont(FontNames.ARIAL_SMALL);
 
             this.text = text;
 
@@ -40,8 +40,10 @@ namespace GridGame.UI.Popups {
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             if(!Active) return;
 
-            spriteBatch.Draw(background, destRect, Color.LightGray);
-            string drawText = text;
+            position.X -= 20;
+            position.Y -= 10;
+
+            //spriteBatch.Draw(background, destRect, Color.LightGray);
             spriteBatch.DrawString(font, text, position, Color.Red);
         }
 
