@@ -15,6 +15,6 @@ namespace GridGame.Constants {
         public static int MAP_WIDTH = 3000;
         public static int MAP_HEIGHT = 2000;
 
-        public static float RESOURCE_TICK_SPEED = 2.5f;
+        public static float RESOURCE_TICK_SPEED = 1.5f;
     }
 }

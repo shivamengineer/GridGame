@@ -20,6 +20,13 @@
 /processorParam:TextureFormat=Compressed
 /build:ArialFont.spritefont
 
+#begin ArialSmallFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:ArialSmallFont.spritefont
+
 #begin hexagon_white_border.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace GridGame.TextureLoading.TextureEnums {
     public enum FontNames {
         ARIAL,
+        ARIAL_SMALL,
     }
 }

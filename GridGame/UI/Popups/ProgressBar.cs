@@ -9,24 +9,23 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using GridGame.Hexagons;
 using GridGame.Constants;
+using System.Diagnostics;
 
 namespace GridGame.UI.Popups {
     public class ProgressBar : AbstractPopup {
 
         private int currentProduction;
         private int totalProduction;
+        private bool productionSet = false;
 
         public bool Constructed;
-        private Vector2 origin;
 
         public ProgressBar(ContentLoader content) {
             background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
-            font = content.GetFont(FontNames.ARIAL);
+            font = content.GetFont(FontNames.ARIAL_SMALL);
 
             Active = true;
             Constructed = false;
-
-            origin = new Vector2(background.Width / 2f, background.Height / 2f);
         }
 
         public void SetInfo(string text, int neededProduction) {
@@ -34,6 +33,7 @@ namespace GridGame.UI.Popups {
 
             currentProduction = 0;
             totalProduction = neededProduction;
+            productionSet = true;
         }
 
         public int Build(int production) {
@@ -49,7 +49,7 @@ namespace GridGame.UI.Popups {
         public bool IsBuilding() {
             if(Constructed) {
                 return false;
-            } else if(currentProduction >= totalProduction){
+            } else if(productionSet && currentProduction >= totalProduction){
                 Constructed = true;
                 return false;
             } else {
@@ -58,26 +58,19 @@ namespace GridGame.UI.Popups {
         }
 
         public override void Update(GameTime gameTime) {
-            if(!Active) return;
+            if(Constructed) return;
 
             //
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            if(!Active) return;
+            if(Constructed) return;
 
-            SetDestRectDimensions(position, hexMath);
+            position.X -= 20;
+            position.Y -= 10;
 
-            spriteBatch.Draw(background, destRect, Color.LightGray);
-            string drawText = text;
+            text = currentProduction + "/" + totalProduction;
             spriteBatch.DrawString(font, text, position, Color.Red);
-        }
-
-        private void SetDestRectDimensions(Vector2 pos, HexagonMath hexMath) {
-            destRect.X = (int)(pos.X + origin.X);
-            destRect.Y = (int)(pos.Y + origin.Y);
-            destRect.Width = (int)(PopupInfo.PROGRESS_BAR_WIDTH * hexMath.GetScale());
-            destRect.Height = (int)(PopupInfo.PROGRESS_BAR_HEIGHT * hexMath.GetScale());
         }
 
     }

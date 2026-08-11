@@ -13,6 +13,7 @@ namespace GridGame.Hexagons.StaticClasses {
         public static IBuilding GetNewBuilding(Dictionary<BuildingType, IBuilding> buildings, BuildingType type, ContentLoader content) {
             IBuilding building = buildings[type].newInstance();
             building.SetContent(content);
+            building.IsBuilding();
             return building;
         }
 

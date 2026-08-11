@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -36,7 +37,6 @@ namespace GridGame.Tiles.Buildings {
 
         public void SetContent(ContentLoader content) {
             progressBar = new ProgressBar(content);
-            IsBuilding();
 
             borderTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
             baseTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND);
@@ -61,7 +61,7 @@ namespace GridGame.Tiles.Buildings {
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
-            if(!progressBar.Constructed) return;
+            if(progressBar.IsBuilding()) return;
 
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -94,7 +94,7 @@ namespace GridGame.Tiles.Buildings {
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 
         public void DrawProgressBar(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            Vector2 newPos = new Vector2(position.X, position.Y - (20 * hexMath.GetScale()));
+            Vector2 newPos = new Vector2(position.X - 200, position.Y + (20 * hexMath.GetScale()));
             progressBar.Draw(spriteBatch, newPos, hexMath);
         }
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace GridGame.TextureLoading {
     public static class ContentLoaderLoader {
@@ -18,6 +19,7 @@ namespace GridGame.TextureLoading {
 
         public static void LoadAllFonts(ContentLoader contentLoader) {
             contentLoader.AddFont(FontNames.ARIAL, "ArialFont");
+            contentLoader.AddFont(FontNames.ARIAL_SMALL, "ArialSmallFont");
         }
 
     }
