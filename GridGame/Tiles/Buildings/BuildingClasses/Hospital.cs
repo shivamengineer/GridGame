@@ -21,7 +21,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void SetInfo() {
-            progressBar.SetInfo("HOSPITAL: " + production_needed);
+            progressBar.SetInfo("HOSPITAL: ", production_needed);
         }
         public override int GetMaxPeople() {
             return BuildingLimits.HOSPITAL_MAX_PEOPLE;
@@ -49,6 +49,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
+            progressBar.Draw(spriteBatch, position, hexMath);
         }
 
     }
