@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using GridGame.Hexagons;
+using GridGame.Constants;
 
 namespace GridGame.UI.Popups {
     public class ProgressBar : AbstractPopup {
@@ -16,6 +17,7 @@ namespace GridGame.UI.Popups {
         private int totalProduction;
 
         public bool Constructed;
+        private Vector2 origin;
 
         public ProgressBar(ContentLoader content) {
             background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
@@ -23,6 +25,8 @@ namespace GridGame.UI.Popups {
 
             Active = true;
             Constructed = false;
+
+            origin = new Vector2(background.Width / 2f, background.Height / 2f);
         }
 
         public void SetInfo(string text, int neededProduction) {
@@ -62,9 +66,18 @@ namespace GridGame.UI.Popups {
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             if(!Active) return;
 
+            SetDestRectDimensions(position, hexMath);
+
             spriteBatch.Draw(background, destRect, Color.LightGray);
             string drawText = text;
             spriteBatch.DrawString(font, text, position, Color.Red);
+        }
+
+        private void SetDestRectDimensions(Vector2 pos, HexagonMath hexMath) {
+            destRect.X = (int)(pos.X + origin.X);
+            destRect.Y = (int)(pos.Y + origin.Y);
+            destRect.Width = (int)(PopupInfo.PROGRESS_BAR_WIDTH * hexMath.GetScale());
+            destRect.Height = (int)(PopupInfo.PROGRESS_BAR_HEIGHT * hexMath.GetScale());
         }
 
     }
