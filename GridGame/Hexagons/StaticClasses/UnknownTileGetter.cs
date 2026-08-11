@@ -14,8 +14,8 @@ namespace GridGame.Hexagons.StaticClasses {
 
         public static Tile GetTile(ContentLoader content) {
             Tile Unknown = new Tile(new Unknown(), new NIL());
-            Unknown.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-            Unknown.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+            Unknown.SetTerrainContent(content);
+            Unknown.SetBuildingContent(content);
             return Unknown;
         }
 

@@ -31,7 +31,7 @@ namespace GridGame.Hexagons {
         private Dictionary<BuildingType, int> BuildingCostDictionary;
         private Tile UnknownTile;
         private PlayerResources playerResources;
-
+                   
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
             this.playerResources = playerResources;
             this.content = content;

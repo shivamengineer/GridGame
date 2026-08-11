@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         public CityCenter() {
             hexColor = BuildingColors.CityCenterColor;
             production_needed = BuildingCosts.CITY_CENTER_PRODUCTION_COST;
-            constructed = true;
+            //progressBar.Constructed = true;
         }
 
         public override int GetMaxPeople() {

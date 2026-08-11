@@ -12,7 +12,7 @@ namespace GridGame.Hexagons.StaticClasses {
 
         public static IBuilding GetNewBuilding(Dictionary<BuildingType, IBuilding> buildings, BuildingType type, ContentLoader content) {
             IBuilding building = buildings[type].newInstance();
-            building.SetTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+            building.SetContent(content);
             return building;
         }
 

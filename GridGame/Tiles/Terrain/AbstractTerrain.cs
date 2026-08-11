@@ -2,6 +2,8 @@
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Resources;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -27,6 +29,11 @@ namespace GridGame.Tiles.Terrain {
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
             this.baseTexture = baseTexture;
+        }
+
+        public void SetContent(ContentLoader content) {
+            borderTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
+            baseTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND);
         }
 
         public void SetMap(HexagonMap map) {

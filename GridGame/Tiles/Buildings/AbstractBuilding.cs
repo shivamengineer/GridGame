@@ -2,6 +2,9 @@
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Resources;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
+using GridGame.UI.Popups;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -26,13 +29,20 @@ namespace GridGame.Tiles.Buildings {
         public int production_spent = 0;
         public int production_needed = 0;
 
-        public bool constructed = false;
+        public TemporaryPopup resourcePopup;
+        public ProgressBar progressBar;
 
         public HexagonMap map;
 
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
-            this.borderTexture = borderTexture;
-            this.baseTexture = baseTexture;
+            //
+        }
+
+        public void SetContent(ContentLoader content) {
+            progressBar = new ProgressBar(content);
+
+            borderTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
+            baseTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND);
 
             origin = new Vector2(borderTexture.Width / 2f, borderTexture.Height / 2f);
         }
@@ -54,7 +64,7 @@ namespace GridGame.Tiles.Buildings {
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
-            if(!constructed) return;
+            if(!progressBar.Constructed) return;
 
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -67,16 +77,10 @@ namespace GridGame.Tiles.Buildings {
         public abstract int GetMaxPeople();
 
         public int Build(int production) {
-            production_spent += production;
-
-            if(production_spent >= production_needed) {
-                constructed = true;
-                return production_needed - production_spent;
-            }
-            return 0;
+            return progressBar.Build(production);
         }
 
-        public bool IsBuilding() { return !constructed; }
+        public bool IsBuilding() { return !progressBar.Constructed; }
 
         public abstract BuildingType GetBuildingType();
 

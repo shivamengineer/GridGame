@@ -40,10 +40,10 @@ namespace GridGame.Hexagons.StaticClasses {
                 for(int r = rMin; r <= rMax; r++) {
                     if(!hex.Tiles.ContainsKey((q, r))) {
                         ITerrain terrain = new Ocean();
-                        terrain.SetTextures(hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+                        terrain.SetContent(hex.Content);
 
                         IBuilding building = new NIL();
-                        building.SetTextures(hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), hex.Content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+                        building.SetContent(hex.Content);
 
                         hex.Tiles.Add((q, r), new Tile(terrain, building));
                     }

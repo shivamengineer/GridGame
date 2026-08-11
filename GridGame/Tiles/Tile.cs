@@ -1,6 +1,7 @@
 ﻿using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Resources;
+using GridGame.TextureLoading;
 using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain;
@@ -24,12 +25,12 @@ namespace GridGame.Tiles {
             this.building = building;
         }
 
-        public void SetTerrainTextures(Texture2D borderTexture, Texture2D backgroundTexture) {
-            terrain.SetTextures(borderTexture, backgroundTexture);
+        public void SetTerrainContent(ContentLoader content) {
+            terrain.SetContent(content);
         }
 
-        public void SetBuildingTextures(Texture2D borderTexture, Texture2D backgroundTexture) {
-            building.SetTextures(borderTexture, backgroundTexture);
+        public void SetBuildingContent(ContentLoader content) {
+            building.SetContent(content);
         }
 
         public void SetTerrain(ITerrain terrain) {

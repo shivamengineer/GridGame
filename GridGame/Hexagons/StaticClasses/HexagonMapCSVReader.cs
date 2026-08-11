@@ -34,8 +34,8 @@ namespace GridGame.Hexagons.StaticClasses {
                         }
                         if(values[i] != "") {
                             Tile tile = tileDictionary[values[i]].newInstance();
-                            tile.SetTerrainTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
-                            tile.SetBuildingTextures(content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER), content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND));
+                            tile.SetTerrainContent(content);
+                            tile.SetBuildingContent(content);
                             (int, int) adjustedCoords = HexAdjustedCoords.AdjustedPos((i, j));
                             map.Add(adjustedCoords, tile);
                             if(values[i] == "1") {
