@@ -22,6 +22,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             production_needed = BuildingCosts.LABORATORY_GOLD_COST;
         }
 
+        public override void SetInfo() {
+            progressBar.SetInfo("LABORATORY: ", production_needed);
+        }
+
         public override int GetMaxPeople() {
             return BuildingLimits.LABORATORY_MAX_PEOPLE;
         }

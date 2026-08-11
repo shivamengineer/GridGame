@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Hexagons;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace GridGame.UI.Popups {
         public Texture2D background;
         public SpriteFont font;
 
-        public Vector2 position;
         public Rectangle destRect;
 
         public string text;
@@ -25,7 +25,7 @@ namespace GridGame.UI.Popups {
 
         public abstract void Update(GameTime gameTime);
 
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 
     }
 }

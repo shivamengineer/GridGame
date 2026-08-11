@@ -22,6 +22,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             production_needed = BuildingCosts.BANK_PRODUCTION_COST;
         }
 
+        public override void SetInfo() {
+            progressBar.SetInfo("BANK: ", production_needed);
+        }
+
         public override int GetMaxPeople() {
             return BuildingLimits.BANK_MAX_PEOPLE;
         }

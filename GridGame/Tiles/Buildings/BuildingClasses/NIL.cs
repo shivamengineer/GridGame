@@ -19,6 +19,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             hexColor = BuildingColors.NILColor;
         }
 
+        public override void SetInfo() {
+            //
+        }
+
         public override int GetMaxPeople() {
             return BuildingLimits.NIL_MAX_PEOPLE;
         }

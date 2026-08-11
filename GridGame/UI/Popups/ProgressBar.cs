@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using GridGame.Hexagons;
 
 namespace GridGame.UI.Popups {
     public class ProgressBar : AbstractPopup {
@@ -41,13 +42,24 @@ namespace GridGame.UI.Popups {
             return 0;
         }
 
+        public bool IsBuilding() {
+            if(Constructed) {
+                return false;
+            } else if(currentProduction >= totalProduction){
+                Constructed = true;
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         public override void Update(GameTime gameTime) {
             if(!Active) return;
 
             //
         }
 
-        public override void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             if(!Active) return;
 
             spriteBatch.Draw(background, destRect, Color.LightGray);

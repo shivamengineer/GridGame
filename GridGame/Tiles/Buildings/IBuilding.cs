@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings {
     public interface IBuilding : ITile {
 
+        public void SetInfo();
+        
         public int Build(int production);
 
         public bool IsBuilding();

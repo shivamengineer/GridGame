@@ -1,4 +1,5 @@
-﻿using GridGame.TextureLoading;
+﻿using GridGame.Hexagons;
+using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,11 +18,10 @@ namespace GridGame.UI.Popups {
         private float timeElapsed;
         private float maxTime;
 
-        public TemporaryPopup(ContentLoader content, Vector2 position, string text, int time) {
+        public TemporaryPopup(ContentLoader content, string text, int time) {
             background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             font = content.GetFont(FontNames.ARIAL);
 
-            this.position = position;
             this.text = text;
 
             timeElapsed = 0f;
@@ -37,7 +37,7 @@ namespace GridGame.UI.Popups {
                 Active = false;
             }
         }
-        public override void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             if(!Active) return;
 
             spriteBatch.Draw(background, destRect, Color.LightGray);

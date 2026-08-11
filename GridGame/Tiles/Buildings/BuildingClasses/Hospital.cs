@@ -19,6 +19,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             hexColor = BuildingColors.HospitalColor;
             production_needed = BuildingCosts.HOSPITAL_PRODUCTION_COST;
         }
+
+        public override void SetInfo() {
+            progressBar.SetInfo("HOSPITAL: " + production_needed);
+        }
         public override int GetMaxPeople() {
             return BuildingLimits.HOSPITAL_MAX_PEOPLE;
         }

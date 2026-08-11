@@ -22,6 +22,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             production_needed = BuildingCosts.FARM_PRODUCTION_COST;
         }
 
+        public override void SetInfo() {
+            progressBar.SetInfo("FARM: ", production_needed);
+        }
+
         public override int GetMaxPeople() {
             return BuildingLimits.FARM_MAX_PEOPLE;
         }

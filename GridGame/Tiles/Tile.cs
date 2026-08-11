@@ -39,6 +39,8 @@ namespace GridGame.Tiles {
 
         public void SetBuilding(IBuilding building) {
             this.building = building;
+            this.building.SetInfo();
+            this.building.IsBuilding();
         }
 
         public void SetMap(HexagonMap map) {

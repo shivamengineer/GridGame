@@ -26,7 +26,7 @@ namespace GridGame.Tiles.Buildings {
 
         private float timeElapsed = 0f;
 
-        public int production_spent = 0;
+        //public int production_spent = 0;
         public int production_needed = 0;
 
         public TemporaryPopup resourcePopup;
@@ -34,12 +34,9 @@ namespace GridGame.Tiles.Buildings {
 
         public HexagonMap map;
 
-        public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
-            //
-        }
-
         public void SetContent(ContentLoader content) {
             progressBar = new ProgressBar(content);
+            IsBuilding();
 
             borderTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
             baseTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND);
@@ -74,13 +71,15 @@ namespace GridGame.Tiles.Buildings {
             }
         }
 
-        public abstract int GetMaxPeople();
-
         public int Build(int production) {
             return progressBar.Build(production);
         }
 
-        public bool IsBuilding() { return !progressBar.Constructed; }
+        public bool IsBuilding() { return progressBar.IsBuilding(); }
+
+        public abstract void SetInfo();
+
+        public abstract int GetMaxPeople();
 
         public abstract BuildingType GetBuildingType();
 
@@ -93,6 +92,11 @@ namespace GridGame.Tiles.Buildings {
         public abstract void UpdateEvent(DisplayManager displayManager);
 
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
+
+        public void DrawProgressBar(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
+            Vector2 newPos = new Vector2(position.X, position.Y - (20 * hexMath.GetScale()));
+            progressBar.Draw(spriteBatch, newPos, hexMath);
+        }
 
     }
 }
