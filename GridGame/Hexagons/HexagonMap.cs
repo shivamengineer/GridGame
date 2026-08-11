@@ -78,6 +78,9 @@ namespace GridGame.Hexagons {
             if(playerData.UnfinishedBuildingTiles.Count == 0) return;
 
             int extra = hexMap.Tiles[(playerData.UnfinishedBuildingTiles.First())].AddProduction(production);
+            if(!hexMap.Tiles[(playerData.UnfinishedBuildingTiles.First())].IsBuilding()) {
+                playerData.UnfinishedBuildingTiles.Dequeue();
+            }
             playerResources.SubtractResource(ResourceType.Production, production);
             playerResources.AddResource(ResourceType.Production, extra);
         }
