@@ -50,7 +50,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         public override void UpdateEvent(DisplayManager displayManager) {
             displayManager.resourceManager.playerResources.AddResource(ResourceType.Gold, BuildingStats.BANK_RATE);
             displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Gold, displayManager.resourceManager.playerResources);
-            resourcePopup = new TemporaryPopup(content, "+1G", 2f);
+            resourcePopup = new TemporaryPopup(content, "+1G", 1f);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {

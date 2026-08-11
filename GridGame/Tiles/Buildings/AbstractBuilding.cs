@@ -66,6 +66,8 @@ namespace GridGame.Tiles.Buildings {
         public void Update(GameTime gameTime, DisplayManager displayManager) {
             if(progressBar.IsBuilding()) return;
 
+            if(resourcePopup != null) resourcePopup.Update(gameTime);
+
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if(timeElapsed >= GameConstants.RESOURCE_TICK_SPEED) {

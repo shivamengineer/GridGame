@@ -32,7 +32,7 @@ namespace GridGame.UI.Popups {
         public override void Update(GameTime gameTime) {
             if(!Active) return;
 
-            timeElapsed += (float)gameTime.TotalGameTime.TotalSeconds;
+            timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if(timeElapsed > maxTime) {
                 Active = false;
             }
