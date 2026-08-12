@@ -7,7 +7,7 @@
 ## Controls:
 - | Action | Keyboard/Mouse    |
 - | Move Camera | <kbd>&uarr;</kbd> |
-- | <kbd>&larr</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> | 
+- | <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> | 
 
 O and P to zoom in/out
 Can click to select hexagon
