@@ -20,4 +20,10 @@
 | 'P' |
 
 Can click to select building type.  
-Can click on tile to place building
+Can click on tile to place building  
+
+## Built With
+* C#
+* MonoGame
+* No audio yet
+* No art yet, still just basic shapes
