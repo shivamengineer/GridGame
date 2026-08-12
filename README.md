@@ -5,8 +5,9 @@
 * Made with C# and MonoGame
 
 ## Controls:
-- | Action | Keyboard/Mouse    |
-- | Move Camera | <kbd>&uarr;</kbd> |
+- | Action | Keyboard/Mouse |
+- | Move Camera |
+- | &emsp;<kbd>&uarr;</kbd> |
 - | <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> | 
 
 O and P to zoom in/out
