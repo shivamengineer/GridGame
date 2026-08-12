@@ -11,9 +11,9 @@
 | <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> |\
 \
 | Zoom In |\
-| 'O' |\
+| 'O' |
 
 | Zoom Out |\
-| 'P' |\
+| 'P' |
 
 Can click to select hexagon
