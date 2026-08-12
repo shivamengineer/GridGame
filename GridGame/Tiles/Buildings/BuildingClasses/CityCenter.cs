@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using GridGame.GameManagers;
 using GridGame.Constants.Resources;
 using GridGame.Resources;
+using GridGame.UI.Popups;
 
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class CityCenter : AbstractBuilding {
@@ -53,11 +54,13 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             displayManager.resourceManager.playerResources.AddResource(ResourceType.Science, CityBaseStats.SCIENCE_RATE);
             displayManager.resourceManager.resourceDisplay.UpdateAllResources(displayManager.resourceManager.playerResources.GetResourceCounts());
             map.AddProduction(CityBaseStats.PRODUCTION_RATE);
+            resourcePopup = new TemporaryPopup(content, "+1ALL", 1f);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             progressBar.Draw(spriteBatch, position, hexMath);
+            if(resourcePopup != null) resourcePopup.Draw(spriteBatch, position, hexMath);
         }
 
     }

@@ -50,7 +50,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         public override void UpdateEvent(DisplayManager displayManager) {
             displayManager.resourceManager.playerResources.AddResource(ResourceType.Food, BuildingStats.FARM_RATE);
             displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Food, displayManager.resourceManager.playerResources);
-            resourcePopup = new TemporaryPopup(content, "+1 Food", 1f);
+            resourcePopup = new TemporaryPopup(content, "+1F", 1f);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {

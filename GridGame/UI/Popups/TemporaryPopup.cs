@@ -37,6 +37,7 @@ namespace GridGame.UI.Popups {
                 Active = false;
             }
         }
+
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             if(!Active) return;
 
@@ -44,7 +45,7 @@ namespace GridGame.UI.Popups {
             position.Y -= 10 + (10 * timeElapsed);
 
             //spriteBatch.Draw(background, destRect, Color.LightGray);
-            spriteBatch.DrawString(font, text, position, Color.Red);
+            spriteBatch.DrawString(font, text, position, Color.Black);
         }
 
     }

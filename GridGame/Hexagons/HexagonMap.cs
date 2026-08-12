@@ -104,7 +104,7 @@ namespace GridGame.Hexagons {
         }
 
         private void UpdateProduction(GameTime gameTime, DisplayManager displayManager) {
-            if(playerData.UnfinishedBuildingTiles.Count > 0) {
+            if(playerData.UnfinishedBuildingTiles.Count > 0 && playerResources.GetResourceAmount(ResourceType.Production) > 0) {
                 AddProduction(playerResources.GetResourceAmount(ResourceType.Production));
                 displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
             }

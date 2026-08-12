@@ -4,6 +4,7 @@ using GridGame.Constants.Resources;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Resources;
+using GridGame.UI.Popups;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -49,11 +50,13 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         public override void UpdateEvent(DisplayManager displayManager) {
             displayManager.resourceManager.playerResources.AddResource(ResourceType.Science, BuildingStats.SCIENCE_RATE);
             displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Science, displayManager.resourceManager.playerResources);
+            resourcePopup = new TemporaryPopup(content, "+1S", 1f);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             progressBar.Draw(spriteBatch, position, hexMath);
+            if(resourcePopup != null) resourcePopup.Draw(spriteBatch, position, hexMath);
         }
 
     }
