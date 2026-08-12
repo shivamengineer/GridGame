@@ -7,7 +7,7 @@
 ## Controls:
 - | Action | Keyboard/Mouse |
 - | Move Camera |
-- &emsp;&ensp;| <kbd>&uarr;</kbd> |
+- &emsp;&ensp;&ensp;| <kbd>&uarr;</kbd> |
 - | <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> | 
 
 O and P to zoom in/out
