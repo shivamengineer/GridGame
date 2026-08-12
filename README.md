@@ -7,7 +7,7 @@
 ## Controls:
 | Move Camera |\
 &emsp;&ensp;&ensp;| <kbd>&uarr;</kbd> |\
-| <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> |\
+| <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> |
 
 | Move Player |
 | 'Q' | 'W' | 'E' |
