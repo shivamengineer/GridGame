@@ -116,7 +116,7 @@ namespace GridGame.Units {
                 Coords = TargetCoords;
                 moving = false;
 
-                hexagonMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
+                hexagonMap.hexMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
             }
         }
 

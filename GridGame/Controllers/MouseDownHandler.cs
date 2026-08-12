@@ -71,10 +71,10 @@ namespace GridGame.Controllers {
             (int, int) playerPos = hexagonMap.citizenManager.CurrentPlayer.Coords;
             playerPos.Item1++;
 
-            int distanceFromPlayer = DiscoveredTiles.DistanceBetweenTiles(clickedHex, playerPos);
+            int distanceFromPlayer = DiscoverTiles.DistanceBetweenTiles(clickedHex, playerPos);
             int distanceFromCityCenter = 0;
             if(builtCityCenter) {
-                distanceFromCityCenter = DiscoveredTiles.DistanceBetweenTiles(clickedHex, hexagonMap.playerData.city);
+                distanceFromCityCenter = DiscoverTiles.DistanceBetweenTiles(clickedHex, hexagonMap.playerData.city);
             }
 
             if(distanceFromPlayer > BuildingLimits.BUILDING_RADIUS_FROM_PLAYER) return; //player must be adjacent or on tile

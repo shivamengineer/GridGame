@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Hexagons.StaticClasses {
-    public static class DiscoveredTiles {
+    public static class DiscoverTiles {
         public static (int, int) GetStartTile(HashSet<(int, int)> landTiles) {
             Random random = new Random();
             int randomIndex = random.Next(landTiles.Count);

@@ -1,4 +1,5 @@
-﻿using GridGame.TextureLoading;
+﻿using GridGame.Hexagons.StaticClasses;
+using GridGame.TextureLoading;
 using GridGame.Tiles;
 using Microsoft.Xna.Framework.Content;
 using System;
@@ -23,6 +24,11 @@ namespace GridGame.Hexagons {
             DiscoveredTiles = new HashSet<(int, int)>();
             LandTiles = new HashSet<(int, int)>();
             HexMath = new HexagonMath();
+        }
+
+        public void UpdateVision((int, int) position, int radius) {
+            HashSet<(int, int)> newTiles = DiscoverTiles.TilesInRadius(position, radius);
+            DiscoveredTiles.UnionWith(newTiles);
         }
 
     }

@@ -35,16 +35,18 @@ namespace GridGame.Hexagons {
         private PlayerResources playerResources;
                    
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
-            this.playerResources = playerResources;
             this.content = content;
+            this.playerResources = playerResources;
 
             hexMap = new HexMap(content);
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
             BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
+
             hexMap.LandTiles = HexagonMapCSVReader.LoadHexagonMap(hexMap.Tiles, content, "Map1.csv");
-            (int, int) StartCoords = DiscoveredTiles.GetStartTile(hexMap.LandTiles);
-            hexMap.DiscoveredTiles = DiscoveredTiles.TilesInRadius(StartCoords, 2);
+            (int, int) StartCoords = DiscoverTiles.GetStartTile(hexMap.LandTiles);
+            hexMap.DiscoveredTiles = DiscoverTiles.TilesInRadius(StartCoords, 2);
+            
             citizenManager = new CitizenManager(StartCoords, this, content);
 
             playerData = new PlayerData();
@@ -93,11 +95,6 @@ namespace GridGame.Hexagons {
             if(citizenManager.CitizenPositions.Contains(playerData.city)) return;
 
             citizenManager.AddCitizen(playerData.city.Item1, playerData.city.Item2, this);
-        }
-
-        public void UpdateVision((int, int) position, int radius) {
-            HashSet<(int, int)> newTiles = DiscoveredTiles.TilesInRadius(position, radius);
-            hexMap.DiscoveredTiles.UnionWith(newTiles);
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
