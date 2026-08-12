@@ -4,11 +4,11 @@
 
 ## Controls:
 | Move Camera |\
-&emsp;&ensp;&ensp;| <kbd>&uarr;</kbd> |\
-| <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> |
+&emsp;&ensp;&ensp; <kbd>&uarr;</kbd> \
+ <kbd>&larr;</kbd>  <kbd>&darr;</kbd>  <kbd>&rarr;</kbd> 
 
-| Move Player |
-| 'Q' | 'W' | 'E' |
+| Move Player |  
+| 'Q' | 'W' | 'E' |  
 | 'A' | 'S' | 'D' |
 
 | Zoom In |\
