@@ -23,6 +23,9 @@
 | Switch Controlled Citizen Right |  
 | 'K' |  
 
+| Add Citizen |  
+| 'T' |  
+
 Can click to select building type.  
 Can click on tile to place building  
 
