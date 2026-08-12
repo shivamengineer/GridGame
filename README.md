@@ -5,10 +5,11 @@
 * Made with C# and MonoGame
 
 ## Controls:
-* | Camera Up | <kbd>&uarr;</kbd> | 
-* | Camera Down | <kbd>&darr;</kbd> | 
-* | Camera Left | <kbd>&larr;</kbd> | 
-* | Camera Right | <kbd>&rarr;</kbd> | 
+- | Action       | Keyboard/Mouse    |
+- | Camera Up    | <kbd>&uarr;</kbd> | 
+- | Camera Down  | <kbd>&darr;</kbd> | 
+- | Camera Left  | <kbd>&larr;</kbd> | 
+- | Camera Right | <kbd>&rarr;</kbd> | 
 
 O and P to zoom in/out
 Can click to select hexagon
