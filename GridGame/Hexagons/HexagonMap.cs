@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.GameManagers;
+using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.Resources;
 using GridGame.TextureLoading;
@@ -26,6 +27,7 @@ namespace GridGame.Hexagons {
 
         public HexMap hexMap;
         public PlayerData playerData;
+        public CitizenManager citizenManager;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Dictionary<BuildingType, int> BuildingCostDictionary;
@@ -43,8 +45,9 @@ namespace GridGame.Hexagons {
             hexMap.LandTiles = HexagonMapCSVReader.LoadHexagonMap(hexMap.Tiles, content, "Map1.csv");
             (int, int) StartCoords = DiscoveredTiles.GetStartTile(hexMap.LandTiles);
             hexMap.DiscoveredTiles = DiscoveredTiles.TilesInRadius(StartCoords, 2);
+            citizenManager = new CitizenManager(StartCoords, this, content);
 
-            playerData = new PlayerData(StartCoords, this, content);
+            playerData = new PlayerData();
 
             UnknownTile = UnknownTileGetter.GetTile(content);
         }
@@ -87,9 +90,9 @@ namespace GridGame.Hexagons {
 
         public void AddCitizen() {
             if(playerData.CityBuilt == false) return;
-            if(playerData.CitizenPositions.Contains(playerData.city)) return;
+            if(citizenManager.CitizenPositions.Contains(playerData.city)) return;
 
-            playerData.AddCitizen(playerData.city.Item1, playerData.city.Item2, this);
+            citizenManager.AddCitizen(playerData.city.Item1, playerData.city.Item2, this);
         }
 
         public void UpdateVision((int, int) position, int radius) {
@@ -101,13 +104,13 @@ namespace GridGame.Hexagons {
             foreach((int, int) building in playerData.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
-            playerData.CurrentPlayer.Update(gameTime);
+            citizenManager.CurrentPlayer.Update(gameTime);
             UpdateProduction(gameTime, displayManager);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
-            foreach(var citizen in playerData.Citizens) {
+            foreach(var citizen in citizenManager.Citizens) {
                 citizen.Draw(spriteBatch, hexMap.HexMath);
             }
         }

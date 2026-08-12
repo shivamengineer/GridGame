@@ -15,7 +15,7 @@ namespace GridGame.Commands.PlayerMovementCommands {
         }
 
         public void Execute() {
-            hexagonMap.playerData.ChangeCitizenLeft();
+            hexagonMap.citizenManager.ChangeCitizenLeft();
         }
     }
 }
