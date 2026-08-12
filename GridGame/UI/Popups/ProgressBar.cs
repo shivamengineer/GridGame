@@ -41,7 +41,7 @@ namespace GridGame.UI.Popups {
 
             if(currentProduction >= totalProduction) {
                 Constructed = true;
-                return totalProduction - currentProduction;
+                return currentProduction - totalProduction;
             }
             return 0;
         }
