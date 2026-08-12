@@ -15,7 +15,8 @@ namespace GridGame.Hexagons {
 
         public Citizen CurrentPlayer;
         public List<Citizen> Citizens;
-        private int CurrentCitizen;
+        public HashSet<(int, int)> CitizenPositions;
+        private int CurrentCitizenIndex;
         
         public (int, int) city;
         public HashSet<(int, int)> BuildingTiles;
@@ -32,7 +33,7 @@ namespace GridGame.Hexagons {
             Citizens = new List<Citizen>() {
                 CurrentPlayer,
             };
-            CurrentCitizen = 0;
+            CurrentCitizenIndex = 0;
 
             BuildingTiles = new HashSet<(int, int)>();
             UnfinishedBuildingTiles = new Queue<(int, int)>();
@@ -49,17 +50,19 @@ namespace GridGame.Hexagons {
         }
 
         public void ChangeCitizenRight() {
-            CurrentCitizen++;
-            if(CurrentCitizen > Citizens.Count - 1) {
-                CurrentCitizen = 0;
+            CurrentCitizenIndex++;
+            if(CurrentCitizenIndex > Citizens.Count - 1) {
+                CurrentCitizenIndex = 0;
             }
+            CurrentPlayer = Citizens[CurrentCitizenIndex];
         }
 
         public void ChangeCitizenLeft() {
-            CurrentCitizen--;
-            if(CurrentCitizen < 0) {
-                CurrentCitizen = Citizens.Count - 1;
+            CurrentCitizenIndex--;
+            if(CurrentCitizenIndex < 0) {
+                CurrentCitizenIndex = Citizens.Count - 1;
             }
+            CurrentPlayer = Citizens[CurrentCitizenIndex];
         }
 
     }

@@ -27,6 +27,9 @@ namespace GridGame.Controllers {
             keyboardController.AddOnPressBinding(Keys.A, new MoveDownLeftCommand(hexagonMap));
             keyboardController.AddOnPressBinding(Keys.S, new MoveDownCommand(hexagonMap));
             keyboardController.AddOnPressBinding(Keys.D, new MoveDownRightCommand(hexagonMap));
+
+            keyboardController.AddOnPressBinding(Keys.K, new SwitchPlayerRightCommand(hexagonMap));
+            keyboardController.AddOnPressBinding(Keys.J, new SwitchPlayerLeftCommand(hexagonMap));
         }
 
     }
