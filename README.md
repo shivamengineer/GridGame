@@ -5,11 +5,10 @@
 * Made with C# and MonoGame
 
 ## Controls:
-| Action | Keyboard/Mouse |\
 | Move Camera |\
 &emsp;&ensp;&ensp;| <kbd>&uarr;</kbd> |\
 | <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> |\
-\
+
 | Zoom In |\
 | 'O' |
 
