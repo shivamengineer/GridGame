@@ -32,11 +32,11 @@ namespace GridGame.Hexagons {
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Dictionary<BuildingType, int> BuildingCostDictionary;
         private Tile UnknownTile;
-        private PlayerResources playerResources;
+        //private PlayerResources playerResources;
                    
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
             this.content = content;
-            this.playerResources = playerResources;
+            //this.playerResources = playerResources;
 
             hexMap = new HexMap(content);
 
@@ -49,7 +49,7 @@ namespace GridGame.Hexagons {
             
             citizenManager = new CitizenManager(StartCoords, this, content);
 
-            playerData = new PlayerData();
+            playerData = new PlayerData(playerResources, hexMap);
 
             UnknownTile = UnknownTileGetter.GetTile(content);
         }
@@ -58,7 +58,7 @@ namespace GridGame.Hexagons {
             if(!hexMap.DiscoveredTiles.Contains((x, y))) return false; //Can't build on undiscovered tile
             if(playerData.BuildingTiles.Contains((x, y))) return false; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
-            if(playerResources.GetResourceAmount(ResourceType.Gold) < BuildingCostDictionary[buildingType]) {
+            if(playerData.playerResources.GetResourceAmount(ResourceType.Gold) < BuildingCostDictionary[buildingType]) {
                 return false;
             }
 
@@ -70,24 +70,13 @@ namespace GridGame.Hexagons {
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
             hexMap.Tiles[(x, y)].SetMap(this);
 
-            playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
+            playerData.playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
             playerData.SpentGold = true;
 
             if(hexMap.Tiles[(x, y)].IsBuilding()) {
                 playerData.UnfinishedBuildingTiles.Enqueue((x, y));
             }
             return true;
-        }
-
-        public void AddProduction(int production) {
-            if(playerData.UnfinishedBuildingTiles.Count == 0) return;
-
-            int extra = hexMap.Tiles[(playerData.UnfinishedBuildingTiles.First())].AddProduction(production);
-            if(!hexMap.Tiles[(playerData.UnfinishedBuildingTiles.First())].IsBuilding()) {
-                playerData.UnfinishedBuildingTiles.Dequeue();
-            }
-            playerResources.SubtractResource(ResourceType.Production, production);
-            playerResources.AddResource(ResourceType.Production, extra);
         }
 
         public void AddCitizen() {
@@ -102,24 +91,13 @@ namespace GridGame.Hexagons {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
             citizenManager.CurrentPlayer.Update(gameTime);
-            UpdateProduction(gameTime, displayManager);
+            playerData.UpdateProduction(gameTime, displayManager);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
             foreach(var citizen in citizenManager.Citizens) {
                 citizen.Draw(spriteBatch, hexMap.HexMath);
-            }
-        }
-
-        private void UpdateProduction(GameTime gameTime, DisplayManager displayManager) {
-            if(playerData.UnfinishedBuildingTiles.Count > 0 && playerResources.GetResourceAmount(ResourceType.Production) > 0) {
-                AddProduction(playerResources.GetResourceAmount(ResourceType.Production));
-                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
-            }
-            if(playerData.SpentGold) {
-                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Gold, playerResources);
-                playerData.SpentGold = false;
             }
         }
     }

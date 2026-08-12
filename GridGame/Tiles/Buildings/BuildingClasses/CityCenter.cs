@@ -53,7 +53,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             displayManager.resourceManager.playerResources.AddResource(ResourceType.Production, CityBaseStats.PRODUCTION_RATE);
             displayManager.resourceManager.playerResources.AddResource(ResourceType.Science, CityBaseStats.SCIENCE_RATE);
             displayManager.resourceManager.resourceDisplay.UpdateAllResources(displayManager.resourceManager.playerResources.GetResourceCounts());
-            map.AddProduction(CityBaseStats.PRODUCTION_RATE);
+            map.playerData.AddProduction(CityBaseStats.PRODUCTION_RATE);
             resourcePopup = new TemporaryPopup(content, "+1ALL", 1f);
         }
 
