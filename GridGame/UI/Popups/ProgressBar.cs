@@ -70,7 +70,7 @@ namespace GridGame.UI.Popups {
             position.Y -= 10;
 
             text = currentProduction + "/" + totalProduction;
-            spriteBatch.DrawString(font, text, position, Color.Red);
+            spriteBatch.DrawString(font, text, position, Color.Black);
         }
 
     }
