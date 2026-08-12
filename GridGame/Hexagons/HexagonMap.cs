@@ -85,6 +85,13 @@ namespace GridGame.Hexagons {
             playerResources.AddResource(ResourceType.Production, extra);
         }
 
+        public void AddCitizen() {
+            if(playerData.CityBuilt == false) return;
+            if(playerData.CitizenPositions.Contains(playerData.city)) return;
+
+            playerData.AddCitizen(playerData.city.Item1, playerData.city.Item2, this);
+        }
+
         public void UpdateVision((int, int) position, int radius) {
             HashSet<(int, int)> newTiles = DiscoveredTiles.TilesInRadius(position, radius);
             hexMap.DiscoveredTiles.UnionWith(newTiles);

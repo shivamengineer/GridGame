@@ -54,6 +54,8 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item2++;
 
+            if(hexagonMap.playerData.CitizenPositions.Contains(TargetCoords)) return;
+
             SetMoving();
         }
 
@@ -61,6 +63,8 @@ namespace GridGame.Units {
             if(moving) return;
 
             TargetCoords = (Coords.Item1 + 1, Coords.Item2 - 1);
+
+            if(hexagonMap.playerData.CitizenPositions.Contains(TargetCoords)) return;
 
             SetMoving();
         }
@@ -71,6 +75,8 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item1++;
 
+            if(hexagonMap.playerData.CitizenPositions.Contains(TargetCoords)) return;
+
             SetMoving();
         }
 
@@ -80,6 +86,8 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item1--;
 
+            if(hexagonMap.playerData.CitizenPositions.Contains(TargetCoords)) return;
+
             SetMoving();
         }
 
@@ -87,6 +95,8 @@ namespace GridGame.Units {
             if(moving) return;
 
             TargetCoords = (Coords.Item1 - 1, Coords.Item2 + 1);
+
+            if(hexagonMap.playerData.CitizenPositions.Contains(TargetCoords)) return;
 
             SetMoving();
         }
