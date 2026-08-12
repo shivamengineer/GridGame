@@ -9,10 +9,15 @@
 &emsp;&ensp;&ensp;| <kbd>&uarr;</kbd> |\
 | <kbd>&larr;</kbd> | <kbd>&darr;</kbd> | <kbd>&rarr;</kbd> |\
 
+| Move Player |
+| 'Q' | 'W' | 'E' |
+| 'A' | 'S' | 'D' |
+
 | Zoom In |\
 | 'O' |
 
 | Zoom Out |\
 | 'P' |
 
-Can click to select hexagon
+Can click to select building type
+Can click on tile to place building
