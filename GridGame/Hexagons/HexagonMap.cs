@@ -94,13 +94,15 @@ namespace GridGame.Hexagons {
             foreach((int, int) building in playerData.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
-            playerData.Player.Update(gameTime);
+            playerData.CurrentPlayer.Update(gameTime);
             UpdateProduction(gameTime, displayManager);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
-            playerData.Player.Draw(spriteBatch, hexMap.HexMath);
+            foreach(var citizen in playerData.Citizens) {
+                citizen.Draw(spriteBatch, hexMap.HexMath);
+            }
         }
 
         private void UpdateProduction(GameTime gameTime, DisplayManager displayManager) {

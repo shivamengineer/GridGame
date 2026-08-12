@@ -15,7 +15,7 @@ namespace GridGame.Commands.PlayerMovementCommands {
         }
 
         public void Execute() {
-            hexagonMap.playerData.Player.MoveUpRight();
+            hexagonMap.playerData.CurrentPlayer.MoveUpRight();
         }
     }
 }
