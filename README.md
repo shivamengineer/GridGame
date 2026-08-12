@@ -17,6 +17,12 @@
 | Zoom Out |\
 | 'P' |
 
+| Switch Controlled Citizen Left |  
+| 'J' |  
+
+| Switch Controlled Citizen Right |  
+| 'K' |  
+
 Can click to select building type.  
 Can click on tile to place building  
 
