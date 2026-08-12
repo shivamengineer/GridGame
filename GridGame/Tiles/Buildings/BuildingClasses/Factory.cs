@@ -50,6 +50,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         public override void UpdateEvent(DisplayManager displayManager) {
             displayManager.resourceManager.playerResources.AddResource(ResourceType.Production, BuildingStats.FACTORY_RATE);
             displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, displayManager.resourceManager.playerResources);
+            map.AddProduction(BuildingStats.FACTORY_RATE);
             resourcePopup = new TemporaryPopup(content, "+1P", 1f);
         }
 
