@@ -20,6 +20,7 @@ namespace GridGame.Units {
         public (int, int) Coords;
         public (int, int) TargetCoords;
 
+        public bool active = false;
         public bool moving = false;
         public float progress = 0f;
         public float timeElapsed = 0f;
@@ -106,6 +107,10 @@ namespace GridGame.Units {
 
             moving = true;
             timeElapsed = 0f;
+        }
+
+        public void SetActive(bool active) {
+            this.active = active;
         }
 
         public void UpdatePos(GameTime gameTime) {

@@ -20,6 +20,7 @@ namespace GridGame.Hexagons.Managers {
         public CitizenManager((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content) {
             CurrentPlayer = new Citizen(StartPos.Item1, StartPos.Item2, hexagonMap);
             CurrentPlayer.SetTexture(content);
+            CurrentPlayer.SetActive(true);
 
             Citizens = new List<Citizen>() {
                 CurrentPlayer,
@@ -38,9 +39,10 @@ namespace GridGame.Hexagons.Managers {
             Citizens.Add(citizen);
             CitizenPositions.Add((Q, R));
         }
-
+                                                        
         public void ChangeCitizenRight() {
             CitizenPositions.Add(CurrentPlayer.Coords);
+            CurrentPlayer.SetActive(false);
 
             CurrentCitizenIndex++;
             if(CurrentCitizenIndex > Citizens.Count - 1) {
@@ -49,10 +51,12 @@ namespace GridGame.Hexagons.Managers {
             CurrentPlayer = Citizens[CurrentCitizenIndex];
 
             CitizenPositions.Remove(CurrentPlayer.Coords);
+            CurrentPlayer.SetActive(true);
         }
 
         public void ChangeCitizenLeft() {
             CitizenPositions.Add(CurrentPlayer.Coords);
+            CurrentPlayer.SetActive(false);
 
             CurrentCitizenIndex--;
             if(CurrentCitizenIndex < 0) {
@@ -61,6 +65,7 @@ namespace GridGame.Hexagons.Managers {
             CurrentPlayer = Citizens[CurrentCitizenIndex];
 
             CitizenPositions.Remove(CurrentPlayer.Coords);
+            CurrentPlayer.SetActive(true);
         }
 
     }

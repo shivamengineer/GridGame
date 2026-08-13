@@ -29,6 +29,8 @@ namespace GridGame.Units {
 
         public void SetMoving();
 
+        public void SetActive(bool active);
+
         public void UpdatePos(GameTime gameTime);
 
         public void Update(GameTime gameTime);

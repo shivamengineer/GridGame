@@ -12,11 +12,13 @@ using System.Threading.Tasks;
 namespace GridGame.Units.UnitClasses {
     public class Citizen : AbstractUnit {
 
-        private Color unitColor;
+        private Color unitColorInactive;
+        private Color unitColorActive;
 
         public Citizen(int Q, int R, HexagonMap hexagonMap) {
             Coords = (Q, R);
-            unitColor = Color.Gray;
+            unitColorInactive = Color.Gray;
+            unitColorActive = Color.DeepPink;
             destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
             this.hexagonMap = hexagonMap;
         }
@@ -42,14 +44,19 @@ namespace GridGame.Units.UnitClasses {
             Vector2 position = Vector2.Lerp(posBefore, targetPos, progress);
             SetDestRectDimensions(position, hexMath);
 
-            spriteBatch.Draw(texture, destRect, unitColor);
+            DrawCitizen(spriteBatch);
         }
 
         private void DrawStationary(SpriteBatch spriteBatch, HexagonMath hexMath) {
             Vector2 position = hexMath.HexToPixel(Coords.Item1, Coords.Item2);
             SetDestRectDimensions(position, hexMath);
 
-            spriteBatch.Draw(texture, destRect, unitColor);
+            DrawCitizen(spriteBatch);
+        }
+
+        private void DrawCitizen(SpriteBatch spriteBatch) {
+            if(active) spriteBatch.Draw(texture, destRect, unitColorActive);
+            else spriteBatch.Draw(texture, destRect, unitColorInactive);
         }
 
         private void SetDestRectDimensions(Vector2 pos, HexagonMath hexMath) {
