@@ -46,6 +46,8 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item2--;
 
+            if(hexagonMap.citizenManager.CitizenPositions.Contains(TargetCoords)) return;
+
             SetMoving();
         }
 
