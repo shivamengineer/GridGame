@@ -39,14 +39,10 @@ namespace GridGame.Hexagons {
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
 
-            hexMap.LandTiles = HexagonMapCSVReader.LoadHexagonMap(hexMap.Tiles, content, "Map1.csv");
-            (int, int) StartCoords = DiscoverTiles.GetStartTile(hexMap.LandTiles);
-            hexMap.DiscoveredTiles = DiscoverTiles.TilesInRadius(StartCoords, 2);
-            
+            (int, int) StartCoords = hexMap.Initialize();
+
             citizenManager = new CitizenManager(StartCoords, this, content);
-
             playerData = new PlayerData(playerResources, hexMap);
-
             UnknownTile = UnknownTileGetter.GetTile(content);
         }
 
