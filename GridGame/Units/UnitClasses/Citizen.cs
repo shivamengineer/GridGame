@@ -60,10 +60,16 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void SetDestRectDimensions(Vector2 pos, HexagonMath hexMath) {
-            destRect.X = (int)(pos.X + origin.X);
-            destRect.Y = (int)(pos.Y + origin.Y);
-            destRect.Width = (int)(UnitInfo.UNIT_WIDTH * hexMath.GetScale());
-            destRect.Height = (int)(UnitInfo.UNIT_HEIGHT * hexMath.GetScale());
+            float scale = hexMath.GetScale();
+
+            destRect.Width = (int)(UnitInfo.UNIT_WIDTH * scale);
+            destRect.Height = (int)(UnitInfo.UNIT_HEIGHT * scale);
+
+            float centerX = ((origin.X * scale) / 2f) - (destRect.Width / 2);
+            float centerY = ((origin.Y * scale) / 2f) - (destRect.Height / 2);
+
+            destRect.X = (int)(pos.X + centerX);
+            destRect.Y = (int)(pos.Y + centerY);
         }
 
     }

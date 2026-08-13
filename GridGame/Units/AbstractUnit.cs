@@ -33,7 +33,7 @@ namespace GridGame.Units {
         public void SetTexture(ContentLoader Content) {
             texture = Content.GetTexture(TextureLoading.TextureEnums.TextureNames.BLANK_RECTANGLE);
             Texture2D BorderTexture = Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
-            origin = new Vector2(BorderTexture.Width / 3, BorderTexture.Height / 3);
+            origin = new Vector2(BorderTexture.Width, BorderTexture.Height);
         }
 
         public void MoveTo(int q, int r) {
