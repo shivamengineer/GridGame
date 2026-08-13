@@ -41,6 +41,8 @@ namespace GridGame.Hexagons.Managers {
         }
                                                         
         public void ChangeCitizenRight() {
+            if(CurrentPlayer.moving) return;
+
             CitizenPositions.Add(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(false);
 
@@ -55,6 +57,8 @@ namespace GridGame.Hexagons.Managers {
         }
 
         public void ChangeCitizenLeft() {
+            if(CurrentPlayer.moving) return;
+
             CitizenPositions.Add(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(false);
 
