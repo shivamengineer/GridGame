@@ -59,7 +59,7 @@ namespace GridGame.Hexagons {
             if(playerData.BuildingTiles.Contains((x, y))) return false; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
             if(playerData.playerResources.GetResourceAmount(ResourceType.Gold) < BuildingCostDictionary[buildingType]) {
-                return false;
+                return false; //Not enough gold
             }
 
             if(!playerData.CityBuilt && buildingType == BuildingType.CityCenter) {
