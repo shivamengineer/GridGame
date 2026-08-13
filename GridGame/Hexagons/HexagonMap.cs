@@ -30,18 +30,14 @@ namespace GridGame.Hexagons {
         public CitizenManager citizenManager;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
-        private Dictionary<BuildingType, int> BuildingCostDictionary;
         private Tile UnknownTile;
-        //private PlayerResources playerResources;
                    
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
             this.content = content;
-            //this.playerResources = playerResources;
 
             hexMap = new HexMap(content);
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
-            BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
 
             hexMap.LandTiles = HexagonMapCSVReader.LoadHexagonMap(hexMap.Tiles, content, "Map1.csv");
             (int, int) StartCoords = DiscoverTiles.GetStartTile(hexMap.LandTiles);
@@ -58,24 +54,12 @@ namespace GridGame.Hexagons {
             if(!hexMap.DiscoveredTiles.Contains((x, y))) return false; //Can't build on undiscovered tile
             if(playerData.BuildingTiles.Contains((x, y))) return false; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
-            if(playerData.playerResources.GetResourceAmount(ResourceType.Gold) < BuildingCostDictionary[buildingType]) {
-                return false; //Not enough gold
-            }
 
-            if(!playerData.CityBuilt && buildingType == BuildingType.CityCenter) {
-                playerData.CityBuilt = true;
-                playerData.city = (x, y);
-            }
-            playerData.BuildingTiles.Add((x, y));
+            if(!playerData.AddBuilding(buildingType, x, y)) return false; //Not enough gold
+
             hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
             hexMap.Tiles[(x, y)].SetMap(this);
 
-            playerData.playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
-            playerData.SpentGold = true;
-
-            if(hexMap.Tiles[(x, y)].IsBuilding()) {
-                playerData.UnfinishedBuildingTiles.Enqueue((x, y));
-            }
             return true;
         }
 

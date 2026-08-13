@@ -1,6 +1,8 @@
 ﻿using GridGame.GameManagers;
+using GridGame.Hexagons.StaticClasses;
 using GridGame.Resources;
 using GridGame.TextureLoading;
+using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Units.UnitClasses;
 using Microsoft.Xna.Framework;
@@ -25,6 +27,8 @@ namespace GridGame.Hexagons {
         private ContentLoader content;
         public PlayerResources playerResources;
 
+        private Dictionary<BuildingType, int> BuildingCostDictionary;
+
         public PlayerData(PlayerResources playerResources, HexMap hexMap) {
             this.playerResources = playerResources;
             this.hexMap = hexMap;
@@ -33,6 +37,28 @@ namespace GridGame.Hexagons {
             BuildingTiles = new HashSet<(int, int)>();
             UnfinishedBuildingTiles = new Queue<(int, int)>();
             SpentGold = false;
+
+            BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
+        }
+
+        public bool AddBuilding(BuildingType buildingType, int x, int y) {
+            if(playerResources.GetResourceAmount(ResourceType.Gold) < BuildingCostDictionary[buildingType]) {
+                return false; //Not enough gold
+            }
+
+            if(!CityBuilt && buildingType == BuildingType.CityCenter) {
+                CityBuilt = true;
+                city = (x, y);
+            }
+
+            BuildingTiles.Add((x, y));
+            playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
+            SpentGold = true;
+            if(hexMap.Tiles[(x, y)].IsBuilding()) {
+                UnfinishedBuildingTiles.Enqueue((x, y));
+            }
+
+            return true;
         }
 
         public void UpdateProduction(GameTime gameTime, DisplayManager displayManager) {
