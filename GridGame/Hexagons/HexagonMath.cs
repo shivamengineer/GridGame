@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GridGame.Constants;
+using SharpDX.Direct3D9;
 
 namespace GridGame.Hexagons {
     public class HexagonMath {
@@ -74,8 +75,23 @@ namespace GridGame.Hexagons {
             camPosX += hexConstants.CameraMoveSpeedX; 
         }
 
-        public void ZoomIn() { hexConstants.ZoomIn(); }
-        public void ZoomOut() { hexConstants.ZoomOut(); }
+        public void ZoomIn() {
+            float scaleOld = hexConstants.GetScale();
+            hexConstants.ZoomIn();
+            float scaleNew = hexConstants.GetScale();
+            FocusCamera(camPosX, camPosY, scaleOld, scaleNew);
+        }
+        public void ZoomOut() {
+            float scaleOld = hexConstants.GetScale();
+            hexConstants.ZoomOut();
+            float scaleNew = hexConstants.GetScale();
+            FocusCamera(camPosX, camPosY, scaleOld, scaleNew);
+        }
+
+        private void FocusCamera(int targetX, int targetY, float oldScale, float newScale) {
+            camPosX = (int)(targetX - (targetX - camPosX) * (oldScale / newScale));
+            camPosY = (int)(targetY - (targetY - camPosY) * (oldScale / newScale));
+        }
 
     }
 }

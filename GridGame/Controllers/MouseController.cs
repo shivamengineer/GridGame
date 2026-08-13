@@ -26,6 +26,10 @@ namespace GridGame.Controllers {
         public void Update(GameTime gameTime) {
             MouseState mouseState = Mouse.GetState();
 
+            if(mouseState.Position != lastMouseState.Position) {
+                OnMouseMove(mouseState);
+            }
+
             if(mouseState.LeftButton == ButtonState.Pressed) {
                 if(lastMouseState.LeftButton == ButtonState.Released) {
                     mouseDownHandler.OnMouseDown(mouseState.X, mouseState.Y, hexagonMap);
@@ -44,6 +48,10 @@ namespace GridGame.Controllers {
         }
 
         public void OnLeftMouseUp(MouseState mouseState) {
+            //
+        }
+
+        public void OnMouseMove(MouseState mouseState) {
             //
         }
 
