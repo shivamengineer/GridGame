@@ -1,4 +1,5 @@
-﻿using GridGame.Hexagons.StaticClasses;
+﻿using GridGame.Hexagons.Managers;
+using GridGame.Hexagons.StaticClasses;
 using GridGame.TextureLoading;
 using GridGame.Tiles;
 using Microsoft.Xna.Framework.Content;
@@ -18,13 +19,17 @@ namespace GridGame.Hexagons {
         public HashSet<(int, int)> LandTiles;
         public HexagonMath HexMath;
 
-        public HexMap(ContentLoader Content) {
+        public HexMap(ContentLoader Content, CitizenManager citizens) {
             this.Content = Content;
 
             Tiles = new Dictionary<(int, int), Tile>();
             DiscoveredTiles = new HashSet<(int, int)>();
             LandTiles = new HashSet<(int, int)>();
             HexMath = new HexagonMath();
+        }
+
+        public void SetCitizens(CitizenManager citizens) {
+            HexMath.SetCitizens(citizens);
         }
 
         public (int, int) Initialize() {

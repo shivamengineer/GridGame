@@ -35,13 +35,14 @@ namespace GridGame.Hexagons {
         public HexagonMap(ContentLoader content, PlayerResources playerResources) {
             this.content = content;
 
-            hexMap = new HexMap(content);
+            hexMap = new HexMap(content, citizenManager);
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
 
             (int, int) StartCoords = hexMap.Initialize();
 
             citizenManager = new CitizenManager(StartCoords, this, content);
+            hexMap.SetCitizens(citizenManager);
             playerData = new PlayerData(playerResources, hexMap);
             UnknownTile = UnknownTileGetter.GetTile(content);
         }

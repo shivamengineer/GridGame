@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GridGame.Constants;
 using SharpDX.Direct3D9;
+using GridGame.Hexagons.Managers;
 
 namespace GridGame.Hexagons {
     public class HexagonMath {
@@ -15,8 +16,14 @@ namespace GridGame.Hexagons {
         public int camPosX = 0;
         public int camPosY = 0;
 
+        private CitizenManager citizens;
+
         public HexagonMath() {
             hexConstants = new HexagonConstants();
+        }
+
+        public void SetCitizens(CitizenManager citizens) {
+            this.citizens = citizens;
         }
 
         public Vector2 HexToPixel(int Q, int R) {
@@ -79,13 +86,14 @@ namespace GridGame.Hexagons {
             float scaleOld = hexConstants.GetScale();
             hexConstants.ZoomIn();
             float scaleNew = hexConstants.GetScale();
-            FocusCamera(camPosX, camPosY, scaleOld, scaleNew);
+            Vector2 position = HexToPixel(citizens.CurrentPlayer.Coords.Item1, citizens.CurrentPlayer.Coords.Item2);
+            FocusCamera((int)position.X, (int)position.Y, scaleOld, scaleNew);
         }
         public void ZoomOut() {
             float scaleOld = hexConstants.GetScale();
             hexConstants.ZoomOut();
             float scaleNew = hexConstants.GetScale();
-            FocusCamera(camPosX, camPosY, scaleOld, scaleNew);
+            Vector2 position = HexToPixel(citizens.CurrentPlayer.Coords.Item1, citizens.CurrentPlayer.Coords.Item2);
         }
 
         private void FocusCamera(int targetX, int targetY, float oldScale, float newScale) {
