@@ -26,6 +26,9 @@
 | Switch Controlled Citizen Right |  
 | 'K' |  
 
+| Focus Camera to Selected Citizen |
+| 'space' |  
+
 | Add Citizen |  
 | 'T' |  
 
