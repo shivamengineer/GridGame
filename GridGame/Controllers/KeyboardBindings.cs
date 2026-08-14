@@ -31,6 +31,8 @@ namespace GridGame.Controllers {
             keyboardController.AddOnPressBinding(Keys.K, new SwitchPlayerRightCommand(hexagonMap));
             keyboardController.AddOnPressBinding(Keys.J, new SwitchPlayerLeftCommand(hexagonMap));
 
+            keyboardController.AddOnPressBinding(Keys.Space, new CenterCameraCommand(hexagonMap));
+
             keyboardController.AddOnPressBinding(Keys.T, new AddCitizenCommand(hexagonMap));
         }
 
