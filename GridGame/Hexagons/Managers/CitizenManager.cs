@@ -17,6 +17,8 @@ namespace GridGame.Hexagons.Managers {
 
         private ContentLoader content;
 
+        private HexagonMap hexagonMap;
+
         public CitizenManager((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content) {
             CurrentPlayer = new Citizen(StartPos.Item1, StartPos.Item2, hexagonMap);
             CurrentPlayer.SetTexture(content);
@@ -29,10 +31,11 @@ namespace GridGame.Hexagons.Managers {
 
             CitizenPositions = new HashSet<(int, int)>();
 
+            this.hexagonMap = hexagonMap;
             this.content = content;
         }
 
-        public void AddCitizen(int Q, int R, HexagonMap hexagonMap) {
+        public void AddCitizen(int Q, int R) {
             Citizen citizen = new Citizen(Q, R, hexagonMap);
             citizen.SetTexture(content);
 
@@ -54,6 +57,8 @@ namespace GridGame.Hexagons.Managers {
 
             CitizenPositions.Remove(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(true);
+
+            hexagonMap.hexMap.HexMath.FocusCamera();
         }
 
         public void ChangeCitizenLeft() {
@@ -70,6 +75,8 @@ namespace GridGame.Hexagons.Managers {
 
             CitizenPositions.Remove(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(true);
+
+            hexagonMap.hexMap.HexMath.FocusCamera();
         }
 
     }

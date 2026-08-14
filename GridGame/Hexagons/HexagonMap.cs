@@ -45,6 +45,8 @@ namespace GridGame.Hexagons {
             hexMap.SetCitizens(citizenManager);
             playerData = new PlayerData(playerResources, hexMap);
             UnknownTile = UnknownTileGetter.GetTile(content);
+
+            hexMap.HexMath.FocusCamera();
         }
 
         public bool SetSelected(BuildingType buildingType, int x, int y) {
@@ -64,7 +66,7 @@ namespace GridGame.Hexagons {
             if(playerData.CityBuilt == false) return;
             if(citizenManager.CitizenPositions.Contains(playerData.city)) return;
 
-            citizenManager.AddCitizen(playerData.city.Item1, playerData.city.Item2, this);
+            citizenManager.AddCitizen(playerData.city.Item1, playerData.city.Item2);
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
