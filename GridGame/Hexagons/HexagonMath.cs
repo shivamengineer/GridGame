@@ -44,6 +44,7 @@ namespace GridGame.Hexagons {
             float x = Q * (rad * MathF.Sqrt(3) - (rad / 2));
             float y = (R * rad * MathF.Sqrt(3)) * 0.9f + (Q * rad / 2) * 1.5f;
 
+            y += UIOverlayDetails.RESOURCE_BAR_HEIGHT;
 
             return new Vector2(x, y);
         }
