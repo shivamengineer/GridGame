@@ -36,6 +36,8 @@ namespace GridGame.Hexagons.Managers {
         }
 
         public void AddCitizen(int Q, int R) {
+            if(CitizenPositions.Contains((Q, R)) || CurrentPlayer.Coords == (Q, R)) return;
+
             Citizen citizen = new Citizen(Q, R, hexagonMap);
             citizen.SetTexture(content);
 
