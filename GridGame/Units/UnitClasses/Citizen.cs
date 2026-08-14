@@ -26,6 +26,8 @@ namespace GridGame.Units.UnitClasses {
         public override void Update(GameTime gameTime) {
             if(moving) {
                 UpdatePos(gameTime);
+            } else {
+                WorkAtBuilding(gameTime);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
@@ -24,6 +25,7 @@ namespace GridGame.Units {
         public bool moving = false;
         public float progress = 0f;
         public float timeElapsed = 0f;
+        public float timeElapsedWorking = 0f;
 
         public Rectangle destRect;
 
@@ -109,10 +111,20 @@ namespace GridGame.Units {
 
             moving = true;
             timeElapsed = 0f;
+            timeElapsedWorking = 0f;
         }
 
         public void SetActive(bool active) {
             this.active = active;
+        }
+
+        public void WorkAtBuilding(GameTime gameTime) {
+            timeElapsedWorking += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if(timeElapsedWorking >= GameConstants.RESOURCE_TICK_SPEED) {
+                timeElapsedWorking -= GameConstants.RESOURCE_TICK_SPEED;
+                hexagonMap.WorkTile(Coords);
+            }
         }
 
         public void UpdatePos(GameTime gameTime) {

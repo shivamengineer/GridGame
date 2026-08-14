@@ -72,6 +72,12 @@ namespace GridGame.Tiles {
             building.Update(gameTime, displayManager);
         }
 
+        public void WorkTile(DisplayManager displayManager) {
+            if(building.GetBuildingType() != BuildingType.NIL && terrain.GetTerrainType() != TerrainType.Unknown) {
+                building.UpdateEvent(displayManager);
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             Vector2 offsetPos = new Vector2(position.X + hexMath.hexConstants.HexRadius - 5, position.Y + hexMath.hexConstants.HexRadius - 5);
             if(building.GetBuildingType() != BuildingType.NIL && terrain.GetTerrainType() != TerrainType.Unknown) {

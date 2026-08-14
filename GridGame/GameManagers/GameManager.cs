@@ -31,7 +31,7 @@ namespace GridGame.GameManagers {
         public void LoadContent(ContentManager Content) {
             contentLoader = new ContentLoader(Content);
             displayManager = new DisplayManager(contentLoader);
-            hexagonMap = new HexagonMap(contentLoader, displayManager.resourceManager.playerResources);
+            hexagonMap = new HexagonMap(contentLoader, displayManager);
             Controllers.Add(ControllerTypes.KEYBOARD, new KeyboardController(hexagonMap));
 
             ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);

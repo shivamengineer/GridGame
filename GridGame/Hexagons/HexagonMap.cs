@@ -28,11 +28,12 @@ namespace GridGame.Hexagons {
         public HexMap hexMap;
         public PlayerData playerData;
         public CitizenManager citizenManager;
+        private DisplayManager displayManager;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
                    
-        public HexagonMap(ContentLoader content, PlayerResources playerResources) {
+        public HexagonMap(ContentLoader content, DisplayManager displayManager) {
             this.content = content;
 
             hexMap = new HexMap(content, citizenManager);
@@ -41,9 +42,10 @@ namespace GridGame.Hexagons {
 
             (int, int) StartCoords = hexMap.Initialize();
 
+            this.displayManager = displayManager;
             citizenManager = new CitizenManager(StartCoords, this, content);
             hexMap.SetCitizens(citizenManager);
-            playerData = new PlayerData(playerResources, hexMap);
+            playerData = new PlayerData(displayManager.resourceManager.playerResources, hexMap);
             UnknownTile = UnknownTileGetter.GetTile(content);
 
             hexMap.HexMath.FocusCamera();
@@ -69,11 +71,17 @@ namespace GridGame.Hexagons {
             citizenManager.AddCitizen(playerData.city.Item1, playerData.city.Item2);
         }
 
+        public void WorkTile((int, int) Coords) {
+            hexMap.Tiles[Coords].WorkTile(displayManager);
+        }
+
         public void Update(GameTime gameTime, DisplayManager displayManager) {
             foreach((int, int) building in playerData.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
-            citizenManager.CurrentPlayer.Update(gameTime);
+            foreach(var citizen in citizenManager.Citizens) {
+                citizen.Update(gameTime);
+            }
             playerData.UpdateProduction(gameTime, displayManager);
         }
 
