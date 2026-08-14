@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GridGame.Constants;
 using SharpDX.Direct3D9;
 using GridGame.Hexagons.Managers;
+using System.Diagnostics;
 
 namespace GridGame.Hexagons {
     public class HexagonMath {
@@ -33,6 +34,16 @@ namespace GridGame.Hexagons {
             float y = (R * rad * MathF.Sqrt(3)) * 0.9f + (Q * rad / 2) * 1.5f - camPosY;
 
             y += UIOverlayDetails.RESOURCE_BAR_HEIGHT;
+
+            return new Vector2(x, y);
+        }
+
+        public Vector2 HexToPixelAbsolute(int Q, int R) {
+            float rad = hexConstants.HexRadius;
+
+            float x = Q * (rad * MathF.Sqrt(3) - (rad / 2));
+            float y = (R * rad * MathF.Sqrt(3)) * 0.9f + (Q * rad / 2) * 1.5f;
+
 
             return new Vector2(x, y);
         }
@@ -86,19 +97,28 @@ namespace GridGame.Hexagons {
             float scaleOld = hexConstants.GetScale();
             hexConstants.ZoomIn();
             float scaleNew = hexConstants.GetScale();
-            Vector2 position = HexToPixel(citizens.CurrentPlayer.Coords.Item1, citizens.CurrentPlayer.Coords.Item2);
-            FocusCamera((int)position.X, (int)position.Y, scaleOld, scaleNew);
+            FocusCamera();
         }
         public void ZoomOut() {
             float scaleOld = hexConstants.GetScale();
             hexConstants.ZoomOut();
             float scaleNew = hexConstants.GetScale();
-            Vector2 position = HexToPixel(citizens.CurrentPlayer.Coords.Item1, citizens.CurrentPlayer.Coords.Item2);
+            FocusCamera();
         }
 
-        private void FocusCamera(int targetX, int targetY, float oldScale, float newScale) {
-            camPosX = (int)(targetX - (targetX - camPosX) * (oldScale / newScale));
-            camPosY = (int)(targetY - (targetY - camPosY) * (oldScale / newScale));
+        public void FocusCamera() {
+            Vector2 position = HexToPixelAbsolute(citizens.CurrentPlayer.Coords.Item1, citizens.CurrentPlayer.Coords.Item2);
+
+            camPosX = (int)position.X - (GameConstants.WINDOW_WIDTH / 2) + (5 * TextureInfo.BORDER_WIDTH / 2);
+            camPosY = (int)position.Y - (GameConstants.WINDOW_HEIGHT / 2) + (3 * TextureInfo.BORDER_HEIGHT / 2);
+
+            camPosX = Max(0, camPosX);
+            camPosY = Max(0, camPosY);
+        }
+
+        public int Max(int x, int y) {
+            if(x > y) return x;
+            return y;
         }
 
     }

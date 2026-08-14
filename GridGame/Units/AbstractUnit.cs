@@ -124,6 +124,7 @@ namespace GridGame.Units {
                 moving = false;
 
                 hexagonMap.hexMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
+                hexagonMap.hexMap.HexMath.FocusCamera();
             }
         }
 
