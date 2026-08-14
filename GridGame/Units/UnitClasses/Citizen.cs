@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Colors;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,8 +18,8 @@ namespace GridGame.Units.UnitClasses {
 
         public Citizen(int Q, int R, HexagonMap hexagonMap) {
             Coords = (Q, R);
-            unitColorInactive = Color.Gray;
-            unitColorActive = Color.DeepPink;
+            unitColorInactive = CitizenColors.InactiveColor;
+            unitColorActive = CitizenColors.ActiveColor;
             destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
             this.hexagonMap = hexagonMap;
         }
