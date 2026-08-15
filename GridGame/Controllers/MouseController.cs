@@ -1,5 +1,6 @@
 ﻿using GridGame.Commands;
 using GridGame.Commands.CameraCommands;
+using GridGame.Commands.MouseCommands;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -62,7 +63,8 @@ namespace GridGame.Controllers {
         public void OnMouseMove(MouseState mouseState) {
             if(mouseState.Position == lastMouseState.Position) return;
 
-            //
+            ICommand hoverCommand = new HoverTileCommand(hexagonMap, mouseState.Position);
+            hoverCommand.Execute();
         }
 
         public void Scroll(MouseState mouseState) {

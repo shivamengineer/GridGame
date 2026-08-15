@@ -77,7 +77,7 @@ namespace GridGame.Tiles.Terrain {
 
         public abstract void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 
-        public abstract void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
+        public abstract void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered);
 
     }
 }

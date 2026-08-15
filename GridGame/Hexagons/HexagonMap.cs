@@ -64,6 +64,17 @@ namespace GridGame.Hexagons {
             return true;
         }
 
+        public void SetHover(int x, int y) {
+            if(!hexMap.DiscoveredTiles.Contains((x, y)) || playerData.BuildingTiles.Contains((x, y))) return;
+
+            if(hexMap.Tiles.ContainsKey((hexMap.HoveredTile))) {
+                hexMap.Tiles[hexMap.HoveredTile].SetHovered(false);
+            }
+            hexMap.Tiles[(x, y)].SetHovered(true);
+
+            hexMap.HoveredTile = (x, y);
+        }
+
         public void AddCitizen() {
             if(playerData.CityBuilt == false) return;
             if(citizenManager.CitizenPositions.Contains(playerData.city)) return;

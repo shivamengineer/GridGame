@@ -15,5 +15,11 @@ namespace GridGame.Constants.Colors {
         public static Color UnknownColor = Color.Moccasin;
         public static Color UnknownBorderColor = Color.DarkGray;
 
+        public static Color OceanHoverColor = Color.LightSkyBlue;
+        public static Color LandHoverColor = Color.GreenYellow;
+        public static Color CoastHoverColor = Color.LightGoldenrodYellow;
+        public static Color Land_RiverHoverColor = Color.LawnGreen;
+        public static Color DefaultHoverColor = Color.LightYellow;
+
     }
 }
