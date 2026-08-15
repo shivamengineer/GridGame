@@ -137,6 +137,7 @@ namespace GridGame.Units {
 
                 hexagonMap.hexMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
                 hexagonMap.hexMap.HexMath.FocusCamera();
+                hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile.Item1, hexagonMap.hexMap.HoveredTile.Item2);
             }
         }
 
