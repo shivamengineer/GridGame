@@ -1,4 +1,5 @@
-﻿using GridGame.GameManagers;
+﻿using GridGame.Constants;
+using GridGame.GameManagers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.Resources;
 using GridGame.TextureLoading;
@@ -20,6 +21,7 @@ namespace GridGame.Hexagons {
         public (int, int) city;
         public HashSet<(int, int)> BuildingTiles;
         public Queue<(int, int)> UnfinishedBuildingTiles;
+        public HashSet<(int, int)> CanBuildTiles;
         public bool SpentGold;
 
         private HexMap hexMap;
@@ -36,6 +38,7 @@ namespace GridGame.Hexagons {
             CityBuilt = false;
             BuildingTiles = new HashSet<(int, int)>();
             UnfinishedBuildingTiles = new Queue<(int, int)>();
+            CanBuildTiles = new HashSet<(int, int)>();
             SpentGold = false;
 
             BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
@@ -49,6 +52,7 @@ namespace GridGame.Hexagons {
             if(!CityBuilt && buildingType == BuildingType.CityCenter) {
                 CityBuilt = true;
                 city = (x, y);
+                CanBuildTiles = DiscoverTiles.TilesInRadius(city, BuildingLimits.BUILDING_RADIUS_FROM_CITY);
             }
 
             BuildingTiles.Add((x, y));

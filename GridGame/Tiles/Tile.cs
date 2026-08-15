@@ -21,6 +21,7 @@ namespace GridGame.Tiles {
         private IBuilding building;
 
         private bool hovered;
+        private bool inRange;
 
         public Tile(ITerrain terrain, IBuilding building) {
             this.terrain = terrain;
@@ -80,17 +81,18 @@ namespace GridGame.Tiles {
             }
         }
 
-        public void SetHovered(bool hovered) {
+        public void SetHovered(bool hovered, bool inRange) {
             this.hovered = hovered;
+            this.inRange = inRange;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             Vector2 offsetPos = new Vector2(position.X + hexMath.hexConstants.HexRadius - 5, position.Y + hexMath.hexConstants.HexRadius - 5);
             if(building.GetBuildingType() != BuildingType.NIL && terrain.GetTerrainType() != TerrainType.Unknown) {
-                terrain.DrawBackground(spriteBatch, position, hexMath, hovered);
+                terrain.DrawBackground(spriteBatch, position, hexMath, hovered, inRange);
                 building.Draw(spriteBatch, offsetPos, hexMath);
             } else {
-                terrain.DrawBackground(spriteBatch, position, hexMath, hovered);
+                terrain.DrawBackground(spriteBatch, position, hexMath, hovered, inRange);
             }
             terrain.Draw(spriteBatch, position, hexMath);
         }

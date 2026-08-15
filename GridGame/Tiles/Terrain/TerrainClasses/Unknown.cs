@@ -44,7 +44,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             spriteBatch.Draw(borderTexture, position, null, hexBorderColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 
-        public override void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered) {
+        public override void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered, bool inRange) {
             spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 

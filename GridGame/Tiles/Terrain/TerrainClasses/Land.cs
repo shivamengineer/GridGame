@@ -17,7 +17,6 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public Land() {
             hexColor = TerrainColors.LandColor;
-            hoverColor = TerrainColors.LandHoverColor;
         }
 
         public override int GetResources() {
@@ -44,10 +43,13 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             spriteBatch.Draw(borderTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 
-        public override void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered) {
+        public override void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered, bool inRange) {
             if(!hovered) {
                 spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             } else {
+                if(inRange) hoverColor = TerrainColors.CanBuildColor;
+                else hoverColor = TerrainColors.CannotBuildColor;
+
                 spriteBatch.Draw(baseTexture, position, null, hoverColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             }
         }

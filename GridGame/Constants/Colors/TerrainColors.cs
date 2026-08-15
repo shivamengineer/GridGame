@@ -21,5 +21,8 @@ namespace GridGame.Constants.Colors {
         public static Color Land_RiverHoverColor = Color.LawnGreen;
         public static Color DefaultHoverColor = Color.LightYellow;
 
+        public static Color CanBuildColor = Color.GreenYellow;
+        public static Color CannotBuildColor = Color.IndianRed;
+
     }
 }

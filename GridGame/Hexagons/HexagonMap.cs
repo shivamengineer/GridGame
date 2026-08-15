@@ -67,10 +67,16 @@ namespace GridGame.Hexagons {
         public void SetHover(int x, int y) {
             if(!hexMap.DiscoveredTiles.Contains((x, y)) || playerData.BuildingTiles.Contains((x, y))) return;
 
-            if(hexMap.Tiles.ContainsKey((hexMap.HoveredTile))) {
-                hexMap.Tiles[hexMap.HoveredTile].SetHovered(false);
+            bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.Coords, (x, y)) <= BuildingLimits.BUILDING_RADIUS_FROM_PLAYER;
+            if(playerData.CityBuilt) {
+                inRange = inRange && playerData.CanBuildTiles.Contains((x, y));
+                inRange = inRange && hexMap.Tiles[(x, y)].GetTerrainType() != TerrainType.Ocean;
             }
-            hexMap.Tiles[(x, y)].SetHovered(true);
+
+            if(hexMap.Tiles.ContainsKey((hexMap.HoveredTile))) {
+                hexMap.Tiles[hexMap.HoveredTile].SetHovered(false, inRange);
+            }
+            hexMap.Tiles[(x, y)].SetHovered(true, inRange);
 
             hexMap.HoveredTile = (x, y);
         }
