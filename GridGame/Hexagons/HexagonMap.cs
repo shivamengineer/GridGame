@@ -53,7 +53,7 @@ namespace GridGame.Hexagons {
 
         public bool SetSelected(BuildingType buildingType, int x, int y) {
             if(!hexMap.DiscoveredTiles.Contains((x, y))) return false; //Can't build on undiscovered tile
-            if(playerData.BuildingTiles.Contains((x, y))) return false; //Can't build on another building
+            if(playerData.buildingManager.HasBuilding(x, y)) return false; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
 
             if(!playerData.AddBuilding(buildingType, x, y)) return false; //Not enough gold
@@ -65,11 +65,11 @@ namespace GridGame.Hexagons {
         }
 
         public void SetHover(int x, int y) {
-            if(!hexMap.DiscoveredTiles.Contains((x, y)) || playerData.BuildingTiles.Contains((x, y))) return;
+            if(!hexMap.DiscoveredTiles.Contains((x, y)) || playerData.buildingManager.HasBuilding(x, y)) return;
 
             bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.Coords, (x, y)) <= BuildingLimits.BUILDING_RADIUS_FROM_PLAYER;
-            if(playerData.CityBuilt) {
-                inRange = inRange && playerData.CanBuildTiles.Contains((x, y));
+            if(playerData.buildingManager.CityBuilt) {
+                inRange = inRange && playerData.buildingManager.InRangeOfCity(x, y);
                 inRange = inRange && hexMap.Tiles[(x, y)].GetTerrainType() != TerrainType.Ocean;
             }
 
@@ -82,10 +82,10 @@ namespace GridGame.Hexagons {
         }
 
         public void AddCitizen() {
-            if(playerData.CityBuilt == false) return;
-            if(citizenManager.CitizenPositions.Contains(playerData.city)) return;
+            if(playerData.buildingManager.CityBuilt == false) return;
+            if(citizenManager.CitizenPositions.Contains(playerData.buildingManager.city)) return;
 
-            citizenManager.AddCitizen(playerData.city.Item1, playerData.city.Item2);
+            citizenManager.AddCitizen(playerData.buildingManager.city.Item1, playerData.buildingManager.city.Item2);
         }
 
         public void WorkTile((int, int) Coords) {
@@ -93,7 +93,7 @@ namespace GridGame.Hexagons {
         }
 
         public void Update(GameTime gameTime, DisplayManager displayManager) {
-            foreach((int, int) building in playerData.BuildingTiles) {
+            foreach((int, int) building in playerData.buildingManager.BuildingTiles) {
                 hexMap.Tiles[building].Update(gameTime, displayManager);
             }
             foreach(var citizen in citizenManager.Citizens) {

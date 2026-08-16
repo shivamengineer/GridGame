@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.GameManagers;
+using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.Resources;
 using GridGame.TextureLoading;
@@ -16,12 +17,6 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons {
     public class PlayerData {
 
-        public bool CityBuilt;
-        
-        public (int, int) city;
-        public HashSet<(int, int)> BuildingTiles;
-        public Queue<(int, int)> UnfinishedBuildingTiles;
-        public HashSet<(int, int)> CanBuildTiles;
         public bool SpentGold;
 
         private HexMap hexMap;
@@ -29,19 +24,18 @@ namespace GridGame.Hexagons {
         private ContentLoader content;
         public PlayerResources playerResources;
 
+        public BuildingManager buildingManager;
+
         private Dictionary<BuildingType, int> BuildingCostDictionary;
 
         public PlayerData(PlayerResources playerResources, HexMap hexMap) {
             this.playerResources = playerResources;
             this.hexMap = hexMap;
-            
-            CityBuilt = false;
-            BuildingTiles = new HashSet<(int, int)>();
-            UnfinishedBuildingTiles = new Queue<(int, int)>();
-            CanBuildTiles = new HashSet<(int, int)>();
+
             SpentGold = false;
 
             BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
+            buildingManager = new BuildingManager(hexMap);
         }
 
         public bool AddBuilding(BuildingType buildingType, int x, int y) {
@@ -49,24 +43,16 @@ namespace GridGame.Hexagons {
                 return false; //Not enough gold
             }
 
-            if(!CityBuilt && buildingType == BuildingType.CityCenter) {
-                CityBuilt = true;
-                city = (x, y);
-                CanBuildTiles = DiscoverTiles.TilesInRadius(city, BuildingLimits.BUILDING_RADIUS_FROM_CITY);
-            }
+            buildingManager.AddBuilding(buildingType, x, y);
 
-            BuildingTiles.Add((x, y));
             playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
             SpentGold = true;
-            if(hexMap.Tiles[(x, y)].IsBuilding()) {
-                UnfinishedBuildingTiles.Enqueue((x, y));
-            }
 
             return true;
         }
 
         public void UpdateProduction(GameTime gameTime, DisplayManager displayManager) {
-            if(UnfinishedBuildingTiles.Count > 0 && playerResources.GetResourceAmount(ResourceType.Production) > 0) {
+            if(buildingManager.BuildingSomething() && playerResources.GetResourceAmount(ResourceType.Production) > 0) {
                 AddProduction(playerResources.GetResourceAmount(ResourceType.Production));
                 displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
             }
@@ -77,12 +63,9 @@ namespace GridGame.Hexagons {
         }
 
         public void AddProduction(int production) {
-            if(UnfinishedBuildingTiles.Count == 0) return;
+            if(!buildingManager.BuildingSomething()) return;
 
-            int extra = hexMap.Tiles[(UnfinishedBuildingTiles.First())].AddProduction(production);
-            if(!hexMap.Tiles[(UnfinishedBuildingTiles.First())].IsBuilding()) {
-                UnfinishedBuildingTiles.Dequeue();
-            }
+            int extra = buildingManager.AddProduction(production);
             playerResources.SubtractResource(ResourceType.Production, production);
             playerResources.AddResource(ResourceType.Production, extra);
         }

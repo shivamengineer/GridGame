@@ -75,7 +75,7 @@ namespace GridGame.Controllers {
             int distanceFromCityCenter = 0;
             if(builtCityCenter) {
                 (int, int) offsetClicked = (clickedHex.Item1 - 1, clickedHex.Item2);
-                distanceFromCityCenter = DiscoverTiles.DistanceBetweenTiles(offsetClicked, hexagonMap.playerData.city);
+                distanceFromCityCenter = DiscoverTiles.DistanceBetweenTiles(offsetClicked, hexagonMap.playerData.buildingManager.city);
             }
 
             if(distanceFromPlayer > BuildingLimits.BUILDING_RADIUS_FROM_PLAYER) return; //player must be adjacent or on tile
