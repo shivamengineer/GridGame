@@ -1,5 +1,6 @@
 ﻿using GridGame.Hexagons;
 using GridGame.Units;
+using GridGame.Virus.BaseVirus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,10 @@ namespace GridGame.Virus.VirusControllers {
 
         public override void Spread() {
             //
+        }
+
+        public override InfectType GetInfectType() {
+            return InfectType.WATER_INFECT;
         }
 
     }

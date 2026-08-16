@@ -1,4 +1,5 @@
-﻿using SharpDX.XAudio2;
+﻿using GridGame.Virus.BaseVirus;
+using SharpDX.XAudio2;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace GridGame.Virus.VirusControllers {
         public void InitialInfect();
 
         public void Spread();
+
+        public InfectType GetInfectType();
 
     }
 }

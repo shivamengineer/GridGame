@@ -1,4 +1,5 @@
 ﻿using GridGame.Units;
+using GridGame.Virus.BaseVirus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace GridGame.Virus.VirusControllers {
         public abstract void InitialInfect();
 
         public abstract void Spread();
+
+        public abstract InfectType GetInfectType();
 
     }
 }
