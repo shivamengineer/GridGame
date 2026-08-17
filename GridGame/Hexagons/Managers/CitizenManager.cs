@@ -26,15 +26,13 @@ namespace GridGame.Hexagons.Managers {
             CurrentPlayer.SetTexture(content);
             CurrentPlayer.SetActive(true);
 
-            Citizens = new List<Citizen>() {
-                CurrentPlayer,
-            };
-            CurrentCitizenIndex = 0;
-
+            Citizens = new List<Citizen>() { CurrentPlayer };
             CitizenMap = new Dictionary<(int, int), Citizen> {
                 [StartPos] = CurrentPlayer
             };
+
             CurrentPos = StartPos;
+            CurrentCitizenIndex = 0;
 
             this.hexagonMap = hexagonMap;
             this.content = content;
