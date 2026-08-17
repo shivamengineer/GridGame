@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Resources;
 using GridGame.Hexagons;
 using GridGame.Virus.BaseVirus;
 using Microsoft.Xna.Framework;
@@ -29,6 +30,7 @@ namespace GridGame.Units.UnitClasses {
         }
 
         public override void Update(GameTime gameTime) {
+            productivity -= FoodStats.PRODUCTIVITY_BASE_LOSS; // grow hungry
             if(moving) {
                 UpdatePos(gameTime);
             } else {

@@ -16,5 +16,6 @@ namespace GridGame.Constants {
         public static int MAP_HEIGHT = 2000;
 
         public static float RESOURCE_TICK_SPEED = 1.5f;
+        public static float FOOD_CHECK_TIME = 15f;
     }
 }

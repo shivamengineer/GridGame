@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Resources;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.TextureLoading;
@@ -35,10 +36,17 @@ namespace GridGame.Units {
         public Vector2 origin;
         public HexagonMap hexagonMap;
 
+        public float productivity = 1f;
+
         public void SetTexture(ContentLoader Content) {
             texture = Content.GetTexture(TextureLoading.TextureEnums.TextureNames.BLANK_RECTANGLE);
             Texture2D BorderTexture = Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
             origin = new Vector2(BorderTexture.Width, BorderTexture.Height);
+        }
+
+        public void Eat() {
+            productivity += FoodStats.PRODUCTIVITY_GAIN_FROM_FOOD; //replenish energy
+            if(productivity > 1f) productivity = 1f;
         }
 
         public void MoveTo(int q, int r) {

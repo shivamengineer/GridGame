@@ -28,7 +28,7 @@ namespace GridGame.Hexagons {
         public HexMap hexMap;
         public PlayerData playerData;
         public CitizenManager citizenManager;
-        private DisplayManager displayManager;
+        public DisplayManager displayManager;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;

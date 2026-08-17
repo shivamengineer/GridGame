@@ -13,6 +13,8 @@ namespace GridGame.Units {
 
         public void SetTexture(ContentLoader Content);
 
+        public void Eat();
+
         public void MoveTo(int q, int r);
 
         public void MoveUp();
