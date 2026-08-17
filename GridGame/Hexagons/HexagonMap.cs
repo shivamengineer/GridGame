@@ -29,6 +29,7 @@ namespace GridGame.Hexagons {
         public PlayerData playerData;
         public CitizenManager citizenManager;
         public DisplayManager displayManager;
+        private FoodManager foodManager;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
@@ -47,6 +48,7 @@ namespace GridGame.Hexagons {
             hexMap.SetCitizens(citizenManager);
             playerData = new PlayerData(displayManager.resourceManager.playerResources, hexMap);
             UnknownTile = UnknownTileGetter.GetTile(content);
+            foodManager = new FoodManager(this);
 
             hexMap.HexMath.FocusCamera();
         }
@@ -99,6 +101,7 @@ namespace GridGame.Hexagons {
             foreach(var citizen in citizenManager.Citizens) {
                 citizen.Update(gameTime);
             }
+            foodManager.Update(gameTime);
             playerData.UpdateProduction(gameTime, displayManager);
         }
 
