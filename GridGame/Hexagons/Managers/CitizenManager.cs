@@ -22,7 +22,7 @@ namespace GridGame.Hexagons.Managers {
         private HexagonMap hexagonMap;
 
         public CitizenManager((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content) {
-            CurrentPlayer = new Citizen(StartPos.Item1, StartPos.Item2, hexagonMap);
+            CurrentPlayer = new Citizen(StartPos, hexagonMap);
             CurrentPlayer.SetTexture(content);
             CurrentPlayer.SetActive(true);
 
@@ -38,14 +38,15 @@ namespace GridGame.Hexagons.Managers {
             this.content = content;
         }
 
-        public void AddCitizen(int Q, int R) {
-            if(CitizenMap.ContainsKey((Q, R))) return;
+        public bool AddCitizen((int, int) pos) {
+            if(CitizenMap.ContainsKey(pos)) return false;
 
-            Citizen citizen = new Citizen(Q, R, hexagonMap);
+            Citizen citizen = new Citizen(pos, hexagonMap);
             citizen.SetTexture(content);
 
             Citizens.Add(citizen);
-            CitizenMap.Add((Q, R), citizen);
+            CitizenMap.Add(pos, citizen);
+            return true;
         }
 
         public void ChangeCitizenRight() {

@@ -17,8 +17,8 @@ namespace GridGame.Units.UnitClasses {
         private Color unitColorInactive;
         private Color unitColorActive;
 
-        public Citizen(int Q, int R, HexagonMap hexagonMap) {
-            Coords = (Q, R);
+        public Citizen((int, int) pos, HexagonMap hexagonMap) {
+            Coords = pos;
             unitColorInactive = CitizenColors.InactiveColor;
             unitColorActive = CitizenColors.ActiveColor;
 
