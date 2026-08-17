@@ -49,6 +49,16 @@ namespace GridGame.Hexagons.Managers {
             return true;
         }
 
+        public void KillCitizen(Citizen citizen) {
+            Citizens.Remove(citizen);
+            CitizenMap.Remove(citizen.Coords);
+        }
+
+        public void KillCitizenAtPosition((int, int) pos) {
+            Citizens.Remove(CitizenMap[pos]);
+            CitizenMap.Remove(pos);
+        }
+
         public void ChangeCitizenRight() {
             if(CurrentPlayer.moving) return;
 
