@@ -4,6 +4,7 @@ using GridGame.Hexagons;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles.Terrain;
+using GridGame.Virus.BaseVirus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -26,6 +27,8 @@ namespace GridGame.Units {
         public float progress = 0f;
         public float timeElapsed = 0f;
         public float timeElapsedWorking = 0f;
+
+        public List<IVirus> viruses;
 
         public Rectangle destRect;
 

@@ -1,6 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
 using GridGame.Hexagons;
+using GridGame.Virus.BaseVirus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SharpDX.Direct3D9;
@@ -20,6 +21,9 @@ namespace GridGame.Units.UnitClasses {
             Coords = (Q, R);
             unitColorInactive = CitizenColors.InactiveColor;
             unitColorActive = CitizenColors.ActiveColor;
+
+            viruses = new List<IVirus>();
+
             destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
             this.hexagonMap = hexagonMap;
         }
