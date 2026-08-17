@@ -48,7 +48,7 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item2--;
 
-            if(hexagonMap.citizenManager.CitizenPositions.Contains(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
 
             SetMoving();
         }
@@ -59,7 +59,7 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item2++;
 
-            if(hexagonMap.citizenManager.CitizenPositions.Contains(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
 
             SetMoving();
         }
@@ -69,7 +69,7 @@ namespace GridGame.Units {
 
             TargetCoords = (Coords.Item1 + 1, Coords.Item2 - 1);
 
-            if(hexagonMap.citizenManager.CitizenPositions.Contains(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
 
             SetMoving();
         }
@@ -80,7 +80,7 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item1++;
 
-            if(hexagonMap.citizenManager.CitizenPositions.Contains(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
 
             SetMoving();
         }
@@ -91,7 +91,7 @@ namespace GridGame.Units {
             TargetCoords = Coords;
             TargetCoords.Item1--;
 
-            if(hexagonMap.citizenManager.CitizenPositions.Contains(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
 
             SetMoving();
         }
@@ -101,7 +101,7 @@ namespace GridGame.Units {
 
             TargetCoords = (Coords.Item1 - 1, Coords.Item2 + 1);
 
-            if(hexagonMap.citizenManager.CitizenPositions.Contains(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
 
             SetMoving();
         }
@@ -135,6 +135,7 @@ namespace GridGame.Units {
                 Coords = TargetCoords;
                 moving = false;
 
+                hexagonMap.citizenManager.UpdatePos();
                 hexagonMap.hexMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
                 hexagonMap.hexMap.HexMath.FocusCamera();
                 hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile.Item1, hexagonMap.hexMap.HoveredTile.Item2);

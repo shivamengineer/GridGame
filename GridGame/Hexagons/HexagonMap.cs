@@ -83,7 +83,7 @@ namespace GridGame.Hexagons {
 
         public void AddCitizen() {
             if(playerData.buildingManager.CityBuilt == false) return;
-            if(citizenManager.CitizenPositions.Contains(playerData.buildingManager.city)) return;
+            if(citizenManager.HasOtherCitizenAtPos(playerData.buildingManager.city)) return;
 
             citizenManager.AddCitizen(playerData.buildingManager.city.Item1, playerData.buildingManager.city.Item2);
         }

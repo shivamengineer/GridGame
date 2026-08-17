@@ -2,6 +2,7 @@
 using GridGame.Units.UnitClasses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -11,8 +12,9 @@ namespace GridGame.Hexagons.Managers {
     public class CitizenManager {
 
         public Citizen CurrentPlayer;
+        public (int, int) CurrentPos;
         public List<Citizen> Citizens;
-        public HashSet<(int, int)> CitizenPositions;
+        private Dictionary<(int, int), Citizen> CitizenMap;
         private int CurrentCitizenIndex;
 
         private ContentLoader content;
@@ -29,26 +31,28 @@ namespace GridGame.Hexagons.Managers {
             };
             CurrentCitizenIndex = 0;
 
-            CitizenPositions = new HashSet<(int, int)>();
+            CitizenMap = new Dictionary<(int, int), Citizen> {
+                [StartPos] = CurrentPlayer
+            };
+            CurrentPos = StartPos;
 
             this.hexagonMap = hexagonMap;
             this.content = content;
         }
 
         public void AddCitizen(int Q, int R) {
-            if(CitizenPositions.Contains((Q, R)) || CurrentPlayer.Coords == (Q, R)) return;
+            if(CitizenMap.ContainsKey((Q, R))) return;
 
             Citizen citizen = new Citizen(Q, R, hexagonMap);
             citizen.SetTexture(content);
 
             Citizens.Add(citizen);
-            CitizenPositions.Add((Q, R));
+            CitizenMap.Add((Q, R), citizen);
         }
-                                                        
+
         public void ChangeCitizenRight() {
             if(CurrentPlayer.moving) return;
 
-            CitizenPositions.Add(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(false);
 
             CurrentCitizenIndex++;
@@ -56,8 +60,8 @@ namespace GridGame.Hexagons.Managers {
                 CurrentCitizenIndex = 0;
             }
             CurrentPlayer = Citizens[CurrentCitizenIndex];
+            CurrentPos = CurrentPlayer.Coords;
 
-            CitizenPositions.Remove(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(true);
 
             hexagonMap.hexMap.HexMath.FocusCamera();
@@ -66,7 +70,6 @@ namespace GridGame.Hexagons.Managers {
         public void ChangeCitizenLeft() {
             if(CurrentPlayer.moving) return;
 
-            CitizenPositions.Add(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(false);
 
             CurrentCitizenIndex--;
@@ -74,11 +77,21 @@ namespace GridGame.Hexagons.Managers {
                 CurrentCitizenIndex = Citizens.Count - 1;
             }
             CurrentPlayer = Citizens[CurrentCitizenIndex];
+            CurrentPos = CurrentPlayer.Coords;
 
-            CitizenPositions.Remove(CurrentPlayer.Coords);
             CurrentPlayer.SetActive(true);
 
             hexagonMap.hexMap.HexMath.FocusCamera();
+        }
+
+        public bool HasOtherCitizenAtPos((int, int) pos) {
+            return pos != CurrentPos && CitizenMap.ContainsKey(pos);
+        }
+
+        public void UpdatePos() {
+            CitizenMap[CurrentPlayer.Coords] = CurrentPlayer;
+            CitizenMap.Remove(CurrentPos);
+            CurrentPos = CurrentPlayer.Coords;
         }
 
     }
