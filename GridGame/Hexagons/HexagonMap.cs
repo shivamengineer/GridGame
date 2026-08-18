@@ -110,6 +110,7 @@ namespace GridGame.Hexagons {
             foreach(var citizen in citizenManager.Citizens) {
                 citizen.Draw(spriteBatch, hexMap.HexMath);
             }
+            HexagonRenderer.DrawUI(spriteBatch, this);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using GridGame.TextureLoading;
+﻿using GridGame.Hexagons;
+using GridGame.TextureLoading;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +20,8 @@ namespace GridGame.Tiles.Buildings {
         public BuildingType GetBuildingType();
 
         public IBuilding newInstance();
+
+        public void DrawUI(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
 
     }
 }

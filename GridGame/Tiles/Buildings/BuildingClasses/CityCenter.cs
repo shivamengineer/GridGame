@@ -59,8 +59,6 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
-            progressBar.Draw(spriteBatch, position, hexMath);
-            if(resourcePopup != null) resourcePopup.Draw(spriteBatch, position, hexMath);
         }
 
     }

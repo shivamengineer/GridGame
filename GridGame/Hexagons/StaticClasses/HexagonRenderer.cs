@@ -62,5 +62,12 @@ namespace GridGame.Hexagons.StaticClasses {
             }
         }
 
+        public static void DrawUI(SpriteBatch spriteBatch, HexagonMap hexagonMap) {
+            foreach(var Building in hexagonMap.playerData.buildingManager.BuildingTiles) {
+                Vector2 position = hexagonMap.hexMap.HexMath.HexToPixel(Building.Item1, Building.Item2);
+                hexagonMap.hexMap.Tiles[Building].DrawUI(spriteBatch, position, hexagonMap.hexMap.HexMath);
+            }
+        }
+
     }
 }

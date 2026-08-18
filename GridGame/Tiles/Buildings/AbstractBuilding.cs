@@ -96,5 +96,10 @@ namespace GridGame.Tiles.Buildings {
             progressBar.Draw(spriteBatch, newPos, hexMath);
         }
 
+        public void DrawUI(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
+            progressBar.Draw(spriteBatch, position, hexMath);
+            if(resourcePopup != null) resourcePopup.Draw(spriteBatch, position, hexMath);
+        }
+
     }
 }
