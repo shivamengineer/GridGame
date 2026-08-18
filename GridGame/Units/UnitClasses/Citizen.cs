@@ -30,7 +30,6 @@ namespace GridGame.Units.UnitClasses {
         }
 
         public override void Update(GameTime gameTime) {
-            productivity -= FoodStats.PRODUCTIVITY_BASE_LOSS; // grow hungry
             if(moving) {
                 UpdatePos(gameTime);
             } else {

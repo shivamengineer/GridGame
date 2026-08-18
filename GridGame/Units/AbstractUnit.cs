@@ -130,7 +130,15 @@ namespace GridGame.Units {
 
             if(timeElapsedWorking >= GameConstants.RESOURCE_TICK_SPEED) {
                 timeElapsedWorking -= GameConstants.RESOURCE_TICK_SPEED;
-                hexagonMap.WorkTile(Coords);
+
+                productivity -= FoodStats.PRODUCTIVITY_BASE_LOSS; // grow hungry
+                if(productivity < 0) productivity = 0;
+
+                if(!hexagonMap.hexMap.Tiles[Coords].IsBuilding()) {
+                    hexagonMap.WorkTile(Coords);
+                } else {
+                    hexagonMap.BuildBuilding(Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
+                }
             }
         }
 
