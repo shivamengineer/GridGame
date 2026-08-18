@@ -23,7 +23,7 @@ namespace GridGame.Units.UnitClasses {
             unitColorInactive = CitizenColors.InactiveColor;
             unitColorActive = CitizenColors.ActiveColor;
 
-            viruses = new List<IVirus>();
+            viruses = new Dictionary<InfectType, IVirus>();
 
             destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
             this.hexagonMap = hexagonMap;
@@ -34,6 +34,9 @@ namespace GridGame.Units.UnitClasses {
                 UpdatePos(gameTime);
             } else {
                 WorkAtBuilding(gameTime);
+            }
+            foreach(var virus in viruses.Values) {
+                virus.Update(gameTime);
             }
         }
 

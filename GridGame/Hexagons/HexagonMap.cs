@@ -11,6 +11,7 @@ using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain;
 using GridGame.Tiles.Terrain.TerrainClasses;
 using GridGame.Units.UnitClasses;
+using GridGame.Virus.VirusControllers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -30,6 +31,7 @@ namespace GridGame.Hexagons {
         public CitizenManager citizenManager;
         public DisplayManager displayManager;
         private FoodManager foodManager;
+        private CitizenVirusController virusController;
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
@@ -49,6 +51,7 @@ namespace GridGame.Hexagons {
             playerData = new PlayerData(displayManager.resourceManager.playerResources, hexMap);
             UnknownTile = UnknownTileGetter.GetTile(content);
             foodManager = new FoodManager(this);
+            virusController = new CitizenVirusController(this);
 
             hexMap.HexMath.FocusCamera();
         }
@@ -107,6 +110,7 @@ namespace GridGame.Hexagons {
             }
             foodManager.Update(gameTime);
             playerData.UpdateProduction(gameTime, displayManager);
+            virusController.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch) {

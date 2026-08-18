@@ -1,9 +1,11 @@
-﻿using GridGame.Hexagons;
+﻿using GridGame.Constants.Viruses.Covid;
+using GridGame.Hexagons;
 using GridGame.Hexagons.Managers;
 using GridGame.Units.UnitClasses;
 using GridGame.Virus.BaseVirus;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace GridGame.Virus.VirusControllers {
 
         private HexagonMap hexagonMap;
         private CitizenManager citizenManager;
+        private float timeElapsed = 0f;
 
         public CitizenVirusController(HexagonMap hexagonMap) {
             this.hexagonMap = hexagonMap;
@@ -24,8 +27,10 @@ namespace GridGame.Virus.VirusControllers {
             Citizen infectedCitizen = citizenManager.Citizens[citizenIndex];
 
             Random random = new Random();
-            float strength = 0.25f + (float)(random.NextDouble() * 0.5);
-            infectedCitizen.viruses.Add(new Coronavirus(strength));
+            float strength = CovidStats.MIN_STRENGTH + (float)(random.NextDouble() * CovidStats.STRENGTH_RANGE);
+            if(infectedCitizen.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
+
+            infectedCitizen.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, infectedCitizen, strength));
         }
 
         public override void Spread() {

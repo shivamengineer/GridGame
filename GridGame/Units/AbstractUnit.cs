@@ -29,7 +29,7 @@ namespace GridGame.Units {
         public float timeElapsed = 0f;
         public float timeElapsedWorking = 0f;
 
-        public List<IVirus> viruses;
+        public Dictionary<InfectType, IVirus> viruses;
 
         public Rectangle destRect;
 
