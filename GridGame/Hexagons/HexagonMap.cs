@@ -91,6 +91,7 @@ namespace GridGame.Hexagons {
         }
 
         public void WorkTile((int, int) Coords) {
+            if(hexMap.Tiles[Coords].IsBuilding()) return;
             hexMap.Tiles[Coords].WorkTile(displayManager);
         }
 
