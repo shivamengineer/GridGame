@@ -10,8 +10,8 @@ namespace GridGame.Constants.Resources {
         public static int FOOD_PER_CITIZEN = 1;
         public static int FOOD_TO_ADD_CITIZEN = 15;
 
-        public static float PRODUCTIVITY_BASE_LOSS = 0.05f;
-        public static float PRODUCTIVITY_GAIN_FROM_FOOD = 0.5f;
+        public static int PRODUCTIVITY_BASE_LOSS = 1;
+        public static int PRODUCTIVITY_GAIN_FROM_FOOD = 5;
 
     }
 }
