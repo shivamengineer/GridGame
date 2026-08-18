@@ -28,7 +28,7 @@ namespace GridGame.Hexagons.StaticClasses {
             float dyR = rad * MathF.Sqrt(3) * 0.9f;
 
             int qMin = (int)MathF.Floor(camPosX / dxQ) - 2;
-            float qMax = (int)MathF.Ceiling((camPosX + GameConstants.WINDOW_WIDTH) / dxQ) + 2;
+            int qMax = (int)MathF.Ceiling((camPosX + GameConstants.WINDOW_WIDTH) / dxQ) + 2;
 
             for(int q = qMin; q <= qMax; q++) {
                 float top = camPosY;
