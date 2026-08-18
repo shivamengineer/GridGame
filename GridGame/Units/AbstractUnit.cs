@@ -49,10 +49,6 @@ namespace GridGame.Units {
             if(productivity > 1f) productivity = 1f;
         }
 
-        public void MoveTo(int q, int r) {
-            //
-        }
-
         public void MoveUp() {
             if(moving) return;
 

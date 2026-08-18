@@ -15,8 +15,6 @@ namespace GridGame.Units {
 
         public void Eat();
 
-        public void MoveTo(int q, int r);
-
         public void MoveUp();
 
         public void MoveDown();
