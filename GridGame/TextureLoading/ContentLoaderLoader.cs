@@ -13,6 +13,7 @@ namespace GridGame.TextureLoading {
         
         public static void LoadAllContent(ContentLoader contentLoader) {
             contentLoader.AddTexture(TextureNames.BLANK_RECTANGLE, "rect_blank");
+            contentLoader.AddTexture(TextureNames.INFECTED_RECTANGLE, "rect_infected");
             contentLoader.AddTexture(TextureNames.BLANK_HEXAGON_BACKGROUND, "hexagon_white");
             contentLoader.AddTexture(TextureNames.BLANK_HEXAGON_BORDER, "hexagon_white_border");
         }
