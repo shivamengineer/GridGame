@@ -19,6 +19,7 @@ namespace GridGame.Units {
     public abstract class AbstractUnit : IUnit {
 
         public Texture2D texture;
+        public Texture2D infectedTexture;
 
         public (int, int) Coords;
         public (int, int) TargetCoords;
@@ -39,7 +40,8 @@ namespace GridGame.Units {
         public int productivity = 10;
 
         public void SetTexture(ContentLoader Content) {
-            texture = Content.GetTexture(TextureLoading.TextureEnums.TextureNames.BLANK_RECTANGLE);
+            texture = Content.GetTexture(TextureNames.BLANK_RECTANGLE);
+            infectedTexture = Content.GetTexture(TextureNames.INFECTED_RECTANGLE);
             Texture2D BorderTexture = Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
             origin = new Vector2(BorderTexture.Width, BorderTexture.Height);
         }

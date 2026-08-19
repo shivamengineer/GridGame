@@ -66,8 +66,18 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void DrawCitizen(SpriteBatch spriteBatch) {
+            if(viruses.ContainsKey(InfectType.CITIZEN_INFECT)) DrawCitizenInfected(spriteBatch);
+            else DrawCitizenBase(spriteBatch);
+        }
+
+        private void DrawCitizenBase(SpriteBatch spriteBatch) {
             if(active) spriteBatch.Draw(texture, destRect, unitColorActive);
             else spriteBatch.Draw(texture, destRect, unitColorInactive);
+        }
+
+        private void DrawCitizenInfected(SpriteBatch spriteBatch) {
+            if(active) spriteBatch.Draw(infectedTexture, destRect, unitColorActive);
+            else spriteBatch.Draw(infectedTexture, destRect, unitColorInactive);
         }
 
         private void SetDestRectDimensions(Vector2 pos, HexagonMath hexMath) {

@@ -19,6 +19,7 @@ namespace GridGame.Tiles.Terrain {
 
         public Texture2D borderTexture;
         public Texture2D baseTexture;
+        public Texture2D infectedTexture;
 
         public Vector2 origin;
 
@@ -34,6 +35,7 @@ namespace GridGame.Tiles.Terrain {
         public void SetContent(ContentLoader content) {
             borderTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
             baseTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND);
+            infectedTexture = content.GetTexture(TextureNames.INFECTED_HEXAGON_BACKGROUND);
         }
 
         public void SetMap(HexagonMap map) {
