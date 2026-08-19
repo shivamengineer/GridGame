@@ -18,7 +18,7 @@ namespace GridGame.Virus.BaseVirus {
         private HexagonMap hexagonMap;
 
         private float spreadChance;
-        private float strength;
+        public float strength;
 
 
         public Coronavirus(HexagonMap hexagonMap, Citizen citizen, float strength) {
@@ -27,6 +27,7 @@ namespace GridGame.Virus.BaseVirus {
 
             spreadChance = CovidStats.SPREAD_CHANCE;
             this.strength = strength;
+            limitCitizenPercent = 1f - strength;
         }
 
 

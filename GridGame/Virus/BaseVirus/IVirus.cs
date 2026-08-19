@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace GridGame.Virus.BaseVirus {
     public interface IVirus {
 
+        public float CitizenStrength();
+
         public void Update(GameTime gameTime);
 
         public void UpdateEvent(GameTime gameTime);

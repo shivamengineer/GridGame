@@ -139,6 +139,11 @@ namespace GridGame.Units {
                 if(!hexagonMap.hexMap.Tiles[Coords].IsBuilding()) {
                     hexagonMap.WorkTile(Coords);
                 } else {
+                    int production = productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY;
+                    if(viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
+                        production = (int)(production * viruses[InfectType.CITIZEN_INFECT].CitizenStrength());
+                    }
+
                     hexagonMap.BuildBuilding(Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
                 }
             }

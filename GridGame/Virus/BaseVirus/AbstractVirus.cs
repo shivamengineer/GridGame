@@ -13,9 +13,13 @@ namespace GridGame.Virus.BaseVirus {
 
         public float infectChance;
         public float mortalityRate;
-        public float limitCitizenPercent;
+        public float limitCitizenPercent = 0f;
 
         private float elapsedTime = 0f;
+
+        public float CitizenStrength() {
+            return limitCitizenPercent;
+        }
 
         public void Update(GameTime gameTime) {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
