@@ -27,6 +27,18 @@
 /processorParam:TextureFormat=Compressed
 /build:ArialSmallFont.spritefont
 
+#begin hexagon_Infected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:hexagon_Infected.png
+
 #begin hexagon_white_border.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -10,5 +10,6 @@ namespace GridGame.TextureLoading.TextureEnums {
         INFECTED_RECTANGLE,
         BLANK_HEXAGON_BACKGROUND,
         BLANK_HEXAGON_BORDER,
+        INFECTED_HEXAGON_BACKGROUND,
     }
 }
