@@ -1,6 +1,8 @@
 ﻿using GridGame.Constants.Colors;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -33,6 +35,10 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public override ITerrain newInstance() {
             return new Land();
+        }
+
+        public override void SetRiverTexture(ContentLoader content, TextureNames texture) {
+            //
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {

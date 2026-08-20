@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GridGame.Constants.Colors;
 using GridGame.GameManagers;
+using GridGame.TextureLoading.TextureEnums;
+using GridGame.TextureLoading;
 
 namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Unknown : AbstractTerrain {
@@ -34,6 +36,10 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public override ITerrain newInstance() {
             return new Unknown();
+        }
+
+        public override void SetRiverTexture(ContentLoader content, TextureNames texture) {
+            //
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {

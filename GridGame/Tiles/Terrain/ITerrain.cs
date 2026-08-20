@@ -1,4 +1,6 @@
 ﻿using GridGame.Hexagons;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,6 +15,8 @@ namespace GridGame.Tiles.Terrain {
         public TerrainType GetTerrainType();
 
         public ITerrain newInstance();
+
+        public void SetRiverTexture(ContentLoader content, TextureNames texture);
 
         public void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered, bool inRange);
 

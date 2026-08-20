@@ -2,6 +2,7 @@
 using GridGame.Hexagons;
 using GridGame.Resources;
 using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain;
@@ -34,6 +35,10 @@ namespace GridGame.Tiles {
 
         public void SetBuildingContent(ContentLoader content) {
             building.SetContent(content);
+        }
+
+        public void SetRiverTexture(ContentLoader content, TextureNames texture) {
+            terrain.SetRiverTexture(content, texture);
         }
 
         public void SetTerrain(ITerrain terrain) {

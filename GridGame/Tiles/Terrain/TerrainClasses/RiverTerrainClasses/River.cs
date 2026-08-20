@@ -15,13 +15,12 @@ namespace GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses {
         private Dictionary<string, TextureNames> GetRiverType;
         private string id;
 
-        public River(Dictionary<(int, int), Tile> tiles, (int, int) coords) {
+        public River(Dictionary<(int, int), Tile> tiles) {
             this.tiles = tiles;
             InitializeDictionary();
-            SetID(coords);
         }
 
-        public void SetID((int, int) coords) {
+        public TextureNames GetTextureName((int, int) coords) {
             id = "";
 
             int x = coords.Item1;
@@ -55,10 +54,8 @@ namespace GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses {
             }
 
             if(!second) id = "3";
-        }
 
-        public Texture2D GetTexture(ContentLoader content) {
-            return content.GetTexture(GetRiverType[id]);
+            return GetRiverType[id];
         }
 
         private bool HasWater((int, int) coords) {

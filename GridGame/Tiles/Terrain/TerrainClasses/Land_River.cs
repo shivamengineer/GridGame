@@ -1,6 +1,8 @@
 ﻿using GridGame.Constants.Colors;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,6 +16,8 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         private Color hexColor;
         private Color hoverColor;
+
+        private Texture2D riverTexture;
 
         public Land_River() {
             hexColor = TerrainColors.Land_RiverColor;
@@ -35,6 +39,10 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             return new Land_River();
         }
 
+        public override void SetRiverTexture(ContentLoader content, TextureNames texture) {
+            riverTexture = content.GetTexture(texture);
+        }
+
         public override void UpdateEvent(DisplayManager displayManager) {
             //
         }
@@ -45,12 +53,12 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public override void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered, bool inRange) {
             if(!hovered) {
-                spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
+                spriteBatch.Draw(riverTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             } else {
                 if(inRange) hoverColor = TerrainColors.CanBuildColor;
                 else hoverColor = TerrainColors.CannotBuildColor;
 
-                spriteBatch.Draw(baseTexture, position, null, hoverColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
+                spriteBatch.Draw(riverTexture, position, null, hoverColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             }
         }
 

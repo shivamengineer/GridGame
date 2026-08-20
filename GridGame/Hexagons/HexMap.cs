@@ -1,7 +1,9 @@
 ﻿using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
+using GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace GridGame.Hexagons {
         public HashSet<(int, int)> RiverTiles;
         public (int, int) HoveredTile;
         public HexagonMath HexMath;
+        private River river;
 
         public HexMap(ContentLoader Content, CitizenManager citizens) {
             this.Content = Content;
@@ -29,6 +32,7 @@ namespace GridGame.Hexagons {
             LandTiles = new HashSet<(int, int)>();
             RiverTiles = new HashSet<(int, int)>();
             HexMath = new HexagonMath();
+            river = new River(Tiles);
         }
 
         public void SetCitizens(CitizenManager citizens) {
@@ -46,8 +50,9 @@ namespace GridGame.Hexagons {
         }
 
         private void SetRiverTextures() {
-            foreach((int, int) coord in RiverTiles) {
-                //SET RIVER TILE
+            foreach((int, int) coords in RiverTiles) {
+                TextureNames texture = river.GetTextureName(coords);
+                Tiles[coords].SetRiverTexture(Content, texture);
             }
         }
 
