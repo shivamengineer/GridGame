@@ -17,8 +17,9 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons.StaticClasses {
     public static class HexagonMapCSVReader {
 
-        public static HashSet<(int, int)> LoadHexagonMap(Dictionary<(int, int), Tile> map, ContentLoader content, string filename) {
+        public static (HashSet<(int, int)>, HashSet<(int, int)>) LoadHexagonMap(Dictionary<(int, int), Tile> map, ContentLoader content, string filename) {
             HashSet<(int, int)> landTiles = new HashSet<(int, int)>();
+            HashSet<(int, int)> riverTiles = new HashSet<(int, int)>();
             Dictionary<string, Tile> tileDictionary = GetTileDictionary();
 
             string path = "Content/Data/" + filename;
@@ -41,12 +42,15 @@ namespace GridGame.Hexagons.StaticClasses {
                             if(values[i] == "1") {
                                 landTiles.Add(adjustedCoords);
                             }
+                            if(values[i] == "3") {
+                                riverTiles.Add(adjustedCoords);
+                            }
                         }
                     }
                     j++;
                 }
             }
-            return landTiles;
+            return (landTiles, riverTiles);
         }
 
         private static Dictionary<string, Tile> GetTileDictionary() {

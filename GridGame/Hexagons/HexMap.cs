@@ -17,6 +17,7 @@ namespace GridGame.Hexagons {
         public Dictionary<(int, int), Tile> Tiles;
         public HashSet<(int, int)> DiscoveredTiles;
         public HashSet<(int, int)> LandTiles;
+        public HashSet<(int, int)> RiverTiles;
         public (int, int) HoveredTile;
         public HexagonMath HexMath;
 
@@ -26,6 +27,7 @@ namespace GridGame.Hexagons {
             Tiles = new Dictionary<(int, int), Tile>();
             DiscoveredTiles = new HashSet<(int, int)>();
             LandTiles = new HashSet<(int, int)>();
+            RiverTiles = new HashSet<(int, int)>();
             HexMath = new HexagonMath();
         }
 
@@ -34,10 +36,19 @@ namespace GridGame.Hexagons {
         }
 
         public (int, int) Initialize() {
-            LandTiles = HexagonMapCSVReader.LoadHexagonMap(Tiles, Content, "Map1.csv");
+            var twoSets = HexagonMapCSVReader.LoadHexagonMap(Tiles, Content, "Map1.csv");
+            LandTiles = twoSets.Item1;
+            RiverTiles = twoSets.Item2;
+            SetRiverTextures();
             (int, int) StartCoords = DiscoverTiles.GetStartTile(LandTiles);
             DiscoveredTiles = DiscoverTiles.TilesInRadius(StartCoords, 2);
             return StartCoords;
+        }
+
+        private void SetRiverTextures() {
+            foreach((int, int) coord in RiverTiles) {
+                //SET RIVER TILE
+            }
         }
 
         public void UpdateVision((int, int) position, int radius) {

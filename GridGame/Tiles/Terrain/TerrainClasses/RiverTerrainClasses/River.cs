@@ -11,16 +11,17 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses {
     public class River {
 
+        Dictionary<(int, int), Tile> tiles;
         private Dictionary<string, TextureNames> GetRiverType;
         private string id;
 
-        public River(HexagonMap hexagonMap, (int, int) coords) {
+        public River(Dictionary<(int, int), Tile> tiles, (int, int) coords) {
+            this.tiles = tiles;
             InitializeDictionary();
-            SetID(hexagonMap, coords);
+            SetID(coords);
         }
 
-        public void SetID(HexagonMap hexagonMap, (int, int) coords) {
-            Dictionary<(int, int), Tile> tiles = hexagonMap.hexMap.Tiles;
+        public void SetID((int, int) coords) {
             id = "";
 
             int x = coords.Item1;
@@ -40,7 +41,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses {
             bool second = false;
 
             for(int i = 0; i < adjacent.Length; i++) {
-                if(HasWater(hexagonMap, adjacent[i])) {
+                if(HasWater(adjacent[i])) {
                     if(first == -1) {
                         first = i;
                         if(i != 0) {
@@ -60,8 +61,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses {
             return content.GetTexture(GetRiverType[id]);
         }
 
-        private bool HasWater(HexagonMap hexagonMap, (int, int) coords) {
-            Dictionary<(int, int), Tile> tiles = hexagonMap.hexMap.Tiles;
+        private bool HasWater((int, int) coords) {
             if(!tiles.ContainsKey(coords)) return false;
             if(tiles[coords].GetTerrainType() == TerrainType.Ocean 
                 || tiles[coords].GetTerrainType() == TerrainType.Land_River) return true;
