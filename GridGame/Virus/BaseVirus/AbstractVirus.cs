@@ -11,11 +11,17 @@ namespace GridGame.Virus.BaseVirus {
 
         public InfectType infectType;
 
+        public int ID;
+
         public float infectChance;
         public float mortalityRate;
         public float limitCitizenPercent = 0f;
 
+        public float TimeToSpread;
+        public float BaseDuration;
+
         private float elapsedTime = 0f;
+        private float virusTime = 0f;
 
         public float CitizenStrength() {
             return limitCitizenPercent;
@@ -23,11 +29,16 @@ namespace GridGame.Virus.BaseVirus {
 
         public void Update(GameTime gameTime) {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            virusTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if(elapsedTime >= CovidStats.TIME_TO_SPREAD) {
-                elapsedTime -= CovidStats.TIME_TO_SPREAD;
+            if(elapsedTime >= TimeToSpread) {
+                elapsedTime -= TimeToSpread;
 
                 UpdateEvent(gameTime);
+            }
+
+            if(virusTime >= BaseDuration) {
+
             }
         }
 

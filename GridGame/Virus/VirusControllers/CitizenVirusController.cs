@@ -16,6 +16,7 @@ namespace GridGame.Virus.VirusControllers {
         private HexagonMap hexagonMap;
         private CitizenManager citizenManager;
         private float timeElapsed = 0f;
+        private int virusID;
 
         public CitizenVirusController(HexagonMap hexagonMap) {
             this.hexagonMap = hexagonMap;
@@ -30,7 +31,8 @@ namespace GridGame.Virus.VirusControllers {
             float strength = CovidStats.MIN_STRENGTH + (float)(random.NextDouble() * CovidStats.STRENGTH_RANGE);
             if(infectedCitizen.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
 
-            infectedCitizen.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, infectedCitizen, strength));
+            string id = "covid" + virusID;
+            infectedCitizen.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, infectedCitizen, strength, id));
         }
 
         public override void Spread() {
@@ -40,6 +42,8 @@ namespace GridGame.Virus.VirusControllers {
         public override InfectType GetInfectType() {
             return InfectType.CITIZEN_INFECT;
         }
+
+        
 
     }
 }

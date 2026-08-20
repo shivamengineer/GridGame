@@ -28,7 +28,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         }
 
         public override TerrainType GetTerrainType() {
-            return TerrainType.Land_River;
+            return TerrainType.Land_River1;
         }
 
         public override ITerrain newInstance() {
