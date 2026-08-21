@@ -60,6 +60,7 @@ namespace GridGame.Hexagons {
             if(!hexMap.DiscoveredTiles.Contains((x, y))) return false; //Can't build on undiscovered tile
             if(playerData.buildingManager.HasBuilding(x, y)) return false; //Can't build on another building
             if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
+            if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Land_River) return false; //Can't build on river tile
 
             if(!playerData.AddBuilding(buildingType, x, y)) return false; //Not enough gold
 

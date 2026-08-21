@@ -25,8 +25,6 @@ namespace GridGame.Tiles.Buildings {
 
         public Vector2 origin;
 
-        private float timeElapsed = 0f;
-
         public int production_needed = 0;
 
         public TemporaryPopup resourcePopup;
