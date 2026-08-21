@@ -18,19 +18,18 @@ namespace GridGame.Hexagons {
         public ContentLoader Content;
         public Dictionary<(int, int), Tile> Tiles;
         public HashSet<(int, int)> DiscoveredTiles;
-        public HashSet<(int, int)> LandTiles;
-        public HashSet<(int, int)> RiverTiles;
         public (int, int) HoveredTile;
         public HexagonMath HexMath;
         private River river;
+        private HexagonMapCSVReader csvReader;
 
         public HexMap(ContentLoader Content, CitizenManager citizens) {
             this.Content = Content;
 
             Tiles = new Dictionary<(int, int), Tile>();
+            csvReader = new HexagonMapCSVReader(Tiles, Content);
+
             DiscoveredTiles = new HashSet<(int, int)>();
-            LandTiles = new HashSet<(int, int)>();
-            RiverTiles = new HashSet<(int, int)>();
             HexMath = new HexagonMath();
             river = new River(Tiles);
         }
@@ -40,17 +39,15 @@ namespace GridGame.Hexagons {
         }
 
         public (int, int) Initialize() {
-            var twoSets = HexagonMapCSVReader.LoadHexagonMap(Tiles, Content, "Map1.csv");
-            LandTiles = twoSets.Item1;
-            RiverTiles = twoSets.Item2;
+            csvReader.LoadHexagonMap("Map1.csv");
             SetRiverTextures();
-            (int, int) StartCoords = DiscoverTiles.GetStartTile(LandTiles);
+            (int, int) StartCoords = DiscoverTiles.GetStartTile(csvReader.Land);
             DiscoveredTiles = DiscoverTiles.TilesInRadius(StartCoords, 2);
             return StartCoords;
         }
 
         private void SetRiverTextures() {
-            foreach((int, int) coords in RiverTiles) {
+            foreach((int, int) coords in csvReader.Rivers) {
                 TextureNames texture = river.GetTextureName(coords);
                 Tiles[coords].SetRiverTexture(Content, texture);
             }

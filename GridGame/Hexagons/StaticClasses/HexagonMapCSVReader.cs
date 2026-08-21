@@ -15,11 +15,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Hexagons.StaticClasses {
-    public static class HexagonMapCSVReader {
+    public class HexagonMapCSVReader {
 
-        public static (HashSet<(int, int)>, HashSet<(int, int)>) LoadHexagonMap(Dictionary<(int, int), Tile> map, ContentLoader content, string filename) {
-            HashSet<(int, int)> landTiles = new HashSet<(int, int)>();
-            HashSet<(int, int)> riverTiles = new HashSet<(int, int)>();
+        private Dictionary<(int, int), Tile> map;
+        private ContentLoader content;
+        public HashSet<(int, int)> Land;
+        public HashSet<(int, int)> Rivers;
+
+        public HexagonMapCSVReader(Dictionary<(int, int), Tile> map, ContentLoader content) {
+            this.map = map;
+            this.content = content;
+            Land = new HashSet<(int, int)>();
+            Rivers = new HashSet<(int, int)>();
+        }
+
+        public void LoadHexagonMap(string filename) {
             Dictionary<string, Tile> tileDictionary = GetTileDictionary();
 
             string path = "Content/Data/" + filename;
@@ -40,20 +50,19 @@ namespace GridGame.Hexagons.StaticClasses {
                             (int, int) adjustedCoords = HexAdjustedCoords.AdjustedPos((i, j));
                             map.Add(adjustedCoords, tile);
                             if(values[i] == "1") {
-                                landTiles.Add(adjustedCoords);
+                                Land.Add(adjustedCoords);
                             }
                             if(values[i] == "3") {
-                                riverTiles.Add(adjustedCoords);
+                                Rivers.Add(adjustedCoords);
                             }
                         }
                     }
                     j++;
                 }
             }
-            return (landTiles, riverTiles);
         }
 
-        private static Dictionary<string, Tile> GetTileDictionary() {
+        private Dictionary<string, Tile> GetTileDictionary() {
             Dictionary<string, Tile> tileDictionary = new Dictionary<string, Tile> {
                 ["*"] = new Tile(new Ocean(), new NIL()),
                 ["0"] = new Tile(new Ocean(), new NIL()),
