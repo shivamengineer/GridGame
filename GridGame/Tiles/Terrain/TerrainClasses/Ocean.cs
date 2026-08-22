@@ -60,5 +60,9 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             }
         }
 
+        public override void DrawRiver(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
+            //
+        }
+
     }
 }

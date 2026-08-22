@@ -20,5 +20,6 @@ namespace GridGame.Tiles.Terrain {
 
         public void DrawBackground(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath, bool hovered, bool inRange);
 
+        public void DrawRiver(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath);
     }
 }

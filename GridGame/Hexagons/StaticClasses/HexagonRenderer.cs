@@ -62,6 +62,15 @@ namespace GridGame.Hexagons.StaticClasses {
             }
         }
 
+        public static void DrawRivers(SpriteBatch spriteBatch, HexMap hexMap) {
+            foreach(var River in hexMap.csvReader.Rivers) {
+                if(hexMap.DiscoveredTiles.Contains(River)) {
+                    Vector2 position = hexMap.HexMath.HexToPixel(River.Item1, River.Item2);
+                    hexMap.Tiles[River].DrawRiver(spriteBatch, position, hexMap.HexMath);
+                }
+            }
+        }
+
         public static void DrawUI(SpriteBatch spriteBatch, HexagonMap hexagonMap) {
             foreach(var Building in hexagonMap.playerData.buildingManager.BuildingTiles) {
                 Vector2 position = hexagonMap.hexMap.HexMath.HexToPixel(Building.Item1, Building.Item2);

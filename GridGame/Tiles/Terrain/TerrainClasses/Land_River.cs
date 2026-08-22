@@ -62,6 +62,9 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
                 spriteBatch.Draw(baseTexture, position, null, hoverColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             }
+        }
+
+        public override void DrawRiver(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             spriteBatch.Draw(riverTexture, position, null, riverColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
         }
 

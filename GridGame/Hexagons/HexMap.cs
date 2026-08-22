@@ -21,7 +21,7 @@ namespace GridGame.Hexagons {
         public (int, int) HoveredTile;
         public HexagonMath HexMath;
         private River river;
-        private HexagonMapCSVReader csvReader;
+        public HexagonMapCSVReader csvReader;
 
         public HexMap(ContentLoader Content, CitizenManager citizens) {
             this.Content = Content;
