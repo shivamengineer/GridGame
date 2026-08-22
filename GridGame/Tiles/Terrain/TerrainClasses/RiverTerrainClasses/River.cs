@@ -4,6 +4,9 @@ using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,33 +39,88 @@ namespace GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses {
                 (x - 1, y), //up left
             ];
 
-            int first = -1;
-            bool second = false;
+            HashSet<int> Rivers = new HashSet<int>();
+            HashSet<int> Oceans = new HashSet<int>();
 
             for(int i = 0; i < adjacent.Length; i++) {
-                if(HasWater(adjacent[i])) {
-                    if(first == -1) {
-                        first = i;
-                        if(i != 0) {
-                            id += i;
-                        }
-                    } else if(!second){
-                        second = true;
-                        id += i - first;
-                    }
+                if(HasRiver(adjacent[i])) {
+                    Rivers.Add(i);
+                } else if(HasOcean(adjacent[i])) {
+                    Oceans.Add(i);
                 }   
             }
 
-            if(!second) id = "3";
+            id = setID(Rivers, Oceans);
 
             return GetRiverType[id];
         }
 
-        private bool HasWater((int, int) coords) {
+        private string setID(HashSet<int> rivers, HashSet<int> oceans) {
+            Random random = new Random();
+
+            string id = "";
+            (int, int) idInts = (-1, -1);
+            int riverPoint = -1;
+
+            int addedRivers = 0;
+
+            if(rivers.Count > 1) {
+                idInts = GetTwoRandom(rivers, random);
+                addedRivers += 2;
+            } else if(rivers.Count > 0) {
+                riverPoint = rivers.First();
+                addedRivers++;
+            }                    
+            if(addedRivers < 2 && oceans.Count > 0) {
+                if(addedRivers == 0 && oceans.Count == 1) {
+                    return id + oceans.First(); //IF ONLY CONNECTED AT ONE POINT
+                } else if(addedRivers == 0) {
+                    idInts = GetTwoRandom(oceans, random);
+                    addedRivers += 2;
+                } else if(addedRivers == 1 && oceans.Count == 1) {
+                    idInts = GetAscendingOrder(riverPoint, oceans.First());
+                    addedRivers++;
+                } else if(addedRivers == 1) {
+                    idInts = GetAscendingOrder(riverPoint, oceans.ElementAt(random.Next(oceans.Count)));
+                    addedRivers++;
+                }
+            }
+            if(addedRivers < 2) {
+                Debug.WriteLine("DEFAULT");
+                return "3"; //default
+            }
+
+            if(idInts.Item1 != 0) id += idInts.Item1;
+            id += (idInts.Item2 - idInts.Item1);
+
+            return id;
+        }
+
+        private bool HasOcean((int, int) coords) {
             if(!tiles.ContainsKey(coords)) return false;
-            if(tiles[coords].GetTerrainType() == TerrainType.Ocean 
-                || tiles[coords].GetTerrainType() == TerrainType.Land_River) return true;
+            if(tiles[coords].GetTerrainType() == TerrainType.Ocean) return true;
             return false;
+        }
+
+        private bool HasRiver((int, int) coords) {
+            if(!tiles.ContainsKey(coords)) return false;
+            if(tiles[coords].GetTerrainType() == TerrainType.Land_River) return true;
+            return false;
+        }
+
+        private (int, int) GetTwoRandom(HashSet<int> set, Random random) {
+            int rand = set.ElementAt(random.Next(set.Count));
+            set.Remove(rand);
+            int rand2 = set.ElementAt(random.Next(set.Count));
+            set.Remove(rand);
+
+            if(rand < rand2) return (rand, rand2);
+            else return (rand2, rand);
+        }
+
+        private (int, int) GetAscendingOrder(int x, int y) {
+            if(x < y) return (x, y);
+            return (y, x);
         }
 
         private void InitializeDictionary() {
