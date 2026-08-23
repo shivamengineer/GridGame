@@ -94,11 +94,14 @@ namespace GridGame.Tiles {
         public void Draw(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             Vector2 offsetPos = new Vector2(position.X + hexMath.hexConstants.HexRadius - 5, position.Y + hexMath.hexConstants.HexRadius - 5);
 
-            if(building.GetBuildingType() != BuildingType.NIL && terrain.GetTerrainType() != TerrainType.Unknown) {
-                building.Draw(spriteBatch, offsetPos, hexMath);
-            }
             terrain.Draw(spriteBatch, position, hexMath);
             terrain.DrawBackground(spriteBatch, position, hexMath, hovered, inRange);
+        }
+
+        public void DrawBuilding(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
+            Vector2 offsetPos = new Vector2(position.X + hexMath.hexConstants.HexRadius - 5, position.Y + hexMath.hexConstants.HexRadius - 5);
+
+            building.Draw(spriteBatch, offsetPos, hexMath);
         }
 
         public void DrawRiver(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {

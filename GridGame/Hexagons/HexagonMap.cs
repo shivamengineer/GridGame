@@ -117,6 +117,7 @@ namespace GridGame.Hexagons {
         public void Draw(SpriteBatch spriteBatch) {
             HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
             HexagonRenderer.DrawRivers(spriteBatch, hexMap);
+            HexagonRenderer.DrawBuildings(spriteBatch, this);
             foreach(var citizen in citizenManager.Citizens) {
                 citizen.Draw(spriteBatch, hexMap.HexMath);
             }
