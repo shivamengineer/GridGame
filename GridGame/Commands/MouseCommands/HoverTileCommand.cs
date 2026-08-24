@@ -19,7 +19,8 @@ namespace GridGame.Commands.MouseCommands {
 
         public void Execute() {
             (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(new Vector2(point.X + 10, point.Y - 6));
-            hexagonMap.SetHover(clickedHex.Item1 - 1, clickedHex.Item2);
+            clickedHex.Item1--;
+            hexagonMap.SetHover(clickedHex);
         }
 
     }

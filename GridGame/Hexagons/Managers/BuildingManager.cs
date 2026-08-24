@@ -29,17 +29,17 @@ namespace GridGame.Hexagons.Managers {
             this.hexMap = hexMap;
         }
 
-        public bool AddBuilding(BuildingType buildingType, int x, int y) {
+        public bool AddBuilding(BuildingType buildingType, (int, int) pos) {
             if(!CityBuilt && buildingType == BuildingType.CityCenter) {
                 CityBuilt = true;
-                city = (x, y);
+                city = pos;
                 CanBuildTiles = DiscoverTiles.TilesInRadius(city, BuildingLimits.BUILDING_RADIUS_FROM_CITY);
             }
 
-            BuildingTiles.Add((x, y));
+            BuildingTiles.Add(pos);
 
-            if(hexMap.Tiles[(x, y)].IsBuilding()) {
-                UnfinishedBuildingTiles.Enqueue((x, y));
+            if(hexMap.Tiles[pos].IsBuilding()) {
+                UnfinishedBuildingTiles.Enqueue(pos);
             }
 
             return true;
@@ -57,12 +57,12 @@ namespace GridGame.Hexagons.Managers {
             return UnfinishedBuildingTiles.Count > 0;
         }
 
-        public bool HasBuilding(int x, int y) {
-            return BuildingTiles.Contains((x, y));
+        public bool HasBuilding((int, int) pos) {
+            return BuildingTiles.Contains(pos);
         }
 
-        public bool InRangeOfCity(int x, int y) {
-            return CanBuildTiles.Contains((x, y));
+        public bool InRangeOfCity((int, int) pos) {
+            return CanBuildTiles.Contains(pos);
         }
 
     }

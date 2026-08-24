@@ -163,7 +163,7 @@ namespace GridGame.Units {
             hexagonMap.citizenManager.UpdatePos();
             hexagonMap.hexMap.UpdateVision(transform.Coords, UnitInfo.UNIT_VISION_RADIUS);
             hexagonMap.hexMap.HexMath.FocusCamera();
-            hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile.Item1, hexagonMap.hexMap.HoveredTile.Item2);
+            hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile);
         }
 
     }

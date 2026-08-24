@@ -56,35 +56,35 @@ namespace GridGame.Hexagons {
             hexMap.HexMath.FocusCamera();
         }
 
-        public bool SetSelected(BuildingType buildingType, int x, int y) {
-            if(!hexMap.DiscoveredTiles.Contains((x, y))) return false; //Can't build on undiscovered tile
-            if(playerData.buildingManager.HasBuilding(x, y)) return false; //Can't build on another building
-            if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
-            if(hexMap.Tiles[(x, y)].GetTerrainType() == TerrainType.Land_River) return false; //Can't build on river tile
+        public bool SetSelected(BuildingType buildingType, (int, int) pos) {
+            if(!hexMap.DiscoveredTiles.Contains(pos)) return false; //Can't build on undiscovered tile
+            if(playerData.buildingManager.HasBuilding(pos)) return false; //Can't build on another building
+            if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
+            if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Land_River) return false; //Can't build on river tile
 
-            if(!playerData.AddBuilding(buildingType, x, y)) return false; //Not enough gold
+            if(!playerData.AddBuilding(buildingType, pos)) return false; //Not enough gold
 
-            hexMap.Tiles[(x, y)].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
-            hexMap.Tiles[(x, y)].SetMap(this);
+            hexMap.Tiles[pos].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
+            hexMap.Tiles[pos].SetMap(this);
 
             return true;
         }
 
-        public void SetHover(int x, int y) {
-            if(!hexMap.DiscoveredTiles.Contains((x, y)) || playerData.buildingManager.HasBuilding(x, y)) return;
+        public void SetHover((int, int) pos) {
+            if(!hexMap.DiscoveredTiles.Contains(pos) || playerData.buildingManager.HasBuilding(pos)) return;
 
-            bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (x, y)) <= BuildingLimits.BUILDING_RADIUS_FROM_PLAYER;
+            bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (pos)) <= BuildingLimits.BUILDING_RADIUS_FROM_PLAYER;
             if(playerData.buildingManager.CityBuilt) {
-                inRange = inRange && playerData.buildingManager.InRangeOfCity(x, y);
-                inRange = inRange && hexMap.Tiles[(x, y)].GetTerrainType() != TerrainType.Ocean;
+                inRange = inRange && playerData.buildingManager.InRangeOfCity(pos);
+                inRange = inRange && hexMap.Tiles[pos].GetTerrainType() != TerrainType.Ocean;
             }
 
             if(hexMap.Tiles.ContainsKey((hexMap.HoveredTile))) {
                 hexMap.Tiles[hexMap.HoveredTile].SetHovered(false, inRange);
             }
-            hexMap.Tiles[(x, y)].SetHovered(true, inRange);
+            hexMap.Tiles[pos].SetHovered(true, inRange);
 
-            hexMap.HoveredTile = (x, y);
+            hexMap.HoveredTile = pos;
         }
 
         public void AddCitizen() {

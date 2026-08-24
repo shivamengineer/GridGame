@@ -81,7 +81,8 @@ namespace GridGame.Controllers {
             if(distanceFromPlayer > BuildingLimits.BUILDING_RADIUS_FROM_PLAYER) return; //player must be adjacent or on tile
             if(distanceFromCityCenter > BuildingLimits.BUILDING_RADIUS_FROM_CITY) return;
 
-            if(hexagonMap.SetSelected(selectedBuilding, clickedHex.Item1 - 1, clickedHex.Item2)) {
+            clickedHex.Item1--;
+            if(hexagonMap.SetSelected(selectedBuilding, clickedHex)) {
                 if(!builtCityCenter) {
                     builtCityCenter = true;
                 }

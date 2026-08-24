@@ -25,7 +25,8 @@ namespace GridGame.Commands.MouseCommands {
 
         public void Execute() {
             (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(pos);
-            hexagonMap.SetSelected(buildingType, clickedHex.Item1 - 1, clickedHex.Item2);
+            clickedHex.Item1--;
+            hexagonMap.SetSelected(buildingType, clickedHex);
         }
 
     }

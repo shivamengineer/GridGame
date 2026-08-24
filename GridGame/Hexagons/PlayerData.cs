@@ -38,12 +38,12 @@ namespace GridGame.Hexagons {
             buildingManager = new BuildingManager(hexMap);
         }
 
-        public bool AddBuilding(BuildingType buildingType, int x, int y) {
+        public bool AddBuilding(BuildingType buildingType, (int, int) pos) {
             if(playerResources.GetResourceAmount(ResourceType.Gold) < BuildingCostDictionary[buildingType]) {
                 return false; //Not enough gold
             }
 
-            buildingManager.AddBuilding(buildingType, x, y);
+            buildingManager.AddBuilding(buildingType, pos);
 
             playerResources.SubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType]);
             SpentGold = true;
