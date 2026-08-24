@@ -122,25 +122,11 @@ namespace GridGame.Units {
         }
 
         public void WorkAtBuilding(GameTime gameTime) {
-            timeElapsedWorking += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(!UpdateTime(gameTime)) return;
+            GrowHungry();
 
-            if(timeElapsedWorking >= GameConstants.RESOURCE_TICK_SPEED) {
-                timeElapsedWorking -= GameConstants.RESOURCE_TICK_SPEED;
-
-                productivity -= FoodStats.PRODUCTIVITY_BASE_LOSS; // grow hungry
-                if(productivity < 0) productivity = 0;
-
-                if(!hexagonMap.hexMap.Tiles[transform.Coords].IsBuilding()) {
-                    hexagonMap.WorkTile(transform.Coords);
-                } else {
-                    int production = productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY;
-                    if(!virusesImmune.Contains(VirusNames.Coronavirus) && viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
-                        production = (int)viruses[InfectType.CITIZEN_INFECT].GetCitizenProductivity(production);
-                    }
-
-                    hexagonMap.BuildBuilding(transform.Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
-                }
-            }
+            if(!hexagonMap.hexMap.Tiles[transform.Coords].IsBuilding()) hexagonMap.WorkTile(transform.Coords);
+            else BuildBuilding();
         }
 
         public void UpdatePos(GameTime gameTime) {
@@ -155,6 +141,28 @@ namespace GridGame.Units {
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(SpriteBatch spriteBatch, HexagonMath hexMath); 
+
+        private bool UpdateTime(GameTime gameTime) {
+            timeElapsedWorking += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if(timeElapsedWorking >= GameConstants.RESOURCE_TICK_SPEED) {
+                timeElapsedWorking -= GameConstants.RESOURCE_TICK_SPEED;
+                return true;
+            }
+            return false;
+        }
+
+        private void GrowHungry() {
+            productivity -= FoodStats.PRODUCTIVITY_BASE_LOSS; // grow hungry if working
+            if(productivity < 0) productivity = 0;
+        }
+
+        private void BuildBuilding() {
+            int production = productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY;
+            if(!virusesImmune.Contains(VirusNames.Coronavirus) && viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
+                production = (int)viruses[InfectType.CITIZEN_INFECT].GetCitizenProductivity(production);
+            }
+            hexagonMap.BuildBuilding(transform.Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
+        }
 
         private void ProgressEvent() {
             progress = 1.0f;
