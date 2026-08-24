@@ -57,7 +57,6 @@ namespace GridGame.Virus.BaseVirus {
             TryShowSymptoms();
 
             if(virusTime >= BaseDuration) {
-                //Virus dies or becomes inactive
                 OnVirusDurationEnd();
             }
         }
