@@ -16,15 +16,11 @@ using System.Threading.Tasks;
 namespace GridGame.Units.UnitClasses {
     public class Citizen : AbstractUnit {
 
-        private Color unitColorInactive;
-        private Color unitColorActive;
-        private Color infectRectColor;
+        private UnitColor unitColor;
 
         public Citizen((int, int) pos, HexagonMap hexagonMap) {
             transform = new Transform(pos);
-            unitColorInactive = CitizenColors.InactiveColor;
-            unitColorActive = CitizenColors.ActiveColor;
-            infectRectColor = CitizenColors.InfectColor;
+            unitColor = new UnitColor();
 
             viruses = new Dictionary<InfectType, IVirus>();
             virusesImmune = new HashSet<VirusNames>();
@@ -71,8 +67,8 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void DrawCitizenBase(SpriteBatch spriteBatch) {
-            if(transform.active) spriteBatch.Draw(texture, transform.destRect, unitColorActive);
-            else spriteBatch.Draw(texture, transform.destRect, unitColorInactive);
+            if(transform.active) spriteBatch.Draw(texture, transform.destRect, unitColor.Active);
+            else spriteBatch.Draw(texture, transform.destRect, unitColor.Inactive);
         }
 
         private void DrawInfectedBar(SpriteBatch spriteBatch) {
@@ -82,7 +78,7 @@ namespace GridGame.Units.UnitClasses {
                 spriteBatch.Draw(texture, transform.infectedDestRect, Color.Blue); //shows if citizen is sick but asymptomatic
                 return;
             }
-            spriteBatch.Draw(texture, transform.infectedDestRect, infectRectColor);
+            spriteBatch.Draw(texture, transform.infectedDestRect, unitColor.Infected);
         }
 
     }
