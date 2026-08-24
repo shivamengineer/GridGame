@@ -5,6 +5,7 @@ using GridGame.Hexagons;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles.Terrain;
+using GridGame.Units.UnitComponents;
 using GridGame.Virus.BaseVirus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,11 +22,13 @@ namespace GridGame.Units {
         public Texture2D texture;
         public Texture2D infectedTexture;
 
-        public (int, int) Coords;
+        public Transform transform;
+
+        /*public (int, int) Coords;
         public (int, int) TargetCoords;
 
         public bool active = false;
-        public bool moving = false;
+        public bool moving = false;*/
         public float progress = 0f;
         public float timeElapsed = 0f;
         public float timeElapsedWorking = 0f;
@@ -33,8 +36,8 @@ namespace GridGame.Units {
         public Dictionary<InfectType, IVirus> viruses;
         public HashSet<VirusNames> virusesImmune;
 
-        public Rectangle destRect;
-        public Rectangle infectedDestRect;
+        //public Rectangle destRect;
+        //public Rectangle infectedDestRect;
 
         public Vector2 origin;
         public HexagonMap hexagonMap;
@@ -54,79 +57,75 @@ namespace GridGame.Units {
         }
 
         public void MoveUp() {
-            if(moving) return;
+            if(transform.moving) return;
 
-            TargetCoords = Coords;
-            TargetCoords.Item2--;
+            transform.SetTargetCoords(0, -1);
 
-            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
 
             SetMoving();
         }
 
         public void MoveDown() {
-            if(moving) return;
+            if(transform.moving) return;
 
-            TargetCoords = Coords;
-            TargetCoords.Item2++;
+            transform.SetTargetCoords(0, 1);
 
-            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
 
             SetMoving();
         }
 
         public void MoveUpRight() {
-            if(moving) return;
+            if(transform.moving) return;
 
-            TargetCoords = (Coords.Item1 + 1, Coords.Item2 - 1);
+            transform.SetTargetCoords(1, -1);
 
-            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
 
             SetMoving();
         }
 
         public void MoveDownRight() {
-            if(moving) return;
+            if(transform.moving) return;
 
-            TargetCoords = Coords;
-            TargetCoords.Item1++;
+            transform.SetTargetCoords(1, 0);
 
-            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
 
             SetMoving();
         }
 
         public void MoveUpLeft() {
-            if(moving) return;
+            if(transform.moving) return;
 
-            TargetCoords = Coords;
-            TargetCoords.Item1--;
-
-            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
+            transform.SetTargetCoords(-1, 0);
+                                  
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
 
             SetMoving();
         }
 
         public void MoveDownLeft() {
-            if(moving) return;
+            if(transform.moving) return;
 
-            TargetCoords = (Coords.Item1 - 1, Coords.Item2 + 1);
+            transform.SetTargetCoords(-1, 1);
 
-            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(TargetCoords)) return;
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
 
             SetMoving();
         }
 
         public void SetMoving() {
-            if(hexagonMap.hexMap.Tiles[TargetCoords].GetTerrainType() == TerrainType.Ocean) return;
+            if(hexagonMap.hexMap.Tiles[transform.TargetCoords].GetTerrainType() == TerrainType.Ocean) return;
 
-            moving = true;
+            transform.moving = true;
             timeElapsed = 0f;
             timeElapsedWorking = 0f;
         }
 
         public void SetActive(bool active) {
-            this.active = active;
+            transform.active = active;
         }
 
         public void WorkAtBuilding(GameTime gameTime) {
@@ -138,15 +137,15 @@ namespace GridGame.Units {
                 productivity -= FoodStats.PRODUCTIVITY_BASE_LOSS; // grow hungry
                 if(productivity < 0) productivity = 0;
 
-                if(!hexagonMap.hexMap.Tiles[Coords].IsBuilding()) {
-                    hexagonMap.WorkTile(Coords);
+                if(!hexagonMap.hexMap.Tiles[transform.Coords].IsBuilding()) {
+                    hexagonMap.WorkTile(transform.Coords);
                 } else {
                     int production = productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY;
                     if(!virusesImmune.Contains(VirusNames.Coronavirus) && viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
                         production = (int)viruses[InfectType.CITIZEN_INFECT].GetCitizenProductivity(production);
                     }
 
-                    hexagonMap.BuildBuilding(Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
+                    hexagonMap.BuildBuilding(transform.Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
                 }
             }
         }
@@ -156,8 +155,8 @@ namespace GridGame.Units {
             progress = timeElapsed / UnitInfo.UNIT_MOVE_TIME;
             if(progress > 1.0f) {
                 progress = 1.0f;
-                Coords = TargetCoords;
-                moving = false;
+                transform.Coords = transform.TargetCoords;
+                transform.moving = false;
 
                 UpdateHexagonMap();
             }
@@ -169,7 +168,7 @@ namespace GridGame.Units {
 
         private void UpdateHexagonMap() {
             hexagonMap.citizenManager.UpdatePos();
-            hexagonMap.hexMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
+            hexagonMap.hexMap.UpdateVision(transform.Coords, UnitInfo.UNIT_VISION_RADIUS);
             hexagonMap.hexMap.HexMath.FocusCamera();
             hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile.Item1, hexagonMap.hexMap.HoveredTile.Item2);
         }

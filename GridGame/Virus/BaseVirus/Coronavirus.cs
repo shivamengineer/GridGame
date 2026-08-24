@@ -41,8 +41,8 @@ namespace GridGame.Virus.BaseVirus {
         public override void UpdateEvent() {
             HashSet<Citizen> citizensInRange = new HashSet<Citizen>();
             foreach(var citizen in hexagonMap.citizenManager.Citizens) {
-                if(this.citizen.Coords != citizen.Coords && !citizen.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
-                    int distance = DiscoverTiles.DistanceBetweenTiles(this.citizen.Coords, citizen.Coords);
+                if(this.citizen.transform.Coords != citizen.transform.Coords && !citizen.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
+                    int distance = DiscoverTiles.DistanceBetweenTiles(this.citizen.transform.Coords, citizen.transform.Coords);
                     if(distance <= CovidStats.SPREAD_RANGE) citizensInRange.Add(citizen);
                 }
             }

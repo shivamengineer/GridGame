@@ -108,7 +108,7 @@ namespace GridGame.Hexagons {
         }
 
         public void FocusCamera() {
-            Vector2 position = HexToPixelAbsolute(citizens.CurrentPlayer.Coords.Item1, citizens.CurrentPlayer.Coords.Item2);
+            Vector2 position = HexToPixelAbsolute(citizens.CurrentPlayer.transform.Coords.Item1, citizens.CurrentPlayer.transform.Coords.Item2);
 
             camPosX = (int)position.X - (GameConstants.WINDOW_WIDTH / 2) + (5 * TextureInfo.BORDER_WIDTH / 2);
             camPosY = (int)position.Y - (GameConstants.WINDOW_HEIGHT / 2) + (3 * TextureInfo.BORDER_HEIGHT / 2);

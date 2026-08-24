@@ -54,7 +54,7 @@ namespace GridGame.Hexagons.Managers {
         public bool KillCitizen(Citizen citizen) {
             if(citizen == CurrentPlayer) ChangeCitizenRight();
             Citizens.Remove(citizen);
-            CitizenMap.Remove(citizen.Coords);
+            CitizenMap.Remove(citizen.transform.Coords);
 
             if(Citizens.Count == 0) return true; //if all citizens are dead
             return false;
@@ -66,7 +66,7 @@ namespace GridGame.Hexagons.Managers {
         }
 
         public void ChangeCitizenRight() {
-            if(CurrentPlayer.moving) return;
+            if(CurrentPlayer.transform.moving) return;
 
             CurrentPlayer.SetActive(false);
 
@@ -75,7 +75,7 @@ namespace GridGame.Hexagons.Managers {
                 CurrentCitizenIndex = 0;
             }
             CurrentPlayer = Citizens[CurrentCitizenIndex];
-            CurrentPos = CurrentPlayer.Coords;
+            CurrentPos = CurrentPlayer.transform.Coords;
 
             CurrentPlayer.SetActive(true);
 
@@ -83,7 +83,7 @@ namespace GridGame.Hexagons.Managers {
         }
 
         public void ChangeCitizenLeft() {
-            if(CurrentPlayer.moving) return;
+            if(CurrentPlayer.transform.moving) return;
 
             CurrentPlayer.SetActive(false);
 
@@ -92,7 +92,7 @@ namespace GridGame.Hexagons.Managers {
                 CurrentCitizenIndex = Citizens.Count - 1;
             }
             CurrentPlayer = Citizens[CurrentCitizenIndex];
-            CurrentPos = CurrentPlayer.Coords;
+            CurrentPos = CurrentPlayer.transform.Coords;
 
             CurrentPlayer.SetActive(true);
 
@@ -104,9 +104,9 @@ namespace GridGame.Hexagons.Managers {
         }
 
         public void UpdatePos() {
-            CitizenMap[CurrentPlayer.Coords] = CurrentPlayer;
+            CitizenMap[CurrentPlayer.transform.Coords] = CurrentPlayer;
             CitizenMap.Remove(CurrentPos);
-            CurrentPos = CurrentPlayer.Coords;
+            CurrentPos = CurrentPlayer.transform.Coords;
         }
 
     }

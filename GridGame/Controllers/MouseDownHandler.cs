@@ -68,7 +68,7 @@ namespace GridGame.Controllers {
 
         private void TryBuild(int x, int y, HexagonMap hexagonMap) {
             (int, int) clickedHex = hexagonMap.hexMap.HexMath.PixelToHex(new Vector2(x + 10, y - 6));
-            (int, int) playerPos = hexagonMap.citizenManager.CurrentPlayer.Coords;
+            (int, int) playerPos = hexagonMap.citizenManager.CurrentPlayer.transform.Coords;
             playerPos.Item1++;
 
             int distanceFromPlayer = DiscoverTiles.DistanceBetweenTiles(clickedHex, playerPos);
