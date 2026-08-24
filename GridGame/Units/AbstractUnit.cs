@@ -24,20 +24,12 @@ namespace GridGame.Units {
 
         public Transform transform;
 
-        /*public (int, int) Coords;
-        public (int, int) TargetCoords;
-
-        public bool active = false;
-        public bool moving = false;*/
         public float progress = 0f;
         public float timeElapsed = 0f;
         public float timeElapsedWorking = 0f;
 
         public Dictionary<InfectType, IVirus> viruses;
         public HashSet<VirusNames> virusesImmune;
-
-        //public Rectangle destRect;
-        //public Rectangle infectedDestRect;
 
         public Vector2 origin;
         public HexagonMap hexagonMap;
@@ -49,6 +41,7 @@ namespace GridGame.Units {
             infectedTexture = Content.GetTexture(TextureNames.INFECTED_RECTANGLE);
             Texture2D BorderTexture = Content.GetTexture(TextureNames.BLANK_HEXAGON_BORDER);
             origin = new Vector2(BorderTexture.Width, BorderTexture.Height);
+            transform.SetOrigin(origin);
         }
 
         public void Eat() {
