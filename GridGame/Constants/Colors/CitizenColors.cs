@@ -11,5 +11,7 @@ namespace GridGame.Constants.Colors {
         public static Color ActiveColor = Color.DeepPink;
         public static Color InactiveColor = Color.Gray;
 
+        public static Color InfectColor = Color.Red;
+
     }
 }

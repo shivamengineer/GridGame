@@ -12,5 +12,8 @@ namespace GridGame.Constants {
         public static int UNIT_HEIGHT = 35;
         public static int UNIT_VISION_RADIUS = 2;
 
+        public static int INFECTED_WIDTH = 30;
+        public static int INFECTED_HEIGHT = 5;
+
     }
 }

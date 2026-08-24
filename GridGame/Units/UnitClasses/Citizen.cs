@@ -17,15 +17,18 @@ namespace GridGame.Units.UnitClasses {
 
         private Color unitColorInactive;
         private Color unitColorActive;
+        private Color infectRectColor;
 
         public Citizen((int, int) pos, HexagonMap hexagonMap) {
             Coords = pos;
             unitColorInactive = CitizenColors.InactiveColor;
             unitColorActive = CitizenColors.ActiveColor;
+            infectRectColor = CitizenColors.InfectColor;
 
             viruses = new Dictionary<InfectType, IVirus>();
 
             destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
+            infectedDestRect = new Rectangle(0, 0, UnitInfo.INFECTED_WIDTH, UnitInfo.INFECTED_HEIGHT);
             this.hexagonMap = hexagonMap;
         }
 
@@ -66,8 +69,8 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void DrawCitizen(SpriteBatch spriteBatch) {
-            if(viruses.ContainsKey(InfectType.CITIZEN_INFECT)) DrawCitizenInfected(spriteBatch);
-            else DrawCitizenBase(spriteBatch);
+            DrawCitizenBase(spriteBatch);
+            if(viruses.ContainsKey(InfectType.CITIZEN_INFECT)) DrawInfectedBar(spriteBatch);
         }
 
         private void DrawCitizenBase(SpriteBatch spriteBatch) {
@@ -75,9 +78,8 @@ namespace GridGame.Units.UnitClasses {
             else spriteBatch.Draw(texture, destRect, unitColorInactive);
         }
 
-        private void DrawCitizenInfected(SpriteBatch spriteBatch) {
-            if(active) spriteBatch.Draw(infectedTexture, destRect, unitColorActive);
-            else spriteBatch.Draw(infectedTexture, destRect, unitColorInactive);
+        private void DrawInfectedBar(SpriteBatch spriteBatch) {
+            spriteBatch.Draw(texture, infectedDestRect, infectRectColor);
         }
 
         private void SetDestRectDimensions(Vector2 pos, HexagonMath hexMath) {
@@ -86,11 +88,19 @@ namespace GridGame.Units.UnitClasses {
             destRect.Width = (int)(UnitInfo.UNIT_WIDTH * scale);
             destRect.Height = (int)(UnitInfo.UNIT_HEIGHT * scale);
 
+            infectedDestRect.Width = (int)(UnitInfo.INFECTED_WIDTH * scale);
+            infectedDestRect.Height = (int)(UnitInfo.INFECTED_HEIGHT * scale);
+
             float centerX = ((origin.X * scale) / 2f) - (destRect.Width / 2);
             float centerY = ((origin.Y * scale) / 2f) - (destRect.Height / 2);
 
             destRect.X = (int)(pos.X + centerX);
             destRect.Y = (int)(pos.Y + centerY);
+
+            int diffWidth = infectedDestRect.Width - destRect.Width;
+
+            infectedDestRect.X = destRect.X - (diffWidth / 2);
+            infectedDestRect.Y = destRect.Y - infectedDestRect.Height;
         }
 
     }

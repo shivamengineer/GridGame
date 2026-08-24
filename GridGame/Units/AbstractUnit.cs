@@ -33,6 +33,7 @@ namespace GridGame.Units {
         public Dictionary<InfectType, IVirus> viruses;
 
         public Rectangle destRect;
+        public Rectangle infectedDestRect;
 
         public Vector2 origin;
         public HexagonMap hexagonMap;

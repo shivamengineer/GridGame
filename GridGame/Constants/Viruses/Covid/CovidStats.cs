@@ -22,6 +22,7 @@ namespace GridGame.Constants.Viruses.Covid {
         public static float TIME_TO_SPREAD = 8f;
 
         public static float TIME_BEFORE_OUTBREAK = 12f;
+        public static float ASYMPTOMATIC_TIME = 10f;
 
         public static float MORTALITY_RATE = 0.1f;
     }
