@@ -123,7 +123,7 @@ namespace GridGame.Hexagons {
             camPosY = Max(0, camPosY);
         }
 
-        public int Max(int x, int y) {
+        private int Max(int x, int y) {
             if(x > y) return x;
             return y;
         }
