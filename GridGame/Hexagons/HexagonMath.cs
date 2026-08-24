@@ -27,7 +27,10 @@ namespace GridGame.Hexagons {
             this.citizens = citizens;
         }
 
-        public Vector2 HexToPixel(int Q, int R) {
+        public Vector2 HexToPixel((int, int) pos) {
+            int Q = pos.Item1;
+            int R = pos.Item2;
+
             float rad = hexConstants.HexRadius;
 
             float x = Q * (rad * MathF.Sqrt(3) - (rad / 2)) - camPosX;
@@ -38,7 +41,10 @@ namespace GridGame.Hexagons {
             return new Vector2(x, y);
         }
 
-        public Vector2 HexToPixelAbsolute(int Q, int R) {
+        public Vector2 HexToPixelAbsolute((int, int) pos) {
+            int Q = pos.Item1;
+            int R = pos.Item2;
+
             float rad = hexConstants.HexRadius;
 
             float x = Q * (rad * MathF.Sqrt(3) - (rad / 2));
@@ -108,7 +114,7 @@ namespace GridGame.Hexagons {
         }
 
         public void FocusCamera() {
-            Vector2 position = HexToPixelAbsolute(citizens.CurrentPlayer.transform.Coords.Item1, citizens.CurrentPlayer.transform.Coords.Item2);
+            Vector2 position = HexToPixelAbsolute(citizens.CurrentPlayer.transform.Coords);
 
             camPosX = (int)position.X - (GameConstants.WINDOW_WIDTH / 2) + (5 * TextureInfo.BORDER_WIDTH / 2);
             camPosY = (int)position.Y - (GameConstants.WINDOW_HEIGHT / 2) + (3 * TextureInfo.BORDER_HEIGHT / 2);

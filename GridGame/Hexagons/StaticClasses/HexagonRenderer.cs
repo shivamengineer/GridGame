@@ -53,7 +53,7 @@ namespace GridGame.Hexagons.StaticClasses {
         }
 
         private static void DrawHex(SpriteBatch spriteBatch, HexMap hex, Tile unknown, int Q, int R) {
-            Vector2 position = hex.HexMath.HexToPixel(Q, R);
+            Vector2 position = hex.HexMath.HexToPixel((Q, R));
 
             if(hex.DiscoveredTiles.Contains((Q, R))) {
                 hex.Tiles[(Q, R)].Draw(spriteBatch, position, hex.HexMath);
@@ -64,7 +64,7 @@ namespace GridGame.Hexagons.StaticClasses {
 
         public static void DrawBuildings(SpriteBatch spriteBatch, HexagonMap hexagonMap) {
             foreach(var Building in hexagonMap.playerData.buildingManager.BuildingTiles) {
-                Vector2 position = hexagonMap.hexMap.HexMath.HexToPixel(Building.Item1, Building.Item2);
+                Vector2 position = hexagonMap.hexMap.HexMath.HexToPixel(Building);
                 hexagonMap.hexMap.Tiles[Building].DrawBuilding(spriteBatch, position, hexagonMap.hexMap.HexMath);
             }
         }
@@ -72,7 +72,7 @@ namespace GridGame.Hexagons.StaticClasses {
         public static void DrawRivers(SpriteBatch spriteBatch, HexMap hexMap) {
             foreach(var River in hexMap.csvReader.Rivers) {
                 if(hexMap.DiscoveredTiles.Contains(River)) {
-                    Vector2 position = hexMap.HexMath.HexToPixel(River.Item1, River.Item2);
+                    Vector2 position = hexMap.HexMath.HexToPixel(River);
                     hexMap.Tiles[River].DrawRiver(spriteBatch, position, hexMap.HexMath);
                 }
             }
@@ -80,7 +80,7 @@ namespace GridGame.Hexagons.StaticClasses {
 
         public static void DrawUI(SpriteBatch spriteBatch, HexagonMap hexagonMap) {
             foreach(var Building in hexagonMap.playerData.buildingManager.BuildingTiles) {
-                Vector2 position = hexagonMap.hexMap.HexMath.HexToPixel(Building.Item1, Building.Item2);
+                Vector2 position = hexagonMap.hexMap.HexMath.HexToPixel(Building);
                 hexagonMap.hexMap.Tiles[Building].DrawUI(spriteBatch, position, hexagonMap.hexMap.HexMath);
             }
         }

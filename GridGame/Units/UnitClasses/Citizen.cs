@@ -51,8 +51,8 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void DrawMoving(SpriteBatch spriteBatch, HexagonMath hexMath) {
-            Vector2 posBefore = hexMath.HexToPixel(transform.Coords.Item1, transform.Coords.Item2);
-            Vector2 targetPos = hexMath.HexToPixel(transform.TargetCoords.Item1, transform.TargetCoords.Item2);
+            Vector2 posBefore = hexMath.HexToPixel(transform.Coords);
+            Vector2 targetPos = hexMath.HexToPixel(transform.TargetCoords);
 
             Vector2 position = Vector2.Lerp(posBefore, targetPos, progress);
             SetDestRectDimensions(position, hexMath);
@@ -61,7 +61,7 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void DrawStationary(SpriteBatch spriteBatch, HexagonMath hexMath) {
-            Vector2 position = hexMath.HexToPixel(transform.Coords.Item1, transform.Coords.Item2);
+            Vector2 position = hexMath.HexToPixel(transform.Coords);
             SetDestRectDimensions(position, hexMath);
 
             DrawCitizen(spriteBatch);
