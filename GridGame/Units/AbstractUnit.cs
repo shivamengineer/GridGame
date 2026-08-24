@@ -147,10 +147,7 @@ namespace GridGame.Units {
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
             progress = timeElapsed / UnitInfo.UNIT_MOVE_TIME;
             if(progress > 1.0f) {
-                progress = 1.0f;
-                transform.Coords = transform.TargetCoords;
-                transform.moving = false;
-
+                ProgressEvent();
                 UpdateHexagonMap();
             }
         }
@@ -158,6 +155,12 @@ namespace GridGame.Units {
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(SpriteBatch spriteBatch, HexagonMath hexMath); 
+
+        private void ProgressEvent() {
+            progress = 1.0f;
+            transform.Coords = transform.TargetCoords;
+            transform.moving = false;
+        }
 
         private void UpdateHexagonMap() {
             hexagonMap.citizenManager.UpdatePos();
