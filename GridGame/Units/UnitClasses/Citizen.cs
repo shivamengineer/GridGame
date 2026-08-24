@@ -45,11 +45,8 @@ namespace GridGame.Units.UnitClasses {
         }
 
         public override void Draw(SpriteBatch spriteBatch, HexagonMath hexMath) {
-            if(moving) {
-                DrawMoving(spriteBatch, hexMath);
-            } else {
-                DrawStationary(spriteBatch, hexMath);
-            }
+            if(moving) DrawMoving(spriteBatch, hexMath);
+            else DrawStationary(spriteBatch, hexMath);
         }
 
         private void DrawMoving(SpriteBatch spriteBatch, HexagonMath hexMath) {

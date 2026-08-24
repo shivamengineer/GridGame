@@ -109,6 +109,9 @@ namespace GridGame.Hexagons {
             foreach(var citizen in citizenManager.Citizens) {
                 citizen.Update(gameTime);
             }
+            while(citizenManager.ToRemoveCitizens.Count > 0) {
+                citizenManager.KillCitizen(citizenManager.ToRemoveCitizens.Pop());
+            }
             foodManager.Update(gameTime);
             playerData.UpdateProduction(gameTime, displayManager);
             virusController.Update(gameTime);

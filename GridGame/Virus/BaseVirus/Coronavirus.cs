@@ -50,8 +50,14 @@ namespace GridGame.Virus.BaseVirus {
         }
 
         public override void OnVirusDurationEnd() {
-            citizen.virusesImmune.Add(VirusNames.Coronavirus);
-            recovered = true;
+            Random random = new Random();
+            float rand = (float)random.NextDouble();
+            if(rand <= CovidStats.MORTALITY_RATE) {
+                hexagonMap.citizenManager.ToRemoveCitizens.Push(citizen);
+            } else {
+                citizen.virusesImmune.Add(VirusNames.Coronavirus);
+                recovered = true;
+            }
         }
 
         private void TrySpread(HashSet<Citizen> citizens) {

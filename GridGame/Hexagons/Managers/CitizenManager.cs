@@ -15,6 +15,7 @@ namespace GridGame.Hexagons.Managers {
         public (int, int) CurrentPos;
         public List<Citizen> Citizens;
         private Dictionary<(int, int), Citizen> CitizenMap;
+        public Stack<Citizen> ToRemoveCitizens;
         private int CurrentCitizenIndex;
 
         private ContentLoader content;
@@ -30,6 +31,7 @@ namespace GridGame.Hexagons.Managers {
             CitizenMap = new Dictionary<(int, int), Citizen> {
                 [StartPos] = CurrentPlayer
             };
+            ToRemoveCitizens = new Stack<Citizen>();
 
             CurrentPos = StartPos;
             CurrentCitizenIndex = 0;
@@ -49,9 +51,13 @@ namespace GridGame.Hexagons.Managers {
             return true;
         }
 
-        public void KillCitizen(Citizen citizen) {
+        public bool KillCitizen(Citizen citizen) {
+            if(citizen == CurrentPlayer) ChangeCitizenRight();
             Citizens.Remove(citizen);
             CitizenMap.Remove(citizen.Coords);
+
+            if(Citizens.Count == 0) return true; //if all citizens are dead
+            return false;
         }
 
         public void KillCitizenAtPosition((int, int) pos) {
