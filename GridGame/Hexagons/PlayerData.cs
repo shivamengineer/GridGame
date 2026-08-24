@@ -19,18 +19,13 @@ namespace GridGame.Hexagons {
 
         public bool SpentGold;
 
-        private HexMap hexMap;
-
-        private ContentLoader content;
         public PlayerResources playerResources;
-
         public BuildingManager buildingManager;
 
         private Dictionary<BuildingType, int> BuildingCostDictionary;
 
         public PlayerData(PlayerResources playerResources, HexMap hexMap) {
             this.playerResources = playerResources;
-            this.hexMap = hexMap;
 
             SpentGold = false;
 
