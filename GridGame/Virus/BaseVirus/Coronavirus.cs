@@ -18,7 +18,6 @@ namespace GridGame.Virus.BaseVirus {
         private HexagonMap hexagonMap;
 
         private float spreadChance;
-        public float strength;
 
         private string virusID;
 
@@ -28,12 +27,12 @@ namespace GridGame.Virus.BaseVirus {
             this.hexagonMap = hexagonMap;
 
             spreadChance = CovidStats.SPREAD_CHANCE;
-            this.strength = strength;
+            virusStrength = strength;
             limitCitizenPercent = 1f - strength;
 
             TimeToSpread = CovidStats.TIME_TO_SPREAD;
             BaseDuration = CovidStats.VIRUS_BASE_DURATION;
-            AsymptomaticTime = CovidStats.ASYMPTOMATIC_TIME;
+            AsymptomaticTime = BaseDuration / 3;
 
             this.virusID = virusID;
         }
@@ -50,12 +49,17 @@ namespace GridGame.Virus.BaseVirus {
             TrySpread(citizensInRange);
         }
 
+        public override void OnVirusDurationEnd() {
+            citizen.virusesImmune.Add(VirusNames.Coronavirus);
+            recovered = true;
+        }
+
         private void TrySpread(HashSet<Citizen> citizens) {
             foreach(var citizen in citizens) {
                 Random random = new Random();
                 float spreads = (float)random.NextDouble();
                 if(spreads <= spreadChance) {
-                    citizen.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, citizen, strength, virusID));
+                    citizen.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, citizen, virusStrength, virusID));
                 }
             }
         }

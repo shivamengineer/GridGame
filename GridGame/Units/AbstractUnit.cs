@@ -31,6 +31,7 @@ namespace GridGame.Units {
         public float timeElapsedWorking = 0f;
 
         public Dictionary<InfectType, IVirus> viruses;
+        public HashSet<VirusNames> virusesImmune;
 
         public Rectangle destRect;
         public Rectangle infectedDestRect;
@@ -141,8 +142,8 @@ namespace GridGame.Units {
                     hexagonMap.WorkTile(Coords);
                 } else {
                     int production = productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY;
-                    if(viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
-                        production = (int)(production * viruses[InfectType.CITIZEN_INFECT].CitizenStrength());
+                    if(!virusesImmune.Contains(VirusNames.Coronavirus) && viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
+                        production = (int)viruses[InfectType.CITIZEN_INFECT].GetCitizenProductivity(production);
                     }
 
                     hexagonMap.BuildBuilding(Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
@@ -158,16 +159,20 @@ namespace GridGame.Units {
                 Coords = TargetCoords;
                 moving = false;
 
-                hexagonMap.citizenManager.UpdatePos();
-                hexagonMap.hexMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
-                hexagonMap.hexMap.HexMath.FocusCamera();
-                hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile.Item1, hexagonMap.hexMap.HoveredTile.Item2);
+                UpdateHexagonMap();
             }
         }
 
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(SpriteBatch spriteBatch, HexagonMath hexMath); 
+
+        private void UpdateHexagonMap() {
+            hexagonMap.citizenManager.UpdatePos();
+            hexagonMap.hexMap.UpdateVision(Coords, UnitInfo.UNIT_VISION_RADIUS);
+            hexagonMap.hexMap.HexMath.FocusCamera();
+            hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile.Item1, hexagonMap.hexMap.HoveredTile.Item2);
+        }
 
     }
 }

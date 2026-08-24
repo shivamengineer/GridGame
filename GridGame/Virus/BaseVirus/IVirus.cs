@@ -10,11 +10,17 @@ namespace GridGame.Virus.BaseVirus {
 
         public float CitizenStrength();
 
+        public float GetCitizenProductivity(int maxProductivity);
+
         public bool IsAsymptomatic();
+
+        public bool IsRecovered();
 
         public void Update(GameTime gameTime);
 
         public void UpdateEvent();
+
+        public void OnVirusDurationEnd();
 
     }
 }

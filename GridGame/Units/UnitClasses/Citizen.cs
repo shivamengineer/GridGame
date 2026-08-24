@@ -26,6 +26,7 @@ namespace GridGame.Units.UnitClasses {
             infectRectColor = CitizenColors.InfectColor;
 
             viruses = new Dictionary<InfectType, IVirus>();
+            virusesImmune = new HashSet<VirusNames>();
 
             destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
             infectedDestRect = new Rectangle(0, 0, UnitInfo.INFECTED_WIDTH, UnitInfo.INFECTED_HEIGHT);
@@ -39,7 +40,7 @@ namespace GridGame.Units.UnitClasses {
                 WorkAtBuilding(gameTime);
             }
             foreach(var virus in viruses.Values) {
-                virus.Update(gameTime);
+                if(!virus.IsRecovered()) virus.Update(gameTime);
             }
         }
 
@@ -80,6 +81,7 @@ namespace GridGame.Units.UnitClasses {
 
         private void DrawInfectedBar(SpriteBatch spriteBatch) {
             if(!viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
+            if(virusesImmune.Contains(VirusNames.Coronavirus)) return;
             if(viruses[InfectType.CITIZEN_INFECT].IsAsymptomatic()) {
                 spriteBatch.Draw(texture, infectedDestRect, Color.Blue); //shows if citizen is sick but asymptomatic
                 return;
