@@ -19,30 +19,51 @@ namespace GridGame.Virus.BaseVirus {
 
         public float TimeToSpread;
         public float BaseDuration;
+        public float AsymptomaticTime;
 
         private float elapsedTime = 0f;
         private float virusTime = 0f;
+
+        private bool asymptomatic = true;
 
         public float CitizenStrength() {
             return limitCitizenPercent;
         }
 
+        public bool IsAsymptomatic() {
+            return asymptomatic;
+        }
+
         public void Update(GameTime gameTime) {
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            virusTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            UpdateTime(gameTime);
 
-            if(elapsedTime >= TimeToSpread) {
-                elapsedTime -= TimeToSpread;
-
-                UpdateEvent(gameTime);
-            }
+            TryUpdateEvent();
+            TryShowSymptoms();
 
             if(virusTime >= BaseDuration) {
-
+                //Virus dies or becomes inactive
             }
         }
 
-        public abstract void UpdateEvent(GameTime gameTime);
+        public abstract void UpdateEvent();
+
+        private void UpdateTime(GameTime gameTime) {
+            elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            virusTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+
+        private void TryUpdateEvent() {
+            if(elapsedTime >= TimeToSpread) {
+                elapsedTime -= TimeToSpread;
+                UpdateEvent();
+            }
+        }
+
+        private void TryShowSymptoms() {
+            if(asymptomatic && virusTime >= AsymptomaticTime) {
+                asymptomatic = false;
+            }
+        }
 
     }
 }

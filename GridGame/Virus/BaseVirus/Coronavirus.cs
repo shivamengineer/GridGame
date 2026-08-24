@@ -33,12 +33,13 @@ namespace GridGame.Virus.BaseVirus {
 
             TimeToSpread = CovidStats.TIME_TO_SPREAD;
             BaseDuration = CovidStats.VIRUS_BASE_DURATION;
+            AsymptomaticTime = CovidStats.ASYMPTOMATIC_TIME;
 
             this.virusID = virusID;
         }
 
 
-        public override void UpdateEvent(GameTime gameTime) {
+        public override void UpdateEvent() {
             HashSet<Citizen> citizensInRange = new HashSet<Citizen>();
             foreach(var citizen in hexagonMap.citizenManager.Citizens) {
                 if(this.citizen.Coords != citizen.Coords && !citizen.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {

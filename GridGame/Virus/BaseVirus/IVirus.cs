@@ -10,9 +10,11 @@ namespace GridGame.Virus.BaseVirus {
 
         public float CitizenStrength();
 
+        public bool IsAsymptomatic();
+
         public void Update(GameTime gameTime);
 
-        public void UpdateEvent(GameTime gameTime);
+        public void UpdateEvent();
 
     }
 }
