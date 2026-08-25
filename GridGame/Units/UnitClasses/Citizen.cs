@@ -23,10 +23,6 @@ namespace GridGame.Units.UnitClasses {
 
             unitColor = new UnitColor();
             transform = new Transform(pos);
-
-            //viruses = new Dictionary<InfectType, IVirus>();
-            //virusesImmune = new HashSet<VirusNames>();
-
             movement = new Movement(hexagonMap, transform);
             virusController = new VirusController();
             builder = new Builder(hexagonMap, transform, virusController);

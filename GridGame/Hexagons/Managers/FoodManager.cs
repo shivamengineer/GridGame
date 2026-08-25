@@ -67,7 +67,7 @@ namespace GridGame.Hexagons.Managers {
             int numMeals = foodOwned / FoodStats.FOOD_PER_CITIZEN;
             Citizen[] fedCitizens = Random.Shared.GetItems(citizenManager.Citizens.ToArray(), numMeals);
             foreach(var citizen in fedCitizens) {
-                citizen.Eat();
+                citizen.builder.Eat();
             }
         }
 
