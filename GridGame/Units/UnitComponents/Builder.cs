@@ -5,6 +5,7 @@ using GridGame.Virus.BaseVirus;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,7 +59,7 @@ namespace GridGame.Units.UnitComponents {
             if(!virusController.virusesImmune.Contains(VirusNames.Coronavirus) && virusController.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
                 production = (int)virusController.viruses[InfectType.CITIZEN_INFECT].GetCitizenProductivity(production);
             }
-            hexagonMap.BuildBuilding(transform.Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
+            hexagonMap.BuildBuilding(transform.Coords, production * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
         }
 
     }

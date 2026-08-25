@@ -27,13 +27,8 @@ namespace GridGame.Units {
         public VirusController virusController;
         public Builder builder;
 
-        public float timeElapsedWorking = 0f;
-
         public Vector2 origin;
         public HexagonMap hexagonMap;
-
-
-        public int productivity = 10;
 
         public void SetTexture(ContentLoader Content) {
             texture = Content.GetTexture(TextureNames.BLANK_RECTANGLE);
