@@ -19,24 +19,26 @@ namespace GridGame.Units.UnitClasses {
         private UnitColor unitColor;
 
         public Citizen((int, int) pos, HexagonMap hexagonMap) {
-            transform = new Transform(pos);
-            unitColor = new UnitColor();
-
-            viruses = new Dictionary<InfectType, IVirus>();
-            virusesImmune = new HashSet<VirusNames>();
-
             this.hexagonMap = hexagonMap;
 
+            unitColor = new UnitColor();
+            transform = new Transform(pos);
+
+            //viruses = new Dictionary<InfectType, IVirus>();
+            //virusesImmune = new HashSet<VirusNames>();
+
             movement = new Movement(hexagonMap, transform);
+            virusController = new VirusController();
+            builder = new Builder(hexagonMap, transform, virusController);
         }
 
         public override void Update(GameTime gameTime) {
             if(transform.moving) {
                 movement.UpdatePos(gameTime);
             } else {
-                WorkAtBuilding(gameTime);
+                builder.WorkAtBuilding(gameTime);
             }
-            foreach(var virus in viruses.Values) {
+            foreach(var virus in virusController.viruses.Values) {
                 if(!virus.IsRecovered()) virus.Update(gameTime);
             }
         }
@@ -74,9 +76,9 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void DrawInfectedBar(SpriteBatch spriteBatch) {
-            if(!viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
-            if(virusesImmune.Contains(VirusNames.Coronavirus)) return;
-            if(viruses[InfectType.CITIZEN_INFECT].IsAsymptomatic()) {
+            if(!virusController.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
+            if(virusController.virusesImmune.Contains(VirusNames.Coronavirus)) return;
+            if(virusController.viruses[InfectType.CITIZEN_INFECT].IsAsymptomatic()) {
                 spriteBatch.Draw(texture, transform.infectedDestRect, Color.Blue); //shows if citizen is sick but asymptomatic
                 return;
             }

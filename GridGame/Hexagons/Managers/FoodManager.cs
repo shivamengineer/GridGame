@@ -43,7 +43,7 @@ namespace GridGame.Hexagons.Managers {
 
             if(foodOwned >= foodNeeded) {
                 foreach(var citizen in citizenManager.Citizens) {
-                    citizen.Eat();
+                    citizen.builder.Eat();
                 }
                 playerResources.SubtractResource(ResourceType.Food, foodNeeded);
                 TryAddCitizen();

@@ -29,10 +29,10 @@ namespace GridGame.Virus.VirusControllers {
 
             Random random = new Random();
             float strength = CovidStats.MIN_STRENGTH + (float)(random.NextDouble() * CovidStats.STRENGTH_RANGE);
-            if(infectedCitizen.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
+            if(infectedCitizen.virusController.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
 
             string id = "covid" + virusID;
-            infectedCitizen.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, infectedCitizen, strength, id));
+            infectedCitizen.virusController.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, infectedCitizen, strength, id));
         }
 
         public override void Spread() {

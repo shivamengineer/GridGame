@@ -23,16 +23,18 @@ namespace GridGame.Units {
         public Texture2D infectedTexture;
 
         public Transform transform;
+        public Movement movement;
+        public VirusController virusController;
+        public Builder builder;
 
         public float timeElapsedWorking = 0f;
 
-        public Dictionary<InfectType, IVirus> viruses;
-        public HashSet<VirusNames> virusesImmune;
+        //public Dictionary<InfectType, IVirus> viruses;
+        //public HashSet<VirusNames> virusesImmune;
 
         public Vector2 origin;
         public HexagonMap hexagonMap;
 
-        public Movement movement;
 
         public int productivity = 10;
 
@@ -53,19 +55,19 @@ namespace GridGame.Units {
             transform.active = active;
         }
 
-        public void WorkAtBuilding(GameTime gameTime) {
+        /*public void WorkAtBuilding(GameTime gameTime) {
             if(!UpdateTime(gameTime)) return;
             GrowHungry();
 
             if(!hexagonMap.hexMap.Tiles[transform.Coords].IsBuilding()) hexagonMap.WorkTile(transform.Coords);
             else BuildBuilding();
-        }
+        }*/
 
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(SpriteBatch spriteBatch, HexagonMath hexMath); 
 
-        private bool UpdateTime(GameTime gameTime) {
+        /*private bool UpdateTime(GameTime gameTime) {
             timeElapsedWorking += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if(timeElapsedWorking >= GameConstants.RESOURCE_TICK_SPEED) {
                 timeElapsedWorking -= GameConstants.RESOURCE_TICK_SPEED;
@@ -85,7 +87,7 @@ namespace GridGame.Units {
                 production = (int)viruses[InfectType.CITIZEN_INFECT].GetCitizenProductivity(production);
             }
             hexagonMap.BuildBuilding(transform.Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
-        }
+        }*/
 
     }
 }

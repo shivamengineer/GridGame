@@ -41,7 +41,8 @@ namespace GridGame.Virus.BaseVirus {
         public override void UpdateEvent() {
             HashSet<Citizen> citizensInRange = new HashSet<Citizen>();
             foreach(var citizen in hexagonMap.citizenManager.Citizens) {
-                if(this.citizen.transform.Coords != citizen.transform.Coords && !citizen.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
+                if(this.citizen.transform.Coords != citizen.transform.Coords 
+                    && !citizen.virusController.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) {
                     int distance = DiscoverTiles.DistanceBetweenTiles(this.citizen.transform.Coords, citizen.transform.Coords);
                     if(distance <= CovidStats.SPREAD_RANGE) citizensInRange.Add(citizen);
                 }
@@ -55,7 +56,7 @@ namespace GridGame.Virus.BaseVirus {
             if(rand <= CovidStats.MORTALITY_RATE) {
                 hexagonMap.citizenManager.ToRemoveCitizens.Push(citizen);
             } else {
-                citizen.virusesImmune.Add(VirusNames.Coronavirus);
+                citizen.virusController.virusesImmune.Add(VirusNames.Coronavirus);
                 recovered = true;
             }
         }
@@ -65,7 +66,7 @@ namespace GridGame.Virus.BaseVirus {
                 Random random = new Random();
                 float spreads = (float)random.NextDouble();
                 if(spreads <= spreadChance) {
-                    citizen.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, citizen, virusStrength, virusID));
+                    citizen.virusController.viruses.Add(InfectType.CITIZEN_INFECT, new Coronavirus(hexagonMap, citizen, virusStrength, virusID));
                 }
             }
         }
