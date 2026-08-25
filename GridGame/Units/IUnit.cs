@@ -31,8 +31,6 @@ namespace GridGame.Units {
 
         public void SetActive(bool active);
 
-        public void UpdatePos(GameTime gameTime);
-
         public void Update(GameTime gameTime);
 
         public void Draw(SpriteBatch spriteBatch, HexagonMath hexMath);

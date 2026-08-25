@@ -24,7 +24,6 @@ namespace GridGame.Units {
 
         public Transform transform;
 
-        public float progress = 0f;
         public float timeElapsed = 0f;
         public float timeElapsedWorking = 0f;
 
@@ -33,6 +32,8 @@ namespace GridGame.Units {
 
         public Vector2 origin;
         public HexagonMap hexagonMap;
+
+        public Movement movement;
 
         public int productivity = 10;
 
@@ -113,8 +114,7 @@ namespace GridGame.Units {
             if(hexagonMap.hexMap.Tiles[transform.TargetCoords].GetTerrainType() == TerrainType.Ocean) return;
 
             transform.moving = true;
-            timeElapsed = 0f;
-            timeElapsedWorking = 0f;
+            movement.ResetTime();
         }
 
         public void SetActive(bool active) {
@@ -127,15 +127,6 @@ namespace GridGame.Units {
 
             if(!hexagonMap.hexMap.Tiles[transform.Coords].IsBuilding()) hexagonMap.WorkTile(transform.Coords);
             else BuildBuilding();
-        }
-
-        public void UpdatePos(GameTime gameTime) {
-            timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            progress = timeElapsed / UnitInfo.UNIT_MOVE_TIME;
-            if(progress > 1.0f) {
-                ProgressEvent();
-                UpdateHexagonMap();
-            }
         }
 
         public abstract void Update(GameTime gameTime);
@@ -162,19 +153,6 @@ namespace GridGame.Units {
                 production = (int)viruses[InfectType.CITIZEN_INFECT].GetCitizenProductivity(production);
             }
             hexagonMap.BuildBuilding(transform.Coords, productivity * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
-        }
-
-        private void ProgressEvent() {
-            progress = 1.0f;
-            transform.Coords = transform.TargetCoords;
-            transform.moving = false;
-        }
-
-        private void UpdateHexagonMap() {
-            hexagonMap.citizenManager.UpdatePos();
-            hexagonMap.hexMap.UpdateVision(transform.Coords, UnitInfo.UNIT_VISION_RADIUS);
-            hexagonMap.hexMap.HexMath.FocusCamera();
-            hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile);
         }
 
     }

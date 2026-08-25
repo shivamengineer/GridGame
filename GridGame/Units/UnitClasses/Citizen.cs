@@ -26,11 +26,13 @@ namespace GridGame.Units.UnitClasses {
             virusesImmune = new HashSet<VirusNames>();
 
             this.hexagonMap = hexagonMap;
+
+            movement = new Movement(hexagonMap, transform);
         }
 
         public override void Update(GameTime gameTime) {
             if(transform.moving) {
-                UpdatePos(gameTime);
+                movement.UpdatePos(gameTime);
             } else {
                 WorkAtBuilding(gameTime);
             }
@@ -48,7 +50,7 @@ namespace GridGame.Units.UnitClasses {
             Vector2 posBefore = hexMath.HexToPixel(transform.Coords);
             Vector2 targetPos = hexMath.HexToPixel(transform.TargetCoords);
 
-            Vector2 position = Vector2.Lerp(posBefore, targetPos, progress);
+            Vector2 position = Vector2.Lerp(posBefore, targetPos, movement.progress);
             transform.SetDestRectDimensions(position, hexMath);
 
             DrawCitizen(spriteBatch);
