@@ -24,7 +24,6 @@ namespace GridGame.Units {
 
         public Transform transform;
 
-        public float timeElapsed = 0f;
         public float timeElapsedWorking = 0f;
 
         public Dictionary<InfectType, IVirus> viruses;

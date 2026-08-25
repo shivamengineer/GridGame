@@ -13,14 +13,12 @@ namespace GridGame.Units.UnitComponents {
 
         public float progress = 0f;
         public float TimeElapsed = 0f;
-        public float TimeElapsedWorking = 0f;
 
         private HexagonMap hexagonMap = hexagonMap;
         private Transform transform = transform;
 
         public void ResetTime() {
             TimeElapsed = 0f;
-            TimeElapsedWorking = 0f;
         }
 
         public void MoveUp() {
