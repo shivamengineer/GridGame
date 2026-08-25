@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Hexagons;
+using GridGame.Tiles.Terrain;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,63 @@ namespace GridGame.Units.UnitComponents {
         public void ResetTime() {
             TimeElapsed = 0f;
             TimeElapsedWorking = 0f;
+        }
+
+        public void MoveUp() {
+            if(transform.moving) return;
+
+            transform.SetTargetCoords(0, -1);
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
+            SetMoving();
+        }
+
+        public void MoveDown() {
+            if(transform.moving) return;
+
+            transform.SetTargetCoords(0, 1);
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
+            SetMoving();
+        }
+
+        public void MoveUpRight() {
+            if(transform.moving) return;
+
+            transform.SetTargetCoords(1, -1);
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
+            SetMoving();
+        }
+
+        public void MoveDownRight() {
+            if(transform.moving) return;
+
+            transform.SetTargetCoords(1, 0);
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
+            SetMoving();
+        }
+
+        public void MoveUpLeft() {
+            if(transform.moving) return;
+
+            transform.SetTargetCoords(-1, 0);
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
+
+            SetMoving();
+        }
+
+        public void MoveDownLeft() {
+            if(transform.moving) return;
+
+            transform.SetTargetCoords(-1, 1);
+
+            if(hexagonMap.citizenManager.HasOtherCitizenAtPos(transform.TargetCoords)) return;
+            SetMoving();
+        }
+
+        public void SetMoving() {
+            if(hexagonMap.hexMap.Tiles[transform.TargetCoords].GetTerrainType() == TerrainType.Ocean) return;
+
+            transform.moving = true;
+            ResetTime();
         }
 
         public void UpdatePos(GameTime gameTime) {

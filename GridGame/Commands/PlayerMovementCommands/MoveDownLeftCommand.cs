@@ -15,7 +15,7 @@ namespace GridGame.Commands.PlayerMovementCommands {
         }
 
         public void Execute() {
-            hexagonMap.citizenManager.CurrentPlayer.MoveDownLeft();
+            hexagonMap.citizenManager.CurrentPlayer.movement.MoveDownLeft();
         }
 
     }

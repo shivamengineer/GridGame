@@ -15,7 +15,7 @@ namespace GridGame.Units {
 
         public void Eat();
 
-        public void MoveUp();
+        /*public void MoveUp();
 
         public void MoveDown();
 
@@ -27,7 +27,7 @@ namespace GridGame.Units {
 
         public void MoveDownLeft();
 
-        public void SetMoving();
+        public void SetMoving();*/
 
         public void SetActive(bool active);
 
