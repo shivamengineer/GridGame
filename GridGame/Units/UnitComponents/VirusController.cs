@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace GridGame.Units.UnitComponents {
     public class VirusController {
 
-        public Dictionary<InfectType, IVirus> viruses;
+        public Dictionary<VirusNames, IVirus> viruses;
         public HashSet<VirusNames> virusesImmune;
         public VirusState virusState;
 
         public VirusController() {
-            viruses = new Dictionary<InfectType, IVirus>();
+            viruses = new Dictionary<VirusNames, IVirus>();
             virusesImmune = new HashSet<VirusNames>();
             virusState = VirusState.None;
         }

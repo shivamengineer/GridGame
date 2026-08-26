@@ -70,9 +70,9 @@ namespace GridGame.Units.UnitClasses {
         }
 
         private void DrawInfectedBar(SpriteBatch spriteBatch) {
-            if(!virusController.viruses.ContainsKey(InfectType.CITIZEN_INFECT)) return;
+            if(!virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
             if(virusController.virusesImmune.Contains(VirusNames.Coronavirus)) return;
-            if(virusController.viruses[InfectType.CITIZEN_INFECT].IsAsymptomatic()) {
+            if(virusController.viruses[VirusNames.Coronavirus].IsAsymptomatic()) {
                 spriteBatch.Draw(texture, transform.infectedDestRect, Color.Blue); //shows if citizen is sick but asymptomatic
                 return;
             }
