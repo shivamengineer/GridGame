@@ -13,8 +13,6 @@ namespace GridGame.Virus.BaseVirus {
 
         public InfectType infectType;
 
-        public int ID;
-
         public float infectChance;
         public float mortalityRate;
         public float virusStrength;
