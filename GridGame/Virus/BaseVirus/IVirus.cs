@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Units.UnitClasses;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace GridGame.Virus.BaseVirus {
         public void UpdateEvent();
 
         public void OnVirusDurationEnd();
+
+        public IVirus NewInstance(Citizen citizen);
 
     }
 }

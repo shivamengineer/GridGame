@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants.Viruses.Covid;
+using GridGame.Units.UnitClasses;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,8 @@ namespace GridGame.Virus.BaseVirus {
         public abstract void UpdateEvent();
 
         public abstract void OnVirusDurationEnd();
+
+        public abstract IVirus NewInstance(Citizen citizen);
 
         private void UpdateTime(GameTime gameTime) {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
