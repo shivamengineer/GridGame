@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents {
         public bool IsRecovered();
 
         public float GetProductivity();
+
+        public void Update(GameTime gameTime);
 
     }
 }

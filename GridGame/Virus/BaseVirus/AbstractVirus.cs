@@ -1,5 +1,7 @@
 ﻿using GridGame.Constants.Viruses.Covid;
 using GridGame.Units.UnitClasses;
+using GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents;
+using GridGame.Virus.BaseVirus.VirusComponents.InfectComponents;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,9 @@ namespace GridGame.Virus.BaseVirus {
 
         public InfectType infectType;
 
+        public IInfect Infect;
+        public IAttackCitizen AttackCitizen;
+
         public float infectChance;
         public float mortalityRate;
         public float virusStrength;
@@ -22,7 +27,6 @@ namespace GridGame.Virus.BaseVirus {
         public float BaseDuration;
         public float AsymptomaticTime;
 
-        private float elapsedTime = 0f;
         private float virusTime = 0f;
 
         private bool asymptomatic = true;
@@ -52,7 +56,7 @@ namespace GridGame.Virus.BaseVirus {
         public void Update(GameTime gameTime) {
             UpdateTime(gameTime);
 
-            TryUpdateEvent();
+            Infect.Update(gameTime);
             TryShowSymptoms();
 
             if(virusTime >= BaseDuration) {
@@ -67,15 +71,7 @@ namespace GridGame.Virus.BaseVirus {
         public abstract IVirus NewInstance(Citizen citizen);
 
         private void UpdateTime(GameTime gameTime) {
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
             virusTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-        }
-
-        private void TryUpdateEvent() {
-            if(elapsedTime >= TimeToSpread) {
-                elapsedTime -= TimeToSpread;
-                UpdateEvent();
-            }
         }
 
         private void TryShowSymptoms() {

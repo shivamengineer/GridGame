@@ -3,6 +3,7 @@ using GridGame.Hexagons;
 using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.Units.UnitClasses;
+using GridGame.Virus.BaseVirus.VirusComponents.InfectComponents;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,36 +18,24 @@ namespace GridGame.Virus.BaseVirus {
         private Citizen citizen;
         private HexagonMap hexagonMap;
 
-        private float spreadChance;
-
         private VirusNames virusName;
 
         public Coronavirus(HexagonMap hexagonMap, Citizen citizen, float strength) {
             this.citizen = citizen;
             this.hexagonMap = hexagonMap;
 
-            spreadChance = CovidStats.SPREAD_CHANCE;
             virusStrength = strength;
             limitCitizenPercent = 1f - strength;
 
-            TimeToSpread = CovidStats.TIME_TO_SPREAD;
             BaseDuration = CovidStats.VIRUS_BASE_DURATION;
             AsymptomaticTime = BaseDuration / 3;
 
             virusName = VirusNames.Coronavirus;
+            Infect = new AirborneInfect(hexagonMap.citizenManager, citizen, this);
         }
 
-
         public override void UpdateEvent() {
-            HashSet<Citizen> citizensInRange = new HashSet<Citizen>();
-            foreach(var citizen in hexagonMap.citizenManager.Citizens) {
-                if(this.citizen.transform.Coords != citizen.transform.Coords 
-                    && !citizen.virusController.viruses.ContainsKey(virusName)) {
-                    int distance = DiscoverTiles.DistanceBetweenTiles(this.citizen.transform.Coords, citizen.transform.Coords);
-                    if(distance <= CovidStats.SPREAD_RANGE) citizensInRange.Add(citizen);
-                }
-            }
-            TrySpread(citizensInRange);
+            //
         }
 
         public override void OnVirusDurationEnd() {
@@ -62,16 +51,6 @@ namespace GridGame.Virus.BaseVirus {
 
         public override IVirus NewInstance(Citizen citizen) {
             return new Coronavirus(hexagonMap, citizen, virusStrength);
-        }
-
-        private void TrySpread(HashSet<Citizen> citizens) {
-            foreach(var citizen in citizens) {
-                Random random = new Random();
-                float spreads = (float)random.NextDouble();
-                if(spreads <= spreadChance) {
-                    citizen.virusController.viruses.Add(virusName, new Coronavirus(hexagonMap, citizen, virusStrength));
-                }
-            }
         }
 
     }
