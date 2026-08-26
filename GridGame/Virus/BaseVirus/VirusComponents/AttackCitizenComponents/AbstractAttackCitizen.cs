@@ -10,18 +10,32 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents {
 
         public float elapsedTime = 0f;
 
-        public bool Asymptomatic;
-        public bool Recovered = true;
+        public float mortalityRate;
+        public float virusStrength;
+        public float limitCitizenPercent = 0f;
 
-        public abstract bool IsAsymptomatic();
+        public float TimeToSpread;
+        public float BaseDuration;
+        public float AsymptomaticTime;
 
-        public abstract bool IsRecovered();
+        public bool Asymptomatic = true;
+        public bool Recovered = false;
+
+        public bool IsAsymptomatic() { return Asymptomatic; }
+
+        public bool IsRecovered() { return Recovered; }
 
         public abstract float GetProductivity();
 
         public void Update(GameTime gameTime) {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            TryShowSymptoms();
+        }
 
+        private void TryShowSymptoms() {
+            if(Asymptomatic && elapsedTime >= AsymptomaticTime) {
+                Asymptomatic = false;
+            }
         }
 
     }
