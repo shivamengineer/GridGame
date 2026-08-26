@@ -13,20 +13,6 @@ namespace GridGame.Units {
 
         public void SetTexture(ContentLoader Content);
 
-        /*public void MoveUp();
-
-        public void MoveDown();
-
-        public void MoveUpRight();
-
-        public void MoveDownRight();
-
-        public void MoveUpLeft();
-
-        public void MoveDownLeft();
-
-        public void SetMoving();*/
-
         public void SetActive(bool active);
 
         public void Update(GameTime gameTime);
