@@ -1,4 +1,6 @@
 ﻿using GridGame.Virus.BaseVirus;
+using GridGame.Virus.VirusControllers;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,18 @@ namespace GridGame.Units.UnitComponents {
 
         public Dictionary<InfectType, IVirus> viruses;
         public HashSet<VirusNames> virusesImmune;
+        public VirusState virusState;
 
         public VirusController() {
             viruses = new Dictionary<InfectType, IVirus>();
             virusesImmune = new HashSet<VirusNames>();
+            virusState = VirusState.None;
+        }
+
+        public void Update(GameTime gameTime) {
+            foreach(var virus in viruses.Values) {
+                if(!virus.IsRecovered()) virus.Update(gameTime);
+            }
         }
 
     }

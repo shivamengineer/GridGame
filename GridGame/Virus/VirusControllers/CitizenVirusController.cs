@@ -24,6 +24,7 @@ namespace GridGame.Virus.VirusControllers {
         }
 
         public override void InitialInfect() {
+            if(citizenManager.Citizens.Count == 0) return;
             int citizenIndex = Random.Shared.Next(citizenManager.Citizens.Count);
             Citizen infectedCitizen = citizenManager.Citizens[citizenIndex];
 

@@ -34,9 +34,7 @@ namespace GridGame.Units.UnitClasses {
             } else {
                 builder.WorkAtBuilding(gameTime);
             }
-            foreach(var virus in virusController.viruses.Values) {
-                if(!virus.IsRecovered()) virus.Update(gameTime);
-            }
+            virusController.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, HexagonMath hexMath) {
