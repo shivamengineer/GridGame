@@ -18,8 +18,6 @@ namespace GridGame.Virus.VirusControllers {
 
         public abstract void InitialInfect();
 
-        public abstract void Spread();
-
         public abstract InfectType GetInfectType();
 
         public void Update(GameTime gameTime) {

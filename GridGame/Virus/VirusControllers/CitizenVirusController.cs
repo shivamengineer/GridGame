@@ -15,7 +15,6 @@ namespace GridGame.Virus.VirusControllers {
     public class CitizenVirusController : AbstractVirusController {
 
         private CitizenManager citizenManager;
-        private float timeElapsed = 0f;
 
         public CitizenVirusController(CitizenManager citizenManager) {
             this.citizenManager = citizenManager;
@@ -31,10 +30,6 @@ namespace GridGame.Virus.VirusControllers {
             if(infectedCitizen.virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
 
             infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(citizenManager, infectedCitizen, strength));
-        }
-
-        public override void Spread() {
-            // 
         }
 
         public override InfectType GetInfectType() {
