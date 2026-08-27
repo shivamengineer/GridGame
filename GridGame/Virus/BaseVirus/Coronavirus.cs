@@ -3,6 +3,7 @@ using GridGame.Hexagons;
 using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.Units.UnitClasses;
+using GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents.AttackClasses;
 using GridGame.Virus.BaseVirus.VirusComponents.InfectComponents;
 using Microsoft.Xna.Framework;
 using System;
@@ -16,13 +17,13 @@ namespace GridGame.Virus.BaseVirus {
     public class Coronavirus : AbstractVirus {
 
         private Citizen citizen;
-        private HexagonMap hexagonMap;
+        private CitizenManager citizenManager;
 
         private VirusNames virusName;
 
-        public Coronavirus(HexagonMap hexagonMap, Citizen citizen, float strength) {
+        public Coronavirus(CitizenManager citizenManager, Citizen citizen, float strength) {
             this.citizen = citizen;
-            this.hexagonMap = hexagonMap;
+            this.citizenManager = citizenManager;
 
             virusStrength = strength;
             limitCitizenPercent = 1f - strength;
@@ -31,26 +32,12 @@ namespace GridGame.Virus.BaseVirus {
             AsymptomaticTime = BaseDuration / 3;
 
             virusName = VirusNames.Coronavirus;
-            Infect = new AirborneInfect(hexagonMap.citizenManager, citizen, this);
-        }
-
-        public override void UpdateEvent() {
-            //
-        }
-
-        public override void OnVirusDurationEnd() {
-            Random random = new Random();
-            float rand = (float)random.NextDouble();
-            if(rand <= CovidStats.MORTALITY_RATE) {
-                hexagonMap.citizenManager.ToRemoveCitizens.Push(citizen);
-            } else {
-                citizen.virusController.virusesImmune.Add(VirusNames.Coronavirus);
-                recovered = true;
-            }
+            Infect = new AirborneInfect(citizenManager, citizen, this);
+            AttackCitizen = new DefaultAttackCitizen(citizenManager, citizen, strength);
         }
 
         public override IVirus NewInstance(Citizen citizen) {
-            return new Coronavirus(hexagonMap, citizen, virusStrength);
+            return new Coronavirus(citizenManager, citizen, virusStrength);
         }
 
     }

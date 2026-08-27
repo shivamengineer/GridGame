@@ -13,13 +13,11 @@ using System.Threading.Tasks;
 namespace GridGame.Virus.VirusControllers {
     public class CitizenVirusController : AbstractVirusController {
 
-        private HexagonMap hexagonMap;
         private CitizenManager citizenManager;
         private float timeElapsed = 0f;
 
-        public CitizenVirusController(HexagonMap hexagonMap) {
-            this.hexagonMap = hexagonMap;
-            citizenManager = hexagonMap.citizenManager;
+        public CitizenVirusController(CitizenManager citizenManager) {
+            this.citizenManager = citizenManager;
         }
 
         public override void InitialInfect() {
@@ -31,7 +29,7 @@ namespace GridGame.Virus.VirusControllers {
             float strength = CovidStats.MIN_STRENGTH + (float)(random.NextDouble() * CovidStats.STRENGTH_RANGE);
             if(infectedCitizen.virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
 
-            infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(hexagonMap, infectedCitizen, strength));
+            infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(citizenManager, infectedCitizen, strength));
         }
 
         public override void Spread() {

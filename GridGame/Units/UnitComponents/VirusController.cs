@@ -22,7 +22,7 @@ namespace GridGame.Units.UnitComponents {
 
         public void Update(GameTime gameTime) {
             foreach(var virus in viruses.Values) {
-                if(!virus.IsRecovered()) virus.Update(gameTime);
+                if(!virus.AttackCitizen.IsRecovered()) virus.Update(gameTime);
             }
         }
 

@@ -15,8 +15,8 @@ namespace GridGame.Virus.BaseVirus {
 
         public InfectType infectType;
 
-        public IInfect Infect;
-        public IAttackCitizen AttackCitizen;
+        public IInfect Infect { get; set; }
+        public IAttackCitizen AttackCitizen { get; set; }
 
         public float infectChance;
         public float mortalityRate;
@@ -32,53 +32,12 @@ namespace GridGame.Virus.BaseVirus {
         private bool asymptomatic = true;
         public bool recovered = false;
 
-        public float CitizenStrength() {
-            return limitCitizenPercent;
-        }
-
-        public float GetCitizenProductivity(int maxProductivity) {
-            float min = limitCitizenPercent * maxProductivity;
-            float c = (4 * maxProductivity * virusStrength) / (BaseDuration * BaseDuration);
-            float productivity = c * MathF.Pow(virusTime - (BaseDuration / 2), 2);
-            productivity += min;
-                                         
-            return productivity;
-        }
-
-        public bool IsAsymptomatic() {
-            return asymptomatic;
-        }
-
-        public bool IsRecovered() {
-            return recovered;
-        }
-
         public void Update(GameTime gameTime) {
-            UpdateTime(gameTime);
-
             Infect.Update(gameTime);
-            TryShowSymptoms();
-
-            if(virusTime >= BaseDuration) {
-                OnVirusDurationEnd();
-            }
+            AttackCitizen.Update(gameTime);
         }
-
-        public abstract void UpdateEvent();
-
-        public abstract void OnVirusDurationEnd();
 
         public abstract IVirus NewInstance(Citizen citizen);
-
-        private void UpdateTime(GameTime gameTime) {
-            virusTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-        }
-
-        private void TryShowSymptoms() {
-            if(asymptomatic && virusTime >= AsymptomaticTime) {
-                asymptomatic = false;
-            }
-        }
 
     }
 }

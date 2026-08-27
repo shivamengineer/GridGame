@@ -25,11 +25,21 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents {
 
         public bool IsRecovered() { return Recovered; }
 
-        public abstract float GetProductivity();
+        public abstract float GetProductivity(int maxProductivity);
+
+        public abstract void OnVirusDurationEnd();
+
+        public float CitizenStrength() {
+            return limitCitizenPercent;
+        }
 
         public void Update(GameTime gameTime) {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
             TryShowSymptoms();
+
+            if(elapsedTime >= BaseDuration) {
+                OnVirusDurationEnd();
+            }
         }
 
         private void TryShowSymptoms() {
