@@ -3,6 +3,7 @@ using GridGame.Hexagons;
 using GridGame.Hexagons.Managers;
 using GridGame.Units.UnitClasses;
 using GridGame.Virus.BaseVirus;
+using GridGame.Virus.BaseVirus.Viruses;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

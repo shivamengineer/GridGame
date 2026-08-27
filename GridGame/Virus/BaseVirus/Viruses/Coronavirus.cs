@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Virus.BaseVirus {
+namespace GridGame.Virus.BaseVirus.Viruses {
     public class Coronavirus : AbstractVirus {
 
         private Citizen citizen;
