@@ -26,12 +26,12 @@ namespace GridGame.Virus.BaseVirus {
             this.citizenManager = citizenManager;
 
             virusStrength = strength;
-            limitCitizenPercent = 1f - strength;
 
             BaseDuration = CovidStats.VIRUS_BASE_DURATION;
             AsymptomaticTime = BaseDuration / 3;
 
             virusName = VirusNames.Coronavirus;
+
             Infect = new AirborneInfect(citizenManager, citizen, this);
             AttackCitizen = new DefaultAttackCitizen(citizenManager, citizen, strength);
         }

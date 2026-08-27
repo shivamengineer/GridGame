@@ -12,8 +12,6 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents {
 
         public bool IsRecovered();
 
-        public float CitizenStrength();
-
         public void OnVirusDurationEnd();
 
         public float GetProductivity(int maxProductivity);

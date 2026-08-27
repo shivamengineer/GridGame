@@ -12,12 +12,10 @@ namespace GridGame.Units.UnitComponents {
 
         public Dictionary<VirusNames, IVirus> viruses;
         public HashSet<VirusNames> virusesImmune;
-        public VirusState virusState;
 
         public VirusController() {
             viruses = new Dictionary<VirusNames, IVirus>();
             virusesImmune = new HashSet<VirusNames>();
-            virusState = VirusState.None;
         }
 
         public void Update(GameTime gameTime) {

@@ -21,16 +21,10 @@ namespace GridGame.Virus.BaseVirus {
         public float infectChance;
         public float mortalityRate;
         public float virusStrength;
-        public float limitCitizenPercent = 0f;
 
         public float TimeToSpread;
         public float BaseDuration;
         public float AsymptomaticTime;
-
-        private float virusTime = 0f;
-
-        private bool asymptomatic = true;
-        public bool recovered = false;
 
         public void Update(GameTime gameTime) {
             Infect.Update(gameTime);

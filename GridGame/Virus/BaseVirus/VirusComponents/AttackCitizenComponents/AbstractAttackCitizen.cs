@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents.AttackClasses.AttackVirusComponents;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,41 +11,30 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents {
 
         public float elapsedTime = 0f;
 
-        public float mortalityRate;
-        public float virusStrength;
-        public float limitCitizenPercent = 0f;
+        public VirusStrength Strength;
+        public VirusTime Time;
+        public VirusState State;
 
-        public float TimeToSpread;
-        public float BaseDuration;
-        public float AsymptomaticTime;
+        public bool IsAsymptomatic() { return State.Asymptomatic; }
 
-        public bool Asymptomatic = true;
-        public bool Recovered = false;
-
-        public bool IsAsymptomatic() { return Asymptomatic; }
-
-        public bool IsRecovered() { return Recovered; }
+        public bool IsRecovered() { return State.Recovered; }
 
         public abstract float GetProductivity(int maxProductivity);
 
         public abstract void OnVirusDurationEnd();
 
-        public float CitizenStrength() {
-            return limitCitizenPercent;
-        }
-
         public void Update(GameTime gameTime) {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
             TryShowSymptoms();
 
-            if(elapsedTime >= BaseDuration) {
+            if(elapsedTime >= Time.Duration) {
                 OnVirusDurationEnd();
             }
         }
 
         private void TryShowSymptoms() {
-            if(Asymptomatic && elapsedTime >= AsymptomaticTime) {
-                Asymptomatic = false;
+            if(State.Asymptomatic && elapsedTime >= Time.AsymptomaticTime) {
+                State.Asymptomatic = false;
             }
         }
 
