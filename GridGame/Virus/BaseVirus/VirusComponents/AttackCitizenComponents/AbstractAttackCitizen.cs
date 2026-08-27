@@ -15,6 +15,11 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents {
         public VirusTime Time;
         public VirusState State;
 
+        public void SetStats(VirusStrength Strength, VirusTime Time) {
+            this.Strength = Strength;
+            this.Time = Time;
+        }
+
         public bool IsAsymptomatic() { return State.Asymptomatic; }
 
         public bool IsRecovered() { return State.Recovered; }

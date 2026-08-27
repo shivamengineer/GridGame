@@ -18,13 +18,7 @@ namespace GridGame.Virus.BaseVirus {
         public IInfect Infect { get; set; }
         public IAttackCitizen AttackCitizen { get; set; }
 
-        public float infectChance;
-        public float mortalityRate;
         public float virusStrength;
-
-        public float TimeToSpread;
-        public float BaseDuration;
-        public float AsymptomaticTime;
 
         public void Update(GameTime gameTime) {
             Infect.Update(gameTime);

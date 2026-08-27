@@ -4,6 +4,7 @@ using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.Units.UnitClasses;
 using GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents.AttackClasses;
+using GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents.AttackClasses.AttackVirusComponents;
 using GridGame.Virus.BaseVirus.VirusComponents.InfectComponents;
 using Microsoft.Xna.Framework;
 using System;
@@ -26,14 +27,14 @@ namespace GridGame.Virus.BaseVirus {
             this.citizenManager = citizenManager;
 
             virusStrength = strength;
-
-            BaseDuration = CovidStats.VIRUS_BASE_DURATION;
-            AsymptomaticTime = BaseDuration / 3;
-
             virusName = VirusNames.Coronavirus;
 
             Infect = new AirborneInfect(citizenManager, citizen, this);
             AttackCitizen = new DefaultAttackCitizen(citizenManager, citizen, strength);
+
+            VirusStrength attackStrength = new VirusStrength(CovidStats.MORTALITY_RATE, strength);
+            VirusTime attackTime = new VirusTime(CovidStats.TIME_TO_SPREAD, CovidStats.VIRUS_BASE_DURATION);
+            AttackCitizen.SetStats(attackStrength, attackTime);
         }
 
         public override IVirus NewInstance(Citizen citizen) {

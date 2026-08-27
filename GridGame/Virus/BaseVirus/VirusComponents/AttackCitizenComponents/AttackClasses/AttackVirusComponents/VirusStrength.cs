@@ -9,5 +9,11 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents.Attac
         public float mortalityRate;
         public float virusStrength;
         public float limitCitizenPercent;
+
+        public VirusStrength(float mortalityRate, float virusStrength) {
+            this.mortalityRate = mortalityRate;
+            this.virusStrength = virusStrength;
+            limitCitizenPercent = 1f - virusStrength;
+        }
     }
 }

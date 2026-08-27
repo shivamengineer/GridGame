@@ -19,12 +19,6 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents.Attac
             this.citizenManager = citizenManager;
             this.citizen = citizen;
 
-            Strength.virusStrength = strength;
-            Strength.limitCitizenPercent = 1f - strength;
-
-            Time.Duration = CovidStats.VIRUS_BASE_DURATION;
-            Time.AsymptomaticTime = Time.Duration / 3;
-
             State = new VirusState();
         }
 
@@ -40,7 +34,7 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.AttackCitizenComponents.Attac
         public override void OnVirusDurationEnd() {
             Random random = new Random();
             float rand = (float)random.NextDouble();
-            if(rand <= CovidStats.MORTALITY_RATE) {
+            if(rand <= Strength.mortalityRate) {
                 citizenManager.ToRemoveCitizens.Push(citizen);
             } else {
                 citizen.virusController.virusesImmune.Add(VirusNames.Coronavirus);

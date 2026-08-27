@@ -59,7 +59,6 @@ namespace GridGame.Units.UnitComponents {
             if(!virusController.virusesImmune.Contains(VirusNames.Coronavirus) && virusController.viruses.ContainsKey(VirusNames.Coronavirus)) {
                 IVirus virus = virusController.viruses[VirusNames.Coronavirus];
                 production = (int)virus.AttackCitizen.GetProductivity(production);
-                //production = (int)virusController.viruses[VirusNames.Coronavirus].GetCitizenProductivity(production);
             }
             hexagonMap.BuildBuilding(transform.Coords, production * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
         }
