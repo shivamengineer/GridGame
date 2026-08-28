@@ -22,11 +22,9 @@ namespace GridGame.Virus.VirusControllers {
 
         public override void InitialInfect() {
             if(citizenManager.Citizens.Count == 0) return;
-            int citizenIndex = Random.Shared.Next(citizenManager.Citizens.Count);
-            Citizen infectedCitizen = citizenManager.Citizens[citizenIndex];
 
-            Random random = new Random();
-            float strength = CovidStats.MIN_STRENGTH + (float)(random.NextDouble() * CovidStats.STRENGTH_RANGE);
+            Citizen infectedCitizen = GetRandomCitizen();
+            float strength = GetCovidStrength();
             if(infectedCitizen.virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
 
             infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(citizenManager, infectedCitizen, strength));
@@ -36,7 +34,15 @@ namespace GridGame.Virus.VirusControllers {
             return InfectType.CITIZEN_INFECT;
         }
 
-        
+        private Citizen GetRandomCitizen() {
+            int citizenIndex = Random.Shared.Next(citizenManager.Citizens.Count);
+            return citizenManager.Citizens[citizenIndex];
+        }
+
+        private float GetCovidStrength() {
+            Random random = new Random();
+            return (CovidStats.MIN_STRENGTH + (float)(random.NextDouble() * CovidStats.STRENGTH_RANGE));
+        }
 
     }
 }
