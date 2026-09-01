@@ -13,10 +13,10 @@ namespace GridGame.RecoveryMethods.RecoveryMethodClasses {
         public RestRecoveryMethod() {
             recoveryMethod = RecoveryMethod.REST;
             IntendedHealthEffects = new List<IHealthEffect>() {
-                //ADD HEALTH IMPROVEMENTS
+                new RestedEffect(HealthEffectStats.RESTED_STRENGTH),
             };
             SideEffects = new List<IHealthEffect>() {
-                new DrowsyEffect(HealthEffectStats.DROWSY_STRENGTH)
+                new DrowsyEffect(HealthEffectStats.DROWSY_STRENGTH),
             };
         }
 

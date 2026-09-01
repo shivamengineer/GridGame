@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GridGame.HealthEffects {
     public enum HealthEffectType {
+        RESTED,
         DROWSY,
         HYDRATED,
     }
