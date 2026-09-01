@@ -24,10 +24,7 @@ namespace GridGame.Virus.VirusControllers {
             if(citizenManager.Citizens.Count == 0) return;
 
             Citizen infectedCitizen = GetRandomCitizen();
-            float strength = GetCovidStrength();
-            if(infectedCitizen.virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
-
-            infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(citizenManager, infectedCitizen, strength));
+            InitialCovidInfect(infectedCitizen);
         }
 
         public override InfectType GetInfectType() {
@@ -37,6 +34,13 @@ namespace GridGame.Virus.VirusControllers {
         private Citizen GetRandomCitizen() {
             int citizenIndex = Random.Shared.Next(citizenManager.Citizens.Count);
             return citizenManager.Citizens[citizenIndex];
+        }
+
+        private void InitialCovidInfect(Citizen infectedCitizen) {
+            float strength = GetCovidStrength();
+            if(infectedCitizen.virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
+
+            infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(citizenManager, infectedCitizen, strength));
         }
 
         private float GetCovidStrength() {
