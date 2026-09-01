@@ -8,7 +8,13 @@ using System.Threading.Tasks;
 namespace GridGame.Treatment {
     public abstract class AbstractTreatment : ITreatment {
 
-        public List<IRecoveryMethod> recoveryMethods = new List<IRecoveryMethod>();
+        public TreatmentType Treatment;
+
+        public List<IRecoveryMethod> recoveryMethods;
+
+        public TreatmentType GetTreatmentType() {
+            return Treatment;
+        }
 
     }
 }

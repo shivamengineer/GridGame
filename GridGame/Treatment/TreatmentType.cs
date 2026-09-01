@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Treatment {
-    public interface ITreatment {
-
-        public TreatmentType GetTreatmentType();
+    public enum TreatmentType {
+        BASE,
 
     }
 }

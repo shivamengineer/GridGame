@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.RecoveryMethods.RecoveryMethodClasses {
-    public class RestRecoveryMethod : AbstractRecoveryMethod {
+    public class HydrationWaterRecoveryMethod : AbstractRecoveryMethod {
 
-        public RestRecoveryMethod() {
-            recoveryMethod = RecoveryMethod.REST;
+        public HydrationWaterRecoveryMethod() {
+            recoveryMethod = RecoveryMethod.HYDRATION_WATER;
             IntendedHealthEffects = new List<IHealthEffect>() {
                 //ADD HEALTH IMPROVEMENTS
             };

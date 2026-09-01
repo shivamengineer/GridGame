@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Treatment {
-    public interface ITreatment {
-
-        public TreatmentType GetTreatmentType();
-
+namespace GridGame.RecoveryMethods {
+    public enum RecoveryMethod {
+        REST,
+        HYDRATION_WATER,
     }
 }
