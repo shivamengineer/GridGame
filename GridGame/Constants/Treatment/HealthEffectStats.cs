@@ -11,5 +11,8 @@ namespace GridGame.Constants.Treatment {
         public static float DROWSY_STRENGTH = 0.1f;
         public static float HYDRATED_WATER_STRENGTH = 0.35f;
 
+        public static float HUNGRY_STRENGTH;
+        public static float REST_REDUCE_HUNGER_STRENGTH = 0.15f;
+
     }
 }

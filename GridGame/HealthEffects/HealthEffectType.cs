@@ -9,5 +9,7 @@ namespace GridGame.HealthEffects {
         RESTED,
         DROWSY,
         HYDRATED,
+        HUNGRY,
+        REDUCE_HUNGER,
     }
 }
