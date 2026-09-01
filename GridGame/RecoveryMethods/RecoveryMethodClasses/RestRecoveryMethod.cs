@@ -1,4 +1,6 @@
-﻿using GridGame.HealthEffects;
+﻿using GridGame.Constants.Treatment;
+using GridGame.HealthEffects;
+using GridGame.HealthEffects.HealthEffectClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,7 @@ namespace GridGame.RecoveryMethods.RecoveryMethodClasses {
                 //ADD HEALTH IMPROVEMENTS
             };
             SideEffects = new List<IHealthEffect>() {
-                //ADD SIDE EFFECTS
+                new DrowsyEffect(HealthEffectStats.DROWSY_STRENGTH)
             };
         }
 

@@ -1,4 +1,5 @@
 ﻿using GridGame.Recovery;
+using GridGame.RecoveryMethods.RecoveryMethodClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace GridGame.Treatment.TreatmentClasses {
         public BaseTreatment() {
             Treatment = TreatmentType.BASE;
             recoveryMethods = new List<IRecoveryMethod>() {
-                //ADD RECOVERY METHODS
+                new RestRecoveryMethod(),
+                new HydrationWaterRecoveryMethod()
             };
         }
 
