@@ -11,5 +11,12 @@ namespace GridGame.HealthEffects {
         HYDRATED,
         HUNGRY,
         REDUCE_HUNGER,
+
+        COLD,
+        CONGESTION,
+        COUGH,
+        FEVER,
+        HEADACHE,
+        NAUSEA,
     }
 }
