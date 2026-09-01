@@ -23,10 +23,6 @@ namespace GridGame.Virus.VirusControllers {
             //
         }
 
-        public override void Spread() {
-            //
-        }
-
         public override InfectType GetInfectType() {
             return InfectType.WATER_INFECT;
         }
