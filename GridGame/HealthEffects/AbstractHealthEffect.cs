@@ -7,5 +7,9 @@ using System.Threading.Tasks;
 namespace GridGame.HealthEffects {
     public abstract class AbstractHealthEffect : IHealthEffect {
 
+        public HealthEffectType Effect { get; set; }
+
+        public float Strength { get; set; }
+
     }
 }

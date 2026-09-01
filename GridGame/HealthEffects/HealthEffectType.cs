@@ -5,11 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.HealthEffects {
-    public interface IHealthEffect {
-
-        public HealthEffectType Effect { get; set; }
-
-        public float Strength { get; set; }
-
+    public enum HealthEffectType {
+        DROWSY,
+        //
     }
 }
