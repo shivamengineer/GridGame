@@ -10,7 +10,7 @@ namespace GridGame.HealthEffects {
         DROWSY,
         HYDRATED,
         HUNGRY,
-        REDUCE_HUNGER,
+        APPETITE_LOSS,
 
         COLD,
         CONGESTION,

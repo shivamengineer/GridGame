@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.HealthEffects.HealthEffectClasses {
-    public class ReduceHungerEffect : AbstractHealthEffect {
+    public class AppetiteLossEffect : AbstractHealthEffect {
 
-        public ReduceHungerEffect(float strength) {
-            Effect = HealthEffectType.REDUCE_HUNGER;
+        public AppetiteLossEffect(float strength) {
+            Effect = HealthEffectType.APPETITE_LOSS;
             Strength = strength;
         }
 
