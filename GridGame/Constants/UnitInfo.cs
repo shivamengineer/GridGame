@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace GridGame.Constants {
     public static class UnitInfo {
 
-        public static float UNIT_MOVE_TIME = 1f;
-        public static int UNIT_WIDTH = 20;
-        public static int UNIT_HEIGHT = 35;
-        public static int UNIT_VISION_RADIUS = 2;
+        public static readonly float UNIT_MOVE_TIME = 1f;
+        public static readonly int UNIT_WIDTH = 20;
+        public static readonly int UNIT_HEIGHT = 35;
+        public static readonly int UNIT_VISION_RADIUS = 2;
 
-        public static int INFECTED_WIDTH = 30;
-        public static int INFECTED_HEIGHT = 5;
+        public static readonly int INFECTED_WIDTH = 30;
+        public static readonly int INFECTED_HEIGHT = 5;
 
     }
 }

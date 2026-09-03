@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Colors {
     public static class CitizenColors {
 
-        public static Color ActiveColor = Color.DeepPink;
-        public static Color InactiveColor = Color.Gray;
+        public static readonly Color ActiveColor = Color.DeepPink;
+        public static readonly Color InactiveColor = Color.Gray;
 
-        public static Color InfectColor = Color.Red;
+        public static readonly Color InfectColor = Color.Red;
 
     }
 }

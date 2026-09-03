@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Resources {
     public static class StartingResources {
 
-        public static int STARTING_FOOD = 0;
-        public static int STARTING_GOLD = 0;
-        public static int STARTING_MORALE = 5;
-        public static int STARTING_PRODUCTION = 0;
-        public static int STARTING_SCIENCE = 0;
+        public static readonly int STARTING_FOOD = 0;
+        public static readonly int STARTING_GOLD = 0;
+        public static readonly int STARTING_MORALE = 5;
+        public static readonly int STARTING_PRODUCTION = 0;
+        public static readonly int STARTING_SCIENCE = 0;
 
     }
 }

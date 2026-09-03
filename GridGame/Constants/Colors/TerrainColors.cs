@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Colors {
     public static class TerrainColors {
 
-        public static Color OceanColor = Color.CadetBlue;
-        public static Color LandColor = Color.Green;
-        public static Color CoastColor = Color.SandyBrown;
-        public static Color Land_RiverColor = Color.LightGreen;
-        public static Color UnknownColor = Color.Moccasin;
-        public static Color UnknownBorderColor = Color.DarkGray;
+        public static readonly Color OceanColor = Color.CadetBlue;
+        public static readonly Color LandColor = Color.Green;
+        public static readonly Color CoastColor = Color.SandyBrown;
+        public static readonly Color Land_RiverColor = Color.LightGreen;
+        public static readonly Color UnknownColor = Color.Moccasin;
+        public static readonly Color UnknownBorderColor = Color.DarkGray;
 
-        public static Color OceanHoverColor = Color.LightSkyBlue;
-        public static Color LandHoverColor = Color.GreenYellow;
-        public static Color CoastHoverColor = Color.LightGoldenrodYellow;
-        public static Color Land_RiverHoverColor = Color.LawnGreen;
-        public static Color DefaultHoverColor = Color.LightYellow;
+        public static readonly Color OceanHoverColor = Color.LightSkyBlue;
+        public static readonly Color LandHoverColor = Color.GreenYellow;
+        public static readonly Color CoastHoverColor = Color.LightGoldenrodYellow;
+        public static readonly Color Land_RiverHoverColor = Color.LawnGreen;
+        public static readonly Color DefaultHoverColor = Color.LightYellow;
 
-        public static Color CanBuildColor = Color.GreenYellow;
-        public static Color CannotBuildColor = Color.IndianRed;
+        public static readonly Color CanBuildColor = Color.GreenYellow;
+        public static readonly Color CannotBuildColor = Color.IndianRed;
 
         //river grass #2EE829
 
