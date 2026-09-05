@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GridGame.GameManagers.ManagerEnums {
     public enum ControllerTypes {
-        KEYBOARD,
+        KEYBOARD_GAME,
+        KEYBOARD_ALWAYS,
         MOUSE,
     }
 }

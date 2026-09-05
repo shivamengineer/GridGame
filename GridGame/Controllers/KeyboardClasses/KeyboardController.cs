@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GridGame.Controllers {
+namespace GridGame.Controllers.KeyboardClasses {
     public class KeyboardController : IController {
 
         private KeyboardState previousKeyboardState;
@@ -17,13 +17,10 @@ namespace GridGame.Controllers {
         private Dictionary<Keys, ICommand> HeldMapping;
         private Dictionary<Keys, ICommand> OnReleaseMapping;
 
-        public KeyboardController(/*GameManager gameManager*/) {
+        public KeyboardController() {
             OnPressMapping = new Dictionary<Keys, ICommand>();
             HeldMapping = new Dictionary<Keys, ICommand>();
             OnReleaseMapping = new Dictionary<Keys, ICommand>();
-
-            //KeyboardBindings.InitializeBindings(this, gameManager.hexagonMap);
-            //KeyboardBindings.InitializeMenuBindings(this, gameManager);
         }
 
         public void AddOnPressBinding(Keys key, ICommand command) {

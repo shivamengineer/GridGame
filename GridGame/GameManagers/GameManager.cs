@@ -1,4 +1,5 @@
 ﻿using GridGame.Controllers;
+using GridGame.Controllers.KeyboardClasses;
 using GridGame.GameManagers.ManagerEnums;
 using GridGame.Hexagons;
 using GridGame.TextureLoading;
@@ -21,6 +22,7 @@ namespace GridGame.GameManagers {
         private ContentLoader contentLoader;
 
         private Dictionary<ControllerTypes, IController> Controllers;
+        private KeyboardHandler keyboardHandler;
 
         private DisplayManager displayManager;
 
@@ -34,7 +36,7 @@ namespace GridGame.GameManagers {
             contentLoader = new ContentLoader(Content);
             displayManager = new DisplayManager(contentLoader);
             hexagonMap = new HexagonMap(contentLoader, displayManager);
-            Controllers.Add(ControllerTypes.KEYBOARD, new KeyboardController(this));
+            keyboardHandler = new KeyboardHandler(this);
 
             ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);
         }
@@ -45,6 +47,7 @@ namespace GridGame.GameManagers {
             foreach(var Controller in Controllers) {
                 Controller.Value.Update(gameTime);
             }
+            keyboardHandler.Update(gameTime, paused);
             if(!paused) {
                 hexagonMap.Update(gameTime, displayManager);
             }
