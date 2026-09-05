@@ -6,8 +6,6 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GridGame.Controllers {
     public class KeyboardController : IController {
@@ -19,13 +17,13 @@ namespace GridGame.Controllers {
         private Dictionary<Keys, ICommand> HeldMapping;
         private Dictionary<Keys, ICommand> OnReleaseMapping;
 
-        public KeyboardController(GameManager gameManager) {
+        public KeyboardController(/*GameManager gameManager*/) {
             OnPressMapping = new Dictionary<Keys, ICommand>();
             HeldMapping = new Dictionary<Keys, ICommand>();
             OnReleaseMapping = new Dictionary<Keys, ICommand>();
 
-            KeyboardBindings.InitializeBindings(this, gameManager.hexagonMap);
-            KeyboardBindings.InitializeMenuBindings(this, gameManager);
+            //KeyboardBindings.InitializeBindings(this, gameManager.hexagonMap);
+            //KeyboardBindings.InitializeMenuBindings(this, gameManager);
         }
 
         public void AddOnPressBinding(Keys key, ICommand command) {
