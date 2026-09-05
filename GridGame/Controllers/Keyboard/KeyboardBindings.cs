@@ -1,5 +1,7 @@
 ﻿using GridGame.Commands.CameraCommands;
+using GridGame.Commands.OptionsCommands;
 using GridGame.Commands.PlayerMovementCommands;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -34,6 +36,10 @@ namespace GridGame.Controllers {
             keyboardController.AddOnPressBinding(Keys.Space, new CenterCameraCommand(hexagonMap));
 
             keyboardController.AddOnPressBinding(Keys.T, new AddCitizenCommand(hexagonMap));
+        }
+
+        public static void InitializeMenuBindings(KeyboardController keyboardController, GameManager gameManager) {
+            keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
         }
 
     }

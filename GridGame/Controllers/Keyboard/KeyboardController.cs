@@ -1,4 +1,5 @@
 ﻿using GridGame.Commands;
+using GridGame.GameManagers;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -18,12 +19,13 @@ namespace GridGame.Controllers {
         private Dictionary<Keys, ICommand> HeldMapping;
         private Dictionary<Keys, ICommand> OnReleaseMapping;
 
-        public KeyboardController(HexagonMap hexMap) {
+        public KeyboardController(GameManager gameManager) {
             OnPressMapping = new Dictionary<Keys, ICommand>();
             HeldMapping = new Dictionary<Keys, ICommand>();
             OnReleaseMapping = new Dictionary<Keys, ICommand>();
 
-            KeyboardBindings.InitializeBindings(this, hexMap);
+            KeyboardBindings.InitializeBindings(this, gameManager.hexagonMap);
+            KeyboardBindings.InitializeMenuBindings(this, gameManager);
         }
 
         public void AddOnPressBinding(Keys key, ICommand command) {

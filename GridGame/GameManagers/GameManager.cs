@@ -17,12 +17,14 @@ using System.Threading.Tasks;
 namespace GridGame.GameManagers {
     public class GameManager {
 
-        private HexagonMap hexagonMap;
+        public HexagonMap hexagonMap { get; private set; }
         private ContentLoader contentLoader;
 
         private Dictionary<ControllerTypes, IController> Controllers;
 
         private DisplayManager displayManager;
+
+        private bool paused = false;
         
         public GameManager() {
             Controllers = new Dictionary<ControllerTypes, IController>();
@@ -32,16 +34,20 @@ namespace GridGame.GameManagers {
             contentLoader = new ContentLoader(Content);
             displayManager = new DisplayManager(contentLoader);
             hexagonMap = new HexagonMap(contentLoader, displayManager);
-            Controllers.Add(ControllerTypes.KEYBOARD, new KeyboardController(hexagonMap));
+            Controllers.Add(ControllerTypes.KEYBOARD, new KeyboardController(this));
 
             ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);
         }
+
+        public void TogglePaused() { paused = !paused; }
 
         public void Update(GameTime gameTime) {
             foreach(var Controller in Controllers) {
                 Controller.Value.Update(gameTime);
             }
-            hexagonMap.Update(gameTime, displayManager);
+            if(!paused) {
+                hexagonMap.Update(gameTime, displayManager);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch) {
