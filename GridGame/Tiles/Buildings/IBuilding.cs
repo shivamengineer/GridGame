@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings {
     public interface IBuilding : ITile {
 
+        public BuildingType BuildingType { get; protected set; }
+
         public void SetInfo();
         
         public int Build(int production);
 
         public bool IsBuilding();
-
-        public BuildingType GetBuildingType();
 
         public IBuilding newInstance();
 

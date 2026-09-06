@@ -16,6 +16,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         private Color hexColor;
 
         public Empty() {
+            BuildingType = BuildingType.Empty;
             hexColor = BuildingColors.EmptyColor;
         }
 
@@ -24,10 +25,6 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
         public override int GetMaxPeople() {
             return BuildingLimits.EMPTY_MAX_PEOPLE;
-        }
-
-        public override BuildingType GetBuildingType() {
-            return BuildingType.Empty;
         }
 
         public override IBuilding newInstance() {

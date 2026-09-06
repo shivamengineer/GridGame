@@ -19,6 +19,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         private Color hexColor;
 
         public CityCenter() {
+            BuildingType = BuildingType.CityCenter;
             hexColor = BuildingColors.CityCenterColor;
             production_needed = BuildingCosts.CITY_CENTER_PRODUCTION_COST;
         }
@@ -29,10 +30,6 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override int GetMaxPeople() {
             return BuildingLimits.CITY_CENTER_MAX_PEOPLE;
-        }
-
-        public override BuildingType GetBuildingType() {
-            return BuildingType.CityCenter;
         }
 
         public override IBuilding newInstance() {

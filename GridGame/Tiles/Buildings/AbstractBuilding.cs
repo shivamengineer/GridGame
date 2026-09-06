@@ -18,6 +18,8 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Buildings {
     public abstract class AbstractBuilding : IBuilding {
 
+        public BuildingType BuildingType { get; set; }
+
         private int population = 0;
 
         public Texture2D borderTexture;
@@ -76,8 +78,6 @@ namespace GridGame.Tiles.Buildings {
         public abstract void SetInfo();
 
         public abstract int GetMaxPeople();
-
-        public abstract BuildingType GetBuildingType();
 
         public abstract IBuilding newInstance();
 

@@ -19,6 +19,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         private Color hexColor;
 
         public Factory() {
+            BuildingType = BuildingType.Factory;
             hexColor = BuildingColors.FactoryColor;
             production_needed = BuildingCosts.FACTORY_PRODUCTION_COST;
         }
@@ -29,10 +30,6 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override int GetMaxPeople() {
             return BuildingLimits.FACTORY_MAX_PEOPLE;
-        }
-
-        public override BuildingType GetBuildingType() {
-            return BuildingType.Factory;
         }
 
         public override IBuilding newInstance() {

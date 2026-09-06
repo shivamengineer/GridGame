@@ -19,6 +19,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         private Color hexColor;
 
         public Laboratory() {
+            BuildingType = BuildingType.Laboratory;
             hexColor = BuildingColors.LaboratoryColor;
             production_needed = BuildingCosts.LABORATORY_GOLD_COST;
         }
@@ -29,10 +30,6 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public override int GetMaxPeople() {
             return BuildingLimits.LABORATORY_MAX_PEOPLE;
-        }
-
-        public override BuildingType GetBuildingType() {
-            return BuildingType.Laboratory;
         }
 
         public override IBuilding newInstance() {
