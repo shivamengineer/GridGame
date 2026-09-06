@@ -15,14 +15,5 @@ namespace GridGame.TechTree {
             ResearchableTech = new HashSet<ITechnology>();
         }
 
-        public bool HasTechs(HashSet<ITechnology> techs) {
-            foreach(ITechnology tech in techs) {
-                if(!ResearchedTech.Contains(tech)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
     }
 }
