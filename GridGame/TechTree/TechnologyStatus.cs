@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.TechTree {
-    public enum TechnologyTypes {
-        FACEMASK,
-
+    public struct TechnologyStatus {
+        public bool Visible;
+        public bool CanResearch;
+        public bool Researched;
     }
 }
