@@ -56,7 +56,7 @@ namespace GridGame.Tiles {
         }
 
         public TerrainType GetTerrainType() {
-            return terrain.GetTerrainType();
+            return terrain.TerrainType;
         }
 
         public BuildingType GetBuildingType() {
@@ -81,7 +81,7 @@ namespace GridGame.Tiles {
         }
 
         public void WorkTile(DisplayManager displayManager) {
-            if(building.BuildingType != BuildingType.NIL && terrain.GetTerrainType() != TerrainType.Unknown) {
+            if(building.BuildingType != BuildingType.NIL && terrain.TerrainType != TerrainType.Unknown) {
                 building.UpdateEvent(displayManager);
             }
         }
@@ -105,7 +105,7 @@ namespace GridGame.Tiles {
         }
 
         public void DrawRiver(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
-            if(terrain.GetTerrainType() != TerrainType.Land_River) return;
+            if(terrain.TerrainType != TerrainType.Land_River) return;
 
             terrain.DrawRiver(spriteBatch, position, hexMath);
         }
@@ -113,7 +113,7 @@ namespace GridGame.Tiles {
         public void DrawUI(SpriteBatch spriteBatch, Vector2 position, HexagonMath hexMath) {
             Vector2 offsetPos = new Vector2(position.X + hexMath.hexConstants.HexRadius - 5, position.Y + hexMath.hexConstants.HexRadius - 5);
 
-            if(building.BuildingType != BuildingType.NIL && terrain.GetTerrainType() != TerrainType.Unknown) {
+            if(building.BuildingType != BuildingType.NIL && terrain.TerrainType != TerrainType.Unknown) {
                 building.DrawUI(spriteBatch, offsetPos, hexMath);
             }
         }

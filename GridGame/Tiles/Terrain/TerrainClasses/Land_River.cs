@@ -21,6 +21,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         private Texture2D riverTexture;
 
         public Land_River() {
+            TerrainType = TerrainType.Land_River;
             hexColor = TerrainColors.LandColor;
             riverColor = TerrainColors.OceanColor;
         }
@@ -31,10 +32,6 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public override void SetTile(ITile tile) {
             //
-        }
-
-        public override TerrainType GetTerrainType() {
-            return TerrainType.Land_River;
         }
 
         public override ITerrain newInstance() {

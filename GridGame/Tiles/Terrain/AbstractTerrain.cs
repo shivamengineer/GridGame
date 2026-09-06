@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Terrain {
     public abstract class AbstractTerrain : ITerrain {
 
+        public TerrainType TerrainType { get; set; }
+
         private int population = 0;
 
         public Texture2D borderTexture;
@@ -73,8 +75,6 @@ namespace GridGame.Tiles.Terrain {
         public abstract int GetResources();
 
         public abstract void SetTile(ITile tile);
-
-        public abstract TerrainType GetTerrainType();
 
         public abstract ITerrain newInstance();
 

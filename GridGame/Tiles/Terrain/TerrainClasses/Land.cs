@@ -18,6 +18,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         private Color hoverColor;
 
         public Land() {
+            TerrainType = TerrainType.Land;
             hexColor = TerrainColors.LandColor;
         }
 
@@ -27,10 +28,6 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public override void SetTile(ITile tile) {
             //
-        }
-
-        public override TerrainType GetTerrainType() {
-            return TerrainType.Land;
         }
 
         public override ITerrain newInstance() {

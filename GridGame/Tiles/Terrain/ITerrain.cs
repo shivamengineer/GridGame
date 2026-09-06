@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace GridGame.Tiles.Terrain {
     public interface ITerrain : ITile {
 
-        public TerrainType GetTerrainType();
+        public TerrainType TerrainType { get; protected set; }
 
         public ITerrain newInstance();
 

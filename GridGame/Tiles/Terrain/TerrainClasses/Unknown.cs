@@ -18,6 +18,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         private Color hexBorderColor;
 
         public Unknown() {
+            TerrainType = TerrainType.Unknown;
             hexColor = TerrainColors.UnknownColor;
             hexBorderColor = TerrainColors.UnknownBorderColor;
         }
@@ -28,10 +29,6 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public override void SetTile(ITile tile) {
             //
-        }
-
-        public override TerrainType GetTerrainType() {
-            return TerrainType.Unknown;
         }
 
         public override ITerrain newInstance() {
