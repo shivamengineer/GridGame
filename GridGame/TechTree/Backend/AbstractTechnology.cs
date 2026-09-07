@@ -12,42 +12,7 @@ namespace GridGame.TechTree.Backend {
         public HashSet<TechnologyTypes> Prerequisites { get; set; }
         public HashSet<ITechnology> NextTechs { get; set; }
 
-        public TechnologyStatus TechStatus;
-        public HashSet<TechnologyTypes> ResearchedPrerequisites = new HashSet<TechnologyTypes>();
-
-        public void SetVisible() {
-            TechStatus.Visible = true;
-        }
-
-        public void TryUnlock(TechnologyTypes unlockedTech) {
-            if(TechStatus.CanResearch) return;
-
-            if(Prerequisites.Contains(unlockedTech) && !ResearchedPrerequisites.Contains(unlockedTech)) {
-                ResearchedPrerequisites.Add(unlockedTech);
-            }
-
-            if(ResearchedPrerequisites.Count == Prerequisites.Count) TechStatus.CanResearch = true;
-        }
-
-        public void TryResearch() {
-            if(TechStatus.CanResearch) TechStatus.Researched = true;
-            else return;
-
-            SetNextVisible();
-            TryUnlockNextTechs();
-        }
-
-        private void SetNextVisible() {
-            foreach(ITechnology nextTech in NextTechs) {
-                nextTech.SetVisible();
-            }
-        }
-
-        private void TryUnlockNextTechs() {
-            foreach(ITechnology nextTech in NextTechs) {
-                nextTech.TryUnlock(TechType);
-            }
-        }
+        public abstract ITechnology NewInstance();
 
     }
 }

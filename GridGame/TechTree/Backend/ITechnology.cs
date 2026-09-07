@@ -12,9 +12,7 @@ namespace GridGame.TechTree.Backend {
         public HashSet<TechnologyTypes> Prerequisites { get; set; }
         public HashSet<ITechnology> NextTechs { get; set; }
 
-        public void SetVisible();
-        public void TryUnlock(TechnologyTypes unlockedTech);
-        public void TryResearch();
+        public ITechnology NewInstance();
 
     }
 }
