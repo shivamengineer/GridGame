@@ -12,6 +12,8 @@ namespace GridGame.TechTree.Visual {
     public abstract class AbstractTechBlock : ITechBlock {
 
         public TechnologyTypes TechType { get; set; }
+        public int Position { get; set; }
+
         public ITechnology Technology { get; set; }
 
         public HashSet<TechnologyTypes> Prerequisites { get; set; }
@@ -21,6 +23,11 @@ namespace GridGame.TechTree.Visual {
         public HashSet<TechnologyTypes> ResearchedPrerequisites = new HashSet<TechnologyTypes>();
 
         public Rectangle Background;
+
+        public void UpdatePosition(int position) {
+            Position = Math.Max(Position, position);
+            UpdateNextPosition();
+        }
 
         public void SetVisible() {
             TechStatus.Visible = true;
@@ -42,6 +49,12 @@ namespace GridGame.TechTree.Visual {
 
             SetNextVisible();
             TryUnlockNextTechs();
+        }
+
+        private void UpdateNextPosition() {
+            foreach(ITechBlock nextTech in NextTechs) {
+                nextTech.UpdatePosition(Position + 1);
+            }
         }
 
         private void SetNextVisible() {
