@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.TechTree {
+namespace GridGame.TechTree.Backend {
     public class TechController {
 
         private HashSet<ITechnology> ResearchedTech;

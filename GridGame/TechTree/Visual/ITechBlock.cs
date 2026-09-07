@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.TechTree {
-    public enum TechnologyTypes {
-        FACEMASK,
+namespace GridGame.TechTree.Visual {
+    public interface ITechBlock {
+
+        public void OnClick();
 
     }
 }
