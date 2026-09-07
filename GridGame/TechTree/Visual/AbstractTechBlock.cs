@@ -17,12 +17,22 @@ namespace GridGame.TechTree.Visual {
         public ITechnology Technology { get; set; }
 
         public HashSet<TechnologyTypes> Prerequisites { get; set; }
-        public HashSet<ITechBlock> NextTechs { get; set; }
+        public HashSet<TechnologyTypes> NextTechs { get; set; }
 
-        public TechnologyStatus TechStatus;
+        public TechnologyStatus TechStatus = new TechnologyStatus();
         public HashSet<TechnologyTypes> ResearchedPrerequisites = new HashSet<TechnologyTypes>();
+        public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
 
         public Rectangle Background;
+
+        public void InitializeGraph(NewTechBlock newTechBlock) {
+            foreach(TechnologyTypes Type in NextTechs) {
+                if(!NextTechBlocks.ContainsKey(Type)) {
+                    NextTechBlocks[Type] = newTechBlock.GetTechnology(Type);
+                }
+                NextTechBlocks[Type].InitializeGraph(newTechBlock);
+            }
+        }
 
         public void UpdatePosition(int position) {
             Position = Math.Max(Position, position);
@@ -52,19 +62,19 @@ namespace GridGame.TechTree.Visual {
         }
 
         private void UpdateNextPosition() {
-            foreach(ITechBlock nextTech in NextTechs) {
+            foreach(ITechBlock nextTech in NextTechBlocks.Values) {
                 nextTech.UpdatePosition(Position + 1);
             }
         }
 
         private void SetNextVisible() {
-            foreach(ITechBlock nextTech in NextTechs) {
+            foreach(ITechBlock nextTech in NextTechBlocks.Values) {
                 nextTech.SetVisible();
             }
         }
 
         private void TryUnlockNextTechs() {
-            foreach(ITechBlock nextTech in NextTechs) {
+            foreach(ITechBlock nextTech in NextTechBlocks.Values) {
                 nextTech.TryUnlock(Technology.TechType);
             }
         }
@@ -74,6 +84,8 @@ namespace GridGame.TechTree.Visual {
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
+
+        public abstract ITechBlock NewInstance();
 
     }
 }

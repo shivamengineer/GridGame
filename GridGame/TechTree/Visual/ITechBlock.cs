@@ -13,10 +13,12 @@ namespace GridGame.TechTree.Visual {
         public TechnologyTypes TechType { get; protected set; }
         public int Position { get; protected set; }
 
-        public ITechnology Technology { get; protected set; }
+        public ITechnology Technology { get; set; }
 
         public HashSet<TechnologyTypes> Prerequisites { get; protected set; }
-        public HashSet<ITechBlock> NextTechs { get; protected set; }
+        public HashSet<TechnologyTypes> NextTechs { get; protected set; }
+
+        public void InitializeGraph(NewTechBlock newTech);
 
         public void UpdatePosition(int position);
 
@@ -27,6 +29,8 @@ namespace GridGame.TechTree.Visual {
         public void OnClick();
 
         public void Draw(SpriteBatch spriteBatch);
+
+        public ITechBlock NewInstance();
 
     }
 }
