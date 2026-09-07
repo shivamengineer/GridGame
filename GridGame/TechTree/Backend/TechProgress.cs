@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.TechTree.Backend {
-    public class TechController {
+    public class TechProgress {
 
-        private HashSet<ITechnology> ResearchedTech;
-        private HashSet<ITechnology> ResearchableTech;
+        public HashSet<ITechnology> ResearchedTech;
+        public HashSet<ITechnology> ResearchableTech;
 
-        public TechController() {
+        public TechProgress() {
             ResearchedTech = new HashSet<ITechnology>();
             ResearchableTech = new HashSet<ITechnology>();
         }
