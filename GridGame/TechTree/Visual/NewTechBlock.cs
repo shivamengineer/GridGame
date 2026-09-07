@@ -1,7 +1,7 @@
 ﻿using GridGame.TechTree.Backend.Technology;
 using GridGame.TechTree.Backend.Technology.TechnologyClasses;
-using GridGame.TechTree.Visual;
-using GridGame.TechTree.Visual.TechBlockClasses;
+using GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses;
+using GridGame.TechTree.Visual.TechnologyBlocks;
 using System;
 using System.Collections.Generic;
 using System.Linq;

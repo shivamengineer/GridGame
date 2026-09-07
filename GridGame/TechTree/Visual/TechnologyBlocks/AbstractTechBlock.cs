@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.TechTree.Visual {
+namespace GridGame.TechTree.Visual.TechnologyBlocks {
     public abstract class AbstractTechBlock : ITechBlock {
 
         public TechnologyTypes TechType { get; set; }

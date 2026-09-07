@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.TechTree.Visual {
+namespace GridGame.TechTree.Visual.TechnologyBlocks {
     public interface ITechBlock {
 
         public TechnologyTypes TechType { get; protected set; }

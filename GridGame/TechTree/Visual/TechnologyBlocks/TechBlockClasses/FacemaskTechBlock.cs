@@ -1,5 +1,6 @@
 ﻿using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology.TechnologyClasses;
+using GridGame.TechTree.Visual.TechnologyBlocks;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.TechTree.Visual.TechBlockClasses {
+namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class FacemaskTechBlock : AbstractTechBlock {
 
         public FacemaskTechBlock() {
@@ -26,7 +27,7 @@ namespace GridGame.TechTree.Visual.TechBlockClasses {
             };
         }
 
-        
+
 
         public override void Draw(SpriteBatch spriteBatch) {
             //
