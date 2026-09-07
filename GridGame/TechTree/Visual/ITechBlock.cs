@@ -12,8 +12,8 @@ namespace GridGame.TechTree.Visual {
 
         public ITechnology Technology { get; protected set; }
 
-        public HashSet<TechnologyTypes> Prerequisites { get; set; }
-        public HashSet<ITechBlock> NextTechs { get; set; }
+        public HashSet<TechnologyTypes> Prerequisites { get; protected set; }
+        public HashSet<ITechBlock> NextTechs { get; protected set; }
 
         public void SetVisible();
         public void TryUnlock(TechnologyTypes unlockedTech);

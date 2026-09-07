@@ -9,8 +9,8 @@ namespace GridGame.TechTree.Backend.Technology {
 
         public TechnologyTypes TechType { get; protected set; }
 
-        public HashSet<TechnologyTypes> Prerequisites { get; set; }
-        public HashSet<ITechnology> NextTechs { get; set; }
+        public HashSet<TechnologyTypes> Prerequisites { get; protected set; }
+        public HashSet<ITechnology> NextTechs { get; protected set; }
 
         public ITechnology NewInstance();
 
