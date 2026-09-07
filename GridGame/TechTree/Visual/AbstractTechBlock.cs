@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace GridGame.TechTree.Visual {
     public abstract class AbstractTechBlock : ITechBlock {
 
+        public TechnologyTypes TechType { get; set; }
         public ITechnology Technology { get; set; }
 
         public HashSet<TechnologyTypes> Prerequisites { get; set; }
@@ -56,7 +57,7 @@ namespace GridGame.TechTree.Visual {
         }
 
         public void OnClick() {
-            //
+            TryResearch();
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);

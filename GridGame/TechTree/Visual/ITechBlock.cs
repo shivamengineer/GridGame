@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace GridGame.TechTree.Visual {
     public interface ITechBlock {
 
+        public TechnologyTypes TechType { get; protected set; }
         public ITechnology Technology { get; protected set; }
 
         public HashSet<TechnologyTypes> Prerequisites { get; protected set; }
