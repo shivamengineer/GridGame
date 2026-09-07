@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.TechTree.Backend {
+namespace GridGame.TechTree.Backend.Technology {
     public interface ITechnology {
 
         public TechnologyTypes TechType { get; protected set; }

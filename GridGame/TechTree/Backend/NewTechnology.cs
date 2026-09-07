@@ -1,4 +1,5 @@
-﻿using GridGame.TechTree.Backend.TechnologyClasses;
+﻿using GridGame.TechTree.Backend.Technology;
+using GridGame.TechTree.Backend.Technology.TechnologyClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
