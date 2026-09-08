@@ -15,7 +15,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             TechType = TechnologyTypes.FACEMASK;
             Technology = new FacemaskTechnology();
             InitializeConnectedTechBlocks();
-
+            SetRectangle();
         }
 
         private void InitializeConnectedTechBlocks() {
@@ -29,7 +29,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
 
 
-        public override void Draw(SpriteBatch spriteBatch) {
+        public override void Draw(SpriteBatch spriteBatch, int CameraPosition) {
             //
         }
 

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace GridGame.TechTree {
     public class TechnologyController {
 
+        private int CameraX;
+
         private TechProgress TechProgress;
         private HashSet<ITechBlock> TechBlockRoots;
         private NewTechBlock NewTech;

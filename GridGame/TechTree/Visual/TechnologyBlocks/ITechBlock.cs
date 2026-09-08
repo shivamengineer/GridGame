@@ -28,7 +28,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public void OnClick();
 
-        public void Draw(SpriteBatch spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, int CameraPosition);
 
         public ITechBlock NewInstance();
 

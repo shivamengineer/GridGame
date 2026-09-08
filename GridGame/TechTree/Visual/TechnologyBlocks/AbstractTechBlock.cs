@@ -1,4 +1,5 @@
-﻿using GridGame.TechTree.Backend;
+﻿using GridGame.Constants.TechTreeGraph;
+using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -83,7 +84,12 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             TryResearch();
         }
 
-        public abstract void Draw(SpriteBatch spriteBatch);
+        public void SetRectangle() {
+            Background = new Rectangle(0, 0, TechTreeGraph.BLOCK_WIDTH, TechTreeGraph.BLOCK_HEIGHT);
+            Background.X = Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
+        }
+
+        public abstract void Draw(SpriteBatch spriteBatch, int CameraPosition);
 
         public abstract ITechBlock NewInstance();
 
