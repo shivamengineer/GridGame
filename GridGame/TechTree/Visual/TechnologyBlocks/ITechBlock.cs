@@ -18,6 +18,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public HashSet<TechnologyTypes> Prerequisites { get; protected set; }
         public HashSet<TechnologyTypes> NextTechs { get; protected set; }
 
+        public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks { get; protected set; }
+
         public void InitializeGraph(NewTechBlock newTech);
 
         public void UpdatePosition(int position);

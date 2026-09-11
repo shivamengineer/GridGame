@@ -12,6 +12,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class FacemaskTechBlock : AbstractTechBlock {
 
         public FacemaskTechBlock() {
+            NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.FACEMASK;
             Technology = new FacemaskTechnology();
             InitializeConnectedTechBlocks();

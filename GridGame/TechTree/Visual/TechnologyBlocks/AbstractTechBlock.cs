@@ -22,7 +22,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public TechnologyStatus TechStatus = new TechnologyStatus();
         public HashSet<TechnologyTypes> ResearchedPrerequisites = new HashSet<TechnologyTypes>();
-        public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
+        public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks { get; set; }
 
         public Rectangle Background;
 
