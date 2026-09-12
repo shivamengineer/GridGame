@@ -8,6 +8,7 @@ namespace GridGame.TechTree.Backend {
     public enum TechnologyTypes {
         FACEMASK,
         SOAP,
-
+        MEDICAL_TENT,
+        HOSPITAL,
     }
 }

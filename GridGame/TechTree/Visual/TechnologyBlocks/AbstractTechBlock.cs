@@ -124,7 +124,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             spriteBatch.Draw(backgroundTexture, Background, Color.Gray);
             if(!TechStatus.Visible) return;
             string drawText = text;
-            spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y), Color.Red);
+            spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
         }
 
         public abstract ITechBlock NewInstance();

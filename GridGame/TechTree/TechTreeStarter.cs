@@ -13,6 +13,7 @@ namespace GridGame.TechTree {
             HashSet<ITechBlock> StartingVisible = new HashSet<ITechBlock>() {
                 NewTech.GetTechnology(TechnologyTypes.FACEMASK),
                 NewTech.GetTechnology(TechnologyTypes.SOAP),
+                NewTech.GetTechnology(TechnologyTypes.MEDICAL_TENT),
             };
             foreach(ITechBlock techBlock in StartingVisible) {
                 techBlock.SetVisible();
