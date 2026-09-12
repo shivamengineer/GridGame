@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,8 @@ namespace GridGame.TechTree {
             foreach(ITechBlock techBlock in TechBlockRoots) {
                 SetBlockPositionsInList(techBlock);
             }
+
+            SetYPositions();
         }
 
         private void InitializeGraph() {
@@ -64,6 +67,17 @@ namespace GridGame.TechTree {
 
             foreach(ITechBlock nextBlock in techBlock.NextTechBlocks.Values) {
                 SetBlockPositionsInList(nextBlock);
+            }
+        }
+
+        private void SetYPositions() {
+            foreach(var map in TechBlockPositions) {
+                int j = 1;
+                int count = map.Count + 1;
+                foreach(ITechBlock techBlock in map.Values) {
+                    techBlock.SetYPosition((float)j / count);
+                    j++;
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using GridGame.Constants.TechTreeGraph;
+﻿using GridGame.Constants;
+using GridGame.Constants.TechTreeGraph;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology;
 using GridGame.TextureLoading;
@@ -7,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +58,10 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             UpdateNextPosition();
         }
 
+        public void SetYPosition(float position) {
+            Background.Y = (int)(position * GameConstants.WINDOW_HEIGHT);
+        }
+
         public void SetVisible() {
             TechStatus.Visible = true;
         }
@@ -101,7 +107,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         }
 
         public void SetRectangle() {
-            Background = new Rectangle(0, 0, TechTreeGraph.BLOCK_WIDTH, TechTreeGraph.BLOCK_HEIGHT);
+            Background = new Rectangle(0, Background.Y, TechTreeGraph.BLOCK_WIDTH, TechTreeGraph.BLOCK_HEIGHT);
             UpdatePositionFromCamera();
         }
 
@@ -118,7 +124,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             spriteBatch.Draw(backgroundTexture, Background, Color.Gray);
             if(!TechStatus.Visible) return;
             string drawText = text;
-            spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
+            spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y), Color.Red);
         }
 
         public abstract ITechBlock NewInstance();
