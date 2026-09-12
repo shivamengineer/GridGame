@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace GridGame.TechTree.Backend {
     public enum TechnologyTypes {
         FACEMASK,
+        SOAP,
 
     }
 }

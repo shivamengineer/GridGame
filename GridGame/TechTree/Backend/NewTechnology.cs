@@ -14,6 +14,8 @@ namespace GridGame.TechTree.Backend {
         public NewTechnology() {
             TechnologyMap = new Dictionary<TechnologyTypes, ITechnology>() {
                 [TechnologyTypes.FACEMASK] = new FacemaskTechnology(),
+                [TechnologyTypes.SOAP] = new SoapTechnology(),
+
             };
         }
 

@@ -21,6 +21,8 @@ namespace GridGame.TechTree.Backend {
             this.content = content;
             TechBlockMap = new Dictionary<TechnologyTypes, ITechBlock>() {
                 [TechnologyTypes.FACEMASK] = new FacemaskTechBlock(),
+                [TechnologyTypes.SOAP] = new SoapTechBlock(),
+
             };
             foreach(ITechBlock block in TechBlockMap.Values) {
                 block.SetContent(content);
