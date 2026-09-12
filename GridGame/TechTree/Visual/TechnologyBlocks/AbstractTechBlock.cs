@@ -107,9 +107,18 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public void UpdatePositionFromCamera() {
             Background.X = (Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING)) - CameraX;
-        } 
+        }
 
-        public abstract void Draw(SpriteBatch spriteBatch, int CameraPosition);
+        public void Draw(SpriteBatch spriteBatch, int CameraPosition) {
+            if(CameraX != CameraPosition) {
+                CameraX = CameraPosition;
+                UpdatePositionFromCamera();
+            }
+
+            spriteBatch.Draw(backgroundTexture, Background, Color.Gray);
+            string drawText = text;
+            spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
+        }
 
         public abstract ITechBlock NewInstance();
 

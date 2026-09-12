@@ -36,19 +36,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             };
         }
 
-
-
-        public override void Draw(SpriteBatch spriteBatch, int CameraPosition) {
-            if(CameraX != CameraPosition) {
-                CameraX = CameraPosition;
-                UpdatePositionFromCamera();
-            }
-
-            spriteBatch.Draw(backgroundTexture, Background, Color.Gray);
-            string drawText = text;
-            spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
-        }
-
         public override ITechBlock NewInstance() {
             ITechBlock block = new FacemaskTechBlock();
             block.SetContent(content);
