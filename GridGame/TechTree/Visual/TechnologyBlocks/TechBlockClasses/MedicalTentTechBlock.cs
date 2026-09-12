@@ -23,7 +23,9 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
                 //
             };
             NextTechs = new HashSet<TechnologyTypes>() {
-                //
+                TechnologyTypes.HOSPITAL,
+                TechnologyTypes.SOAP,
+                TechnologyTypes.FACEMASK,
             };
         }
 

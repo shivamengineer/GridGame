@@ -55,6 +55,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public void UpdatePosition(int position) {
             Position = Math.Max(Position, position);
+            UpdatePositionFromCamera();
             UpdateNextPosition();
         }
 

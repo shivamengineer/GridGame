@@ -29,7 +29,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         private void InitializeConnectedTechBlocks() {
             Prerequisites = new HashSet<TechnologyTypes>() {
-                //
+                TechnologyTypes.MEDICAL_TENT,
             };
             NextTechs = new HashSet<TechnologyTypes>() {
                 //
