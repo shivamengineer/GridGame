@@ -26,6 +26,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public Rectangle Background;
 
+        public int CameraX = 0;
+
         public void InitializeGraph(NewTechBlock newTechBlock) {
             foreach(TechnologyTypes Type in NextTechs) {
                 if(!NextTechBlocks.ContainsKey(Type)) {
@@ -86,8 +88,12 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public void SetRectangle() {
             Background = new Rectangle(0, 0, TechTreeGraph.BLOCK_WIDTH, TechTreeGraph.BLOCK_HEIGHT);
-            Background.X = Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
+            UpdatePositionFromCamera();
         }
+
+        public void UpdatePositionFromCamera() {
+            Background.X = (Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING)) - CameraX;
+        } 
 
         public abstract void Draw(SpriteBatch spriteBatch, int CameraPosition);
 

@@ -7,16 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.TextureLoading;
 
 namespace GridGame.TechTree.Backend {
     public class NewTechBlock {
 
         private Dictionary<TechnologyTypes, ITechBlock> TechBlockMap;
-        private NewTechnology NewTech; 
+        private NewTechnology NewTech;
 
-        public NewTechBlock() {
+        public NewTechBlock(ContentLoader content) {
             TechBlockMap = new Dictionary<TechnologyTypes, ITechBlock>() {
-                [TechnologyTypes.FACEMASK] = new FacemaskTechBlock(),
+                [TechnologyTypes.FACEMASK] = new FacemaskTechBlock(content),
             };
         }
 
