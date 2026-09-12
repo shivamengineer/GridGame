@@ -2,6 +2,7 @@
 using GridGame.Controllers.KeyboardClasses;
 using GridGame.GameManagers.ManagerEnums;
 using GridGame.Hexagons;
+using GridGame.TechTree;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.UI.Overlay.ResourcesDisplay;
@@ -25,6 +26,7 @@ namespace GridGame.GameManagers {
         private KeyboardHandler keyboardHandler;
 
         private DisplayManager displayManager;
+        private TechnologyController technologyController;
 
         private bool paused = false;
         
@@ -37,6 +39,7 @@ namespace GridGame.GameManagers {
             displayManager = new DisplayManager(contentLoader);
             hexagonMap = new HexagonMap(contentLoader, displayManager);
             keyboardHandler = new KeyboardHandler(this);
+            technologyController = new TechnologyController(contentLoader);
 
             ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);
         }
@@ -54,8 +57,12 @@ namespace GridGame.GameManagers {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            hexagonMap.Draw(spriteBatch);
-            displayManager.Draw(spriteBatch);
+            if(!paused) {
+                hexagonMap.Draw(spriteBatch);
+                displayManager.Draw(spriteBatch);
+            } else {
+                technologyController.Draw(spriteBatch);
+            }
         }
 
     }

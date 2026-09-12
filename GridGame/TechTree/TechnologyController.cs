@@ -3,6 +3,8 @@ using GridGame.Constants.TechTreeGraph;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Visual.TechnologyBlocks;
 using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -20,11 +22,16 @@ namespace GridGame.TechTree {
         private HashSet<ITechBlock> TechBlockRoots;
         private List<Dictionary<TechnologyTypes, ITechBlock>> TechBlockPositions;
         private NewTechBlock NewTech;
+        private Texture2D Background;
+        private Rectangle destRect;
 
         public TechnologyController(ContentLoader content) {
             TechProgress = new TechProgress();
             TechBlockPositions = new List<Dictionary<TechnologyTypes, ITechBlock>>();
             NewTech = new NewTechBlock(content);
+            Background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
+            destRect = new Rectangle(0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
+
             InitializeGraph();
             InitializePositions();
         
@@ -61,11 +68,14 @@ namespace GridGame.TechTree {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
+            spriteBatch.Draw(Background, destRect, Color.LightGray);
+
             int numX = GameConstants.WINDOW_WIDTH / (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
             int pos = CameraX / (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
             int endPos = numX;
 
             for(int i = pos; i < endPos; i++) {
+                if(i >= TechBlockPositions.Count) return;
                 foreach(ITechBlock techBlock in TechBlockPositions[i].Values) {
                     techBlock.Draw(spriteBatch, CameraX);
                 }

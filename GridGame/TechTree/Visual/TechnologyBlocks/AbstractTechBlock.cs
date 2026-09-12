@@ -1,6 +1,8 @@
 ﻿using GridGame.Constants.TechTreeGraph;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology;
+using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -25,8 +27,20 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks { get; set; }
 
         public Rectangle Background;
+        public Texture2D backgroundTexture;
+        public SpriteFont font;
+
+        public string text;
 
         public int CameraX = 0;
+
+        public ContentLoader content;
+
+        public void SetContent(ContentLoader content) {
+            this.content = content;
+            backgroundTexture = content.GetTexture(TextureNames.BLANK_RECTANGLE);
+            font = content.GetFont(FontNames.ARIAL);
+        }
 
         public void InitializeGraph(NewTechBlock newTechBlock) {
             foreach(TechnologyTypes Type in NextTechs) {

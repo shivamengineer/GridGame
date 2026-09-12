@@ -2,20 +2,24 @@
 using GridGame.TechTree.Backend.Technology.TechnologyClasses;
 using GridGame.TechTree.Visual.TechnologyBlocks;
 using GridGame.TextureLoading;
+using GridGame.TextureLoading.TextureEnums;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Taskbar;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class FacemaskTechBlock : AbstractTechBlock {
 
-        private ContentLoader content;
-
-        public FacemaskTechBlock(ContentLoader content) {
-            this.content = content;
+        public FacemaskTechBlock() {
+            text = "FACEMASK";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.FACEMASK;
             Technology = new FacemaskTechnology();
@@ -39,11 +43,16 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
                 CameraX = CameraPosition;
                 UpdatePositionFromCamera();
             }
-            //
+
+            spriteBatch.Draw(backgroundTexture, Background, Color.Gray);
+            string drawText = text;
+            spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
         }
 
         public override ITechBlock NewInstance() {
-            return new FacemaskTechBlock(content);
+            ITechBlock block = new FacemaskTechBlock();
+            block.SetContent(content);
+            return block;
         }
 
     }

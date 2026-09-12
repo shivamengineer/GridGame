@@ -14,11 +14,17 @@ namespace GridGame.TechTree.Backend {
 
         private Dictionary<TechnologyTypes, ITechBlock> TechBlockMap;
         private NewTechnology NewTech;
+        private ContentLoader content;
 
         public NewTechBlock(ContentLoader content) {
+            NewTech = new NewTechnology();
+            this.content = content;
             TechBlockMap = new Dictionary<TechnologyTypes, ITechBlock>() {
-                [TechnologyTypes.FACEMASK] = new FacemaskTechBlock(content),
+                [TechnologyTypes.FACEMASK] = new FacemaskTechBlock(),
             };
+            foreach(ITechBlock block in TechBlockMap.Values) {
+                block.SetContent(content);
+            }
         }
 
         public ITechBlock GetTechnology(TechnologyTypes type) {

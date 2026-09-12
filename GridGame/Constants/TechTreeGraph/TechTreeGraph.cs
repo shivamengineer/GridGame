@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.TechTreeGraph {
     public static class TechTreeGraph {
 
-        public static readonly int BLOCK_WIDTH = 100;
+        public static readonly int BLOCK_WIDTH = 170;
         public static readonly int BLOCK_HEIGHT = 60;
 
         public static readonly int BLOCK_SPACING = 60;
