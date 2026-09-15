@@ -20,13 +20,14 @@ namespace GridGame.GameManagers {
     public class GameManager {
 
         public HexagonMap hexagonMap { get; private set; }
+        public TechnologyController technologyController { get; private set; }
+
         private ContentLoader contentLoader;
 
         private Dictionary<ControllerTypes, IController> Controllers;
         private KeyboardHandler keyboardHandler;
 
         private DisplayManager displayManager;
-        private TechnologyController technologyController;
 
         private bool paused = false;
         
@@ -38,8 +39,9 @@ namespace GridGame.GameManagers {
             contentLoader = new ContentLoader(Content);
             displayManager = new DisplayManager(contentLoader);
             hexagonMap = new HexagonMap(contentLoader, displayManager);
-            keyboardHandler = new KeyboardHandler(this);
             technologyController = new TechnologyController(contentLoader);
+
+            keyboardHandler = new KeyboardHandler(this);
 
             ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);
         }
@@ -50,7 +52,7 @@ namespace GridGame.GameManagers {
             foreach(var Controller in Controllers) {
                 Controller.Value.Update(gameTime);
             }
-            keyboardHandler.Update(gameTime, paused);
+            keyboardHandler.Update(gameTime, paused, false);
             if(!paused) {
                 hexagonMap.Update(gameTime, displayManager);
             }

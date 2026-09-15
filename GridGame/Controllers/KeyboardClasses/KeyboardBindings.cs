@@ -1,8 +1,10 @@
 ﻿using GridGame.Commands.CameraCommands;
 using GridGame.Commands.OptionsCommands;
 using GridGame.Commands.PlayerMovementCommands;
+using GridGame.Commands.TechTreeCommands;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
+using GridGame.TechTree;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -26,12 +28,6 @@ namespace GridGame.Controllers.KeyboardClasses {
             keyboardController.AddOnPressBinding(Keys.J, new SwitchPlayerLeftCommand(hexagonMap));
 
             keyboardController.AddOnPressBinding(Keys.T, new AddCitizenCommand(hexagonMap));
-        }
-
-        public static void InitializeMenuBindings(KeyboardController keyboardController, GameManager gameManager) {
-            HexagonMap hexagonMap = gameManager.hexagonMap;
-
-            keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
 
             keyboardController.AddHeldBinding(Keys.Left, new MoveCameraLeftCommand(hexagonMap));
             keyboardController.AddHeldBinding(Keys.Right, new MoveCameraRightCommand(hexagonMap));
@@ -42,7 +38,15 @@ namespace GridGame.Controllers.KeyboardClasses {
             keyboardController.AddHeldBinding(Keys.O, new ZoomOutCommand(hexagonMap));
 
             keyboardController.AddOnPressBinding(Keys.Space, new CenterCameraCommand(hexagonMap));
+        }
 
+        public static void InitializeMenuBindings(KeyboardController keyboardController, GameManager gameManager) {
+            TechnologyController techController = gameManager.technologyController;
+
+            keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
+
+            keyboardController.AddHeldBinding(Keys.Left, new TechScrollLeftCommand(techController));
+            keyboardController.AddHeldBinding(Keys.Right, new TechScrollRightCommand(techController));
         }
 
     }

@@ -88,6 +88,8 @@ namespace GridGame.TechTree {
             int pos = CameraX / (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
             int endPos = numX;
 
+            if(pos < 0) pos = 0;
+
             for(int i = pos; i < endPos; i++) {
                 if(i >= TechBlockPositions.Count) return;
                 foreach(ITechBlock techBlock in TechBlockPositions[i].Values) {

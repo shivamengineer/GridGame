@@ -20,7 +20,7 @@ namespace GridGame.Controllers.KeyboardClasses {
             KeyboardBindings.InitializeMenuBindings(MenuKeyInput, gameManager);
         }
 
-        public void Update(GameTime gameTime, bool paused) {
+        public void Update(GameTime gameTime, bool paused, bool techTree) {
             if(!paused) {
                 GameKeyInput.Update(gameTime);
             }
