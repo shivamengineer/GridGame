@@ -17,7 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 namespace GridGame.TechTree {
     public class TechnologyController {
 
-        private int CameraX;
+        public int CameraX { get; set; }
 
         private TechProgress TechProgress;
         private HashSet<ITechBlock> TechBlockRoots;

@@ -12,5 +12,7 @@ namespace GridGame.Constants.TechTreeGraph {
 
         public static readonly int BLOCK_SPACING = 60;
 
+        public static readonly int SCROLL_SPEED = 5;
+
     }
 }
