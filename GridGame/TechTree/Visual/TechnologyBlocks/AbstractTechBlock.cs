@@ -42,6 +42,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             this.content = content;
             backgroundTexture = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             font = content.GetFont(FontNames.ARIAL);
+            TechStatus.Visible = true;
         }
 
         public void InitializeGraph(NewTechBlock newTechBlock) {
@@ -113,7 +114,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         }
 
         public void UpdatePositionFromCamera() {
-            Background.X = (Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING)) - CameraX;
+            Background.X = TechTreeGraph.BLOCK_SPACING + (Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING)) - CameraX;
         }
 
         public void Draw(SpriteBatch spriteBatch, int CameraPosition) {
