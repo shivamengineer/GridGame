@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks {
     public abstract class AbstractTechBlock : ITechBlock {
@@ -31,6 +32,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public Rectangle Background;
         public Texture2D backgroundTexture;
         public SpriteFont font;
+
+        public Color BackgroundColor = Color.Gray;
 
         public string text;
 
@@ -82,6 +85,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             if(TechStatus.CanResearch) TechStatus.Researched = true;
             else return;
 
+            BackgroundColor = Color.LightBlue;
+
             SetNextVisible();
             TryUnlockNextTechs();
         }
@@ -123,7 +128,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
                 UpdatePositionFromCamera();
             }
 
-            spriteBatch.Draw(backgroundTexture, Background, Color.Gray);
+            spriteBatch.Draw(backgroundTexture, Background, BackgroundColor);
             if(!TechStatus.Visible) return;
             string drawText = text;
             spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
