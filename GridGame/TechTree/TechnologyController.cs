@@ -23,11 +23,16 @@ namespace GridGame.TechTree {
         private TechProgress TechProgress;
         private HashSet<ITechBlock> TechBlockRoots;
         private List<Dictionary<TechnologyTypes, ITechBlock>> TechBlockPositions;
+        private List<Dictionary<TechnologyTypes, ITechBlock>> ActiveBlocks;
         private NewTechBlock NewTech;
         private Texture2D Background;
         private Rectangle destRect;
 
         private PlayerResources playerResources;
+
+        private int NumBlocks;
+        private int FirstBlock;
+        private int LastBlock;
 
         public TechnologyController(ContentLoader content, PlayerResources playerResources) {
             TechProgress = new TechProgress();
@@ -46,6 +51,8 @@ namespace GridGame.TechTree {
             }
 
             SetYPositions();
+            UpdateCamera();
+            ActiveBlocks = GetActiveBlocks();
         }
 
         private void InitializeGraph() {
@@ -86,21 +93,30 @@ namespace GridGame.TechTree {
             }
         }
 
+        public void UpdateCamera() {
+            NumBlocks = GameConstants.WINDOW_WIDTH / (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
+            FirstBlock = CameraX / (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
+            LastBlock = FirstBlock + NumBlocks;
+
+            if(FirstBlock < 0) FirstBlock = 0;
+            if(LastBlock >= TechBlockPositions.Count) LastBlock = TechBlockPositions.Count - 1;
+
+            ActiveBlocks = GetActiveBlocks();
+        }
+
+        public List<Dictionary<TechnologyTypes, ITechBlock>> GetActiveBlocks() {
+            return TechBlockPositions.GetRange(FirstBlock, LastBlock + 1);
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(Background, destRect, Color.LightGray);
 
-            int numX = GameConstants.WINDOW_WIDTH / (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
-            int pos = CameraX / (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING);
-            int endPos = numX;
-
-            if(pos < 0) pos = 0;
-
-            for(int i = pos; i < endPos; i++) {
-                if(i >= TechBlockPositions.Count) return;
+            for(int i = 0; i < ActiveBlocks.Count; i++) {
                 foreach(ITechBlock techBlock in TechBlockPositions[i].Values) {
                     techBlock.Draw(spriteBatch, CameraX);
                 }
             }
+
         }
 
     }

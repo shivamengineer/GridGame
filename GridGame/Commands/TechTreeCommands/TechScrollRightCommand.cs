@@ -17,6 +17,7 @@ namespace GridGame.Commands.TechTreeCommands {
 
         public void Execute() {
             techController.CameraX += TechTreeGraph.SCROLL_SPEED;
+            techController.UpdateCamera();
         }
 
     }
