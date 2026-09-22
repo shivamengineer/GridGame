@@ -15,16 +15,19 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using GridGame.TechTree.Visual.TechnologyBlocks;
 using GridGame.TechTree;
+using GridGame.Resources;
 
 namespace GridGame.Controllers.MouseClasses {
     public class TechTreeMouseDownHandler : IMouseHandler {
-
+                                                
+        private DisplayManager displayManager;
         private ResourceDisplay resourceDisplay;
         private TechnologyController technologyController;
 
         private ITechBlock SelectedBlock;
 
         public TechTreeMouseDownHandler(DisplayManager displayManager) {
+            this.displayManager = displayManager;
             resourceDisplay = displayManager.resourceManager.resourceDisplay;
             technologyController = displayManager.technologyController;
         }
@@ -49,6 +52,7 @@ namespace GridGame.Controllers.MouseClasses {
                 foreach(ITechBlock techBlock in BlockLists[i].Values) {
                     if(techBlock.Background.Contains(point)) {
                         techBlock.TryResearch();
+                        displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Science, displayManager.resourceManager.playerResources);
                         return;
                     }
                 }

@@ -146,7 +146,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
             spriteBatch.Draw(backgroundTexture, Background, BackgroundColor);
             if(!TechStatus.Visible) return;
-            string drawText = text;
+            string drawText = Cost + "S | " + text;
             spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
         }
 
