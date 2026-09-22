@@ -19,6 +19,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
     public abstract class AbstractTechBlock : ITechBlock {
 
         public TechnologyTypes TechType { get; set; }
+        public Rectangle Background { get; set; }
         public int Position { get; set; }
 
         public ITechnology Technology { get; set; }
@@ -30,7 +31,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public HashSet<TechnologyTypes> ResearchedPrerequisites = new HashSet<TechnologyTypes>();
         public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks { get; set; }
 
-        public Rectangle Background;
         public Texture2D backgroundTexture;
         public SpriteFont font;
 
@@ -68,38 +68,32 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             UpdateNextPosition();
         }
 
-        public void SetYPosition(float position) {
-            Background.Y = (int)(position * GameConstants.WINDOW_HEIGHT);
-        }
-
         public void SetVisible() {
             TechStatus.Visible = true;
         }
 
         public void Unlock() {
             TechStatus.CanResearch = true;
-            BackgroundColor = Color.LightSeaGreen;
+            BackgroundColor = Color.LightBlue;
         }
 
         public void TryUnlock(TechnologyTypes unlockedTech) {
-            if(!TechStatus.CanResearch) return;
-
             if(Prerequisites.Contains(unlockedTech) && !ResearchedPrerequisites.Contains(unlockedTech)) {
                 ResearchedPrerequisites.Add(unlockedTech);
             }
 
             if(ResearchedPrerequisites.Count == Prerequisites.Count) {
                 TechStatus.CanResearch = true;
-                BackgroundColor = Color.LightSeaGreen;
+                BackgroundColor = Color.LightBlue;
             }
         }
 
         public void TryResearch() {
-            if(!TechStatus.CanResearch || playerResources.TrySubtractResource(ResourceType.Science, Cost)) return;
+            if(!TechStatus.CanResearch || !playerResources.TrySubtractResource(ResourceType.Science, Cost)) return;
 
             TechStatus.Researched = true;
 
-            BackgroundColor = Color.LightBlue;
+            BackgroundColor = Color.LightSeaGreen;
 
             SetNextVisible();
             TryUnlockNextTechs();
@@ -132,8 +126,16 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             UpdatePositionFromCamera();
         }
 
+        private void SetBackgroundPos(int x, int y) {
+            Background = new Rectangle(x, y, Background.Width, Background.Height);
+        }
+
+        public void SetYPosition(float position) {
+            SetBackgroundPos(Background.X, (int)(position * GameConstants.WINDOW_HEIGHT));
+        }
+
         public void UpdatePositionFromCamera() {
-            Background.X = TechTreeGraph.BLOCK_SPACING + (Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING)) - CameraX;
+            SetBackgroundPos(TechTreeGraph.BLOCK_SPACING + (Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING)) - CameraX, Background.Y);
         }
 
         public void Draw(SpriteBatch spriteBatch, int CameraPosition) {

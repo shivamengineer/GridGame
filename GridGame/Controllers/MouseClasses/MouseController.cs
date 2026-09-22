@@ -16,11 +16,11 @@ namespace GridGame.Controllers.MouseClasses {
 
         private MouseState lastMouseState;
         private HexagonMap hexagonMap;
-        private MouseDownHandler mouseDownHandler;
+        private IMouseHandler mouseDownHandler;
 
         private Dictionary<MouseEventTypes, ICommand> mouseCommands;
 
-        public MouseController(HexagonMap hexagonMap, MouseDownHandler mouseDownHandler) {
+        public MouseController(HexagonMap hexagonMap, IMouseHandler mouseDownHandler) {
             lastMouseState = Mouse.GetState();
             this.hexagonMap = hexagonMap;
             this.mouseDownHandler = mouseDownHandler;

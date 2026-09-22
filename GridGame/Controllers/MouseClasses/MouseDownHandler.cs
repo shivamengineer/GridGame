@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Controllers.MouseClasses {
-    public class MouseDownHandler {
+    public class MouseDownHandler : IMouseHandler {
 
         private ResourceDisplay resourceDisplay;
         private ButtonDisplay buttonDisplay;

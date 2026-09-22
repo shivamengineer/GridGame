@@ -2,6 +2,7 @@
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology;
 using GridGame.TextureLoading;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
     public interface ITechBlock {
 
         public TechnologyTypes TechType { get; protected set; }
+        public Rectangle Background { get; protected set; }
         public int Position { get; protected set; }
 
         public ITechnology Technology { get; set; }
