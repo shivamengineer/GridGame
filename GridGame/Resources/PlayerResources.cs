@@ -41,5 +41,12 @@ namespace GridGame.Resources {
             resources[resource].SubtractResource(amount);
         }
 
+        public bool TrySubtractResource(ResourceType resource, int amount) {
+            if(GetResourceAmount(resource) < amount) return false;
+
+            SubtractResource(resource, amount);
+            return true;
+        }
+
     }
 }

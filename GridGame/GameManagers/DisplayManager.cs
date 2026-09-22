@@ -19,9 +19,9 @@ namespace GridGame.GameManagers {
         public TechnologyController technologyController;
 
         public DisplayManager(ContentLoader content) {
-            technologyController = new TechnologyController(content);
             resourceManager = new ResourcesManager(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL));
             buttonDisplay = new ButtonDisplay(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL));
+            technologyController = new TechnologyController(content, resourceManager.playerResources);
         }
 
         public void Draw(SpriteBatch spriteBatch) {

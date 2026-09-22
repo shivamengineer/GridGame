@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.TechTreeGraph;
+using GridGame.Resources;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Visual.TechnologyBlocks;
 using GridGame.TextureLoading;
@@ -26,12 +27,16 @@ namespace GridGame.TechTree {
         private Texture2D Background;
         private Rectangle destRect;
 
-        public TechnologyController(ContentLoader content) {
+        private PlayerResources playerResources;
+
+        public TechnologyController(ContentLoader content, PlayerResources playerResources) {
             TechProgress = new TechProgress();
             TechBlockPositions = new List<Dictionary<TechnologyTypes, ITechBlock>>();
             NewTech = new NewTechBlock(content);
             Background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             destRect = new Rectangle(0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
+
+            this.playerResources = playerResources;
 
             InitializeGraph();
             InitializePositions();
