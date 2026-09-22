@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.Constants.TechTreeGraph;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class MedicalTentTechBlock : AbstractTechBlock {
 
         public MedicalTentTechBlock() {
+            Cost = TechCost.MEDICAL_TENT_COST;
             text = "MEDICAL TENT";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.MEDICAL_TENT;

@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.Constants.TechTreeGraph;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class HospitalTechBlock : AbstractTechBlock {
 
         public HospitalTechBlock() {
+            Cost = TechCost.HOSPITAL_COST;
             text = "HOSPITAL";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.HOSPITAL;

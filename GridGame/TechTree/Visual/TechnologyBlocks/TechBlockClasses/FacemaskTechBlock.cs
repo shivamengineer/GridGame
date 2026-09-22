@@ -1,4 +1,5 @@
-﻿using GridGame.TechTree.Backend;
+﻿using GridGame.Constants.TechTreeGraph;
+using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology.TechnologyClasses;
 using GridGame.TechTree.Visual.TechnologyBlocks;
 using GridGame.TextureLoading;
@@ -19,6 +20,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class FacemaskTechBlock : AbstractTechBlock {
 
         public FacemaskTechBlock() {
+            Cost = TechCost.FACEMASK_COST;
             text = "FACEMASK";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.FACEMASK;

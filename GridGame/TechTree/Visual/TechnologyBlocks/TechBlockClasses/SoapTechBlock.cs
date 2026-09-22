@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.Constants.TechTreeGraph;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class SoapTechBlock : AbstractTechBlock {
 
         public SoapTechBlock() {
+            Cost = TechCost.SOAP_COST;
             text = "SOAP";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.SOAP;

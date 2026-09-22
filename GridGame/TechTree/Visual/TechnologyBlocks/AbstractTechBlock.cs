@@ -43,6 +43,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public ContentLoader content;
 
         public PlayerResources playerResources;
+        public int Cost;
 
         public void SetContent(ContentLoader content) {
             this.content = content;
@@ -77,6 +78,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public void Unlock() {
             TechStatus.CanResearch = true;
+            BackgroundColor = Color.LightSeaGreen;
         }
 
         public void TryUnlock(TechnologyTypes unlockedTech) {
@@ -86,12 +88,16 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
                 ResearchedPrerequisites.Add(unlockedTech);
             }
 
-            if(ResearchedPrerequisites.Count == Prerequisites.Count) TechStatus.CanResearch = true;
+            if(ResearchedPrerequisites.Count == Prerequisites.Count) {
+                TechStatus.CanResearch = true;
+                BackgroundColor = Color.LightSeaGreen;
+            }
         }
 
         public void TryResearch() {
-            if(TechStatus.CanResearch) TechStatus.Researched = true;
-            else return;
+            if(!TechStatus.CanResearch || playerResources.TrySubtractResource(ResourceType.Science, Cost)) return;
+
+            TechStatus.Researched = true;
 
             BackgroundColor = Color.LightBlue;
 
