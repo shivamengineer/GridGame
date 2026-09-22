@@ -1,4 +1,5 @@
 ﻿using GridGame.Controllers;
+using GridGame.Controllers.MouseClasses;
 using GridGame.GameManagers.ManagerEnums;
 using GridGame.Hexagons;
 using GridGame.TextureLoading;
@@ -14,6 +15,10 @@ namespace GridGame.GameManagers {
         public static void LoadMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager) {
             MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager);
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
+        }
+
+        public static void LoadPauseMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager) {
+            //
         }
 
     }

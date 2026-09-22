@@ -23,7 +23,8 @@ namespace GridGame.GameManagers {
 
         private ContentLoader contentLoader;
 
-        private Dictionary<ControllerTypes, IController> Controllers;
+        private Dictionary<ControllerTypes, IController> MainControllers;
+        private Dictionary<ControllerTypes, IController> PausedControllers;
         private KeyboardHandler keyboardHandler;
 
         public DisplayManager displayManager { get; private set; }
@@ -31,7 +32,8 @@ namespace GridGame.GameManagers {
         private bool paused = false;
         
         public GameManager() {
-            Controllers = new Dictionary<ControllerTypes, IController>();
+            MainControllers = new Dictionary<ControllerTypes, IController>();
+            PausedControllers = new Dictionary<ControllerTypes, IController>();
         }
 
         public void LoadContent(ContentManager Content) {
@@ -41,18 +43,28 @@ namespace GridGame.GameManagers {
 
             keyboardHandler = new KeyboardHandler(this);
 
-            ControllerLoader.LoadMouseController(Controllers, hexagonMap, displayManager);
+            ControllerLoader.LoadMouseController(MainControllers, hexagonMap, displayManager);
         }
 
         public void TogglePaused() { paused = !paused; }
 
         public void Update(GameTime gameTime) {
-            foreach(var Controller in Controllers) {
-                Controller.Value.Update(gameTime);
-            }
+            UpdateControllers(gameTime);
             keyboardHandler.Update(gameTime, paused, false);
             if(!paused) {
                 hexagonMap.Update(gameTime, displayManager);
+            }
+        }
+
+        private void UpdateControllers(GameTime gameTime) {
+            if(!paused) {
+                foreach(var Controller in MainControllers) {
+                    Controller.Value.Update(gameTime);
+                }
+            } else {
+                foreach(var Controller in PausedControllers) {
+                    Controller.Value.Update(gameTime);
+                }
             }
         }
 

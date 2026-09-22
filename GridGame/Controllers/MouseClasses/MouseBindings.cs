@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Controllers {
+namespace GridGame.Controllers.MouseClasses {
     public static class MouseBindings {
 
         public static void InitializeBindings(MouseController mouseController, HexagonMap hexagonMap) {

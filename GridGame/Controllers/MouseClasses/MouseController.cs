@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Controllers {
+namespace GridGame.Controllers.MouseClasses {
     public class MouseController : IController {
 
         private MouseState lastMouseState;
