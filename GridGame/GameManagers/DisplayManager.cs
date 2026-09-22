@@ -31,6 +31,7 @@ namespace GridGame.GameManagers {
 
         public void DrawTechTree(SpriteBatch spriteBatch) {
             technologyController.Draw(spriteBatch);
+            resourceManager.Draw(spriteBatch);
         }
 
     }
