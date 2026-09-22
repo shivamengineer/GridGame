@@ -15,6 +15,7 @@ namespace GridGame.TechTree {
             };
             foreach(ITechBlock techBlock in StartingVisible) {
                 techBlock.SetVisible();
+                techBlock.Unlock();
             }
             return StartingVisible;
         }

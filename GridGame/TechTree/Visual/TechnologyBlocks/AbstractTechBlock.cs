@@ -75,8 +75,12 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             TechStatus.Visible = true;
         }
 
+        public void Unlock() {
+            TechStatus.CanResearch = true;
+        }
+
         public void TryUnlock(TechnologyTypes unlockedTech) {
-            if(TechStatus.CanResearch) return;
+            if(!TechStatus.CanResearch) return;
 
             if(Prerequisites.Contains(unlockedTech) && !ResearchedPrerequisites.Contains(unlockedTech)) {
                 ResearchedPrerequisites.Add(unlockedTech);
