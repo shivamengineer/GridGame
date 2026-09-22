@@ -41,7 +41,7 @@ namespace GridGame.Controllers.KeyboardClasses {
         }
 
         public static void InitializeMenuBindings(KeyboardController keyboardController, GameManager gameManager) {
-            TechnologyController techController = gameManager.technologyController;
+            TechnologyController techController = gameManager.displayManager.technologyController;
 
             keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
 
