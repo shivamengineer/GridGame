@@ -1,4 +1,5 @@
-﻿using GridGame.TechTree.Backend;
+﻿using GridGame.Resources;
+using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology;
 using GridGame.TextureLoading;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,7 +22,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks { get; protected set; }
 
-        public void InitializeGraph(NewTechBlock newTech);
+        public void InitializeGraph(NewTechBlock newTech, PlayerResources playerResources);
 
         public void SetContent(ContentLoader content);
 

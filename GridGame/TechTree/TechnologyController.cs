@@ -51,7 +51,7 @@ namespace GridGame.TechTree {
         private void InitializeGraph() {
             TechBlockRoots = TechTreeStarter.StartingVisibleTechs(NewTech);
             foreach(ITechBlock techBlock in TechBlockRoots) {
-                techBlock.InitializeGraph(NewTech);
+                techBlock.InitializeGraph(NewTech, playerResources);
             }
         }
 

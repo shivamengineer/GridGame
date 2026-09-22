@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.TechTreeGraph;
+using GridGame.Resources;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology;
 using GridGame.TextureLoading;
@@ -41,6 +42,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public ContentLoader content;
 
+        public PlayerResources playerResources;
+
         public void SetContent(ContentLoader content) {
             this.content = content;
             backgroundTexture = content.GetTexture(TextureNames.BLANK_RECTANGLE);
@@ -48,12 +51,13 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             TechStatus.Visible = true;
         }
 
-        public void InitializeGraph(NewTechBlock newTechBlock) {
+        public void InitializeGraph(NewTechBlock newTechBlock, PlayerResources playerResources) {
+            this.playerResources = playerResources;
             foreach(TechnologyTypes Type in NextTechs) {
                 if(!NextTechBlocks.ContainsKey(Type)) {
                     NextTechBlocks[Type] = newTechBlock.GetTechnology(Type);
                 }
-                NextTechBlocks[Type].InitializeGraph(newTechBlock);
+                NextTechBlocks[Type].InitializeGraph(newTechBlock, playerResources);
             }
         }
 
