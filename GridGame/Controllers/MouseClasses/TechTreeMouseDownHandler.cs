@@ -52,7 +52,7 @@ namespace GridGame.Controllers.MouseClasses {
                 foreach(ITechBlock techBlock in BlockLists[i].Values) {
                     if(techBlock.Background.Contains(point)) {
                         techBlock.TryResearch();
-                        displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Science, displayManager.resourceManager.playerResources);
+                        displayManager.UpdateResource(ResourceType.Science);
                         return;
                     }
                 }
