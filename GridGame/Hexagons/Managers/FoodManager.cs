@@ -50,7 +50,7 @@ namespace GridGame.Hexagons.Managers {
             } else {
                 FeedSomeCitizens(foodOwned);
             }
-            hexagonMap.displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Food, playerResources);
+            hexagonMap.displayManager.UpdateResource(ResourceType.Food);
         }
 
         private void TryAddCitizen() {

@@ -47,10 +47,10 @@ namespace GridGame.Hexagons {
         public void UpdateProduction(GameTime gameTime, DisplayManager displayManager) {
             if(buildingManager.BuildingSomething() && playerResources.GetResourceAmount(ResourceType.Production) > 0) {
                 AddProduction(playerResources.GetResourceAmount(ResourceType.Production));
-                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Production, playerResources);
+                displayManager.UpdateResource(ResourceType.Production);
             }
             if(SpentGold) {
-                displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Gold, playerResources);
+                displayManager.UpdateResource(ResourceType.Gold);
                 SpentGold = false;
             }
         }

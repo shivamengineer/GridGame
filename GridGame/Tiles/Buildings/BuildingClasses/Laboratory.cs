@@ -45,8 +45,8 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.resourceManager.playerResources.AddResource(ResourceType.Science, BuildingStats.SCIENCE_RATE);
-            displayManager.resourceManager.resourceDisplay.UpdateResource(ResourceType.Science, displayManager.resourceManager.playerResources);
+            displayManager.AddResource(ResourceType.Science, BuildingStats.SCIENCE_RATE);
+            displayManager.UpdateResource(ResourceType.Science);
             resourcePopup = new TemporaryPopup(content, "+1S", 1f);
         }
 

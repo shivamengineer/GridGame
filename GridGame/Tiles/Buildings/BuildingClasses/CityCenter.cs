@@ -45,10 +45,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.resourceManager.playerResources.AddResource(ResourceType.Food, CityBaseStats.FOOD_RATE);
-            displayManager.resourceManager.playerResources.AddResource(ResourceType.Gold, CityBaseStats.GOLD_RATE);
-            displayManager.resourceManager.playerResources.AddResource(ResourceType.Production, CityBaseStats.PRODUCTION_RATE);
-            displayManager.resourceManager.playerResources.AddResource(ResourceType.Science, CityBaseStats.SCIENCE_RATE);
+            displayManager.AddResource(ResourceType.Food, CityBaseStats.FOOD_RATE);
+            displayManager.AddResource(ResourceType.Gold, CityBaseStats.GOLD_RATE);
+            displayManager.AddResource(ResourceType.Production, CityBaseStats.PRODUCTION_RATE);
+            displayManager.AddResource(ResourceType.Science, CityBaseStats.SCIENCE_RATE);
             displayManager.resourceManager.resourceDisplay.UpdateAllResources(displayManager.resourceManager.playerResources.GetResourceCounts());
             map.playerData.AddProduction(CityBaseStats.PRODUCTION_RATE);
             resourcePopup = new TemporaryPopup(content, "+1ALL", 1f);

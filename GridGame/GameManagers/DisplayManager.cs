@@ -24,6 +24,10 @@ namespace GridGame.GameManagers {
             technologyController = new TechnologyController(content, resourceManager.playerResources);
         }
 
+        public void AddResource(ResourceType resourceType, int amount) {
+            resourceManager.playerResources.AddResource(resourceType, amount);
+        }
+
         public void UpdateResource(ResourceType resourceType) {
             resourceManager.resourceDisplay.UpdateResource(resourceType, resourceManager.playerResources);
         }
