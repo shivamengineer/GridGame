@@ -17,8 +17,8 @@ namespace GridGame.GameManagers {
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
         }
 
-        public static void LoadPauseMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager) {
-            TechTreeMouseDownHandler mouseDownHandler = new TechTreeMouseDownHandler(displayManager);
+        public static void LoadPauseMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap) {
+            TechTreeMouseDownHandler mouseDownHandler = new TechTreeMouseDownHandler(hexagonMap);
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
         }
 

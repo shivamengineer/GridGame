@@ -16,18 +16,21 @@ using Microsoft.Xna.Framework;
 using GridGame.TechTree.Visual.TechnologyBlocks;
 using GridGame.TechTree;
 using GridGame.Resources;
+using GridGame.TechTree.Backend;
 
 namespace GridGame.Controllers.MouseClasses {
     public class TechTreeMouseDownHandler : IMouseHandler {
-                                                
+
+        private HexagonMap hexagonMap;
         private DisplayManager displayManager;
         private ResourceDisplay resourceDisplay;
         private TechnologyController technologyController;
 
         private ITechBlock SelectedBlock;
 
-        public TechTreeMouseDownHandler(DisplayManager displayManager) {
-            this.displayManager = displayManager;
+        public TechTreeMouseDownHandler(HexagonMap hexagonMap) {
+            this.hexagonMap = hexagonMap;
+            displayManager = hexagonMap.displayManager;
             resourceDisplay = displayManager.resourceManager.resourceDisplay;
             technologyController = displayManager.technologyController;
         }
@@ -51,7 +54,12 @@ namespace GridGame.Controllers.MouseClasses {
             for(int i = 0; i < BlockLists.Count; i++) {
                 foreach(ITechBlock techBlock in BlockLists[i].Values) {
                     if(techBlock.Background.Contains(point)) {
-                        techBlock.TryResearch();
+                        if(techBlock.TryResearch()) {
+                            if(techBlock.Technology.Research == ResearchType.BUILDING 
+                                && techBlock.Technology.Building != BuildingType.NIL) {
+                                hexagonMap.playerData.buildingManager.UnlockBuilding(techBlock.Technology.Building);
+                            }
+                        }
                         displayManager.UpdateResource(ResourceType.Science);
                         return;
                     }

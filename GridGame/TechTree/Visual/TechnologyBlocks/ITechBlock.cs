@@ -35,7 +35,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public void SetVisible();
         public void Unlock();
         public void TryUnlock(TechnologyTypes unlockedTech);
-        public void TryResearch();
+        public bool TryResearch();
 
         public void OnClick();
 

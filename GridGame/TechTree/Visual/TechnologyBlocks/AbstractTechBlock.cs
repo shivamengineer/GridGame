@@ -88,8 +88,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             }
         }
 
-        public void TryResearch() {
-            if(!TechStatus.CanResearch || !playerResources.TrySubtractResource(ResourceType.Science, Cost)) return;
+        public bool TryResearch() {
+            if(!TechStatus.CanResearch || !playerResources.TrySubtractResource(ResourceType.Science, Cost)) return false;
 
             TechStatus.Researched = true;
 
@@ -97,6 +97,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
             SetNextVisible();
             TryUnlockNextTechs();
+            return true;
         }
 
         private void UpdateNextPosition() {

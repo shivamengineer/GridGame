@@ -44,7 +44,7 @@ namespace GridGame.GameManagers {
             keyboardHandler = new KeyboardHandler(this);
 
             ControllerLoader.LoadMouseController(MainControllers, hexagonMap, displayManager);
-            ControllerLoader.LoadPauseMouseController(PausedControllers, hexagonMap, displayManager);
+            ControllerLoader.LoadPauseMouseController(PausedControllers, hexagonMap);
         }
 
         public void TogglePaused() { paused = !paused; }
