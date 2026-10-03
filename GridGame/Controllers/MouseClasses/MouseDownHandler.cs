@@ -83,9 +83,7 @@ namespace GridGame.Controllers.MouseClasses {
 
             clickedHex.Item1--;
             if(hexagonMap.BuildBuilding(selectedBuilding, clickedHex)) {
-                if(!builtCityCenter) {
-                    builtCityCenter = true;
-                }
+                builtCityCenter = true;
                 selectedBuilding = BuildingType.NIL;
                 selectedButton.SetRectSelected(false);
             }
