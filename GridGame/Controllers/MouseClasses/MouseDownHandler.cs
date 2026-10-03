@@ -82,7 +82,7 @@ namespace GridGame.Controllers.MouseClasses {
             if(distanceFromCityCenter > BuildingLimits.BUILDING_RADIUS_FROM_CITY) return;
 
             clickedHex.Item1--;
-            if(hexagonMap.SetSelected(selectedBuilding, clickedHex)) {
+            if(hexagonMap.BuildBuilding(selectedBuilding, clickedHex)) {
                 if(!builtCityCenter) {
                     builtCityCenter = true;
                 }

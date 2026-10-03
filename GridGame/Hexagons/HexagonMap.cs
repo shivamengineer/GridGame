@@ -56,7 +56,7 @@ namespace GridGame.Hexagons {
             hexMap.HexMath.FocusCamera();
         }
 
-        public bool SetSelected(BuildingType buildingType, (int, int) pos) {
+        public bool BuildBuilding(BuildingType buildingType, (int, int) pos) {
             if(!hexMap.DiscoveredTiles.Contains(pos)) return false; //Can't build on undiscovered tile
             if(playerData.buildingManager.HasBuilding(pos)) return false; //Can't build on another building
             if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
