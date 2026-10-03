@@ -1,4 +1,5 @@
 ﻿using GridGame.TechTree.Backend.Technology;
+using GridGame.Tiles.Buildings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace GridGame.TechTree.Backend.Technology.TechnologyClasses {
     public class FacemaskTechnology : AbstractTechnology {
 
         public FacemaskTechnology() {
+            Research = ResearchType.SAFETY_MEASURE;
+            Building = BuildingType.NIL;
             TechType = TechnologyTypes.FACEMASK;
         }
 

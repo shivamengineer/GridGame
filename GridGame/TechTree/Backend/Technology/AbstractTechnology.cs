@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridGame.Tiles.Buildings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,8 @@ using System.Threading.Tasks;
 namespace GridGame.TechTree.Backend.Technology {
     public abstract class AbstractTechnology : ITechnology {
 
+        public ResearchType Research { get; set; }
+        public BuildingType Building { get; set; }
         public TechnologyTypes TechType { get; set; }
 
         public HashSet<TechnologyTypes> Prerequisites { get; set; }

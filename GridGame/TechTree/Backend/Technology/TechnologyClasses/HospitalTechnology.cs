@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GridGame.Tiles.Buildings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace GridGame.TechTree.Backend.Technology.TechnologyClasses {
     public class HospitalTechnology : AbstractTechnology {
 
         public HospitalTechnology() {
+            Research = ResearchType.BUILDING;
+            Building = BuildingType.Hospital;
             TechType = TechnologyTypes.HOSPITAL;
         }
 
