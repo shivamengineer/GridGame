@@ -17,6 +17,7 @@ namespace GridGame.Hexagons.Managers {
         public HashSet<(int, int)> BuildingTiles;
         public Queue<(int, int)> UnfinishedBuildingTiles;
         public HashSet<(int, int)> CanBuildTiles;
+        public HashSet<BuildingType> UnlockedBuildings;
 
         private HexMap hexMap;
 
@@ -25,11 +26,20 @@ namespace GridGame.Hexagons.Managers {
             BuildingTiles = new HashSet<(int, int)>();
             UnfinishedBuildingTiles = new Queue<(int, int)>();
             CanBuildTiles = new HashSet<(int, int)>();
+            UnlockedBuildings = new HashSet<BuildingType>() {
+                BuildingType.CityCenter,
+            };
 
             this.hexMap = hexMap;
         }
 
+        public void UnlockBuilding(BuildingType buildingType) {
+            UnlockedBuildings.Add(buildingType);
+        }
+
         public bool AddBuilding(BuildingType buildingType, (int, int) pos) {
+            if(!UnlockedBuildings.Contains(buildingType)) return false;
+
             if(!CityBuilt && buildingType == BuildingType.CityCenter) {
                 CityBuilt = true;
                 city = pos;
