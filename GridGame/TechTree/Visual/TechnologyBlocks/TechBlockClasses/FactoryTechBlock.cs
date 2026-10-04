@@ -12,7 +12,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public FactoryTechBlock() {
             Cost = TechCost.FACTORY_COST;
-            text = "FACTORY " + Cost;
+            text = "FACTORY";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.FACTORY;
             Technology = new FactoryTechnology();

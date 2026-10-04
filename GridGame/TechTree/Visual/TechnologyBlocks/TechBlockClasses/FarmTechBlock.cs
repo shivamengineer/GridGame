@@ -12,7 +12,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public FarmTechBlock() {
             Cost = TechCost.FARM_COST;
-            text = "FARM " + Cost;
+            text = "FARM";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.FARM;
             Technology = new FarmTechnology();
@@ -25,6 +25,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
                 //
             };
             NextTechs = new HashSet<TechnologyTypes>() {
+                TechnologyTypes.FACTORY,
+                TechnologyTypes.BANK,
                 TechnologyTypes.FACTORY,
             };
         }

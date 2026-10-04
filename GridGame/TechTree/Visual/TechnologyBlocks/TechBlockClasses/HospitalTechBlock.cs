@@ -12,7 +12,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public HospitalTechBlock() {
             Cost = TechCost.HOSPITAL_COST;
-            text = "HOSPITAL " + Cost;
+            text = "HOSPITAL";
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.HOSPITAL;
             Technology = new HospitalTechnology();
