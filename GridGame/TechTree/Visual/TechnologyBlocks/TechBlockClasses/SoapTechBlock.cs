@@ -12,7 +12,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public SoapTechBlock() {
             Cost = TechCost.SOAP_COST;
-            text = "SOAP";
+            text = "SOAP " + Cost;
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.SOAP;
             Technology = new SoapTechnology();

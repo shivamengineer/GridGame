@@ -9,6 +9,10 @@ namespace GridGame.TechTree.Backend {
         FACEMASK,
         SOAP,
         MEDICAL_TENT,
+        BANK,
+        FACTORY,
+        FARM,
         HOSPITAL,
+        LABORATORY,
     }
 }

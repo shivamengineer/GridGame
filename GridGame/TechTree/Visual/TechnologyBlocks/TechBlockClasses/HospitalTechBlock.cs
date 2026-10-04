@@ -12,7 +12,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public HospitalTechBlock() {
             Cost = TechCost.HOSPITAL_COST;
-            text = "HOSPITAL";
+            text = "HOSPITAL " + Cost;
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.HOSPITAL;
             Technology = new HospitalTechnology();
@@ -22,7 +22,8 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         private void InitializeConnectedTechBlocks() {
             Prerequisites = new HashSet<TechnologyTypes>() {
-                TechnologyTypes.MEDICAL_TENT,
+                TechnologyTypes.LABORATORY,
+                TechnologyTypes.SOAP,
             };
             NextTechs = new HashSet<TechnologyTypes>() {
                 //

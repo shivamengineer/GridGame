@@ -20,11 +20,14 @@ namespace GridGame.TechTree.Backend {
             NewTech = new NewTechnology();
             this.content = content;
             TechBlockMap = new Dictionary<TechnologyTypes, ITechBlock>() {
+                [TechnologyTypes.BANK] = new BankTechBlock(),
                 [TechnologyTypes.FACEMASK] = new FacemaskTechBlock(),
+                [TechnologyTypes.FACTORY] = new FactoryTechBlock(),
+                [TechnologyTypes.FARM] = new FarmTechBlock(),
                 [TechnologyTypes.SOAP] = new SoapTechBlock(),
                 [TechnologyTypes.MEDICAL_TENT] = new MedicalTentTechBlock(),
                 [TechnologyTypes.HOSPITAL] = new HospitalTechBlock(),
-
+                [TechnologyTypes.LABORATORY] = new LaboratoryTechBlock(),
             };
             foreach(ITechBlock block in TechBlockMap.Values) {
                 block.SetContent(content);

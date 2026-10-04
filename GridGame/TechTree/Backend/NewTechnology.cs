@@ -13,11 +13,14 @@ namespace GridGame.TechTree.Backend {
 
         public NewTechnology() {
             TechnologyMap = new Dictionary<TechnologyTypes, ITechnology>() {
+                [TechnologyTypes.BANK] = new BankTechnology(),
                 [TechnologyTypes.FACEMASK] = new FacemaskTechnology(),
+                [TechnologyTypes.FACTORY] = new FactoryTechnology(),
+                [TechnologyTypes.FARM] = new FarmTechnology(),
                 [TechnologyTypes.SOAP] = new SoapTechnology(),
                 [TechnologyTypes.MEDICAL_TENT] = new MedicalTentTechnology(),
                 [TechnologyTypes.HOSPITAL] = new HospitalTechnology(),
-
+                [TechnologyTypes.LABORATORY] = new LaboratoryTechnology(),
             };
         }
 

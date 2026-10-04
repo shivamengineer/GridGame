@@ -21,7 +21,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public FacemaskTechBlock() {
             Cost = TechCost.FACEMASK_COST;
-            text = "FACEMASK";
+            text = "FACEMASK " + Cost;
             NextTechBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             TechType = TechnologyTypes.FACEMASK;
             Technology = new FacemaskTechnology();
