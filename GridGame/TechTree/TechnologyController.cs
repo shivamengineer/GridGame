@@ -37,7 +37,7 @@ namespace GridGame.TechTree {
         public TechnologyController(ContentLoader content, PlayerResources playerResources) {
             TechProgress = new TechProgress();
             TechBlockPositions = new List<Dictionary<TechnologyTypes, ITechBlock>>();
-            NewTech = new NewTechBlock(content);
+            NewTech = new NewTechBlock(content, playerResources);
             Background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             destRect = new Rectangle(0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
 
@@ -57,9 +57,23 @@ namespace GridGame.TechTree {
 
         private void InitializeGraph() {
             TechBlockRoots = TechTreeStarter.StartingVisibleTechs(NewTech);
-            foreach(ITechBlock techBlock in TechBlockRoots) {
-                techBlock.InitializeGraph(NewTech, playerResources);
+            HashSet<TechnologyTypes> AddedBlocks = new HashSet<TechnologyTypes>();
+            Queue<ITechBlock> blocks = new Queue<ITechBlock>();
+            foreach(ITechBlock block in TechBlockRoots) {
+                blocks.Enqueue(block);
+                AddedBlocks.Add(block.TechType);
             }
+            while(blocks.Count > 0) {
+                ITechBlock currentBlock = blocks.Dequeue();
+                foreach(TechnologyTypes type in currentBlock.NextTechs) {
+                    if(!AddedBlocks.Contains(type)) {
+                        ITechBlock nextBlock = NewTech.GetTechnology(type);
+                        blocks.Enqueue(nextBlock);
+                        AddedBlocks.Add(type);
+                        currentBlock.NextTechBlocks.Add(type, nextBlock);
+                    }
+                }
+            }                         
         }
 
         private void InitializePositions() {

@@ -45,27 +45,19 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public PlayerResources playerResources;
         public int Cost;
 
-        public void SetContent(ContentLoader content) {
+        public void SetContent(ContentLoader content, PlayerResources playerResources) {
             this.content = content;
+            this.playerResources = playerResources;
             backgroundTexture = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             font = content.GetFont(FontNames.ARIAL);
             TechStatus.Visible = true;
-        }
-
-        public void InitializeGraph(NewTechBlock newTechBlock, PlayerResources playerResources) {
-            this.playerResources = playerResources;
-            foreach(TechnologyTypes Type in NextTechs) {
-                if(!NextTechBlocks.ContainsKey(Type)) {
-                    NextTechBlocks[Type] = newTechBlock.GetTechnology(Type);
-                }
-                NextTechBlocks[Type].InitializeGraph(newTechBlock, playerResources);
-            }
         }
 
         public void UpdatePosition(int position) {
             Position = Math.Max(Position, position);
             UpdatePositionFromCamera();
             UpdateNextPosition();
+            Debug.WriteLine(TechType.ToString() + ".POS = " + Position);
         }
 
         public void SetVisible() {

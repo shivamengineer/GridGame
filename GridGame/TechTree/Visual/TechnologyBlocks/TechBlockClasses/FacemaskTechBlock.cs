@@ -40,7 +40,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public override ITechBlock NewInstance() {
             ITechBlock block = new FacemaskTechBlock();
-            block.SetContent(content);
+            block.SetContent(content, playerResources);
             return block;
         }
 

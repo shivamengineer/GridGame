@@ -24,9 +24,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks { get; protected set; }
 
-        public void InitializeGraph(NewTechBlock newTech, PlayerResources playerResources);
-
-        public void SetContent(ContentLoader content);
+        public void SetContent(ContentLoader content, PlayerResources playerResources);
 
         public void UpdatePosition(int position);
 

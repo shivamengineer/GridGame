@@ -32,7 +32,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public override ITechBlock NewInstance() {
             ITechBlock block = new FactoryTechBlock();
-            block.SetContent(content);
+            block.SetContent(content, playerResources);
             return block;
         }
 
