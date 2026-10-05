@@ -3,6 +3,7 @@ using GridGame.Hexagons.StaticClasses;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
+using GridGame.Tiles.Terrain;
 using GridGame.Tiles.Terrain.TerrainClasses.RiverTerrainClasses;
 using Microsoft.Xna.Framework.Content;
 using System;
@@ -13,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Hexagons {
-    public struct HexMap {
+    public class HexMap {
 
         public ContentLoader Content;
         public Dictionary<(int, int), Tile> Tiles;
@@ -57,6 +58,15 @@ namespace GridGame.Hexagons {
             HashSet<(int, int)> newTiles = DiscoverTiles.TilesInRadius(position, radius);
             DiscoveredTiles.UnionWith(newTiles);
         }
+
+        public bool HasAdjacent((int, int) position, TerrainType terrainType) {
+            HashSet<(int, int)> adjacentTiles = DiscoverTiles.TilesInRadius(position, 1);
+            adjacentTiles.Remove(position);
+            foreach((int, int) pos in adjacentTiles) {
+                if(Tiles[pos].GetTerrainType() == terrainType) return true;
+            }
+            return false;
+        }                                                   
 
     }
 }

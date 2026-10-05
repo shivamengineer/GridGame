@@ -61,6 +61,8 @@ namespace GridGame.Hexagons {
             if(playerData.buildingManager.HasBuilding(pos)) return false; //Can't build on another building
             if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
             if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Land_River) return false; //Can't build on river tile
+            if(buildingType == BuildingType.CityCenter && 
+                !hexMap.HasAdjacent(pos, TerrainType.Land_River)) return false; //Must build city adjacent to a river tile
 
             if(!playerData.AddBuilding(buildingType, pos)) return false; //Not enough gold
 
