@@ -34,6 +34,8 @@ namespace GridGame.Hexagons {
         }
 
         public bool AddBuilding(BuildingType buildingType, (int, int) pos) {
+            if(!buildingManager.UnlockedBuildings.Contains(buildingType)) return false; //Checks if building technology is unlocked
+
             if(!playerResources.TrySubtractResource(ResourceType.Gold, BuildingCostDictionary[buildingType])) {
                 return false;
             }

@@ -38,8 +38,6 @@ namespace GridGame.Hexagons.Managers {
         }
 
         public bool AddBuilding(BuildingType buildingType, (int, int) pos) {
-            if(!UnlockedBuildings.Contains(buildingType)) return false;
-
             if(!CityBuilt && buildingType == BuildingType.CityCenter) {
                 CityBuilt = true;
                 city = pos;
