@@ -60,7 +60,7 @@ namespace GridGame.Units.UnitComponents {
                 IVirus virus = virusController.viruses[VirusNames.Coronavirus];
                 production = (int)virus.AttackCitizen.GetProductivity(production);
             }
-            hexagonMap.BuildBuilding(transform.Coords, production * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
+            hexagonMap.ConstructBuilding(transform.Coords, production * CityBaseStats.CITIZEN_BASE_PRODUCTIVITY);
         }
 
     }

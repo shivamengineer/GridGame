@@ -100,7 +100,7 @@ namespace GridGame.Hexagons {
             hexMap.Tiles[Coords].WorkTile(displayManager);
         }
 
-        public void BuildBuilding((int, int) Coords, int production) {
+        public void ConstructBuilding((int, int) Coords, int production) {
             hexMap.Tiles[Coords].AddProduction(production);
         }
 
