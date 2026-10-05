@@ -27,7 +27,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             NextTechs = new HashSet<TechnologyTypes>() {
                 TechnologyTypes.FACTORY,
                 TechnologyTypes.BANK,
-                TechnologyTypes.FACTORY,
             };
         }
 
