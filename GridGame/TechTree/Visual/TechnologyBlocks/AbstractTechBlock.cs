@@ -56,8 +56,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public void UpdatePosition(int position) {
             Position = Math.Max(Position, position);
             UpdatePositionFromCamera();
-            UpdateNextPosition();
-            Debug.WriteLine(TechType.ToString() + ".POS = " + Position);
         }
 
         public void SetVisible() {
@@ -90,12 +88,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             SetNextVisible();
             TryUnlockNextTechs();
             return true;
-        }
-
-        private void UpdateNextPosition() {
-            foreach(ITechBlock nextTech in NextTechBlocks.Values) {
-                nextTech.UpdatePosition(Position + 1);
-            }
         }
 
         private void SetNextVisible() {

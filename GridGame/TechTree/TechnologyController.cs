@@ -57,28 +57,40 @@ namespace GridGame.TechTree {
 
         private void InitializeGraph() {
             TechBlockRoots = TechTreeStarter.StartingVisibleTechs(NewTech);
-            HashSet<TechnologyTypes> AddedBlocks = new HashSet<TechnologyTypes>();
+            Dictionary<TechnologyTypes, ITechBlock> AddedBlocks = new Dictionary<TechnologyTypes, ITechBlock>();
             Queue<ITechBlock> blocks = new Queue<ITechBlock>();
             foreach(ITechBlock block in TechBlockRoots) {
                 blocks.Enqueue(block);
-                AddedBlocks.Add(block.TechType);
+                AddedBlocks.Add(block.TechType, block);
             }
             while(blocks.Count > 0) {
                 ITechBlock currentBlock = blocks.Dequeue();
                 foreach(TechnologyTypes type in currentBlock.NextTechs) {
-                    if(!AddedBlocks.Contains(type)) {
+                    if(!AddedBlocks.ContainsKey(type)) {
                         ITechBlock nextBlock = NewTech.GetTechnology(type);
                         blocks.Enqueue(nextBlock);
-                        AddedBlocks.Add(type);
+                        AddedBlocks.Add(type, nextBlock);
                         currentBlock.NextTechBlocks.Add(type, nextBlock);
+                    } else {
+                        currentBlock.NextTechBlocks.Add(type, AddedBlocks[type]);
                     }
                 }
             }                         
         }
 
         private void InitializePositions() {
+            Queue<ITechBlock> blocks = new Queue<ITechBlock>();
             foreach(ITechBlock techBlock in TechBlockRoots) {
                 techBlock.UpdatePosition(0);
+                blocks.Enqueue(techBlock);
+            }
+
+            while(blocks.Count > 0) {
+                ITechBlock currentBlock = blocks.Dequeue();
+                foreach(ITechBlock nextBlock in currentBlock.NextTechBlocks.Values) {
+                    nextBlock.UpdatePosition(currentBlock.Position + 1);
+                    blocks.Enqueue(nextBlock);
+                }
             }
         }
 
