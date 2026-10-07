@@ -24,9 +24,10 @@ namespace GridGame.Constants.Controller {
             using(var reader = new StreamReader(stream)) {
                 while(!reader.EndOfStream) {
                     var line = reader.ReadLine();
-                    if(line == "") continue; //Skips blank lines
+                    var input = line.Replace(" ", "");
+                    if(input == "") continue; //Skips blank lines
 
-                    string[] values = line.Split('=');
+                    string[] values = input.Split('=');
                     Read(values[0], values[1]);
                 }
             }
