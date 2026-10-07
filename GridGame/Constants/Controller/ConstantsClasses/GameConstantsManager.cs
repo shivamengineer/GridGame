@@ -11,5 +11,17 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
             //
         }
 
+        public override void ResetConstants() {
+            //
+        }
+
+        public override void Read(string filename) {
+            //
+        }
+
+        public override void Write(string filename) {
+            //
+        }
+
     }
 }

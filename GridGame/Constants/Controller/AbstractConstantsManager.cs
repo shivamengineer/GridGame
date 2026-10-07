@@ -16,9 +16,10 @@ namespace GridGame.Constants.Controller {
             //
         }
 
-        public void ResetConstants() {
-            //
-        }
+        public abstract void ResetConstants();
+
+        public abstract void Read(string filename);
+        public abstract void Write(string filename);
 
     }
 }
