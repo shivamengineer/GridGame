@@ -1,0 +1,2 @@
+Tick_Speed:0.5
+Virus_Spread_Range:2

@@ -22,6 +22,7 @@ namespace GridGame.Constants.Controller {
             foreach(var file in Filenames) {
                 ConstantsFiles[file.Key].ReadConstantsFromFile(file.Value);
             }
+
         }
 
         public void Save(string filename) {
