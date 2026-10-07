@@ -5,12 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Constants.Controller.ConstantsClasses {
-    public class ResourceController {
+    public class ColorConstantsManager : AbstractConstantsManager {
 
-        public int Bank_Rate;
-        public int Factory_Rate;
-        public int Farm_Rate;
-        public int Laboratory_Rate;
-
+        public ColorConstantsManager() {
+            //
+        }
+        
     }
 }

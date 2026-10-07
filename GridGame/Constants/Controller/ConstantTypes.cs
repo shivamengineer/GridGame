@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace GridGame.Constants.Controller {
     public enum ConstantTypes {
-        RESOURCES,
-        TECH_TREE,
-        VIRUS,
-        TREATMENT,
-        UI_INFO,
-        COLORS,
+        COLOR,
+        GAME,
+        USER_INTERFACE,
     }
 }

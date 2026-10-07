@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
 using GridGame.Controllers;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
@@ -27,6 +28,7 @@ namespace GridGame {
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            var ConstantLoader = new ConstantsController();
         }
 
         protected override void Initialize(){

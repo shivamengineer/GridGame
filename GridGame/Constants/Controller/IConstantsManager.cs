@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Constants.Controller {
-    public interface IConstantsFile {
+    public interface IConstantsManager {
 
-        public void ReadConstants(string filename);
+        public bool ReadConstantsFromFile(string filename);
         public void WriteConstantsToFile(string filename);
         public void ResetConstants();
 
