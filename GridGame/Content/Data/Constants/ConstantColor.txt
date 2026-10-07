@@ -1,4 +1,4 @@
-Color.White
-Color.Blue
-Color.Red
-Color.Green 
+building_color=Color.White
+citizen_color=Color.Blue
+sand_color=Color.Red
+hover_color=Color.Green 

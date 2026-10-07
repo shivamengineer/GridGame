@@ -16,7 +16,6 @@ namespace GridGame.Constants.Controller {
         public bool ReadConstantsFromFile(string filename) {
             string path = "Content/Data/Constants/" + filename;
             if(!File.Exists(path)) {
-                Debug.WriteLine("FILE " + path + " DOES NOT EXIST"); 
                 ResetConstants();
                 return false;
             }
@@ -25,14 +24,13 @@ namespace GridGame.Constants.Controller {
             using(var reader = new StreamReader(stream)) {
                 while(!reader.EndOfStream) {
                     var line = reader.ReadLine();
-                    string[] values = line.Split(',');
-                    for(int i = 0; i < values.Length; i++) {
-                        Debug.WriteLine(values[i]);
-                    }
+                    if(line == "") continue; //Skips blank lines
+
+                    string[] values = line.Split('=');
+                    Read(values[0], values[1]);
                 }
             }
 
-            //If file doesn't exist return false and ResetConstants() 
             return true;
         }
 
@@ -42,7 +40,7 @@ namespace GridGame.Constants.Controller {
 
         public abstract void ResetConstants();
 
-        public abstract void Read(string filename);
+        public abstract void Read(string variable, string value);
         public abstract void Write(string filename);
 
     }

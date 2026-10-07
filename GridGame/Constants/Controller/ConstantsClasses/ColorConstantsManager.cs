@@ -15,7 +15,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
             //
         }
 
-        public override void Read(string filename) {
+        public override void Read(string variable, string value) {
             //
         }
 
