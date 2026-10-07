@@ -1,4 +1,3 @@
 Tech_Block_Width:20
 Tech_Block_Height:10
-
-Resource_Bar_Height:30
+Resource_Bar_Height:30 

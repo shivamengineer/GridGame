@@ -31,4 +31,15 @@
     <Folder Include="Content\Data\Constants\" />
     <Folder Include="UI\Overlay\Research\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\Data\Constants\ConstantColor.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Data\Constants\ConstantGame.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Data\Constants\ConstantUserInterface.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

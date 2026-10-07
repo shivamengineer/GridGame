@@ -16,6 +16,7 @@ namespace GridGame.Constants.Controller {
         public bool ReadConstantsFromFile(string filename) {
             string path = "Content/Data/Constants/" + filename;
             if(!File.Exists(path)) {
+                Debug.WriteLine("FILE " + path + " DOES NOT EXIST"); 
                 ResetConstants();
                 return false;
             }

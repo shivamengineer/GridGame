@@ -1,3 +1,4 @@
-Color.White,Color.Blue
+Color.White
+Color.Blue
 Color.Red
-Color.Green
+Color.Green 
