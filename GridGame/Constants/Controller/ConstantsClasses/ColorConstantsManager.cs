@@ -14,11 +14,11 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         private Dictionary<ConstColors, Color> Colors;
 
         public ColorConstantsManager() {
-            //
+            DefaultColors = ConstantsDictionaryLoader.GetDefaultColorConstants();
         }
 
         public override void ResetConstants() {
-            //
+            Colors = ConstantsDictionaryLoader.GetDefaultColorConstants();
         }
 
         public override void Read(string variable, string value) {

@@ -10,14 +10,16 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Controller.ConstantsClasses {
     public class UserInterfaceConstantsManager : AbstractConstantsManager {
 
+        private Dictionary<ConstUserInterface, int> DefaultUserInterfaceValues;
         private Dictionary<ConstUserInterface, int> UserInterfaceValues;
 
         public UserInterfaceConstantsManager() {
+            DefaultUserInterfaceValues = ConstantsDictionaryLoader.GetDefaultUserInterfaceValues();
             UserInterfaceValues = new Dictionary<ConstUserInterface, int>();
         }
 
         public override void ResetConstants() {
-            //
+            UserInterfaceValues = ConstantsDictionaryLoader.GetDefaultUserInterfaceValues();
         }
 
         public override void Read(string variable, string value) {

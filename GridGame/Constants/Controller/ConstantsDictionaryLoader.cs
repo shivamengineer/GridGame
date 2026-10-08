@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants.Controller.ConstantsClasses;
+using GridGame.Constants.Controller.ConstantsEnums;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,29 @@ namespace GridGame.Constants.Controller {
             };
         }
 
+        public static Dictionary<ConstColors, Color> GetDefaultColorConstants() {
+            return new Dictionary<ConstColors, Color>() {
+                //NEED TO ADD DEFAULT COLOR CONSTANTS
+            };
+        }
+
+        public static Dictionary<ConstGame, int> GetDefaultGameInts() {
+            return new Dictionary<ConstGame, int>() {
+                //NEED TO ADD DEFAULT GAME INT CONSTANTS
+            };
+        }
+
+        public static Dictionary<ConstGame, float> GetDefaultGameFloats() {
+            return new Dictionary<ConstGame, float>() {
+                //NEED TO ADD DEFAULT GAME FLOAT CONSTANTS
+            };
+        }
+
+        public static Dictionary<ConstUserInterface, int> GetDefaultUserInterfaceValues() {
+            return new Dictionary<ConstUserInterface, int>() {
+                //NEED TO ADD DEFAULT USER INTERFACE CONSTANTS
+            };
+        }
 
     }
 }

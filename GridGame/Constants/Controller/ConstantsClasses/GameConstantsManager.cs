@@ -10,16 +10,23 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Controller.ConstantsClasses {
     public class GameConstantsManager : AbstractConstantsManager {
 
+        private Dictionary<ConstGame, int> DefaultGameInts;
+        private Dictionary<ConstGame, float> DefaultGameFloats;
+
         private Dictionary<ConstGame, int> GameInts;
         private Dictionary<ConstGame, float> GameFloats;
 
         public GameConstantsManager() {
+            DefaultGameInts = ConstantsDictionaryLoader.GetDefaultGameInts();
+            DefaultGameFloats = ConstantsDictionaryLoader.GetDefaultGameFloats();
+
             GameInts = new Dictionary<ConstGame, int>();
             GameFloats = new Dictionary<ConstGame, float>();
         }
 
         public override void ResetConstants() {
-            //
+            GameInts = ConstantsDictionaryLoader.GetDefaultGameInts();
+            GameFloats = ConstantsDictionaryLoader.GetDefaultGameFloats();
         }
 
         public override void Read(string variable, string value) {
