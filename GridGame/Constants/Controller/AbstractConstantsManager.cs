@@ -1,4 +1,5 @@
-﻿using GridGame.Hexagons.StaticClasses;
+﻿using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Hexagons.StaticClasses;
 using GridGame.Tiles.Terrain.TerrainClasses;
 using Microsoft.Xna.Framework;
 using System;
@@ -43,6 +44,11 @@ namespace GridGame.Constants.Controller {
 
         public abstract void Read(string variable, string value);
         public abstract void Write(string filename);
+
+        public abstract Dictionary<ConstColors, Color> GetColors();
+        public abstract Dictionary<ConstGame, int> GetGameInts();
+        public abstract Dictionary<ConstGame, float> GetGameFloats();
+        public abstract Dictionary<ConstUserInterface, int> GetUIInts();
 
     }
 }
