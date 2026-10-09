@@ -1,5 +1,8 @@
-﻿using GridGame.Constants.Controller.ConstantsClasses;
+﻿using GridGame.Constants.Colors;
+using GridGame.Constants.Controller.ConstantsClasses;
 using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Tiles.Buildings.BuildingClasses;
+using GridGame.Tiles.Terrain.TerrainClasses;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -28,7 +31,34 @@ namespace GridGame.Constants.Controller {
 
         public static Dictionary<ConstColors, Color> GetDefaultColorConstants() {
             return new Dictionary<ConstColors, Color>() {
-                //NEED TO ADD DEFAULT COLOR CONSTANTS
+                [ConstColors.Bank] = BuildingColors.BankColor,
+                [ConstColors.CityCenter] = BuildingColors.CityCenterColor,
+                [ConstColors.Tile_Empty] = BuildingColors.EmptyColor,
+                [ConstColors.Factory] = BuildingColors.FactoryColor,
+                [ConstColors.Farm] = BuildingColors.FarmColor,
+                [ConstColors.Hospital] = BuildingColors.HospitalColor,
+                [ConstColors.Laboratory] = BuildingColors.LaboratoryColor,
+                [ConstColors.Tile_NIL] = BuildingColors.NILColor,
+
+                [ConstColors.Citizen_Active] = CitizenColors.ActiveColor,
+                [ConstColors.Citizen_Inactive] = CitizenColors.InactiveColor,
+                [ConstColors.Citizen_Infected] = CitizenColors.InfectColor,
+
+                [ConstColors.Ocean] = TerrainColors.OceanColor,
+                [ConstColors.Land] = TerrainColors.LandColor,
+                [ConstColors.Coast] = TerrainColors.CoastColor,
+                [ConstColors.LandRiver] = TerrainColors.Land_RiverColor,
+                [ConstColors.Unknown] = TerrainColors.UnknownColor,
+                [ConstColors.UnknownBorder] = TerrainColors.UnknownBorderColor,
+
+                [ConstColors.OceanHover] = TerrainColors.OceanHoverColor,
+                [ConstColors.LandHover] = TerrainColors.LandHoverColor,
+                [ConstColors.CoastHover] = TerrainColors.CoastHoverColor,
+                [ConstColors.LandRiverHover] = TerrainColors.Land_RiverHoverColor,
+                [ConstColors.DefaultHover] = TerrainColors.DefaultHoverColor,
+
+                [ConstColors.CanBuild] = TerrainColors.CanBuildColor,
+                [ConstColors.CannotBuild] = TerrainColors.CannotBuildColor,
             };
         }
 
