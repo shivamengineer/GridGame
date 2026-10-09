@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Constants.TechTreeGraph {
+namespace GridGame.Constants.TechTreeInfo {
     public static class TechCost {
 
         public static readonly int MEDICAL_TENT_COST = 10;

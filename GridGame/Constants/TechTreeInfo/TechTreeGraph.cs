@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GridGame.Constants.TechTreeGraph {
+namespace GridGame.Constants.TechTreeInfo {
     public static class TechTreeGraph {
 
         public static readonly int BLOCK_WIDTH = 300;

@@ -2,7 +2,7 @@
 using GridGame.Constants.Controller.ConstantsClasses;
 using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Resources;
-using GridGame.Constants.TechTreeGraph;
+using GridGame.Constants.TechTreeInfo;
 using GridGame.Constants.Treatment;
 using GridGame.Constants.Viruses.Covid;
 using GridGame.Tiles.Buildings.BuildingClasses;
@@ -157,7 +157,32 @@ namespace GridGame.Constants.Controller {
 
         public static Dictionary<ConstUserInterface, int> GetDefaultUserInterfaceValues() {
             return new Dictionary<ConstUserInterface, int>() {
-                //NEED TO ADD DEFAULT USER INTERFACE CONSTANTS
+                [ConstUserInterface.WindowWidth] = GameConstants.WINDOW_WIDTH,
+                [ConstUserInterface.WindowHeight] = GameConstants.WINDOW_HEIGHT,
+
+                [ConstUserInterface.TechBlockWidth] = TechTreeGraph.BLOCK_WIDTH,
+                [ConstUserInterface.TechBlockHeight] = TechTreeGraph.BLOCK_HEIGHT,
+                [ConstUserInterface.TechBlockSpacing] = TechTreeGraph.BLOCK_SPACING,
+
+                [ConstUserInterface.TechTreeScrollSpeed] = TechTreeGraph.SCROLL_SPEED,
+
+                [ConstUserInterface.ProgressBarWidth] = PopupInfo.PROGRESS_BAR_WIDTH,
+                [ConstUserInterface.ProgressBarHeight] = PopupInfo.PROGRESS_BAR_HEIGHT,
+
+                [ConstUserInterface.CollectResourcePopupWidth] = PopupInfo.RESOURCE_POPUP_WIDTH,
+                [ConstUserInterface.CollectResourcePopupHeight] = PopupInfo.RESOURCE_POPUP_HEIGHT,
+
+                [ConstUserInterface.ResourcesOverlayHeight] = UIOverlayDetails.RESOURCE_BAR_HEIGHT,
+                [ConstUserInterface.ResourcesOverlayPadding] = UIOverlayDetails.RESOURCE_BAR_PADDING,
+                [ConstUserInterface.ResourcesOverlayY] = UIOverlayDetails.RESOURCE_BAR_Y,
+                [ConstUserInterface.ResourcesOverlayElementY] = UIOverlayDetails.RESOURCE_BAR_ITEM_Y,
+                [ConstUserInterface.ResourcesOverlayElementMarginX] = UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X,
+
+                [ConstUserInterface.CitizenInfectedBarWidth] = UnitInfo.INFECTED_WIDTH,
+                [ConstUserInterface.CitizenInfectedBarHeight] = UnitInfo.INFECTED_HEIGHT,
+
+                [ConstUserInterface.CitizenWidth] = UnitInfo.UNIT_WIDTH,
+                [ConstUserInterface.CitizenHeight] = UnitInfo.UNIT_HEIGHT,
             };
         }
 
