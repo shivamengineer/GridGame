@@ -1,6 +1,9 @@
 ﻿using GridGame.Constants.Colors;
 using GridGame.Constants.Controller.ConstantsClasses;
 using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Constants.Resources;
+using GridGame.Constants.TechTreeGraph;
+using GridGame.Constants.Viruses.Covid;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain.TerrainClasses;
 using Microsoft.Xna.Framework;
@@ -64,7 +67,63 @@ namespace GridGame.Constants.Controller {
 
         public static Dictionary<ConstGame, int> GetDefaultGameInts() {
             return new Dictionary<ConstGame, int>() {
-                //NEED TO ADD DEFAULT GAME INT CONSTANTS
+                [ConstGame.StartFood] = StartingResources.STARTING_FOOD,
+                [ConstGame.StartGold] = StartingResources.STARTING_GOLD,
+                [ConstGame.StartMorale] = StartingResources.STARTING_MORALE,
+                [ConstGame.StartProduction] = StartingResources.STARTING_PRODUCTION,                 
+                [ConstGame.StartScience] = StartingResources.STARTING_SCIENCE,
+
+                [ConstGame.BankResourceRate] = BuildingStats.BANK_RATE,
+                [ConstGame.FactoryResourceRate] = BuildingStats.FACTORY_RATE,
+                [ConstGame.FarmResourceRate] = BuildingStats.FARM_RATE,
+                [ConstGame.LaboratoryResourceRate] = BuildingStats.SCIENCE_RATE,
+
+                [ConstGame.CityFoodResourceRate] = CityBaseStats.FOOD_RATE,
+                [ConstGame.CityGoldResourceRate] = CityBaseStats.GOLD_RATE,
+                [ConstGame.CityMoraleResourceRate] = CityBaseStats.MORALE_RATE,
+                [ConstGame.CityProductionResourceRate] = CityBaseStats.PRODUCTION_RATE,
+                [ConstGame.CityScienceResourceRate] = CityBaseStats.SCIENCE_RATE,
+
+                [ConstGame.BankGoldCost] = BuildingCosts.BANK_GOLD_COST,
+                [ConstGame.CityCenterGoldCost] = BuildingCosts.CITY_CENTER_GOLD_COST,
+                [ConstGame.FactoryGoldCost] = BuildingCosts.FACTORY_GOLD_COST,
+                [ConstGame.FarmGoldCost] = BuildingCosts.FARM_GOLD_COST,
+                [ConstGame.HospitalGoldCost] = BuildingCosts.HOSPITAL_GOLD_COST,
+                [ConstGame.LaboratoryGoldCost] = BuildingCosts.LABORATORY_GOLD_COST,
+
+                [ConstGame.BankProductionCost] = BuildingCosts.BANK_PRODUCTION_COST,
+                [ConstGame.CityCenterProductionCost] = BuildingCosts.CITY_CENTER_PRODUCTION_COST,
+                [ConstGame.FactoryProductionCost] = BuildingCosts.FACTORY_PRODUCTION_COST,
+                [ConstGame.FarmProductionCost] = BuildingCosts.FARM_PRODUCTION_COST,
+                [ConstGame.HospitalProductionCost] = BuildingCosts.HOSPITAL_PRODUCTION_COST,
+                [ConstGame.LaboratoryProductionCost] = BuildingCosts.LABORATORY_PRODUCTION_COST,
+
+                [ConstGame.CanBuildMaxDistanceFromPlayer] = BuildingLimits.BUILDING_RADIUS_FROM_PLAYER,
+                [ConstGame.CanBuildMaxDistanceFromCity] = BuildingLimits.BUILDING_RADIUS_FROM_CITY,
+
+                [ConstGame.CitizenBaseProductivity] = CityBaseStats.CITIZEN_BASE_PRODUCTIVITY,
+
+                [ConstGame.CitizenFoodRation] = FoodStats.FOOD_PER_CITIZEN,
+                [ConstGame.FoodToAddCitizen] = FoodStats.FOOD_TO_ADD_CITIZEN,
+
+                [ConstGame.CitizenVisionRadius] = UnitInfo.UNIT_VISION_RADIUS,
+
+                [ConstGame.ProductivityBaseLoss] = FoodStats.PRODUCTIVITY_BASE_LOSS,
+                [ConstGame.ProductivityIncreaseFromFood] = FoodStats.PRODUCTIVITY_GAIN_FROM_FOOD,
+
+                [ConstGame.TentScienceCost] = TechCost.MEDICAL_TENT_COST,
+                [ConstGame.FarmScienceCost] = TechCost.FARM_COST,
+                [ConstGame.FacemaskScienceCost] = TechCost.FACEMASK_COST,
+                [ConstGame.LaboratoryScienceCost] = TechCost.LABORATORY_COST,
+                [ConstGame.SoapScienceCost] = TechCost.SOAP_COST,
+                [ConstGame.HospitalScienceCost] = TechCost.HOSPITAL_COST,
+                [ConstGame.BankScienceCost] = TechCost.BANK_COST,
+                [ConstGame.FactoryScienceCost] = TechCost.FACTORY_COST,
+
+                [ConstGame.VirusSpreadRange] = CovidStats.SPREAD_RANGE,
+
+                [ConstGame.MapWidth] = GameConstants.MAP_WIDTH,
+                [ConstGame.MapHeight] = GameConstants.MAP_HEIGHT,
             };
         }
 
