@@ -3,6 +3,7 @@ using GridGame.Constants.Controller.ConstantsClasses;
 using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Resources;
 using GridGame.Constants.TechTreeGraph;
+using GridGame.Constants.Treatment;
 using GridGame.Constants.Viruses.Covid;
 using GridGame.Tiles.Buildings.BuildingClasses;
 using GridGame.Tiles.Terrain.TerrainClasses;
@@ -129,7 +130,28 @@ namespace GridGame.Constants.Controller {
 
         public static Dictionary<ConstGame, float> GetDefaultGameFloats() {
             return new Dictionary<ConstGame, float>() {
-                //NEED TO ADD DEFAULT GAME FLOAT CONSTANTS
+                [ConstGame.CollectResourceInterval] = GameConstants.RESOURCE_TICK_SPEED,
+                [ConstGame.FoodCheckInterval] = GameConstants.FOOD_CHECK_TIME,
+
+                [ConstGame.CitizenMoveTime] = UnitInfo.UNIT_MOVE_TIME,
+
+                [ConstGame.RestedStrength] = HealthEffectStats.RESTED_STRENGTH,
+                [ConstGame.DrowsyStrength] = HealthEffectStats.DROWSY_STRENGTH,
+                [ConstGame.HydratedStrength] = HealthEffectStats.HYDRATED_WATER_STRENGTH,
+                [ConstGame.HungryStrength] = HealthEffectStats.HUNGRY_STRENGTH,
+                [ConstGame.RestReduceHungerStrength] = HealthEffectStats.REST_REDUCE_HUNGER_STRENGTH,
+
+                [ConstGame.MinStrength] = CovidStats.MIN_STRENGTH,
+                [ConstGame.StrengthRange] = CovidStats.STRENGTH_RANGE,
+
+                [ConstGame.VirusBaseDuration] = CovidStats.VIRUS_BASE_DURATION,
+                [ConstGame.VirusPersistChance] = CovidStats.VIRUS_CHANCE_TO_SURVIVE,
+                [ConstGame.VirusPersistMultiplier] = CovidStats.VIRUS_SURVIVE_MULTIPLIER,
+                [ConstGame.VirusSpreadChance] = CovidStats.SPREAD_CHANCE,
+                [ConstGame.VirusTimeBeforeSpread] = CovidStats.TIME_TO_SPREAD,
+                [ConstGame.VirusTimeBeforeOutbreak] = CovidStats.TIME_BEFORE_OUTBREAK,
+                [ConstGame.VirusAsymptomaticTime] = CovidStats.ASYMPTOMATIC_TIME,
+                [ConstGame.VirusMortalityRate] = CovidStats.MORTALITY_RATE,
             };
         }
 
