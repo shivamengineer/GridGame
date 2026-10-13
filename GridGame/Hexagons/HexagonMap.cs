@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
 using GridGame.GameManagers;
 using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
@@ -36,7 +37,7 @@ namespace GridGame.Hexagons {
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
                    
-        public HexagonMap(ContentLoader content, DisplayManager displayManager) {
+        public HexagonMap(ContentLoader content, DisplayManager displayManager, ConstantsController Constants) {
             this.content = content;
 
             hexMap = new HexMap(content, citizenManager);
@@ -48,7 +49,7 @@ namespace GridGame.Hexagons {
             this.displayManager = displayManager;
             citizenManager = new CitizenManager(StartCoords, this, content);
             hexMap.SetCitizens(citizenManager);
-            playerData = new PlayerData(displayManager.resourceManager.playerResources, hexMap);
+            playerData = new PlayerData(displayManager.resourceManager.playerResources, hexMap, Constants);
             UnknownTile = UnknownTileGetter.GetTile(content);
             foodManager = new FoodManager(this);
             virusController = new CitizenVirusController(citizenManager);

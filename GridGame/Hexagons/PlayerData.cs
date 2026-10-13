@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
 using GridGame.GameManagers;
 using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
@@ -24,13 +25,13 @@ namespace GridGame.Hexagons {
 
         private Dictionary<BuildingType, int> BuildingCostDictionary;
 
-        public PlayerData(PlayerResources playerResources, HexMap hexMap) {
+        public PlayerData(PlayerResources playerResources, HexMap hexMap, ConstantsController Constants) {
             this.playerResources = playerResources;
 
             SpentGold = false;
 
             BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
-            buildingManager = new BuildingManager(hexMap);
+            buildingManager = new BuildingManager(hexMap, Constants);
         }
 
         public bool AddBuilding(BuildingType buildingType, (int, int) pos) {

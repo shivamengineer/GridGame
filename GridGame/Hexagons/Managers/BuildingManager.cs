@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.Resources;
 using GridGame.Tiles.Buildings;
@@ -20,8 +22,9 @@ namespace GridGame.Hexagons.Managers {
         public HashSet<BuildingType> UnlockedBuildings;
 
         private HexMap hexMap;
+        private int CanBuildRadiusFromCity;
 
-        public BuildingManager(HexMap hexMap) {
+        public BuildingManager(HexMap hexMap, ConstantsController constantsController) {
             CityBuilt = false;
             BuildingTiles = new HashSet<(int, int)>();
             UnfinishedBuildingTiles = new Queue<(int, int)>();
@@ -31,6 +34,8 @@ namespace GridGame.Hexagons.Managers {
             };
 
             this.hexMap = hexMap;
+            Dictionary<ConstGame, int> GameInts = constantsController.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            CanBuildRadiusFromCity = GameInts[ConstGame.CanBuildMaxDistanceFromCity];
         }
 
         public void UnlockBuilding(BuildingType buildingType) {
@@ -41,7 +46,7 @@ namespace GridGame.Hexagons.Managers {
             if(!CityBuilt && buildingType == BuildingType.CityCenter) {
                 CityBuilt = true;
                 city = pos;
-                CanBuildTiles = DiscoverTiles.TilesInRadius(city, BuildingLimits.BUILDING_RADIUS_FROM_CITY);
+                CanBuildTiles = DiscoverTiles.TilesInRadius(city, CanBuildRadiusFromCity);
             }
 
             BuildingTiles.Add(pos);
