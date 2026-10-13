@@ -1,4 +1,4 @@
-﻿using GridGame.Constants.TechTreeGraph;
+﻿using GridGame.Constants.TechTreeInfo;
 using GridGame.TechTree.Backend.Technology.TechnologyClasses;
 using GridGame.TechTree.Backend;
 using System;

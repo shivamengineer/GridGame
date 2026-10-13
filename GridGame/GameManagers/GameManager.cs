@@ -1,4 +1,5 @@
-﻿using GridGame.Controllers;
+﻿using GridGame.Constants.Controller;
+using GridGame.Controllers;
 using GridGame.Controllers.KeyboardClasses;
 using GridGame.GameManagers.ManagerEnums;
 using GridGame.Hexagons;
@@ -20,6 +21,7 @@ namespace GridGame.GameManagers {
     public class GameManager {
 
         public HexagonMap hexagonMap { get; private set; }
+        public ConstantsController Constants { get; private set; }
 
         private ContentLoader contentLoader;
 
@@ -32,6 +34,7 @@ namespace GridGame.GameManagers {
         private bool paused = false;
         
         public GameManager() {
+            Constants = new ConstantsController();
             MainControllers = new Dictionary<ControllerTypes, IController>();
             PausedControllers = new Dictionary<ControllerTypes, IController>();
         }

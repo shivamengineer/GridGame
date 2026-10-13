@@ -25,11 +25,11 @@ namespace GridGame.Constants.Controller {
             };
         }
 
-        public static Dictionary<ConstantTypes, IConstantsManager> GetConstantsManagers() {
+        public static Dictionary<ConstantTypes, IConstantsManager> GetConstantsManagers(Dictionary<ConstantTypes, string> filenames) {
             return new Dictionary<ConstantTypes, IConstantsManager>() {
-                [ConstantTypes.COLOR] = new ColorConstantsManager(),
-                [ConstantTypes.GAME] = new GameConstantsManager(),
-                [ConstantTypes.USER_INTERFACE] = new UserInterfaceConstantsManager()
+                [ConstantTypes.COLOR] = new ColorConstantsManager(filenames[ConstantTypes.COLOR]),
+                [ConstantTypes.GAME] = new GameConstantsManager(filenames[ConstantTypes.GAME]),
+                [ConstantTypes.USER_INTERFACE] = new UserInterfaceConstantsManager(filenames[ConstantTypes.USER_INTERFACE])
             };
         }
 

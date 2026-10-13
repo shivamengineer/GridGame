@@ -13,8 +13,11 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         private Dictionary<ConstColors, Color> DefaultColors;
         private Dictionary<ConstColors, Color> Colors;
 
-        public ColorConstantsManager() {
+        public ColorConstantsManager(string filename) {
             DefaultColors = ConstantsDictionaryLoader.GetDefaultColorConstants();
+            Colors = new Dictionary<ConstColors, Color>();
+            ReadConstantsFromFile(filename);
+            FillUndeclaredConstants();
         }
 
         public override void ResetConstants() {
@@ -33,6 +36,20 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
                 }
 
                 Colors[colorVariable] = inputColor;
+            }
+        }
+
+        private void FillUndeclaredConstants() {
+            if(Colors.Count >= DefaultColors.Count) return;
+
+            HashSet<ConstColors> TypesToAdd = new HashSet<ConstColors>();
+            foreach(ConstColors type in DefaultColors.Keys) {
+                if(!Colors.ContainsKey(type)) {
+                    TypesToAdd.Add(type);
+                }
+            }
+            foreach(ConstColors type in TypesToAdd) {
+                Colors.Add(type, DefaultColors[type]);
             }
         }
 

@@ -28,7 +28,6 @@ namespace GridGame {
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            var ConstantLoader = new ConstantsController();
         }
 
         protected override void Initialize(){

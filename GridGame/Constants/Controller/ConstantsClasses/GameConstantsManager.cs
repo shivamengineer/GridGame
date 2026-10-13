@@ -16,12 +16,16 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         private Dictionary<ConstGame, int> GameInts;
         private Dictionary<ConstGame, float> GameFloats;
 
-        public GameConstantsManager() {
+        public GameConstantsManager(string filename) {
             DefaultGameInts = ConstantsDictionaryLoader.GetDefaultGameInts();
             DefaultGameFloats = ConstantsDictionaryLoader.GetDefaultGameFloats();
 
             GameInts = new Dictionary<ConstGame, int>();
             GameFloats = new Dictionary<ConstGame, float>();
+
+            ReadConstantsFromFile(filename);
+            FillUndeclaredInts();
+            FillUndeclaredFloats();
         }
 
         public override void ResetConstants() {
@@ -40,6 +44,34 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
                         GameFloats[input] = result;
                     }
                 }
+            }
+        }
+
+        private void FillUndeclaredInts() {
+            if(GameInts.Count >= DefaultGameInts.Count) return;
+
+            HashSet<ConstGame> TypesToAdd = new HashSet<ConstGame>();
+            foreach(ConstGame type in DefaultGameInts.Keys) {
+                if(!GameInts.ContainsKey(type)) {
+                    TypesToAdd.Add(type);
+                }
+            }
+            foreach(ConstGame type in TypesToAdd) {
+                GameInts.Add(type, DefaultGameInts[type]);
+            }
+        }
+
+        private void FillUndeclaredFloats() {
+            if(GameFloats.Count >= DefaultGameFloats.Count) return;
+
+            HashSet<ConstGame> TypesToAdd = new HashSet<ConstGame>();
+            foreach(ConstGame type in DefaultGameFloats.Keys) {
+                if(!GameFloats.ContainsKey(type)) {
+                    TypesToAdd.Add(type);
+                }
+            }
+            foreach(ConstGame type in TypesToAdd) {
+                GameFloats.Add(type, DefaultGameFloats[type]);
             }
         }
 

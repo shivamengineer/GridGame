@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GridGame.Constants.TechTreeGraph;
+using GridGame.Constants.TechTreeInfo;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class MedicalTentTechBlock : AbstractTechBlock {

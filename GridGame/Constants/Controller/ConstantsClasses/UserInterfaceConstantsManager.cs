@@ -13,9 +13,11 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         private Dictionary<ConstUserInterface, int> DefaultUserInterfaceValues;
         private Dictionary<ConstUserInterface, int> UserInterfaceValues;
 
-        public UserInterfaceConstantsManager() {
+        public UserInterfaceConstantsManager(string filename) {
             DefaultUserInterfaceValues = ConstantsDictionaryLoader.GetDefaultUserInterfaceValues();
             UserInterfaceValues = new Dictionary<ConstUserInterface, int>();
+            ReadConstantsFromFile(filename);
+            FillUndeclaredConstants();
         }
 
         public override void ResetConstants() {
@@ -29,6 +31,20 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
                         UserInterfaceValues[input] = result;
                     }
                 }
+            }
+        }
+
+        private void FillUndeclaredConstants() {
+            if(UserInterfaceValues.Count >= DefaultUserInterfaceValues.Count) return;
+
+            HashSet<ConstUserInterface> TypesToAdd = new HashSet<ConstUserInterface>();
+            foreach(ConstUserInterface type in DefaultUserInterfaceValues.Keys) {
+                if(!UserInterfaceValues.ContainsKey(type)) {
+                    TypesToAdd.Add(type);
+                }
+            }
+            foreach(ConstUserInterface type in TypesToAdd) {
+                UserInterfaceValues.Add(type, DefaultUserInterfaceValues[type]);
             }
         }
 

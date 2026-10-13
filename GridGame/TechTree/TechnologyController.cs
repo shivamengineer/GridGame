@@ -1,5 +1,5 @@
 ﻿using GridGame.Constants;
-using GridGame.Constants.TechTreeGraph;
+using GridGame.Constants.TechTreeInfo;
 using GridGame.Resources;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Visual.TechnologyBlocks;

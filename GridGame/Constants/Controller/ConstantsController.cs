@@ -14,7 +14,7 @@ namespace GridGame.Constants.Controller {
 
         public ConstantsController() {
             Filenames = ConstantsDictionaryLoader.GetFilenames();
-            ConstantsFiles = ConstantsDictionaryLoader.GetConstantsManagers();
+            ConstantsFiles = ConstantsDictionaryLoader.GetConstantsManagers(Filenames);
             Initialize();
         }
 
