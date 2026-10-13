@@ -1,6 +1,8 @@
 ﻿using GridGame.Commands;
 using GridGame.Commands.CameraCommands;
 using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Hexagons.StaticClasses;
@@ -28,11 +30,20 @@ namespace GridGame.Controllers.MouseClasses {
 
         private IButton selectedButton;
 
-        public MouseDownHandler(DisplayManager displayManager) {
+        private int BuildingRadiusFromPlayer;
+        private int BuildingRadiusFromCity;
+
+        public MouseDownHandler(DisplayManager displayManager, IConstantsManager constantsManager) {
             resourceDisplay = displayManager.resourceManager.resourceDisplay;
             buttonDisplay = displayManager.buttonDisplay;
             selectedButton = buttonDisplay.GetButton(selectedBuilding);
             selectedButton.SetRectSelected(true);
+
+            Dictionary<ConstGame, int> GameInts = constantsManager.GetGameInts();
+            BuildingRadiusFromPlayer = GameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
+            BuildingRadiusFromCity = GameInts[ConstGame.CanBuildMaxDistanceFromCity];
+            Debug.WriteLine("RADIUS FROM PLAYER " + BuildingRadiusFromPlayer);
+            Debug.WriteLine("RADIUS FROM CITY " + BuildingRadiusFromCity);
         }
 
         public void OnMouseDown(int x, int y, HexagonMap hexagonMap) {
@@ -78,8 +89,8 @@ namespace GridGame.Controllers.MouseClasses {
                 distanceFromCityCenter = DiscoverTiles.DistanceBetweenTiles(offsetClicked, hexagonMap.playerData.buildingManager.city);
             }
 
-            if(distanceFromPlayer > BuildingLimits.BUILDING_RADIUS_FROM_PLAYER) return; //player must be adjacent or on tile
-            if(distanceFromCityCenter > BuildingLimits.BUILDING_RADIUS_FROM_CITY) return;
+            if(distanceFromPlayer > BuildingRadiusFromPlayer) return; //player must be adjacent or on tile
+            if(distanceFromCityCenter > BuildingRadiusFromCity) return;
 
             clickedHex.Item1--;
             if(hexagonMap.BuildBuilding(selectedBuilding, clickedHex)) {

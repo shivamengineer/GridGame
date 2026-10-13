@@ -46,7 +46,7 @@ namespace GridGame.GameManagers {
 
             keyboardHandler = new KeyboardHandler(this);
 
-            ControllerLoader.LoadMouseController(MainControllers, hexagonMap, displayManager);
+            ControllerLoader.LoadMouseController(MainControllers, hexagonMap, displayManager, Constants);
             ControllerLoader.LoadPauseMouseController(PausedControllers, hexagonMap);
         }
 
