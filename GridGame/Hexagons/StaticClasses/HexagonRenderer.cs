@@ -13,11 +13,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using GridGame.Tiles.Terrain.TerrainClasses;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 
 namespace GridGame.Hexagons.StaticClasses {
     public static class HexagonRenderer {
 
-        public static void Draw(SpriteBatch spriteBatch, HexMap hex, Tile unknown) {
+        public static void Draw(SpriteBatch spriteBatch, HexMap hex, Tile unknown, ConstantsController constantsController) {
+            Dictionary<ConstUserInterface, int> UIInts = constantsController.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+
             int camPosX = hex.HexMath.camPosX;
             int camPosY = hex.HexMath.camPosY;
 
@@ -28,11 +32,11 @@ namespace GridGame.Hexagons.StaticClasses {
             float dyR = rad * MathF.Sqrt(3) * 0.9f;
 
             int qMin = (int)MathF.Floor(camPosX / dxQ) - 2;
-            int qMax = (int)MathF.Ceiling((camPosX + GameConstants.WINDOW_WIDTH) / dxQ) + 2;
+            int qMax = (int)MathF.Ceiling((camPosX + UIInts[ConstUserInterface.WindowWidth]) / dxQ) + 2;
 
             for(int q = qMin; q <= qMax; q++) {
                 float top = camPosY;
-                float bottom = camPosY + GameConstants.WINDOW_HEIGHT - 2 * UIOverlayDetails.RESOURCE_BAR_HEIGHT; //subtract resource bar height so it only renders to top of button display
+                float bottom = camPosY + UIInts[ConstUserInterface.WindowHeight] - 2 * UIInts[ConstUserInterface.ResourcesOverlayHeight]; //subtract resource bar height so it only renders to top of button display
 
                 int rMin = (int)MathF.Floor((top - q * dyQ) / dyR) - 2;
                 int rMax = (int)MathF.Ceiling((bottom - q * dyQ) / dyR) + 2;

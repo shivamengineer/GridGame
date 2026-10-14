@@ -36,9 +36,11 @@ namespace GridGame.Hexagons {
 
         private Dictionary<BuildingType, IBuilding> BuildingDictionary;
         private Tile UnknownTile;
+        private ConstantsController Constants;
                    
         public HexagonMap(ContentLoader content, DisplayManager displayManager, ConstantsController Constants) {
             this.content = content;
+            this.Constants = Constants;
 
             hexMap = new HexMap(content, citizenManager);
 
@@ -121,7 +123,7 @@ namespace GridGame.Hexagons {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile);
+            HexagonRenderer.Draw(spriteBatch, hexMap, UnknownTile, Constants);
             HexagonRenderer.DrawRivers(spriteBatch, hexMap);
             HexagonRenderer.DrawBuildings(spriteBatch, this);
             foreach(var citizen in citizenManager.Citizens) {
