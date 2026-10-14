@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Resources;
 using GridGame.Resources;
 using GridGame.Units.UnitClasses;
@@ -19,12 +21,19 @@ namespace GridGame.Hexagons.Managers {
 
         private float timeElapsed = 0f;
 
-        public FoodManager(HexagonMap hexagonMap) {
+        private int foodToAddCitizen;
+        private int foodRation;
+
+        public FoodManager(HexagonMap hexagonMap, ConstantsController constantsController) {
             citizenManager = hexagonMap.citizenManager;
             playerResources = hexagonMap.playerData.playerResources;
             buildingManager = hexagonMap.playerData.buildingManager;
 
             this.hexagonMap = hexagonMap;
+
+            Dictionary<ConstGame, int> gameInts = constantsController.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            foodToAddCitizen = gameInts[ConstGame.FoodToAddCitizen];
+            foodRation = gameInts[ConstGame.CitizenFoodRation];
         }
 
         public void Update(GameTime gameTime) {
@@ -39,7 +48,7 @@ namespace GridGame.Hexagons.Managers {
         private void UpdateEvent() {
             int numCitizens = citizenManager.Citizens.Count;
             int foodOwned = playerResources.GetResourceAmount(ResourceType.Food);
-            int foodNeeded = numCitizens * FoodStats.FOOD_PER_CITIZEN;
+            int foodNeeded = numCitizens * foodRation;
 
             if(foodOwned >= foodNeeded) {
                 foreach(var citizen in citizenManager.Citizens) {
@@ -56,7 +65,7 @@ namespace GridGame.Hexagons.Managers {
         private void TryAddCitizen() {
             int foodOwned = playerResources.GetResourceAmount(ResourceType.Food);
 
-            if(foodOwned >= FoodStats.FOOD_TO_ADD_CITIZEN) {
+            if(foodOwned >= foodToAddCitizen) {
                 if(!citizenManager.AddCitizen(buildingManager.city)) {
                     //citizenManager.AddElsewhere();
                 }
@@ -64,7 +73,7 @@ namespace GridGame.Hexagons.Managers {
         }
 
         private void FeedSomeCitizens(int foodOwned) {
-            int numMeals = foodOwned / FoodStats.FOOD_PER_CITIZEN;
+            int numMeals = foodOwned / foodRation;
             Citizen[] fedCitizens = Random.Shared.GetItems(citizenManager.Citizens.ToArray(), numMeals);
             foreach(var citizen in fedCitizens) {
                 citizen.builder.Eat();
