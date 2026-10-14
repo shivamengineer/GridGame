@@ -1,4 +1,5 @@
-﻿using GridGame.Hexagons.Managers;
+﻿using GridGame.Constants.Controller;
+using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
@@ -24,14 +25,14 @@ namespace GridGame.Hexagons {
         private River river;
         public HexagonMapCSVReader csvReader;
 
-        public HexMap(ContentLoader Content, CitizenManager citizens) {
+        public HexMap(ContentLoader Content, CitizenManager citizens, ConstantsController Constants) {
             this.Content = Content;
 
             Tiles = new Dictionary<(int, int), Tile>();
             csvReader = new HexagonMapCSVReader(Tiles, Content);
 
             DiscoveredTiles = new HashSet<(int, int)>();
-            HexMath = new HexagonMath();
+            HexMath = new HexagonMath(Constants);
             river = new River(Tiles);
         }
 

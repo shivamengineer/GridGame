@@ -8,6 +8,8 @@ using GridGame.Constants;
 using SharpDX.Direct3D9;
 using GridGame.Hexagons.Managers;
 using System.Diagnostics;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 
 namespace GridGame.Hexagons {
     public class HexagonMath {
@@ -18,9 +20,11 @@ namespace GridGame.Hexagons {
         public int camPosY = 0;
 
         private CitizenManager citizens;
+        private Dictionary<ConstUserInterface, int> UIInts;
 
-        public HexagonMath() {
+        public HexagonMath(ConstantsController Constants) {
             hexConstants = new HexagonConstants();
+            UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
         }
 
         public void SetCitizens(CitizenManager citizens) {
@@ -36,7 +40,7 @@ namespace GridGame.Hexagons {
             float x = Q * (rad * MathF.Sqrt(3) - (rad / 2)) - camPosX;
             float y = (R * rad * MathF.Sqrt(3)) * 0.9f + (Q * rad / 2) * 1.5f - camPosY;
 
-            y += UIOverlayDetails.RESOURCE_BAR_HEIGHT;
+            y += UIInts[ConstUserInterface.ResourcesOverlayHeight];
 
             return new Vector2(x, y);
         }
@@ -50,7 +54,7 @@ namespace GridGame.Hexagons {
             float x = Q * (rad * MathF.Sqrt(3) - (rad / 2));
             float y = (R * rad * MathF.Sqrt(3)) * 0.9f + (Q * rad / 2) * 1.5f;
 
-            y += UIOverlayDetails.RESOURCE_BAR_HEIGHT;
+            y += UIInts[ConstUserInterface.ResourcesOverlayHeight];
 
             return new Vector2(x, y);
         }
@@ -59,7 +63,7 @@ namespace GridGame.Hexagons {
             float radius = hexConstants.HexRadius;
 
             float x = mousePos.X + camPosX;
-            float y = mousePos.Y + camPosY - UIOverlayDetails.RESOURCE_BAR_HEIGHT;
+            float y = mousePos.Y + camPosY - UIInts[ConstUserInterface.ResourcesOverlayHeight];
 
             float A = radius * (MathF.Sqrt(3f) - 0.5f);
             float B = radius * 0.75f;
@@ -116,8 +120,8 @@ namespace GridGame.Hexagons {
         public void FocusCamera() {
             Vector2 position = HexToPixelAbsolute(citizens.CurrentPlayer.transform.Coords);
 
-            camPosX = (int)position.X - (GameConstants.WINDOW_WIDTH / 2) + (5 * TextureInfo.BORDER_WIDTH / 2);
-            camPosY = (int)position.Y - (GameConstants.WINDOW_HEIGHT / 2) + (3 * TextureInfo.BORDER_HEIGHT / 2);
+            camPosX = (int)position.X - (UIInts[ConstUserInterface.WindowWidth] / 2) + (5 * TextureInfo.BORDER_WIDTH / 2);
+            camPosY = (int)position.Y - (UIInts[ConstUserInterface.WindowHeight] / 2) + (3 * TextureInfo.BORDER_HEIGHT / 2);
 
             camPosX = Max(0, camPosX);
             camPosY = Max(0, camPosY);

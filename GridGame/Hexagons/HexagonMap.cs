@@ -43,7 +43,7 @@ namespace GridGame.Hexagons {
             this.content = content;
             this.Constants = Constants;
 
-            hexMap = new HexMap(content, citizenManager);
+            hexMap = new HexMap(content, citizenManager, Constants);
 
             BuildingDictionary = BuildingGetter.GetBuildingGetter();
 
