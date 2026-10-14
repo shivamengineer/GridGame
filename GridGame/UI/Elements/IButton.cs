@@ -1,4 +1,5 @@
-﻿using GridGame.Tiles.Buildings;
+﻿using GridGame.Constants.Controller;
+using GridGame.Tiles.Buildings;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace GridGame.UI.Button {
     public interface IButton {
+
+        public void SetColors(ConstantsController Constants);
 
         public void SetPosition(int x, int y);
 

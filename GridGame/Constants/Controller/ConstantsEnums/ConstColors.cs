@@ -34,5 +34,10 @@ namespace GridGame.Constants.Controller.ConstantsEnums {
 
         CanBuild,
         CannotBuild,
+
+        ButtonSelected,
+        ButtonNotSelected,
+
+        ButtonTextColor,
     }
 }

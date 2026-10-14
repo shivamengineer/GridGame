@@ -1,4 +1,6 @@
-﻿using GridGame.Tiles.Buildings;
+﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Tiles.Buildings;
 using GridGame.UI.Button;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,7 +15,21 @@ namespace GridGame.UI.Elements.Buttons {
 
         public Vector2 Position;
         public Rectangle backgroundRect;
-        public Color backgroundRectColor = Color.LightGray;
+        public Color SelectedColor;
+        public Color NotSelectedColor;
+        public Color textColor;
+
+        public Color backgroundRectColor;
+
+        public void SetColors(ConstantsController Constants) {
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+
+            SelectedColor = Colors[ConstColors.ButtonSelected];
+            NotSelectedColor = Colors[ConstColors.ButtonNotSelected];
+            textColor = Colors[ConstColors.ButtonTextColor];
+
+            backgroundRectColor = NotSelectedColor;
+        }
 
         public void SetPosition(int x, int y) {
             Position = new Vector2(x, y);
@@ -24,8 +40,8 @@ namespace GridGame.UI.Elements.Buttons {
         }
 
         public void SetRectSelected(bool selected) {
-            if(selected) backgroundRectColor = Color.Yellow;
-            else backgroundRectColor = Color.LightGray;
+            if(selected) backgroundRectColor = SelectedColor;
+            else backgroundRectColor = NotSelectedColor;
         }
 
         public Rectangle GetRect() {

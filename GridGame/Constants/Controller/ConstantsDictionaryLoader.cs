@@ -63,6 +63,10 @@ namespace GridGame.Constants.Controller {
 
                 [ConstColors.CanBuild] = TerrainColors.CanBuildColor,
                 [ConstColors.CannotBuild] = TerrainColors.CannotBuildColor,
+
+                [ConstColors.ButtonSelected] = UIElements.ButtonSelectedColor,
+                [ConstColors.ButtonNotSelected] = UIElements.ButtonNotSelectedColor,
+                [ConstColors.ButtonTextColor] = UIElements.ButtonTextColor,
             };
         }
 

@@ -20,8 +20,8 @@ namespace GridGame.GameManagers {
         public TechnologyController technologyController;
 
         public DisplayManager(ContentLoader content, ConstantsController Constants) {
-            resourceManager = new ResourcesManager(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL));
-            buttonDisplay = new ButtonDisplay(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL));
+            resourceManager = new ResourcesManager(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL), Constants);
+            buttonDisplay = new ButtonDisplay(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL), Constants);
             technologyController = new TechnologyController(content, Constants, resourceManager.playerResources);
         }
 

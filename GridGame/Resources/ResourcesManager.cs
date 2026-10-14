@@ -1,4 +1,5 @@
-﻿using GridGame.UI.Overlay.ResourcesDisplay;
+﻿using GridGame.Constants.Controller;
+using GridGame.UI.Overlay.ResourcesDisplay;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace GridGame.Resources {
         public PlayerResources playerResources;
         public ResourceDisplay resourceDisplay;
 
-        public ResourcesManager(Texture2D blankTexture, SpriteFont font) {
+        public ResourcesManager(Texture2D blankTexture, SpriteFont font, ConstantsController Constants) {
             playerResources = new PlayerResources();
             resourceDisplay = new ResourceDisplay(blankTexture, font);
             resourceDisplay.UpdateAllResources(playerResources.GetResourceCounts());

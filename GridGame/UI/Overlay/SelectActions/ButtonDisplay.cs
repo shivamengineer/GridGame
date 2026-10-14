@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Tiles.Buildings;
 using GridGame.UI.Button;
 using GridGame.UI.Elements.Buttons;
@@ -20,15 +22,17 @@ namespace GridGame.UI.Overlay.SelectActions {
 
         private SpriteFont font;
 
-        public ButtonDisplay(Texture2D blankTexture, SpriteFont font) {
+        public ButtonDisplay(Texture2D blankTexture, SpriteFont font, ConstantsController Constants) {
             this.blankTexture = blankTexture;
             this.font = font;
 
-            InitializeBuildingTypes();
-            InitializeButtonBackgrounds();
+            Dictionary<ConstUserInterface, int> UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
 
-            buttonBackground = new Rectangle(0, GameConstants.WINDOW_HEIGHT - UIOverlayDetails.RESOURCE_BAR_HEIGHT, 
-                GameConstants.WINDOW_WIDTH, UIOverlayDetails.RESOURCE_BAR_HEIGHT);
+            InitializeBuildingTypes();
+            InitializeButtonBackgrounds(Constants, UIInts);
+
+            buttonBackground = new Rectangle(0, UIInts[ConstUserInterface.WindowHeight] - UIInts[ConstUserInterface.ResourcesOverlayHeight],
+                UIInts[ConstUserInterface.WindowWidth], UIInts[ConstUserInterface.ResourcesOverlayHeight]);
         }
 
         private void InitializeBuildingTypes() {
@@ -42,18 +46,19 @@ namespace GridGame.UI.Overlay.SelectActions {
             };
         }
 
-        private void InitializeButtonBackgrounds() {
+        private void InitializeButtonBackgrounds(ConstantsController Constants, Dictionary<ConstUserInterface, int> UIInts) {
             int index = 0;
-            int spacing = GameConstants.WINDOW_WIDTH / buildingButtons.Count;
+            int spacing = UIInts[ConstUserInterface.WindowWidth] / buildingButtons.Count;
 
-            int height = UIOverlayDetails.RESOURCE_BAR_HEIGHT - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_Y);
-            int y = GameConstants.WINDOW_HEIGHT - height - UIOverlayDetails.RESOURCE_BAR_ITEM_Y;
+            int height = UIInts[ConstUserInterface.ResourcesOverlayHeight] - (2 * UIInts[ConstUserInterface.ResourcesOverlayElementY]);
+            int y = UIInts[ConstUserInterface.WindowHeight] - height - UIInts[ConstUserInterface.ResourcesOverlayElementY];
 
             foreach(var item in buildingButtons) {
-                Rectangle background = new Rectangle((spacing * index) + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, y,
-                    spacing - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X), height);
+                Rectangle background = new Rectangle((spacing * index) + UIInts[ConstUserInterface.ResourcesOverlayElementMarginX], y,
+                    spacing - (2 * UIInts[ConstUserInterface.ResourcesOverlayElementMarginX]), height);
 
-                item.Value.SetPosition(background.X + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, y + (UIOverlayDetails.RESOURCE_BAR_ITEM_Y * 2));
+                item.Value.SetColors(Constants);
+                item.Value.SetPosition(background.X + UIInts[ConstUserInterface.ResourcesOverlayElementMarginX], y + (UIInts[ConstUserInterface.ResourcesOverlayElementY] * 2));
                 item.Value.SetRect(background);
                 index++;
             }
