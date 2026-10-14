@@ -15,7 +15,7 @@ namespace GridGame.Resources {
 
         public ResourcesManager(Texture2D blankTexture, SpriteFont font, ConstantsController Constants) {
             playerResources = new PlayerResources();
-            resourceDisplay = new ResourceDisplay(blankTexture, font);
+            resourceDisplay = new ResourceDisplay(blankTexture, font, Constants);
             resourceDisplay.UpdateAllResources(playerResources.GetResourceCounts());
         }
 

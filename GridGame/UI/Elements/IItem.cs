@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Constants.Controller;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace GridGame.UI.Elements {
     public interface IItem {
+
+        public void SetColor(ConstantsController Constants);
 
         public void OnMouseHover();
 

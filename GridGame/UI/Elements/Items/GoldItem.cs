@@ -26,9 +26,9 @@ namespace GridGame.UI.Elements.Items {
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(texture, backgroundRect, Color.LightGray);
+            spriteBatch.Draw(texture, backgroundRect, backgroundRectColor);
             string drawText = text + Count;
-            spriteBatch.DrawString(font, drawText, Position, Color.Red);
+            spriteBatch.DrawString(font, drawText, Position, textColor);
         }
 
     }

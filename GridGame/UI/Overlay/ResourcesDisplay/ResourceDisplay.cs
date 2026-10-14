@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Resources;
 using GridGame.UI.Elements;
 using GridGame.UI.Elements.Items;
@@ -21,12 +23,14 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
 
         private SpriteFont font;
 
-        public ResourceDisplay(Texture2D blankTexture, SpriteFont font) {
+        public ResourceDisplay(Texture2D blankTexture, SpriteFont font, ConstantsController Constants) {
             this.blankTexture = blankTexture;
             this.font = font;
 
+            Dictionary<ConstUserInterface, int> UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+
             InitializeResources();
-            InitializeItemPositions();
+            InitializeItemPositions(Constants, UIInts);
             resourcesBar = new Rectangle(0, 0, GameConstants.WINDOW_WIDTH, UIOverlayDetails.RESOURCE_BAR_HEIGHT);
         }
 
@@ -40,14 +44,16 @@ namespace GridGame.UI.Overlay.ResourcesDisplay {
             };
         }
 
-        private void InitializeItemPositions() {
+        private void InitializeItemPositions(ConstantsController Constants, Dictionary<ConstUserInterface, int> UIInts) {
             int index = 0;
-            int spacing = GameConstants.WINDOW_WIDTH / resourceItems.Count;
+            int spacing = UIInts[ConstUserInterface.WindowWidth] / resourceItems.Count;
             foreach(var item in resourceItems) {
-                Rectangle background = new Rectangle((spacing * index) + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, UIOverlayDetails.RESOURCE_BAR_ITEM_Y, 
-                    spacing - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X), UIOverlayDetails.RESOURCE_BAR_HEIGHT - (2 * UIOverlayDetails.RESOURCE_BAR_ITEM_Y));
+                Rectangle background = new Rectangle((spacing * index) + UIInts[ConstUserInterface.ResourcesOverlayElementMarginX], UIInts[ConstUserInterface.ResourcesOverlayElementY], 
+                    spacing - (2 * UIInts[ConstUserInterface.ResourcesOverlayElementMarginX]), UIInts[ConstUserInterface.ResourcesOverlayHeight]
+                    - (2 * UIInts[ConstUserInterface.ResourcesOverlayElementY]));
 
-                item.Value.SetPosition(background.X + UIOverlayDetails.RESOURCE_BAR_ITEM_MARGIN_X, UIOverlayDetails.RESOURCE_BAR_ITEM_Y * 2);
+                item.Value.SetColor(Constants);
+                item.Value.SetPosition(background.X + UIInts[ConstUserInterface.ResourcesOverlayElementMarginX], UIInts[ConstUserInterface.ResourcesOverlayElementY] * 2);
                 item.Value.SetRect(background);
                 index++;
             }

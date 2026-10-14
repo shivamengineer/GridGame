@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,16 @@ namespace GridGame.UI.Elements.Items {
         public Vector2 Position;
         public int Count;
         public Rectangle backgroundRect;
+
+        public Color backgroundRectColor;
+        public Color textColor;
+
+        public void SetColor(ConstantsController Constants) {
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+
+            backgroundRectColor = Colors[ConstColors.ButtonNotSelected];
+            textColor = Colors[ConstColors.ButtonTextColor];
+        }
 
         public void OnMouseHover() {
             //if condition
