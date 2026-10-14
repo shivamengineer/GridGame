@@ -30,7 +30,7 @@ namespace GridGame.Hexagons {
 
             SpentGold = false;
 
-            BuildingCostDictionary = BuildingPrices.GetPriceDictionary();
+            BuildingCostDictionary = BuildingPrices.GetPriceDictionary(Constants);
             buildingManager = new BuildingManager(hexMap, Constants);
         }
 
