@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
@@ -77,8 +78,9 @@ namespace GridGame.Hexagons {
 
         public void SetHover((int, int) pos) {
             if(!hexMap.DiscoveredTiles.Contains(pos) || playerData.buildingManager.HasBuilding(pos)) return;
+            Dictionary<ConstGame, int> gameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
 
-            bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (pos)) <= BuildingLimits.BUILDING_RADIUS_FROM_PLAYER;
+            bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (pos)) <= gameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
             if(playerData.buildingManager.CityBuilt) {
                 inRange = inRange && playerData.buildingManager.InRangeOfCity(pos);
                 inRange = inRange && hexMap.Tiles[pos].GetTerrainType() != TerrainType.Ocean;
