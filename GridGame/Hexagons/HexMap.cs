@@ -18,6 +18,8 @@ namespace GridGame.Hexagons {
     public class HexMap {
 
         public ContentLoader Content;
+        public ConstantsController Constants;
+
         public Dictionary<(int, int), Tile> Tiles;
         public HashSet<(int, int)> DiscoveredTiles;
         public (int, int) HoveredTile;
@@ -27,6 +29,7 @@ namespace GridGame.Hexagons {
 
         public HexMap(ContentLoader Content, CitizenManager citizens, ConstantsController Constants) {
             this.Content = Content;
+            this.Constants = Constants;
 
             Tiles = new Dictionary<(int, int), Tile>();
             csvReader = new HexagonMapCSVReader(Tiles, Content);
@@ -41,7 +44,7 @@ namespace GridGame.Hexagons {
         }
 
         public (int, int) Initialize() {
-            csvReader.LoadHexagonMap("Map1.csv");
+            csvReader.LoadHexagonMap("Map1.csv", Constants);
             SetRiverTextures();
             (int, int) StartCoords = DiscoverTiles.GetStartTile(csvReader.Land);
             DiscoveredTiles = DiscoverTiles.TilesInRadius(StartCoords, 2);

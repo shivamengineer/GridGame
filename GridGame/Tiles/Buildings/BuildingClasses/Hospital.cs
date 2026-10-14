@@ -1,5 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
@@ -15,10 +17,15 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        public Hospital() {
+        private Dictionary<ConstGame, int> GameInts;
+
+        public Hospital(ConstantsController Constants) {
+            this.Constants = Constants;
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
             BuildingType = BuildingType.Hospital;
-            hexColor = BuildingColors.HospitalColor;
-            production_needed = BuildingCosts.HOSPITAL_PRODUCTION_COST;
+            hexColor = Colors[ConstColors.Hospital];
+            production_needed = GameInts[ConstGame.HospitalProductionCost];
         }
 
         public override void SetInfo() {
@@ -29,7 +36,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override IBuilding newInstance() {
-            return new Hospital();
+            return new Hospital(Constants);
         }
 
         public override void SetTile(ITile tile) {

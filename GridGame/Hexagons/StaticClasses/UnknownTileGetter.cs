@@ -1,4 +1,5 @@
-﻿using GridGame.TextureLoading;
+﻿using GridGame.Constants.Controller;
+using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
 using GridGame.Tiles.Buildings.BuildingClasses;
@@ -12,8 +13,8 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons.StaticClasses {
     public static class UnknownTileGetter {
 
-        public static Tile GetTile(ContentLoader content) {
-            Tile Unknown = new Tile(new Unknown(), new NIL());
+        public static Tile GetTile(ContentLoader content, ConstantsController Constants) {
+            Tile Unknown = new Tile(new Unknown(), new NIL(Constants));
             Unknown.SetTerrainContent(content);
             Unknown.SetBuildingContent(content);
             return Unknown;

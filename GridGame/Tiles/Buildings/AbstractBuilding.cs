@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Resources;
@@ -35,6 +37,7 @@ namespace GridGame.Tiles.Buildings {
         public HexagonMap map;
 
         public ContentLoader content;
+        public ConstantsController Constants;
 
         public void SetContent(ContentLoader content) {
             this.content = content;

@@ -12,16 +12,23 @@ using GridGame.GameManagers;
 using GridGame.Constants.Resources;
 using GridGame.Resources;
 using GridGame.UI.Popups;
+using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Constants.Controller;
 
 namespace GridGame.Tiles.Buildings.BuildingClasses {
     public class CityCenter : AbstractBuilding {
 
         private Color hexColor;
 
-        public CityCenter() {
+        private Dictionary<ConstGame, int> GameInts;
+
+        public CityCenter(ConstantsController Constants) {
+            this.Constants = Constants;
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors(); 
             BuildingType = BuildingType.CityCenter;
-            hexColor = BuildingColors.CityCenterColor;
-            production_needed = BuildingCosts.CITY_CENTER_PRODUCTION_COST;
+            hexColor = Colors[ConstColors.CityCenter];
+            production_needed = GameInts[ConstGame.CityCenterProductionCost];
         }
 
         public override void SetInfo() {
@@ -33,7 +40,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override IBuilding newInstance() {
-            return new CityCenter();
+            return new CityCenter(Constants);
         }
 
         public override void SetTile(ITile tile) {
@@ -45,10 +52,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Food, CityBaseStats.FOOD_RATE);
-            displayManager.AddResource(ResourceType.Gold, CityBaseStats.GOLD_RATE);
-            displayManager.AddResource(ResourceType.Production, CityBaseStats.PRODUCTION_RATE);
-            displayManager.AddResource(ResourceType.Science, CityBaseStats.SCIENCE_RATE);
+            displayManager.AddResource(ResourceType.Food, GameInts[ConstGame.CityFoodResourceRate]);
+            displayManager.AddResource(ResourceType.Gold, GameInts[ConstGame.CityGoldResourceRate]);
+            displayManager.AddResource(ResourceType.Production, GameInts[ConstGame.CityProductionResourceRate]);
+            displayManager.AddResource(ResourceType.Science, GameInts[ConstGame.CityScienceResourceRate]);
             displayManager.resourceManager.resourceDisplay.UpdateAllResources(displayManager.resourceManager.playerResources.GetResourceCounts());
             map.playerData.AddProduction(CityBaseStats.PRODUCTION_RATE);
             resourcePopup = new TemporaryPopup(content, "+1ALL", 1f);

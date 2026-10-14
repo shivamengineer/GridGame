@@ -1,4 +1,6 @@
-﻿using GridGame.TextureLoading;
+﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles.Buildings;
 using GridGame.Tiles.Buildings.BuildingClasses;
@@ -11,16 +13,16 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons.StaticClasses {
     public static class BuildingGetter {
 
-        public static Dictionary<BuildingType, IBuilding> GetBuildingGetter() {
+        public static Dictionary<BuildingType, IBuilding> GetBuildingGetter(ConstantsController Constants) {
             return new Dictionary<BuildingType, IBuilding> {
-                [BuildingType.Bank] = new Bank(),
-                [BuildingType.CityCenter] = new CityCenter(),
-                [BuildingType.Empty] = new Empty(),
-                [BuildingType.Factory] = new Factory(),
-                [BuildingType.Farm] = new Farm(),
-                [BuildingType.Hospital] = new Hospital(),
-                [BuildingType.Laboratory] = new Laboratory(),
-                [BuildingType.NIL] = new NIL(),
+                [BuildingType.Bank] = new Bank(Constants),
+                [BuildingType.CityCenter] = new CityCenter(Constants),
+                [BuildingType.Empty] = new Empty(Constants),
+                [BuildingType.Factory] = new Factory(Constants),
+                [BuildingType.Farm] = new Farm(Constants),
+                [BuildingType.Hospital] = new Hospital(Constants),
+                [BuildingType.Laboratory] = new Laboratory(Constants),
+                [BuildingType.NIL] = new NIL(Constants),
             };
         }
 

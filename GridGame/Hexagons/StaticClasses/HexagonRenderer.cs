@@ -46,7 +46,7 @@ namespace GridGame.Hexagons.StaticClasses {
                         ITerrain terrain = new Ocean();
                         terrain.SetContent(hex.Content);
 
-                        IBuilding building = new NIL();
+                        IBuilding building = new NIL(constantsController);
                         building.SetContent(hex.Content);
 
                         hex.Tiles.Add((q, r), new Tile(terrain, building));

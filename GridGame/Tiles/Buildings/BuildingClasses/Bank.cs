@@ -1,5 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Resources;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
@@ -9,7 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq;                                                                                                                                   
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,10 +20,15 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        public Bank() {
+        private Dictionary<ConstGame, int> GameInts;
+
+        public Bank(ConstantsController Constants) {
+            this.Constants = Constants;
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
             BuildingType = BuildingType.Bank;
-            hexColor = BuildingColors.BankColor;
-            production_needed = BuildingCosts.BANK_PRODUCTION_COST;
+            hexColor = Colors[ConstColors.Bank];
+            production_needed = GameInts[ConstGame.BankProductionCost];
         }
 
         public override void SetInfo() {
@@ -33,7 +40,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override IBuilding newInstance() {
-            return new Bank();
+            return new Bank(Constants);
         }
 
         public override void SetTile(ITile tile) {
@@ -45,7 +52,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Gold, BuildingStats.BANK_RATE);
+            displayManager.AddResource(ResourceType.Gold, GameInts[ConstGame.BankResourceRate]);
             displayManager.UpdateResource(ResourceType.Gold);
             resourcePopup = new TemporaryPopup(content, "+1G", 1f);
         }

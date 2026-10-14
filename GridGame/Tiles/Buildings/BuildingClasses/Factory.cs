@@ -1,5 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Resources;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
@@ -18,10 +20,15 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        public Factory() {
+        private Dictionary<ConstGame, int> GameInts;
+
+        public Factory(ConstantsController Constants) {
+            this.Constants = Constants;
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
             BuildingType = BuildingType.Factory;
-            hexColor = BuildingColors.FactoryColor;
-            production_needed = BuildingCosts.FACTORY_PRODUCTION_COST;
+            hexColor = Colors[ConstColors.Factory];
+            production_needed = GameInts[ConstGame.FactoryProductionCost];
         }
 
         public override void SetInfo() {
@@ -33,7 +40,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override IBuilding newInstance() {
-            return new Factory();
+            return new Factory(Constants);
         }
 
         public override void SetTile(ITile tile) {
@@ -45,7 +52,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Production, BuildingStats.FACTORY_RATE);
+            displayManager.AddResource(ResourceType.Production, GameInts[ConstGame.FactoryResourceRate]);
             displayManager.UpdateResource(ResourceType.Production);
             map.playerData.AddProduction(BuildingStats.FACTORY_RATE);
             resourcePopup = new TemporaryPopup(content, "+1P", 1f);

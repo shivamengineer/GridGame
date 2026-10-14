@@ -1,4 +1,5 @@
-﻿using GridGame.TextureLoading;
+﻿using GridGame.Constants.Controller;
+using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.Tiles;
 using GridGame.Tiles.Buildings.BuildingClasses;
@@ -29,8 +30,8 @@ namespace GridGame.Hexagons.StaticClasses {
             Rivers = new HashSet<(int, int)>();
         }
 
-        public void LoadHexagonMap(string filename) {
-            Dictionary<string, Tile> tileDictionary = GetTileDictionary();
+        public void LoadHexagonMap(string filename, ConstantsController Constants) {
+            Dictionary<string, Tile> tileDictionary = GetTileDictionary(Constants);
 
             string path = "Content/Data/" + filename;
             using(var stream = TitleContainer.OpenStream(path))
@@ -62,13 +63,13 @@ namespace GridGame.Hexagons.StaticClasses {
             }
         }
 
-        private Dictionary<string, Tile> GetTileDictionary() {
+        private Dictionary<string, Tile> GetTileDictionary(ConstantsController Constants) {
             Dictionary<string, Tile> tileDictionary = new Dictionary<string, Tile> {
-                ["*"] = new Tile(new Ocean(), new NIL()),
-                ["0"] = new Tile(new Ocean(), new NIL()),
-                ["1"] = new Tile(new Land(), new NIL()),
-                ["2"] = new Tile(new Coast(), new NIL()),
-                ["3"] = new Tile(new Land_River(), new NIL()),
+                ["*"] = new Tile(new Ocean(), new NIL(Constants)),
+                ["0"] = new Tile(new Ocean(), new NIL(Constants)),
+                ["1"] = new Tile(new Land(), new NIL(Constants)),
+                ["2"] = new Tile(new Coast(), new NIL(Constants)),
+                ["3"] = new Tile(new Land_River(), new NIL(Constants)),
             };
             return tileDictionary;
         }

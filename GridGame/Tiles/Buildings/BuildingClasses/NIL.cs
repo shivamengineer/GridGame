@@ -1,5 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
@@ -15,9 +17,14 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        public NIL() {
+        private Dictionary<ConstGame, int> GameInts;
+
+        public NIL(ConstantsController Constants) {
+            this.Constants = Constants;
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
             BuildingType = BuildingType.NIL;
-            hexColor = BuildingColors.NILColor;
+            hexColor = Colors[ConstColors.Tile_NIL];
         }
 
         public override void SetInfo() {
@@ -29,7 +36,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override IBuilding newInstance() {
-            return new NIL();
+            return new NIL(Constants);
         }
 
         public override void SetTile(ITile tile) {

@@ -1,5 +1,7 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Resources;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
@@ -18,10 +20,15 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        public Laboratory() {
+        private Dictionary<ConstGame, int> GameInts;
+
+        public Laboratory(ConstantsController Constants) {
+            this.Constants = Constants;
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
             BuildingType = BuildingType.Laboratory;
-            hexColor = BuildingColors.LaboratoryColor;
-            production_needed = BuildingCosts.LABORATORY_GOLD_COST;
+            hexColor = Colors[ConstColors.Laboratory];
+            production_needed = GameInts[ConstGame.LaboratoryProductionCost];
         }
 
         public override void SetInfo() {
@@ -33,7 +40,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override IBuilding newInstance() {
-            return new Laboratory();
+            return new Laboratory(Constants);
         }
 
         public override void SetTile(ITile tile) {
@@ -45,7 +52,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Science, BuildingStats.SCIENCE_RATE);
+            displayManager.AddResource(ResourceType.Science, GameInts[ConstGame.LaboratoryResourceRate]);
             displayManager.UpdateResource(ResourceType.Science);
             resourcePopup = new TemporaryPopup(content, "+1S", 1f);
         }
