@@ -26,7 +26,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             TechType = TechnologyTypes.FACEMASK;
             Technology = new FacemaskTechnology();
             InitializeConnectedTechBlocks();
-            SetRectangle();
         }
 
         private void InitializeConnectedTechBlocks() {
@@ -40,7 +39,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public override ITechBlock NewInstance() {
             ITechBlock block = new FacemaskTechBlock();
-            block.SetContent(content, playerResources);
+            block.SetContent(content, UIInts, playerResources);
             return block;
         }
 

@@ -41,7 +41,7 @@ namespace GridGame.GameManagers {
 
         public void LoadContent(ContentManager Content) {
             contentLoader = new ContentLoader(Content);
-            displayManager = new DisplayManager(contentLoader);
+            displayManager = new DisplayManager(contentLoader, Constants);
             hexagonMap = new HexagonMap(contentLoader, displayManager, Constants);
 
             keyboardHandler = new KeyboardHandler(this);

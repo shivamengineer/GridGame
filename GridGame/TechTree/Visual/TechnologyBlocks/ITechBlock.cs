@@ -1,4 +1,6 @@
-﻿using GridGame.Resources;
+﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Resources;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology;
 using GridGame.TextureLoading;
@@ -24,7 +26,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
 
         public Dictionary<TechnologyTypes, ITechBlock> NextTechBlocks { get; protected set; }
 
-        public void SetContent(ContentLoader content, PlayerResources playerResources);
+        public void SetContent(ContentLoader content, Dictionary<ConstUserInterface, int> UIInts, PlayerResources playerResources);
 
         public void UpdatePosition(int position);
 

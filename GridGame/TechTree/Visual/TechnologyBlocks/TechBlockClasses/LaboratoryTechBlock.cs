@@ -17,7 +17,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             TechType = TechnologyTypes.LABORATORY;
             Technology = new LaboratoryTechnology();
             InitializeConnectedTechBlocks();
-            SetRectangle();
         }
 
         private void InitializeConnectedTechBlocks() {
@@ -32,7 +31,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public override ITechBlock NewInstance() {
             ITechBlock block = new LaboratoryTechBlock();
-            block.SetContent(content, playerResources);
+            block.SetContent(content, UIInts, playerResources);
             return block;
         }
 

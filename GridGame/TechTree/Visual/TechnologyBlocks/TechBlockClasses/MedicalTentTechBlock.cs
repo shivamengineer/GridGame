@@ -17,7 +17,6 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             TechType = TechnologyTypes.MEDICAL_TENT;
             Technology = new MedicalTentTechnology();
             InitializeConnectedTechBlocks();
-            SetRectangle();
         }
 
         private void InitializeConnectedTechBlocks() {
@@ -33,7 +32,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
 
         public override ITechBlock NewInstance() {
             ITechBlock block = new MedicalTentTechBlock();
-            block.SetContent(content, playerResources);
+            block.SetContent(content, UIInts, playerResources);
             return block;
         }
 

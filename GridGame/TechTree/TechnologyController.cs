@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.TechTreeInfo;
 using GridGame.Resources;
 using GridGame.TechTree.Backend;
@@ -34,12 +36,14 @@ namespace GridGame.TechTree {
         private int FirstBlock;
         private int LastBlock;
 
-        public TechnologyController(ContentLoader content, PlayerResources playerResources) {
+        public TechnologyController(ContentLoader content, ConstantsController Constants, PlayerResources playerResources) {
             TechProgress = new TechProgress();
             TechBlockPositions = new List<Dictionary<TechnologyTypes, ITechBlock>>();
-            NewTech = new NewTechBlock(content, playerResources);
+            Dictionary<ConstUserInterface, int> UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+
+            NewTech = new NewTechBlock(content, UIInts, playerResources);
             Background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
-            destRect = new Rectangle(0, 0, GameConstants.WINDOW_WIDTH, GameConstants.WINDOW_HEIGHT);
+            destRect = new Rectangle(0, 0, UIInts[ConstUserInterface.WindowWidth], UIInts[ConstUserInterface.WindowHeight]);
 
             this.playerResources = playerResources;
 

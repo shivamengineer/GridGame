@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.TechTreeInfo;
 using GridGame.Resources;
 using GridGame.TechTree.Backend;
@@ -41,16 +43,19 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public int CameraX = 0;
 
         public ContentLoader content;
+        public Dictionary<ConstUserInterface, int> UIInts;
 
         public PlayerResources playerResources;
         public int Cost;
 
-        public void SetContent(ContentLoader content, PlayerResources playerResources) {
+        public void SetContent(ContentLoader content, Dictionary<ConstUserInterface, int> UIInts, PlayerResources playerResources) {
             this.content = content;
+            this.UIInts = UIInts;
             this.playerResources = playerResources;
             backgroundTexture = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             font = content.GetFont(FontNames.ARIAL);
             TechStatus.Visible = true;
+            SetRectangle();
         }
 
         public void UpdatePosition(int position) {
@@ -107,7 +112,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         }
 
         public void SetRectangle() {
-            Background = new Rectangle(0, Background.Y, TechTreeGraph.BLOCK_WIDTH, TechTreeGraph.BLOCK_HEIGHT);
+            Background = new Rectangle(0, Background.Y, UIInts[ConstUserInterface.TechBlockWidth], UIInts[ConstUserInterface.TechBlockHeight]);
             UpdatePositionFromCamera();
         }
 
@@ -116,11 +121,11 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         }
 
         public void SetYPosition(float position) {
-            SetBackgroundPos(Background.X, (int)(position * GameConstants.WINDOW_HEIGHT));
+            SetBackgroundPos(Background.X, (int)(position * UIInts[ConstUserInterface.WindowHeight]));
         }
 
         public void UpdatePositionFromCamera() {
-            SetBackgroundPos(TechTreeGraph.BLOCK_SPACING + (Position * (TechTreeGraph.BLOCK_WIDTH + TechTreeGraph.BLOCK_SPACING)) - CameraX, Background.Y);
+            SetBackgroundPos(UIInts[ConstUserInterface.TechBlockSpacing] + (Position * (UIInts[ConstUserInterface.TechBlockWidth] + UIInts[ConstUserInterface.TechBlockSpacing])) - CameraX, Background.Y);
         }
 
         public void Draw(SpriteBatch spriteBatch, int CameraPosition) {

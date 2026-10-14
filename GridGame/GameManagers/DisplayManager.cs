@@ -1,4 +1,5 @@
-﻿using GridGame.Resources;
+﻿using GridGame.Constants.Controller;
+using GridGame.Resources;
 using GridGame.TechTree;
 using GridGame.TextureLoading;
 using GridGame.TextureLoading.TextureEnums;
@@ -18,10 +19,10 @@ namespace GridGame.GameManagers {
         public ButtonDisplay buttonDisplay;
         public TechnologyController technologyController;
 
-        public DisplayManager(ContentLoader content) {
+        public DisplayManager(ContentLoader content, ConstantsController Constants) {
             resourceManager = new ResourcesManager(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL));
             buttonDisplay = new ButtonDisplay(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL));
-            technologyController = new TechnologyController(content, resourceManager.playerResources);
+            technologyController = new TechnologyController(content, Constants, resourceManager.playerResources);
         }
 
         public void AddResource(ResourceType resourceType, int amount) {

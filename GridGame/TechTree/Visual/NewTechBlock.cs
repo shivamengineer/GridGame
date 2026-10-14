@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GridGame.TextureLoading;
 using GridGame.Resources;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 
 namespace GridGame.TechTree.Backend {
     public class NewTechBlock {
@@ -17,7 +19,7 @@ namespace GridGame.TechTree.Backend {
         private NewTechnology NewTech;
         private ContentLoader content;
 
-        public NewTechBlock(ContentLoader content, PlayerResources playerResources) {
+        public NewTechBlock(ContentLoader content, Dictionary<ConstUserInterface, int> UIInts, PlayerResources playerResources) {
             NewTech = new NewTechnology();
             this.content = content;
             TechBlockMap = new Dictionary<TechnologyTypes, ITechBlock>() {
@@ -31,7 +33,7 @@ namespace GridGame.TechTree.Backend {
                 [TechnologyTypes.LABORATORY] = new LaboratoryTechBlock(),
             };
             foreach(ITechBlock block in TechBlockMap.Values) {
-                block.SetContent(content, playerResources);
+                block.SetContent(content, UIInts, playerResources);
             }
         }
 
