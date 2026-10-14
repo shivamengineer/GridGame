@@ -42,8 +42,6 @@ namespace GridGame.Controllers.MouseClasses {
             Dictionary<ConstGame, int> GameInts = constantsManager.GetGameInts();
             BuildingRadiusFromPlayer = GameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
             BuildingRadiusFromCity = GameInts[ConstGame.CanBuildMaxDistanceFromCity];
-            Debug.WriteLine("RADIUS FROM PLAYER " + BuildingRadiusFromPlayer);
-            Debug.WriteLine("RADIUS FROM CITY " + BuildingRadiusFromCity);
         }
 
         public void OnMouseDown(int x, int y, HexagonMap hexagonMap) {
