@@ -65,11 +65,11 @@ namespace GridGame.Hexagons.StaticClasses {
 
         private Dictionary<string, Tile> GetTileDictionary(ConstantsController Constants) {
             Dictionary<string, Tile> tileDictionary = new Dictionary<string, Tile> {
-                ["*"] = new Tile(new Ocean(), new NIL(Constants)),
-                ["0"] = new Tile(new Ocean(), new NIL(Constants)),
-                ["1"] = new Tile(new Land(), new NIL(Constants)),
-                ["2"] = new Tile(new Coast(), new NIL(Constants)),
-                ["3"] = new Tile(new Land_River(), new NIL(Constants)),
+                ["*"] = new Tile(new Ocean(Constants), new NIL(Constants)),
+                ["0"] = new Tile(new Ocean(Constants), new NIL(Constants)),
+                ["1"] = new Tile(new Land(Constants), new NIL(Constants)),
+                ["2"] = new Tile(new Coast(Constants), new NIL(Constants)),
+                ["3"] = new Tile(new Land_River(Constants), new NIL(Constants)),
             };
             return tileDictionary;
         }

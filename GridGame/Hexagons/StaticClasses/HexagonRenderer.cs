@@ -43,7 +43,7 @@ namespace GridGame.Hexagons.StaticClasses {
 
                 for(int r = rMin; r <= rMax; r++) {
                     if(!hex.Tiles.ContainsKey((q, r))) {
-                        ITerrain terrain = new Ocean();
+                        ITerrain terrain = new Ocean(constantsController);
                         terrain.SetContent(hex.Content);
 
                         IBuilding building = new NIL(constantsController);

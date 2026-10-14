@@ -10,6 +10,8 @@ using GridGame.Constants.Colors;
 using GridGame.GameManagers;
 using GridGame.TextureLoading.TextureEnums;
 using GridGame.TextureLoading;
+using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Constants.Controller;
 
 namespace GridGame.Tiles.Terrain.TerrainClasses {
     public class Unknown : AbstractTerrain {
@@ -17,10 +19,15 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         private Color hexColor;
         private Color hexBorderColor;
 
-        public Unknown() {
+        private Dictionary<ConstColors, Color> Colors;
+
+        public Unknown(ConstantsController Constants) {
+            this.Constants = Constants;
+            Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+
             TerrainType = TerrainType.Unknown;
-            hexColor = TerrainColors.UnknownColor;
-            hexBorderColor = TerrainColors.UnknownBorderColor;
+            hexColor = Colors[ConstColors.Unknown];
+            hexBorderColor = Colors[ConstColors.UnknownBorder];
         }
 
         public override int GetResources() {
@@ -32,7 +39,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         }
 
         public override ITerrain newInstance() {
-            return new Unknown();
+            return new Unknown(Constants);
         }
 
         public override void SetRiverTexture(ContentLoader content, TextureNames texture) {

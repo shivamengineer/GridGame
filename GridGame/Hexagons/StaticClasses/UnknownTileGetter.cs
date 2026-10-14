@@ -14,7 +14,7 @@ namespace GridGame.Hexagons.StaticClasses {
     public static class UnknownTileGetter {
 
         public static Tile GetTile(ContentLoader content, ConstantsController Constants) {
-            Tile Unknown = new Tile(new Unknown(), new NIL(Constants));
+            Tile Unknown = new Tile(new Unknown(Constants), new NIL(Constants));
             Unknown.SetTerrainContent(content);
             Unknown.SetBuildingContent(content);
             return Unknown;

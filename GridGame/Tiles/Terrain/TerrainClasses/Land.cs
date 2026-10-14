@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.TextureLoading;
@@ -17,9 +19,14 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         private Color hexColor;
         private Color hoverColor;
 
-        public Land() {
+        private Dictionary<ConstColors, Color> Colors;
+
+        public Land(ConstantsController Constants) {
+            this.Constants = Constants;
+            Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+
             TerrainType = TerrainType.Land;
-            hexColor = TerrainColors.LandColor;
+            hexColor = Colors[ConstColors.Land];
         }
 
         public override int GetResources() {
@@ -31,7 +38,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
         }
 
         public override ITerrain newInstance() {
-            return new Land();
+            return new Land(Constants);
         }
 
         public override void SetRiverTexture(ContentLoader content, TextureNames texture) {
@@ -50,8 +57,8 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
             if(!hovered) {
                 spriteBatch.Draw(baseTexture, position, null, hexColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             } else {
-                if(inRange) hoverColor = TerrainColors.CanBuildColor;
-                else hoverColor = TerrainColors.CannotBuildColor;
+                if(inRange) hoverColor = Colors[ConstColors.CanBuild];
+                else hoverColor = Colors[ConstColors.CannotBuild];
 
                 spriteBatch.Draw(baseTexture, position, null, hoverColor, 0f, origin, hexMath.GetScale(), SpriteEffects.None, 0f);
             }

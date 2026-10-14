@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.Resources;
@@ -27,7 +29,8 @@ namespace GridGame.Tiles.Terrain {
 
         private float timeElapsed = 0f;
 
-        //
+        public ConstantsController Constants;
+        private Dictionary<ConstGame, float> GameFloats;
 
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
@@ -39,6 +42,7 @@ namespace GridGame.Tiles.Terrain {
             infectedTexture = content.GetTexture(TextureNames.INFECTED_HEXAGON_BACKGROUND);
             baseTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND);
 
+            GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
         }
 
         public void SetMap(HexagonMap map) {
@@ -64,8 +68,8 @@ namespace GridGame.Tiles.Terrain {
         public void Update(GameTime gameTime, DisplayManager displayManager) {
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
             
-            if(timeElapsed >= GameConstants.RESOURCE_TICK_SPEED) {
-                timeElapsed -= GameConstants.RESOURCE_TICK_SPEED;
+            if(timeElapsed >= GameFloats[ConstGame.CollectResourceInterval]) {
+                timeElapsed -= GameFloats[ConstGame.CollectResourceInterval];
                 UpdateEvent(displayManager);
             }
         }
