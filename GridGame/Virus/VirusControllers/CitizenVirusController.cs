@@ -1,4 +1,5 @@
-﻿using GridGame.Constants.Viruses.Covid;
+﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Viruses.Covid;
 using GridGame.Hexagons;
 using GridGame.Hexagons.Managers;
 using GridGame.Units.UnitClasses;
@@ -15,9 +16,11 @@ namespace GridGame.Virus.VirusControllers {
     public class CitizenVirusController : AbstractVirusController {
 
         private CitizenManager citizenManager;
+        private ConstantsController Constants;
 
-        public CitizenVirusController(CitizenManager citizenManager) {
+        public CitizenVirusController(CitizenManager citizenManager, ConstantsController Constants) {
             this.citizenManager = citizenManager;
+            this.Constants = Constants;
         }
 
         public override void InitialInfect() {
@@ -40,7 +43,7 @@ namespace GridGame.Virus.VirusControllers {
             float strength = GetCovidStrength();
             if(infectedCitizen.virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
 
-            infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(citizenManager, infectedCitizen, strength));
+            infectedCitizen.virusController.viruses.Add(VirusNames.Coronavirus, new Coronavirus(citizenManager, infectedCitizen, strength, Constants));
         }
 
         private float GetCovidStrength() {

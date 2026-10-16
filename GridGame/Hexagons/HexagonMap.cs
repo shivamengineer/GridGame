@@ -55,7 +55,7 @@ namespace GridGame.Hexagons {
             playerData = new PlayerData(displayManager.resourceManager.playerResources, hexMap, Constants);
             UnknownTile = UnknownTileGetter.GetTile(content, Constants);
             foodManager = new FoodManager(this, Constants);
-            virusController = new CitizenVirusController(citizenManager);
+            virusController = new CitizenVirusController(citizenManager, Constants);
 
             hexMap.HexMath.FocusCamera();
         }

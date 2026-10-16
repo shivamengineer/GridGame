@@ -1,4 +1,6 @@
-﻿using GridGame.Constants.Viruses.Covid;
+﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Constants.Viruses.Covid;
 using GridGame.Hexagons;
 using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
@@ -19,12 +21,20 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.InfectComponents {
         private IVirus virus;
 
         private float elapsedTime = 0f;
-        private float TimeToSpread = CovidStats.TIME_TO_SPREAD;
+        private float TimeToSpread;
 
-        public AirborneInfect(CitizenManager citizenManager, Citizen citizen, IVirus virus) {
+        private Dictionary<ConstGame, int> GameInts;
+        private Dictionary<ConstGame, float> GameFloats;
+
+        public AirborneInfect(CitizenManager citizenManager, Citizen citizen, IVirus virus, ConstantsController Constants) {
             this.citizenManager = citizenManager;
             this.citizen = citizen;
             this.virus = virus;
+
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+
+            TimeToSpread = GameFloats[ConstGame.VirusTimeBeforeSpread];
         }
 
         public void Spread() {
@@ -33,7 +43,7 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.InfectComponents {
                 if(this.citizen.transform.Coords != citizen.transform.Coords
                     && !citizen.virusController.viruses.ContainsKey(virusName)) {
                     int distance = DiscoverTiles.DistanceBetweenTiles(this.citizen.transform.Coords, citizen.transform.Coords);
-                    if(distance <= CovidStats.SPREAD_RANGE) citizensInRange.Add(citizen);
+                    if(distance <= GameInts[ConstGame.VirusSpreadRange]) citizensInRange.Add(citizen);
                 }
             }
             TrySpread(citizensInRange);
@@ -43,7 +53,7 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.InfectComponents {
             foreach(var citizen in citizens) {
                 Random random = new Random();
                 float spreads = (float)random.NextDouble();
-                if(spreads <= CovidStats.SPREAD_CHANCE) {
+                if(spreads <= GameFloats[ConstGame.VirusSpreadChance]) {
                     citizen.virusController.viruses.Add(virusName, virus.NewInstance(citizen));
                 }
             }

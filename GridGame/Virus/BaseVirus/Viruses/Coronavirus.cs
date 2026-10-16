@@ -1,4 +1,6 @@
-﻿using GridGame.Constants.Viruses.Covid;
+﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Constants.Viruses.Covid;
 using GridGame.Hexagons;
 using GridGame.Hexagons.Managers;
 using GridGame.Hexagons.StaticClasses;
@@ -22,23 +24,31 @@ namespace GridGame.Virus.BaseVirus.Viruses {
 
         private VirusNames virusName;
 
-        public Coronavirus(CitizenManager citizenManager, Citizen citizen, float strength) {
+        private ConstantsController Constants;
+        private Dictionary<ConstGame, int> GameInts;
+        private Dictionary<ConstGame, float> GameFloats;
+
+        public Coronavirus(CitizenManager citizenManager, Citizen citizen, float strength, ConstantsController Constants) {
             this.citizen = citizen;
             this.citizenManager = citizenManager;
+            this.Constants = Constants;
+
+            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
 
             virusStrength = strength;
             virusName = VirusNames.Coronavirus;
 
-            Infect = new AirborneInfect(citizenManager, citizen, this);
+            Infect = new AirborneInfect(citizenManager, citizen, this, Constants);
             AttackCitizen = new DefaultAttackCitizen(citizenManager, citizen, strength);
 
-            VirusStrength attackStrength = new VirusStrength(CovidStats.MORTALITY_RATE, strength);
-            VirusTime attackTime = new VirusTime(CovidStats.TIME_TO_SPREAD, CovidStats.VIRUS_BASE_DURATION);
+            VirusStrength attackStrength = new VirusStrength(GameFloats[ConstGame.VirusMortalityRate], strength);
+            VirusTime attackTime = new VirusTime(GameFloats[ConstGame.VirusTimeBeforeSpread], GameFloats[ConstGame.VirusBaseDuration]);
             AttackCitizen.SetStats(attackStrength, attackTime);
         }
 
         public override IVirus NewInstance(Citizen citizen) {
-            return new Coronavirus(citizenManager, citizen, virusStrength);
+            return new Coronavirus(citizenManager, citizen, virusStrength, Constants);
         }
 
     }
