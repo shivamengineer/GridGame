@@ -50,7 +50,7 @@ namespace GridGame.Hexagons {
             (int, int) StartCoords = hexMap.Initialize();
 
             this.displayManager = displayManager;
-            citizenManager = new CitizenManager(StartCoords, this, content);
+            citizenManager = new CitizenManager(StartCoords, this, content, Constants);
             hexMap.SetCitizens(citizenManager);
             playerData = new PlayerData(displayManager.resourceManager.playerResources, hexMap, Constants);
             UnknownTile = UnknownTileGetter.GetTile(content, Constants);

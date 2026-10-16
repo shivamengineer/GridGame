@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Hexagons;
 using GridGame.Tiles.Terrain;
 using Microsoft.Xna.Framework;
@@ -9,13 +11,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Units.UnitComponents {
-    public class Movement(HexagonMap hexagonMap, Transform transform) {
+    public class Movement(HexagonMap hexagonMap, Transform transform, ConstantsController Constants) {
 
         public float progress = 0f;
         public float TimeElapsed = 0f;
 
         private HexagonMap hexagonMap = hexagonMap;
         private Transform transform = transform;
+        private Dictionary<ConstGame, int> GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+        private Dictionary<ConstGame, float> GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
 
         public void ResetTime() {
             TimeElapsed = 0f;
@@ -80,7 +84,7 @@ namespace GridGame.Units.UnitComponents {
 
         public void UpdatePos(GameTime gameTime) {
             TimeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            progress = TimeElapsed / UnitInfo.UNIT_MOVE_TIME;
+            progress = TimeElapsed / GameFloats[ConstGame.CitizenMoveTime];
             if(progress >= 1.0f) {
                 FinishMoving();
                 UpdateHexagonMap();
@@ -95,7 +99,7 @@ namespace GridGame.Units.UnitComponents {
 
         private void UpdateHexagonMap() {
             hexagonMap.citizenManager.UpdatePos();
-            hexagonMap.hexMap.UpdateVision(transform.Coords, UnitInfo.UNIT_VISION_RADIUS);
+            hexagonMap.hexMap.UpdateVision(transform.Coords, GameInts[ConstGame.CitizenVisionRadius]);
             hexagonMap.hexMap.HexMath.FocusCamera();
             hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile);
         }

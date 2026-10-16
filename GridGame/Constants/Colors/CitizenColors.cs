@@ -12,6 +12,7 @@ namespace GridGame.Constants.Colors {
         public static readonly Color InactiveColor = Color.Gray;
 
         public static readonly Color InfectColor = Color.Red;
+        public static readonly Color AsymptomaticColor = Color.Blue;
 
     }
 }

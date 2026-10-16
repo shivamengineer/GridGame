@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants;
 using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
 using GridGame.Constants.Resources;
 using GridGame.Hexagons;
 using GridGame.Units.UnitComponents;
@@ -18,14 +19,14 @@ namespace GridGame.Units.UnitClasses {
 
         private UnitColor unitColor;
 
-        public Citizen((int, int) pos, HexagonMap hexagonMap) {
+        public Citizen((int, int) pos, HexagonMap hexagonMap, ConstantsController Constants) {
             this.hexagonMap = hexagonMap;
 
-            unitColor = new UnitColor();
-            transform = new Transform(pos);
-            movement = new Movement(hexagonMap, transform);
+            unitColor = new UnitColor(Constants);
+            transform = new Transform(pos, Constants);
+            movement = new Movement(hexagonMap, transform, Constants);
             virusController = new VirusController();
-            builder = new Builder(hexagonMap, transform, virusController);
+            builder = new Builder(hexagonMap, transform, virusController, Constants);
         }
 
         public override void Update(GameTime gameTime) {
@@ -73,7 +74,7 @@ namespace GridGame.Units.UnitClasses {
             if(!virusController.viruses.ContainsKey(VirusNames.Coronavirus)) return;
             if(virusController.virusesImmune.Contains(VirusNames.Coronavirus)) return;
             if(virusController.viruses[VirusNames.Coronavirus].AttackCitizen.IsAsymptomatic()) {
-                spriteBatch.Draw(texture, transform.infectedDestRect, Color.Blue); //shows if citizen is sick but asymptomatic
+                spriteBatch.Draw(texture, transform.infectedDestRect, unitColor.Asymptomatic); //shows if citizen is sick but asymptomatic
                 return;
             }
             spriteBatch.Draw(texture, transform.infectedDestRect, unitColor.Infected);

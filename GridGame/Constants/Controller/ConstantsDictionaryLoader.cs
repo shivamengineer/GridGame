@@ -47,6 +47,7 @@ namespace GridGame.Constants.Controller {
                 [ConstColors.Citizen_Active] = CitizenColors.ActiveColor,
                 [ConstColors.Citizen_Inactive] = CitizenColors.InactiveColor,
                 [ConstColors.Citizen_Infected] = CitizenColors.InfectColor,
+                [ConstColors.Citizen_Asymptomatic] = CitizenColors.AsymptomaticColor,
 
                 [ConstColors.Ocean] = TerrainColors.OceanColor,
                 [ConstColors.Land] = TerrainColors.LandColor,

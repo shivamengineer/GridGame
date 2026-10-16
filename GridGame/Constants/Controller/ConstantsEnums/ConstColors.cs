@@ -18,6 +18,7 @@ namespace GridGame.Constants.Controller.ConstantsEnums {
         Citizen_Active,
         Citizen_Inactive,
         Citizen_Infected,
+        Citizen_Asymptomatic,
 
         Ocean,
         Land,

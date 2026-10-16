@@ -1,4 +1,5 @@
-﻿using GridGame.TextureLoading;
+﻿using GridGame.Constants.Controller;
+using GridGame.TextureLoading;
 using GridGame.Units.UnitClasses;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,12 @@ namespace GridGame.Hexagons.Managers {
         private int CurrentCitizenIndex;
 
         private ContentLoader content;
+        private ConstantsController Constants;
 
         private HexagonMap hexagonMap;
 
-        public CitizenManager((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content) {
-            CurrentPlayer = new Citizen(StartPos, hexagonMap);
+        public CitizenManager((int, int) StartPos, HexagonMap hexagonMap, ContentLoader content, ConstantsController Constants) {
+            CurrentPlayer = new Citizen(StartPos, hexagonMap, Constants);
             CurrentPlayer.SetTexture(content);
             CurrentPlayer.SetActive(true);
 
@@ -38,12 +40,13 @@ namespace GridGame.Hexagons.Managers {
 
             this.hexagonMap = hexagonMap;
             this.content = content;
+            this.Constants = Constants;
         }
 
         public bool AddCitizen((int, int) pos) {
             if(CitizenMap.ContainsKey(pos)) return false;
 
-            Citizen citizen = new Citizen(pos, hexagonMap);
+            Citizen citizen = new Citizen(pos, hexagonMap, Constants);
             citizen.SetTexture(content);
 
             Citizens.Add(citizen);

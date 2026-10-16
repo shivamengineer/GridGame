@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Hexagons;
 using Microsoft.Xna.Framework;
 using System;
@@ -19,15 +21,17 @@ namespace GridGame.Units.UnitComponents {
         public bool moving;
 
         private Vector2 origin;
+        private Dictionary<ConstUserInterface, int> UIInts;
 
-        public Transform((int, int) pos) {
+        public Transform((int, int) pos, ConstantsController Constants) {
+            UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
             active = false;
             moving = false;
 
             Coords = pos;
 
-            destRect = new Rectangle(0, 0, UnitInfo.UNIT_WIDTH, UnitInfo.UNIT_HEIGHT);
-            infectedDestRect = new Rectangle(0, 0, UnitInfo.INFECTED_WIDTH, UnitInfo.INFECTED_HEIGHT);
+            destRect = new Rectangle(0, 0, UIInts[ConstUserInterface.CitizenWidth], UIInts[ConstUserInterface.CitizenHeight]);
+            infectedDestRect = new Rectangle(0, 0, UIInts[ConstUserInterface.CitizenInfectedBarWidth], UIInts[ConstUserInterface.CitizenInfectedBarHeight]);
         }
 
         public void SetOrigin(Vector2 origin) {

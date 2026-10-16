@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants.Colors;
+using GridGame.Constants.Controller;
+using GridGame.Constants.Controller.ConstantsEnums;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,11 +14,14 @@ namespace GridGame.Units.UnitComponents {
         public Color Inactive;
         public Color Active;
         public Color Infected;
+        public Color Asymptomatic;
 
-        public UnitColor() {
-            Inactive = CitizenColors.InactiveColor;
-            Active = CitizenColors.ActiveColor;
-            Infected = CitizenColors.InfectColor;
+        public UnitColor(ConstantsController Constants) {
+            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+            Inactive = Colors[ConstColors.Citizen_Inactive];
+            Active = Colors[ConstColors.Citizen_Active];
+            Infected = Colors[ConstColors.Citizen_Infected];
+            Asymptomatic = Colors[ConstColors.Citizen_Asymptomatic];
         }
 
     }
