@@ -22,7 +22,7 @@ namespace GridGame.UI.Elements.Buttons {
         public Color backgroundRectColor;
 
         public void SetColors(ConstantsController Constants) {
-            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+            Dictionary<ConstColors, Color> Colors = Constants.GetColors();
 
             SelectedColor = Colors[ConstColors.ButtonSelected];
             NotSelectedColor = Colors[ConstColors.ButtonNotSelected];

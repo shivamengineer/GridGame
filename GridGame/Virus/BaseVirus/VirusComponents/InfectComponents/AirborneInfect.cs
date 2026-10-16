@@ -31,8 +31,8 @@ namespace GridGame.Virus.BaseVirus.VirusComponents.InfectComponents {
             this.citizen = citizen;
             this.virus = virus;
 
-            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-            GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+            GameInts = Constants.GetGameInts();
+            GameFloats = Constants.GetGameFloats();
 
             TimeToSpread = GameFloats[ConstGame.VirusTimeBeforeSpread];
         }

@@ -13,8 +13,8 @@ using System.Threading.Tasks;
 namespace GridGame.GameManagers {
     public static class ControllerLoader {
         
-        public static void LoadMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager, ConstantsController constants) {
-            MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager, constants.ConstantsFiles[ConstantTypes.GAME]);
+        public static void LoadMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager, ConstantsController Constants) {
+            MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager, Constants);
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
         }
 

@@ -26,7 +26,7 @@ namespace GridGame.Tiles.Terrain.TerrainClasses {
 
         public Land_River(ConstantsController Constants) {
             this.Constants = Constants;
-            Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+            Colors = Constants.GetColors();
 
             TerrainType = TerrainType.Land_River;
             hexColor = Colors[ConstColors.Land];

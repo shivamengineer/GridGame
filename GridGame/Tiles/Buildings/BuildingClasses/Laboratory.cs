@@ -24,8 +24,8 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public Laboratory(ConstantsController Constants) {
             this.Constants = Constants;
-            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+            GameInts = Constants.GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.GetColors();
             BuildingType = BuildingType.Laboratory;
             hexColor = Colors[ConstColors.Laboratory];
             production_needed = GameInts[ConstGame.LaboratoryProductionCost];

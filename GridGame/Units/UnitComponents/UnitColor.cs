@@ -17,7 +17,7 @@ namespace GridGame.Units.UnitComponents {
         public Color Asymptomatic;
 
         public UnitColor(ConstantsController Constants) {
-            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+            Dictionary<ConstColors, Color> Colors = Constants.GetColors();
             Inactive = Colors[ConstColors.Citizen_Inactive];
             Active = Colors[ConstColors.Citizen_Active];
             Infected = Colors[ConstColors.Citizen_Infected];

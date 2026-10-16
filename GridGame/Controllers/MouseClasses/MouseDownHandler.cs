@@ -33,13 +33,13 @@ namespace GridGame.Controllers.MouseClasses {
         private int BuildingRadiusFromPlayer;
         private int BuildingRadiusFromCity;
 
-        public MouseDownHandler(DisplayManager displayManager, IConstantsManager constantsManager) {
+        public MouseDownHandler(DisplayManager displayManager, ConstantsController Constants) {
             resourceDisplay = displayManager.resourceManager.resourceDisplay;
             buttonDisplay = displayManager.buttonDisplay;
             selectedButton = buttonDisplay.GetButton(selectedBuilding);
             selectedButton.SetRectSelected(true);
 
-            Dictionary<ConstGame, int> GameInts = constantsManager.GetGameInts();
+            Dictionary<ConstGame, int> GameInts = Constants.GetGameInts();
             BuildingRadiusFromPlayer = GameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
             BuildingRadiusFromCity = GameInts[ConstGame.CanBuildMaxDistanceFromCity];
         }

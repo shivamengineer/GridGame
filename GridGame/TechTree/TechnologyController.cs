@@ -39,7 +39,7 @@ namespace GridGame.TechTree {
         public TechnologyController(ContentLoader content, ConstantsController Constants, PlayerResources playerResources) {
             TechProgress = new TechProgress();
             TechBlockPositions = new List<Dictionary<TechnologyTypes, ITechBlock>>();
-            Dictionary<ConstUserInterface, int> UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+            Dictionary<ConstUserInterface, int> UIInts = Constants.GetUIInts();
 
             NewTech = new NewTechBlock(content, UIInts, playerResources);
             Background = content.GetTexture(TextureNames.BLANK_RECTANGLE);

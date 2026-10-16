@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace GridGame.Hexagons.StaticClasses {
     public static class BuildingPrices {
 
-        public static Dictionary<BuildingType, int> GetPriceDictionary(ConstantsController constantsController) {
-            Dictionary<ConstGame, int> gameInts = constantsController.ConstantsFiles[ConstantTypes.GAME].GetGameInts(); 
+        public static Dictionary<BuildingType, int> GetPriceDictionary(ConstantsController Constants) {
+            Dictionary<ConstGame, int> gameInts = Constants.GetGameInts(); 
             return new Dictionary<BuildingType, int> {
                 [BuildingType.Bank] = gameInts[ConstGame.BankGoldCost],
                 [BuildingType.CityCenter] = gameInts[ConstGame.CityCenterGoldCost],

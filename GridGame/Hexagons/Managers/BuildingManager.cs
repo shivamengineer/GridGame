@@ -24,7 +24,7 @@ namespace GridGame.Hexagons.Managers {
         private HexMap hexMap;
         private int CanBuildRadiusFromCity;
 
-        public BuildingManager(HexMap hexMap, ConstantsController constantsController) {
+        public BuildingManager(HexMap hexMap, ConstantsController Constants) {
             CityBuilt = false;
             BuildingTiles = new HashSet<(int, int)>();
             UnfinishedBuildingTiles = new Queue<(int, int)>();
@@ -34,7 +34,7 @@ namespace GridGame.Hexagons.Managers {
             };
 
             this.hexMap = hexMap;
-            Dictionary<ConstGame, int> GameInts = constantsController.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstGame, int> GameInts = Constants.GetGameInts();
             CanBuildRadiusFromCity = GameInts[ConstGame.CanBuildMaxDistanceFromCity];
         }
 

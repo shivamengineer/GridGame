@@ -24,7 +24,7 @@ namespace GridGame.Units.UnitComponents {
         private Dictionary<ConstUserInterface, int> UIInts;
 
         public Transform((int, int) pos, ConstantsController Constants) {
-            UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+            UIInts = Constants.GetUIInts();
             active = false;
             moving = false;
 

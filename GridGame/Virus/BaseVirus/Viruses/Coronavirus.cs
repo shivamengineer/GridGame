@@ -33,8 +33,8 @@ namespace GridGame.Virus.BaseVirus.Viruses {
             this.citizenManager = citizenManager;
             this.Constants = Constants;
 
-            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-            GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+            GameInts = Constants.GetGameInts();
+            GameFloats = Constants.GetGameFloats();
 
             virusStrength = strength;
             virusName = VirusNames.Coronavirus;

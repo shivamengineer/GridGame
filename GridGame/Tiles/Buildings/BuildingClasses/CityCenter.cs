@@ -24,8 +24,8 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public CityCenter(ConstantsController Constants) {
             this.Constants = Constants;
-            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors(); 
+            GameInts = Constants.GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.GetColors(); 
             BuildingType = BuildingType.CityCenter;
             hexColor = Colors[ConstColors.CityCenter];
             production_needed = GameInts[ConstGame.CityCenterProductionCost];

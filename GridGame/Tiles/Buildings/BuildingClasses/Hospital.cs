@@ -21,8 +21,8 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public Hospital(ConstantsController Constants) {
             this.Constants = Constants;
-            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors();
+            GameInts = Constants.GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.GetColors();
             BuildingType = BuildingType.Hospital;
             hexColor = Colors[ConstColors.Hospital];
             production_needed = GameInts[ConstGame.HospitalProductionCost];

@@ -42,7 +42,7 @@ namespace GridGame.Tiles.Terrain {
             infectedTexture = content.GetTexture(TextureNames.INFECTED_HEXAGON_BACKGROUND);
             baseTexture = content.GetTexture(TextureNames.BLANK_HEXAGON_BACKGROUND);
 
-            GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+            GameFloats = Constants.GetGameFloats();
         }
 
         public void SetMap(HexagonMap map) {

@@ -30,8 +30,8 @@ namespace GridGame.Units.UnitComponents {
             this.hexagonMap = hexagonMap;
             this.transform = transform;
             this.virusController = virusController;
-            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-            GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+            GameInts = Constants.GetGameInts();
+            GameFloats = Constants.GetGameFloats();
         }
 
         public void Eat() {

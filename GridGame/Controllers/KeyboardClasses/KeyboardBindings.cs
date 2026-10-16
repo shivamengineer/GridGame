@@ -4,6 +4,7 @@ using GridGame.Commands.PlayerMovementCommands;
 using GridGame.Commands.TechTreeCommands;
 using GridGame.Constants.Controller;
 using GridGame.Constants.Controller.ConstantsClasses;
+using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.GameManagers;
 using GridGame.Hexagons;
 using GridGame.TechTree;
@@ -44,12 +45,12 @@ namespace GridGame.Controllers.KeyboardClasses {
 
         public static void InitializeMenuBindings(KeyboardController keyboardController, GameManager gameManager) {
             TechnologyController techController = gameManager.displayManager.technologyController;
-            IConstantsManager UIConstants = gameManager.Constants.ConstantsFiles[Constants.Controller.ConstantTypes.USER_INTERFACE];
+            ConstantsController Constants = gameManager.Constants;
 
             keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
 
-            keyboardController.AddHeldBinding(Keys.Left, new TechScrollLeftCommand(techController, UIConstants));
-            keyboardController.AddHeldBinding(Keys.Right, new TechScrollRightCommand(techController, UIConstants));
+            keyboardController.AddHeldBinding(Keys.Left, new TechScrollLeftCommand(techController, Constants));
+            keyboardController.AddHeldBinding(Keys.Right, new TechScrollRightCommand(techController, Constants));
         }
 
     }

@@ -21,8 +21,8 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         public Empty(ConstantsController Constants) {
             this.Constants = Constants;
-            GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-            Dictionary<ConstColors, Color> Colors = Constants.ConstantsFiles[ConstantTypes.COLOR].GetColors(); 
+            GameInts = Constants.GetGameInts();
+            Dictionary<ConstColors, Color> Colors = Constants.GetColors(); 
             BuildingType = BuildingType.Empty;
             hexColor = Colors[ConstColors.Tile_Empty];
         }

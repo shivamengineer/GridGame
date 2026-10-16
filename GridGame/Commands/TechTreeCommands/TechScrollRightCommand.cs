@@ -15,9 +15,9 @@ namespace GridGame.Commands.TechTreeCommands {
         private TechnologyController techController;
         private int scrollSpeed;
 
-        public TechScrollRightCommand(TechnologyController techController, IConstantsManager constantsManager) {
+        public TechScrollRightCommand(TechnologyController techController, ConstantsController Constants) {
             this.techController = techController;
-            scrollSpeed = constantsManager.GetUIInts()[ConstUserInterface.TechTreeScrollSpeed];
+            scrollSpeed = Constants.GetUIInts()[ConstUserInterface.TechTreeScrollSpeed];
         }
 
         public void Execute() {

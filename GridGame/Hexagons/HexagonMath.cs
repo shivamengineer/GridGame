@@ -24,7 +24,7 @@ namespace GridGame.Hexagons {
 
         public HexagonMath(ConstantsController Constants) {
             hexConstants = new HexagonConstants();
-            UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+            UIInts = Constants.GetUIInts();
         }
 
         public void SetCitizens(CitizenManager citizens) {

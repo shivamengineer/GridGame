@@ -19,8 +19,8 @@ using GridGame.Constants.Controller.ConstantsEnums;
 namespace GridGame.Hexagons.StaticClasses {
     public static class HexagonRenderer {
 
-        public static void Draw(SpriteBatch spriteBatch, HexMap hex, Tile unknown, ConstantsController constantsController) {
-            Dictionary<ConstUserInterface, int> UIInts = constantsController.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+        public static void Draw(SpriteBatch spriteBatch, HexMap hex, Tile unknown, ConstantsController Constants) {
+            Dictionary<ConstUserInterface, int> UIInts = Constants.GetUIInts();
 
             int camPosX = hex.HexMath.camPosX;
             int camPosY = hex.HexMath.camPosY;
@@ -43,10 +43,10 @@ namespace GridGame.Hexagons.StaticClasses {
 
                 for(int r = rMin; r <= rMax; r++) {
                     if(!hex.Tiles.ContainsKey((q, r))) {
-                        ITerrain terrain = new Ocean(constantsController);
+                        ITerrain terrain = new Ocean(Constants);
                         terrain.SetContent(hex.Content);
 
-                        IBuilding building = new NIL(constantsController);
+                        IBuilding building = new NIL(Constants);
                         building.SetContent(hex.Content);
 
                         hex.Tiles.Add((q, r), new Tile(terrain, building));

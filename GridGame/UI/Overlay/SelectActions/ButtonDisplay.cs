@@ -26,7 +26,7 @@ namespace GridGame.UI.Overlay.SelectActions {
             this.blankTexture = blankTexture;
             this.font = font;
 
-            Dictionary<ConstUserInterface, int> UIInts = Constants.ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+            Dictionary<ConstUserInterface, int> UIInts = Constants.GetUIInts();
 
             InitializeBuildingTypes();
             InitializeButtonBackgrounds(Constants, UIInts);

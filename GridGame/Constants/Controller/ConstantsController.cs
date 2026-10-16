@@ -1,4 +1,6 @@
 ﻿using GridGame.Constants.Controller.ConstantsClasses;
+using GridGame.Constants.Controller.ConstantsEnums;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,8 +11,8 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Controller {
     public class ConstantsController {
 
-        public Dictionary<ConstantTypes, string> Filenames;
-        public Dictionary<ConstantTypes, IConstantsManager> ConstantsFiles;
+        private Dictionary<ConstantTypes, string> Filenames;
+        private Dictionary<ConstantTypes, IConstantsManager> ConstantsFiles;
 
         public ConstantsController() {
             Filenames = ConstantsDictionaryLoader.GetFilenames();
@@ -29,6 +31,22 @@ namespace GridGame.Constants.Controller {
             foreach(var file in ConstantsFiles) {
                 ConstantsFiles[file.Key].WriteConstantsToFile(filename);
             }
+        }
+
+        public Dictionary<ConstColors, Color> GetColors() {
+            return ConstantsFiles[ConstantTypes.COLOR].GetColors();
+        }
+
+        public Dictionary<ConstGame, int> GetGameInts() {
+            return ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+        }
+
+        public Dictionary<ConstGame, float> GetGameFloats() {
+            return ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+        }
+
+        public Dictionary<ConstUserInterface, int> GetUIInts() {
+            return ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
         }
 
     }

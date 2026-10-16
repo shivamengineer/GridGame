@@ -18,8 +18,8 @@ namespace GridGame.Units.UnitComponents {
 
         private HexagonMap hexagonMap = hexagonMap;
         private Transform transform = transform;
-        private Dictionary<ConstGame, int> GameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
-        private Dictionary<ConstGame, float> GameFloats = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+        private Dictionary<ConstGame, int> GameInts = Constants.GetGameInts();
+        private Dictionary<ConstGame, float> GameFloats = Constants.GetGameFloats();
 
         public void ResetTime() {
             TimeElapsed = 0f;

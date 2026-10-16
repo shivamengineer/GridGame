@@ -78,7 +78,7 @@ namespace GridGame.Hexagons {
 
         public void SetHover((int, int) pos) {
             if(!hexMap.DiscoveredTiles.Contains(pos) || playerData.buildingManager.HasBuilding(pos)) return;
-            Dictionary<ConstGame, int> gameInts = Constants.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstGame, int> gameInts = Constants.GetGameInts();
 
             bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (pos)) <= gameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
             if(playerData.buildingManager.CityBuilt) {

@@ -24,14 +24,14 @@ namespace GridGame.Hexagons.Managers {
         private int foodToAddCitizen;
         private int foodRation;
 
-        public FoodManager(HexagonMap hexagonMap, ConstantsController constantsController) {
+        public FoodManager(HexagonMap hexagonMap, ConstantsController Constants) {
             citizenManager = hexagonMap.citizenManager;
             playerResources = hexagonMap.playerData.playerResources;
             buildingManager = hexagonMap.playerData.buildingManager;
 
             this.hexagonMap = hexagonMap;
 
-            Dictionary<ConstGame, int> gameInts = constantsController.ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            Dictionary<ConstGame, int> gameInts = Constants.GetGameInts();
             foodToAddCitizen = gameInts[ConstGame.FoodToAddCitizen];
             foodRation = gameInts[ConstGame.CitizenFoodRation];
         }
