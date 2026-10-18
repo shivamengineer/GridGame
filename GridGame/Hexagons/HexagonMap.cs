@@ -61,8 +61,8 @@ namespace GridGame.Hexagons {
         }
 
         public bool BuildBuilding(BuildingType buildingType, (int, int) pos) {
-            if(!playerData.AddBuilding(buildingType, pos)) return false; //Not enough gold
             if(!CanBuild(buildingType, pos)) return false;
+            if(!playerData.AddBuilding(buildingType, pos)) return false; //Not enough gold
 
             hexMap.Tiles[pos].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
             hexMap.Tiles[pos].SetMap(this);
