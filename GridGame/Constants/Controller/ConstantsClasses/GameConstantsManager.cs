@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,8 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
 
         private Dictionary<ConstGame, int> GameInts;
         private Dictionary<ConstGame, float> GameFloats;
+
+        private bool ReadingInt = true;
 
         public GameConstantsManager(string filename) {
             DefaultGameInts = ConstantsDictionaryLoader.GetDefaultGameInts();
@@ -75,8 +79,27 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
             }
         }
 
-        public override void Write(string filename) {
-            //
+        public override void WriteConstantsToFile(string filename) {
+            string file = filename + "ConstantGame.txt";
+            string[] GameConstants = printLines();
+
+            File.WriteAllLines(file, GameConstants);
+        }
+
+        private string[] printLines() {
+            string[] lines = new string[GameInts.Count + GameFloats.Count];
+
+            int i = 0;
+            foreach(var gameConst in GameInts) {
+                lines[i] = gameConst.Key.ToString() + "=" + gameConst.Value.ToString();
+                i++;
+            }
+            foreach(var gameConst in GameFloats) {
+                lines[i] = gameConst.Key.ToString() + "=" + gameConst.Value.ToString();
+                i++;
+            }
+
+            return lines;
         }
 
         public override Dictionary<ConstColors, Color> GetColors() { return null; }

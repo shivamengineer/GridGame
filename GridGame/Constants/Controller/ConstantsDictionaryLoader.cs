@@ -10,6 +10,7 @@ using GridGame.Tiles.Terrain.TerrainClasses;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,19 +18,33 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Controller {
     public static class ConstantsDictionaryLoader {
 
-        public static Dictionary<ConstantTypes, string> GetFilenames() {
-            return new Dictionary<ConstantTypes, string>() {
-                [ConstantTypes.COLOR] = "ConstantColor.txt",
-                [ConstantTypes.GAME] = "ConstantGame.txt",
-                [ConstantTypes.USER_INTERFACE] = "ConstantUserInterface.txt",
-            };
+        public static List<string> GetFilenames() {
+            string filenamesFile = "Content/Data/ConstantsFilenames.txt";
+            List<string> Filenames = new List<string>() { "", };
+
+            if(!File.Exists(filenamesFile)) {
+                return Filenames;
+            }
+
+            using(var stream = TitleContainer.OpenStream(filenamesFile))
+            using(var reader = new StreamReader(stream)) {
+                while(!reader.EndOfStream) {
+                    var line = reader.ReadLine();
+                    var input = line.Replace(" ", "");
+                    if(input == "") continue; //Skips blank lines
+
+                    Filenames.Add(line);
+                }
+            }
+
+            return Filenames;
         }
 
-        public static Dictionary<ConstantTypes, IConstantsManager> GetConstantsManagers(Dictionary<ConstantTypes, string> filenames) {
+        public static Dictionary<ConstantTypes, IConstantsManager> GetConstantsManagers(string filename) {
             return new Dictionary<ConstantTypes, IConstantsManager>() {
-                [ConstantTypes.COLOR] = new ColorConstantsManager(filenames[ConstantTypes.COLOR]),
-                [ConstantTypes.GAME] = new GameConstantsManager(filenames[ConstantTypes.GAME]),
-                [ConstantTypes.USER_INTERFACE] = new UserInterfaceConstantsManager(filenames[ConstantTypes.USER_INTERFACE])
+                [ConstantTypes.COLOR] = new ColorConstantsManager(filename),
+                [ConstantTypes.GAME] = new GameConstantsManager(filename),
+                [ConstantTypes.USER_INTERFACE] = new UserInterfaceConstantsManager(filename)
             };
         }
 

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +50,23 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
             }
         }
 
-        public override void Write(string filename) {
-            //
+        public override void WriteConstantsToFile(string filename) {
+            string file = filename + "ConstantUserInterface.txt";
+            string[] UIConstants = printLines();
+
+            File.WriteAllLines(file, UIConstants);
+        }
+
+        private string[] printLines() {
+            string[] lines = new string[UserInterfaceValues.Count];
+
+            int i = 0;
+            foreach(var UIValue in UserInterfaceValues) {
+                lines[i] = UIValue.Key.ToString() + "=" + UIValue.Value.ToString();
+                i++;
+            }
+
+            return lines;
         }
 
         public override Dictionary<ConstColors, Color> GetColors() { return null; }

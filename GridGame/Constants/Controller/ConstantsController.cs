@@ -11,18 +11,20 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Controller {
     public class ConstantsController {
 
-        private Dictionary<ConstantTypes, string> Filenames;
-        private Dictionary<ConstantTypes, IConstantsManager> ConstantsFiles;
+        private string currentFile;
+
+        private List<string> Filenames;
+        private Dictionary<string, ConstantsFile> ConstantsFiles;
 
         public ConstantsController() {
+            currentFile = "";
             Filenames = ConstantsDictionaryLoader.GetFilenames();
-            ConstantsFiles = ConstantsDictionaryLoader.GetConstantsManagers(Filenames);
             Initialize();
         }
 
         private void Initialize() {
             foreach(var file in Filenames) {
-                ConstantsFiles[file.Key].ReadConstantsFromFile(file.Value);
+                ConstantsFiles[file] = new ConstantsFile(file);
             }
 
         }
@@ -34,19 +36,19 @@ namespace GridGame.Constants.Controller {
         }
 
         public Dictionary<ConstColors, Color> GetColors() {
-            return ConstantsFiles[ConstantTypes.COLOR].GetColors();
+            return ConstantsFiles[currentFile].GetColors();
         }
 
         public Dictionary<ConstGame, int> GetGameInts() {
-            return ConstantsFiles[ConstantTypes.GAME].GetGameInts();
+            return ConstantsFiles[currentFile].GetGameInts();
         }
 
         public Dictionary<ConstGame, float> GetGameFloats() {
-            return ConstantsFiles[ConstantTypes.GAME].GetGameFloats();
+            return ConstantsFiles[currentFile].GetGameFloats();
         }
 
         public Dictionary<ConstUserInterface, int> GetUIInts() {
-            return ConstantsFiles[ConstantTypes.USER_INTERFACE].GetUIInts();
+            return ConstantsFiles[currentFile].GetUIInts();
         }
 
     }

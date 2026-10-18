@@ -36,14 +36,10 @@ namespace GridGame.Constants.Controller {
             return true;
         }
 
-        public void WriteConstantsToFile(string filename) {
-            //
-        }
-
         public abstract void ResetConstants();
 
         public abstract void Read(string variable, string value);
-        public abstract void Write(string filename);
+        public abstract void WriteConstantsToFile(string filename);
 
         public abstract Dictionary<ConstColors, Color> GetColors();
         public abstract Dictionary<ConstGame, int> GetGameInts();

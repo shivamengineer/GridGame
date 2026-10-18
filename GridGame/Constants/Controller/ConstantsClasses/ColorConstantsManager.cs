@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -53,8 +54,23 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
             }
         }
 
-        public override void Write(string filename) {
-            //
+        public override void WriteConstantsToFile(string filename) {
+            string file = filename + "ConstantColor.txt";
+            string[] ColorConstants = printLines();
+
+            File.WriteAllLines(file, ColorConstants);
+        }
+
+        private string[] printLines() {
+            string[] lines = new string[Colors.Count];
+
+            int i = 0;
+            foreach(var color in Colors) {
+                lines[i] = color.Key.ToString() + "=" + color.Value.ToString();
+                i++;
+            }
+
+            return lines;
         }
 
         public override Dictionary<ConstColors, Color> GetColors() { return Colors; }
