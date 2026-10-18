@@ -61,17 +61,31 @@ namespace GridGame.Hexagons {
         }
 
         public bool BuildBuilding(BuildingType buildingType, (int, int) pos) {
+            if(!playerData.AddBuilding(buildingType, pos)) return false; //Not enough gold
+            if(!CanBuild(buildingType, pos)) return false;
+
+            hexMap.Tiles[pos].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
+            hexMap.Tiles[pos].SetMap(this);
+
+            return true;
+        }
+
+        public bool CanBuild(BuildingType buildingType, (int, int) pos) {
             if(!hexMap.DiscoveredTiles.Contains(pos)) return false; //Can't build on undiscovered tile
             if(playerData.buildingManager.HasBuilding(pos)) return false; //Can't build on another building
             if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
             if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Land_River) return false; //Can't build on river tile
-            if(buildingType == BuildingType.CityCenter && 
+            if(buildingType == BuildingType.CityCenter &&
                 !hexMap.HasAdjacent(pos, TerrainType.Land_River)) return false; //Must build city adjacent to a river tile
 
-            if(!playerData.AddBuilding(buildingType, pos)) return false; //Not enough gold
+            return true;
+        }
 
-            hexMap.Tiles[pos].SetBuilding(NewBuilding.GetNewBuilding(BuildingDictionary, buildingType, content));
-            hexMap.Tiles[pos].SetMap(this);
+        private bool CanBuildAny((int, int) pos) {
+            if(!hexMap.DiscoveredTiles.Contains(pos)) return false; //Can't build on undiscovered tile
+            if(playerData.buildingManager.HasBuilding(pos)) return false; //Can't build on another building
+            if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Ocean) return false; //Can't build on ocean tile
+            if(hexMap.Tiles[pos].GetTerrainType() == TerrainType.Land_River) return false; //Can't build on river tile
 
             return true;
         }
@@ -80,16 +94,16 @@ namespace GridGame.Hexagons {
             if(!hexMap.DiscoveredTiles.Contains(pos) || playerData.buildingManager.HasBuilding(pos)) return;
             Dictionary<ConstGame, int> gameInts = Constants.GetGameInts();
 
+            bool canBuild = true;
+            if(!playerData.buildingManager.CityBuilt) canBuild = CanBuild(BuildingType.CityCenter, pos);
+            else canBuild = CanBuildAny(pos);
+
             bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (pos)) <= gameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
-            if(playerData.buildingManager.CityBuilt) {
-                inRange = inRange && playerData.buildingManager.InRangeOfCity(pos);
-                inRange = inRange && hexMap.Tiles[pos].GetTerrainType() != TerrainType.Ocean;
-            }
 
             if(hexMap.Tiles.ContainsKey((hexMap.HoveredTile))) {
-                hexMap.Tiles[hexMap.HoveredTile].SetHovered(false, inRange);
+                hexMap.Tiles[hexMap.HoveredTile].SetHovered(false, canBuild && inRange);
             }
-            hexMap.Tiles[pos].SetHovered(true, inRange);
+            hexMap.Tiles[pos].SetHovered(true, canBuild && inRange);
 
             hexMap.HoveredTile = pos;
         }
