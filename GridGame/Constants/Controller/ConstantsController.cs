@@ -23,10 +23,10 @@ namespace GridGame.Constants.Controller {
         }
 
         private void Initialize() {
+            ConstantsFiles = new Dictionary<string, ConstantsFile>();
             foreach(var file in Filenames) {
                 ConstantsFiles[file] = new ConstantsFile(file);
             }
-
         }
 
         public void Save(string filename) {
