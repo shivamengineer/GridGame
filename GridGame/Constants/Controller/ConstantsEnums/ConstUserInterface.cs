@@ -13,6 +13,10 @@ namespace GridGame.Constants.Controller.ConstantsEnums {
         TechBlockHeight,
         TechBlockSpacing,
 
+        ConstBlockWidth,
+        ConstBlockHeight,
+        ConstBlockSpacing,
+
         TechTreeScrollSpeed,
 
         ProgressBarWidth,

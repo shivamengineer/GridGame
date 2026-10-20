@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants.Colors;
+using GridGame.Constants.ConstInterfaceInfo;
 using GridGame.Constants.Controller.ConstantsClasses;
 using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Resources;
@@ -185,6 +186,10 @@ namespace GridGame.Constants.Controller {
                 [ConstUserInterface.TechBlockSpacing] = TechTreeGraph.BLOCK_SPACING,
 
                 [ConstUserInterface.TechTreeScrollSpeed] = TechTreeGraph.SCROLL_SPEED,
+
+                [ConstUserInterface.ConstBlockWidth] = ConstInterfaceUIInfo.BLOCK_WIDTH,
+                [ConstUserInterface.ConstBlockHeight] = ConstInterfaceUIInfo.BLOCK_HEIGHT,
+                [ConstUserInterface.ConstBlockSpacing] = ConstInterfaceUIInfo.BLOCK_SPACING,
 
                 [ConstUserInterface.ProgressBarWidth] = PopupInfo.PROGRESS_BAR_WIDTH,
                 [ConstUserInterface.ProgressBarHeight] = PopupInfo.PROGRESS_BAR_HEIGHT,
