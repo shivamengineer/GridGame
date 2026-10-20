@@ -38,7 +38,11 @@ namespace GridGame.Constants.Interface {
             ColorConstBlocks = new List<IConstantBlock>();
             int i = 0;
             foreach(var constVar in Constants.GetColors()) {
-                //
+                IConstantBlock block = new ColorConstantBlock(constVar.Key);
+                block.SetContent(Content, Constants.GetUIInts());
+                block.SetPosition(i);
+                ColorConstBlocks.Add(block);
+                i++;
             }
         }
 
@@ -46,7 +50,11 @@ namespace GridGame.Constants.Interface {
             GameIntConstBlocks = new List<IConstantBlock>();
             int i = 0;
             foreach(var constVar in Constants.GetGameInts()) {
-                //
+                IConstantBlock block = new GameIntConstantBlock(constVar.Key);
+                block.SetContent(Content, Constants.GetUIInts());
+                block.SetPosition(i);
+                GameIntConstBlocks.Add(block);
+                i++;
             }
         }
 
@@ -54,7 +62,11 @@ namespace GridGame.Constants.Interface {
             GameFloatConstBlocks = new List<IConstantBlock>();
             int i = 0;
             foreach(var constVar in Constants.GetGameFloats()) {
-                //
+                IConstantBlock block = new GameFloatConstantBlock(constVar.Key);
+                block.SetContent(Content, Constants.GetUIInts());
+                block.SetPosition(i);
+                GameFloatConstBlocks.Add(block);
+                i++;
             }
         }
 
@@ -62,7 +74,11 @@ namespace GridGame.Constants.Interface {
             UIIntConstBlocks = new List<IConstantBlock>();
             int i = 0;
             foreach(var constVar in Constants.GetUIInts()) {
-                //
+                IConstantBlock block = new UserInterfaceConstantBlock(constVar.Key);
+                block.SetContent(Content, Constants.GetUIInts());
+                block.SetPosition(i);
+                UIIntConstBlocks.Add(block);
+                i++;
             }
         }
 
