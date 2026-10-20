@@ -12,7 +12,12 @@ namespace GridGame.Constants.Interface.ConstantBlockClasses {
 
         public GameIntConstantBlock(ConstGame ConstType) {
             this.ConstType = ConstType;
-            SetBackground();
+        }
+
+        public override IConstantBlock NewInstance() {
+            IConstantBlock newBlock = new GameIntConstantBlock(ConstType);
+            newBlock.SetContent(content, UIInts);
+            return newBlock;
         }
 
     }
