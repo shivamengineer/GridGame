@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using GridGame.Tiles.Terrain.TerrainClasses;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace GridGame.Constants.Interface {
+namespace GridGame.Constants.Interface.ConstantBlocks {
     public abstract class AbstractConstantBlock : IConstantBlock {
 
         public Rectangle Background { get; set; }
@@ -26,18 +26,22 @@ namespace GridGame.Constants.Interface {
         public Color BackgroundColor;
 
         public ContentLoader content;
+        public ConstantsController Constants;
         public Dictionary<ConstUserInterface, int> UIInts;
 
         private int cameraY = 0;
 
-        public string Text;
+        public string KeyText;
+        public string ValueText;
 
-        public void SetContent(ContentLoader content, Dictionary<ConstUserInterface, int> UIInts) {
+        public void SetContent(ContentLoader content, ConstantsController Constants) {
             this.content = content;
-            this.UIInts = UIInts;
+            this.Constants = Constants;
+            UIInts = Constants.GetUIInts();
             backgroundTexture = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             font = content.GetFont(FontNames.ARIAL);
             SetRectangle();
+            SetValue(Constants);
         }
         public void SetPosition(int position) {
             Position = position;
@@ -45,6 +49,7 @@ namespace GridGame.Constants.Interface {
 
         public void SetRectangle() {
             Background = new Rectangle(0, Background.Y, UIInts[ConstUserInterface.ConstBlockWidth], UIInts[ConstUserInterface.ConstBlockHeight]);
+            BackgroundColor = Color.Red;
             UpdatePositionFromCamera();
         }
 
@@ -53,8 +58,8 @@ namespace GridGame.Constants.Interface {
         }
 
         public void UpdatePositionFromCamera() {
-            int x = (UIInts[ConstUserInterface.WindowWidth] / 2) - (UIInts[ConstUserInterface.ConstBlockWidth] / 2);
-            int y = ((1 + Position) * UIInts[ConstUserInterface.ConstBlockSpacing]) + (Position * UIInts[ConstUserInterface.ConstBlockHeight]) - cameraY;
+            int x = UIInts[ConstUserInterface.WindowWidth] / 2 - UIInts[ConstUserInterface.ConstBlockWidth] / 2;
+            int y = (1 + Position) * UIInts[ConstUserInterface.ConstBlockSpacing] + Position * UIInts[ConstUserInterface.ConstBlockHeight] - cameraY;
             SetBackgroundPos(x, y);
         }
 
@@ -69,9 +74,10 @@ namespace GridGame.Constants.Interface {
             }
 
             spriteBatch.Draw(backgroundTexture, Background, BackgroundColor);
-            spriteBatch.DrawString(font, Text, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
+            spriteBatch.DrawString(font, KeyText + " = " + ValueText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
         }
 
+        public abstract void SetValue(ConstantsController Constants);
         public abstract IConstantBlock NewInstance();
 
     }
