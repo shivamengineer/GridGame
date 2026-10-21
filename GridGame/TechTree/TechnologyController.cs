@@ -24,7 +24,7 @@ namespace GridGame.TechTree {
 
         private TechProgress TechProgress;
         private HashSet<ITechBlock> TechBlockRoots;
-        private List<Dictionary<TechnologyTypes, ITechBlock>> TechBlockPositions;
+        private List<Dictionary<TechnologyTypes, ITechBlock>> TechBlockPositions { get; }
         private List<Dictionary<TechnologyTypes, ITechBlock>> ActiveBlocks;
         private NewTechBlock NewTech;
         private Texture2D Background;
@@ -135,13 +135,14 @@ namespace GridGame.TechTree {
         }
 
         public List<Dictionary<TechnologyTypes, ITechBlock>> GetActiveBlocks() {
-            return TechBlockPositions.GetRange(FirstBlock, LastBlock + 1);
+            int last = Math.Min(LastBlock + 1, TechBlockPositions.Count - 1) - FirstBlock;
+            return TechBlockPositions.GetRange(FirstBlock, last);
         }
 
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(Background, destRect, Color.LightGray);
 
-            for(int i = 0; i < ActiveBlocks.Count; i++) {
+            for(int i = FirstBlock; i < LastBlock && i < TechBlockPositions.Count; i++) {
                 foreach(ITechBlock techBlock in TechBlockPositions[i].Values) {
                     techBlock.Draw(spriteBatch, CameraX);
                 }

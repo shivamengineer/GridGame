@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Interface.ConstantBlocks;
 using GridGame.TextureLoading;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,6 +11,10 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Interface.InterfacePages {
     public interface IConstantsInterfacePage {
 
+        public int CameraY { get; set; }
+
+        public void SetContent(ContentLoader Content, ConstantsController Constants);
+        public List<IConstantBlock> GetActiveBlocks();
         public void Draw(SpriteBatch spriteBatch, int cameraY);
 
     }

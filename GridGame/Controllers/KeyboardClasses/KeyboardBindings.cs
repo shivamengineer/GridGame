@@ -48,6 +48,7 @@ namespace GridGame.Controllers.KeyboardClasses {
             ConstantsController Constants = gameManager.Constants;
 
             keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
+            keyboardController.AddOnPressBinding(Keys.D2, new OpenDebugCommand(gameManager));
 
             keyboardController.AddHeldBinding(Keys.Left, new TechScrollLeftCommand(techController, Constants));
             keyboardController.AddHeldBinding(Keys.Right, new TechScrollRightCommand(techController, Constants));

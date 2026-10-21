@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants.Controller;
-using GridGame.Constants.Interface.ConstantBlockClasses;
+using GridGame.Constants.Interface.ConstantBlocks;
+using GridGame.Constants.Interface.ConstantBlocks.ConstantBlockClasses;
 using GridGame.TextureLoading;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,12 @@ namespace GridGame.Constants.Interface.InterfacePages.InterfacePageClasses {
             int i = 0;
             foreach(var constVar in Constants.GetGameFloats()) {
                 IConstantBlock block = new GameFloatConstantBlock(constVar.Key);
-                block.SetContent(Content, Constants.GetUIInts());
                 block.SetPosition(i);
+                block.SetContent(Content, Constants);
                 ConstantsBlocks.Add(block);
                 i++;
             }
+            SetContent(Content, Constants);
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿using GridGame.Constants.Controller;
 using GridGame.Constants.Controller.ConstantsEnums;
-using GridGame.Constants.Interface.ConstantBlockClasses;
+using GridGame.Constants.Interface.ConstantBlocks.ConstantBlockClasses;
 using GridGame.Constants.Interface.InterfacePages;
 using GridGame.Constants.Interface.InterfacePages.InterfacePageClasses;
 using GridGame.TextureLoading;

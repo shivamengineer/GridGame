@@ -27,16 +27,19 @@ namespace GridGame.GameManagers {
 
         private Dictionary<ControllerTypes, IController> MainControllers;
         private Dictionary<ControllerTypes, IController> PausedControllers;
+        private Dictionary<ControllerTypes, IController> DebugControllers;
         private KeyboardHandler keyboardHandler;
 
         public DisplayManager displayManager { get; private set; }
 
         private bool paused = false;
+        private bool debug = false;
         
         public GameManager() {
             Constants = new ConstantsController();
             MainControllers = new Dictionary<ControllerTypes, IController>();
             PausedControllers = new Dictionary<ControllerTypes, IController>();
+            DebugControllers = new Dictionary<ControllerTypes, IController>();
         }
 
         public void LoadContent(ContentManager Content) {
@@ -51,6 +54,7 @@ namespace GridGame.GameManagers {
         }
 
         public void TogglePaused() { paused = !paused; }
+        public void ToggleDebug() { debug = !debug; }
 
         public void Update(GameTime gameTime) {
             UpdateControllers(gameTime);
@@ -61,7 +65,11 @@ namespace GridGame.GameManagers {
         }
 
         private void UpdateControllers(GameTime gameTime) {
-            if(!paused) {
+            if(debug) {
+                foreach(var Controller in DebugControllers) {
+                    Controller.Value.Update(gameTime);
+                }
+            } else if(!paused) {
                 foreach(var Controller in MainControllers) {
                     Controller.Value.Update(gameTime);
                 }
@@ -73,7 +81,9 @@ namespace GridGame.GameManagers {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            if(!paused) {
+            if(debug) {
+                displayManager.DrawConstInterface(spriteBatch);
+            } else if(!paused) {
                 hexagonMap.Draw(spriteBatch);
                 displayManager.Draw(spriteBatch);
             } else {
