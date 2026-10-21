@@ -1,8 +1,11 @@
 ﻿using GridGame.Constants.Controller;
 using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Interface.ConstantBlockClasses;
+using GridGame.Constants.Interface.InterfacePages;
+using GridGame.Constants.Interface.InterfacePages.InterfacePageClasses;
 using GridGame.TextureLoading;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,73 +16,32 @@ namespace GridGame.Constants.Interface {
     public class ConstantsInterfaceController {
 
         public Rectangle Background;
-        public List<IConstantBlock> ColorConstBlocks;
-        public List<IConstantBlock> GameIntConstBlocks;
-        public List<IConstantBlock> GameFloatConstBlocks;
-        public List<IConstantBlock> UIIntConstBlocks;
+        public Dictionary<ConstantTypes, IConstantsInterfacePage> ConstantPages;
+        public ConstantTypes CurrentPage;
 
         private ContentLoader Content;
         private ConstantsController Constants;
 
+        private int cameraY = 0;
+
         public ConstantsInterfaceController(ContentLoader Content, ConstantsController Constants) {
             this.Content = Content;
             this.Constants = Constants;
+            CurrentPage = ConstantTypes.COLOR;
             Initialize();
         }
 
         private void Initialize() {
-            FilColorList();
-            FillGameIntList();
-            FillGameFloatList();
-            FillUIIntList();
+            ConstantPages = new Dictionary<ConstantTypes, IConstantsInterfacePage>() {
+                [ConstantTypes.COLOR] = new ColorConstantsInterfacePage(Content, Constants),
+                [ConstantTypes.GAME_INT] = new GameIntConstantsInterfacePage(Content, Constants),
+                [ConstantTypes.GAME_FLOAT] = new GameFloatConstantsInterfacePage(Content, Constants),
+                [ConstantTypes.USER_INTERFACE] = new UIIntConstantsInterfacePage(Content, Constants),
+            };
         }
 
-        private void FilColorList() {
-            ColorConstBlocks = new List<IConstantBlock>();
-            int i = 0;
-            foreach(var constVar in Constants.GetColors()) {
-                IConstantBlock block = new ColorConstantBlock(constVar.Key);
-                block.SetContent(Content, Constants.GetUIInts());
-                block.SetPosition(i);
-                ColorConstBlocks.Add(block);
-                i++;
-            }
-        }
-
-        private void FillGameIntList() {
-            GameIntConstBlocks = new List<IConstantBlock>();
-            int i = 0;
-            foreach(var constVar in Constants.GetGameInts()) {
-                IConstantBlock block = new GameIntConstantBlock(constVar.Key);
-                block.SetContent(Content, Constants.GetUIInts());
-                block.SetPosition(i);
-                GameIntConstBlocks.Add(block);
-                i++;
-            }
-        }
-
-        private void FillGameFloatList() {
-            GameFloatConstBlocks = new List<IConstantBlock>();
-            int i = 0;
-            foreach(var constVar in Constants.GetGameFloats()) {
-                IConstantBlock block = new GameFloatConstantBlock(constVar.Key);
-                block.SetContent(Content, Constants.GetUIInts());
-                block.SetPosition(i);
-                GameFloatConstBlocks.Add(block);
-                i++;
-            }
-        }
-
-        private void FillUIIntList() {
-            UIIntConstBlocks = new List<IConstantBlock>();
-            int i = 0;
-            foreach(var constVar in Constants.GetUIInts()) {
-                IConstantBlock block = new UserInterfaceConstantBlock(constVar.Key);
-                block.SetContent(Content, Constants.GetUIInts());
-                block.SetPosition(i);
-                UIIntConstBlocks.Add(block);
-                i++;
-            }
+        public void Draw(SpriteBatch spriteBatch) {
+            ConstantPages[CurrentPage].Draw(spriteBatch, cameraY);
         }
 
     }

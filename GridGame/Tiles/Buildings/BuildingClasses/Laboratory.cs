@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        private Dictionary<ConstGame, int> GameInts;
+        private Dictionary<ConstGameInt, int> GameInts;
 
         public Laboratory(ConstantsController Constants) {
             this.Constants = Constants;
@@ -28,7 +28,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             Dictionary<ConstColors, Color> Colors = Constants.GetColors();
             BuildingType = BuildingType.Laboratory;
             hexColor = Colors[ConstColors.Laboratory];
-            production_needed = GameInts[ConstGame.LaboratoryProductionCost];
+            production_needed = GameInts[ConstGameInt.LaboratoryProductionCost];
         }
 
         public override void SetInfo() {
@@ -52,7 +52,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Science, GameInts[ConstGame.LaboratoryResourceRate]);
+            displayManager.AddResource(ResourceType.Science, GameInts[ConstGameInt.LaboratoryResourceRate]);
             displayManager.UpdateResource(ResourceType.Science);
             resourcePopup = new TemporaryPopup(content, "+1S", 1f);
         }

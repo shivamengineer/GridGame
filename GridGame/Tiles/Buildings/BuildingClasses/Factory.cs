@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        private Dictionary<ConstGame, int> GameInts;
+        private Dictionary<ConstGameInt, int> GameInts;
 
         public Factory(ConstantsController Constants) {
             this.Constants = Constants;
@@ -28,7 +28,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             Dictionary<ConstColors, Color> Colors = Constants.GetColors();
             BuildingType = BuildingType.Factory;
             hexColor = Colors[ConstColors.Factory];
-            production_needed = GameInts[ConstGame.FactoryProductionCost];
+            production_needed = GameInts[ConstGameInt.FactoryProductionCost];
         }
 
         public override void SetInfo() {
@@ -52,7 +52,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Production, GameInts[ConstGame.FactoryResourceRate]);
+            displayManager.AddResource(ResourceType.Production, GameInts[ConstGameInt.FactoryResourceRate]);
             displayManager.UpdateResource(ResourceType.Production);
             map.playerData.AddProduction(BuildingStats.FACTORY_RATE);
             resourcePopup = new TemporaryPopup(content, "+1P", 1f);

@@ -92,13 +92,13 @@ namespace GridGame.Hexagons {
 
         public void SetHover((int, int) pos) {
             if(!hexMap.DiscoveredTiles.Contains(pos) || playerData.buildingManager.HasBuilding(pos)) return;
-            Dictionary<ConstGame, int> gameInts = Constants.GetGameInts();
+            Dictionary<ConstGameInt, int> gameInts = Constants.GetGameInts();
 
             bool canBuild = true;
             if(!playerData.buildingManager.CityBuilt) canBuild = CanBuild(BuildingType.CityCenter, pos);
             else canBuild = CanBuildAny(pos);
 
-            bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (pos)) <= gameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
+            bool inRange = DiscoverTiles.DistanceBetweenTiles(citizenManager.CurrentPlayer.transform.Coords, (pos)) <= gameInts[ConstGameInt.CanBuildMaxDistanceFromPlayer];
 
             if(hexMap.Tiles.ContainsKey((hexMap.HoveredTile))) {
                 hexMap.Tiles[hexMap.HoveredTile].SetHovered(false, canBuild && inRange);

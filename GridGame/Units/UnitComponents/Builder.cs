@@ -23,8 +23,8 @@ namespace GridGame.Units.UnitComponents {
 
         private int productivity = 10;
 
-        private Dictionary<ConstGame, int> GameInts;
-        private Dictionary<ConstGame, float> GameFloats;
+        private Dictionary<ConstGameInt, int> GameInts;
+        private Dictionary<ConstGameFloat, float> GameFloats;
 
         public Builder(HexagonMap hexagonMap, Transform transform, VirusController virusController, ConstantsController Constants) {
             this.hexagonMap = hexagonMap;
@@ -49,8 +49,8 @@ namespace GridGame.Units.UnitComponents {
 
         private bool UpdateTime(GameTime gameTime) {
             TimeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(TimeElapsed >= GameFloats[ConstGame.CollectResourceInterval]) {
-                TimeElapsed -= GameFloats[ConstGame.CollectResourceInterval];
+            if(TimeElapsed >= GameFloats[ConstGameFloat.CollectResourceInterval]) {
+                TimeElapsed -= GameFloats[ConstGameFloat.CollectResourceInterval];
                 return true;
             }
             return false;
@@ -62,12 +62,12 @@ namespace GridGame.Units.UnitComponents {
         }
 
         private void BuildBuilding() {
-            int production = productivity * GameInts[ConstGame.CitizenBaseProductivity];
+            int production = productivity * GameInts[ConstGameInt.CitizenBaseProductivity];
             if(!virusController.virusesImmune.Contains(VirusNames.Coronavirus) && virusController.viruses.ContainsKey(VirusNames.Coronavirus)) {
                 IVirus virus = virusController.viruses[VirusNames.Coronavirus];
                 production = (int)virus.AttackCitizen.GetProductivity(production);
             }
-            hexagonMap.ConstructBuilding(transform.Coords, production * GameInts[ConstGame.CitizenBaseProductivity]);
+            hexagonMap.ConstructBuilding(transform.Coords, production * GameInts[ConstGameInt.CitizenBaseProductivity]);
         }
 
     }

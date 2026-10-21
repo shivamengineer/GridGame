@@ -70,8 +70,8 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         }
 
         public override Dictionary<ConstColors, Color> GetColors() { return null; }
-        public override Dictionary<ConstGame, int> GetGameInts() { return null; }
-        public override Dictionary<ConstGame, float> GetGameFloats() { return null; }
+        public override Dictionary<ConstGameInt, int> GetGameInts() { return null; }
+        public override Dictionary<ConstGameFloat, float> GetGameFloats() { return null; }
         public override Dictionary<ConstUserInterface, int> GetUIInts() { return UserInterfaceValues; }
 
     }

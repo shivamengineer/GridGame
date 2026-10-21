@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GridGame.Constants.Controller.ConstantsEnums {
-    public enum ConstGame {
+    public enum ConstGameInt {
         StartFood,
         StartGold,
         StartMorale,
@@ -64,29 +64,5 @@ namespace GridGame.Constants.Controller.ConstantsEnums {
         MapWidth,
         MapHeight,
 
-        //FLOATS
-
-        CollectResourceInterval,
-        FoodCheckInterval,
-
-        CitizenMoveTime,
-
-        RestedStrength,
-        DrowsyStrength,
-        HydratedStrength,
-        HungryStrength,
-        RestReduceHungerStrength,
-
-        MinStrength,
-        StrengthRange,
-
-        VirusBaseDuration,
-        VirusPersistChance,
-        VirusPersistMultiplier,
-        VirusSpreadChance,
-        VirusTimeBeforeSpread,
-        VirusTimeBeforeOutbreak,
-        VirusAsymptomaticTime,
-        VirusMortalityRate,
     }
 }

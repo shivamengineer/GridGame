@@ -44,7 +44,8 @@ namespace GridGame.Constants.Controller {
         public static Dictionary<ConstantTypes, IConstantsManager> GetConstantsManagers(string filename) {
             return new Dictionary<ConstantTypes, IConstantsManager>() {
                 [ConstantTypes.COLOR] = new ColorConstantsManager(filename),
-                [ConstantTypes.GAME] = new GameConstantsManager(filename),
+                [ConstantTypes.GAME_INT] = new GameIntConstantsManager(filename),
+                [ConstantTypes.GAME_FLOAT] = new GameFloatConstantsManager(filename),
                 [ConstantTypes.USER_INTERFACE] = new UserInterfaceConstantsManager(filename)
             };
         }
@@ -87,92 +88,92 @@ namespace GridGame.Constants.Controller {
             };
         }
 
-        public static Dictionary<ConstGame, int> GetDefaultGameInts() {
-            return new Dictionary<ConstGame, int>() {
-                [ConstGame.StartFood] = StartingResources.STARTING_FOOD,
-                [ConstGame.StartGold] = StartingResources.STARTING_GOLD,
-                [ConstGame.StartMorale] = StartingResources.STARTING_MORALE,
-                [ConstGame.StartProduction] = StartingResources.STARTING_PRODUCTION,                 
-                [ConstGame.StartScience] = StartingResources.STARTING_SCIENCE,
+        public static Dictionary<ConstGameInt, int> GetDefaultGameInts() {
+            return new Dictionary<ConstGameInt, int>() {
+                [ConstGameInt.StartFood] = StartingResources.STARTING_FOOD,
+                [ConstGameInt.StartGold] = StartingResources.STARTING_GOLD,
+                [ConstGameInt.StartMorale] = StartingResources.STARTING_MORALE,
+                [ConstGameInt.StartProduction] = StartingResources.STARTING_PRODUCTION,                 
+                [ConstGameInt.StartScience] = StartingResources.STARTING_SCIENCE,
 
-                [ConstGame.BankResourceRate] = BuildingStats.BANK_RATE,
-                [ConstGame.FactoryResourceRate] = BuildingStats.FACTORY_RATE,
-                [ConstGame.FarmResourceRate] = BuildingStats.FARM_RATE,
-                [ConstGame.LaboratoryResourceRate] = BuildingStats.SCIENCE_RATE,
+                [ConstGameInt.BankResourceRate] = BuildingStats.BANK_RATE,
+                [ConstGameInt.FactoryResourceRate] = BuildingStats.FACTORY_RATE,
+                [ConstGameInt.FarmResourceRate] = BuildingStats.FARM_RATE,
+                [ConstGameInt.LaboratoryResourceRate] = BuildingStats.SCIENCE_RATE,
 
-                [ConstGame.CityFoodResourceRate] = CityBaseStats.FOOD_RATE,
-                [ConstGame.CityGoldResourceRate] = CityBaseStats.GOLD_RATE,
-                [ConstGame.CityMoraleResourceRate] = CityBaseStats.MORALE_RATE,
-                [ConstGame.CityProductionResourceRate] = CityBaseStats.PRODUCTION_RATE,
-                [ConstGame.CityScienceResourceRate] = CityBaseStats.SCIENCE_RATE,
+                [ConstGameInt.CityFoodResourceRate] = CityBaseStats.FOOD_RATE,
+                [ConstGameInt.CityGoldResourceRate] = CityBaseStats.GOLD_RATE,
+                [ConstGameInt.CityMoraleResourceRate] = CityBaseStats.MORALE_RATE,
+                [ConstGameInt.CityProductionResourceRate] = CityBaseStats.PRODUCTION_RATE,
+                [ConstGameInt.CityScienceResourceRate] = CityBaseStats.SCIENCE_RATE,
 
-                [ConstGame.BankGoldCost] = BuildingCosts.BANK_GOLD_COST,
-                [ConstGame.CityCenterGoldCost] = BuildingCosts.CITY_CENTER_GOLD_COST,
-                [ConstGame.FactoryGoldCost] = BuildingCosts.FACTORY_GOLD_COST,
-                [ConstGame.FarmGoldCost] = BuildingCosts.FARM_GOLD_COST,
-                [ConstGame.HospitalGoldCost] = BuildingCosts.HOSPITAL_GOLD_COST,
-                [ConstGame.LaboratoryGoldCost] = BuildingCosts.LABORATORY_GOLD_COST,
+                [ConstGameInt.BankGoldCost] = BuildingCosts.BANK_GOLD_COST,
+                [ConstGameInt.CityCenterGoldCost] = BuildingCosts.CITY_CENTER_GOLD_COST,
+                [ConstGameInt.FactoryGoldCost] = BuildingCosts.FACTORY_GOLD_COST,
+                [ConstGameInt.FarmGoldCost] = BuildingCosts.FARM_GOLD_COST,
+                [ConstGameInt.HospitalGoldCost] = BuildingCosts.HOSPITAL_GOLD_COST,
+                [ConstGameInt.LaboratoryGoldCost] = BuildingCosts.LABORATORY_GOLD_COST,
 
-                [ConstGame.BankProductionCost] = BuildingCosts.BANK_PRODUCTION_COST,
-                [ConstGame.CityCenterProductionCost] = BuildingCosts.CITY_CENTER_PRODUCTION_COST,
-                [ConstGame.FactoryProductionCost] = BuildingCosts.FACTORY_PRODUCTION_COST,
-                [ConstGame.FarmProductionCost] = BuildingCosts.FARM_PRODUCTION_COST,
-                [ConstGame.HospitalProductionCost] = BuildingCosts.HOSPITAL_PRODUCTION_COST,
-                [ConstGame.LaboratoryProductionCost] = BuildingCosts.LABORATORY_PRODUCTION_COST,
+                [ConstGameInt.BankProductionCost] = BuildingCosts.BANK_PRODUCTION_COST,
+                [ConstGameInt.CityCenterProductionCost] = BuildingCosts.CITY_CENTER_PRODUCTION_COST,
+                [ConstGameInt.FactoryProductionCost] = BuildingCosts.FACTORY_PRODUCTION_COST,
+                [ConstGameInt.FarmProductionCost] = BuildingCosts.FARM_PRODUCTION_COST,
+                [ConstGameInt.HospitalProductionCost] = BuildingCosts.HOSPITAL_PRODUCTION_COST,
+                [ConstGameInt.LaboratoryProductionCost] = BuildingCosts.LABORATORY_PRODUCTION_COST,
 
-                [ConstGame.CanBuildMaxDistanceFromPlayer] = BuildingLimits.BUILDING_RADIUS_FROM_PLAYER,
-                [ConstGame.CanBuildMaxDistanceFromCity] = BuildingLimits.BUILDING_RADIUS_FROM_CITY,
+                [ConstGameInt.CanBuildMaxDistanceFromPlayer] = BuildingLimits.BUILDING_RADIUS_FROM_PLAYER,
+                [ConstGameInt.CanBuildMaxDistanceFromCity] = BuildingLimits.BUILDING_RADIUS_FROM_CITY,
 
-                [ConstGame.CitizenBaseProductivity] = CityBaseStats.CITIZEN_BASE_PRODUCTIVITY,
+                [ConstGameInt.CitizenBaseProductivity] = CityBaseStats.CITIZEN_BASE_PRODUCTIVITY,
 
-                [ConstGame.CitizenFoodRation] = FoodStats.FOOD_PER_CITIZEN,
-                [ConstGame.FoodToAddCitizen] = FoodStats.FOOD_TO_ADD_CITIZEN,
+                [ConstGameInt.CitizenFoodRation] = FoodStats.FOOD_PER_CITIZEN,
+                [ConstGameInt.FoodToAddCitizen] = FoodStats.FOOD_TO_ADD_CITIZEN,
 
-                [ConstGame.CitizenVisionRadius] = UnitInfo.UNIT_VISION_RADIUS,
+                [ConstGameInt.CitizenVisionRadius] = UnitInfo.UNIT_VISION_RADIUS,
 
-                [ConstGame.ProductivityBaseLoss] = FoodStats.PRODUCTIVITY_BASE_LOSS,
-                [ConstGame.ProductivityIncreaseFromFood] = FoodStats.PRODUCTIVITY_GAIN_FROM_FOOD,
+                [ConstGameInt.ProductivityBaseLoss] = FoodStats.PRODUCTIVITY_BASE_LOSS,
+                [ConstGameInt.ProductivityIncreaseFromFood] = FoodStats.PRODUCTIVITY_GAIN_FROM_FOOD,
 
-                [ConstGame.TentScienceCost] = TechCost.MEDICAL_TENT_COST,
-                [ConstGame.FarmScienceCost] = TechCost.FARM_COST,
-                [ConstGame.FacemaskScienceCost] = TechCost.FACEMASK_COST,
-                [ConstGame.LaboratoryScienceCost] = TechCost.LABORATORY_COST,
-                [ConstGame.SoapScienceCost] = TechCost.SOAP_COST,
-                [ConstGame.HospitalScienceCost] = TechCost.HOSPITAL_COST,
-                [ConstGame.BankScienceCost] = TechCost.BANK_COST,
-                [ConstGame.FactoryScienceCost] = TechCost.FACTORY_COST,
+                [ConstGameInt.TentScienceCost] = TechCost.MEDICAL_TENT_COST,
+                [ConstGameInt.FarmScienceCost] = TechCost.FARM_COST,
+                [ConstGameInt.FacemaskScienceCost] = TechCost.FACEMASK_COST,
+                [ConstGameInt.LaboratoryScienceCost] = TechCost.LABORATORY_COST,
+                [ConstGameInt.SoapScienceCost] = TechCost.SOAP_COST,
+                [ConstGameInt.HospitalScienceCost] = TechCost.HOSPITAL_COST,
+                [ConstGameInt.BankScienceCost] = TechCost.BANK_COST,
+                [ConstGameInt.FactoryScienceCost] = TechCost.FACTORY_COST,
 
-                [ConstGame.VirusSpreadRange] = CovidStats.SPREAD_RANGE,
+                [ConstGameInt.VirusSpreadRange] = CovidStats.SPREAD_RANGE,
 
-                [ConstGame.MapWidth] = GameConstants.MAP_WIDTH,
-                [ConstGame.MapHeight] = GameConstants.MAP_HEIGHT,
+                [ConstGameInt.MapWidth] = GameConstants.MAP_WIDTH,
+                [ConstGameInt.MapHeight] = GameConstants.MAP_HEIGHT,
             };
         }
 
-        public static Dictionary<ConstGame, float> GetDefaultGameFloats() {
-            return new Dictionary<ConstGame, float>() {
-                [ConstGame.CollectResourceInterval] = GameConstants.RESOURCE_TICK_SPEED,
-                [ConstGame.FoodCheckInterval] = GameConstants.FOOD_CHECK_TIME,
+        public static Dictionary<ConstGameFloat, float> GetDefaultGameFloats() {
+            return new Dictionary<ConstGameFloat, float>() {
+                [ConstGameFloat.CollectResourceInterval] = GameConstants.RESOURCE_TICK_SPEED,
+                [ConstGameFloat.FoodCheckInterval] = GameConstants.FOOD_CHECK_TIME,
 
-                [ConstGame.CitizenMoveTime] = UnitInfo.UNIT_MOVE_TIME,
+                [ConstGameFloat.CitizenMoveTime] = UnitInfo.UNIT_MOVE_TIME,
 
-                [ConstGame.RestedStrength] = HealthEffectStats.RESTED_STRENGTH,
-                [ConstGame.DrowsyStrength] = HealthEffectStats.DROWSY_STRENGTH,
-                [ConstGame.HydratedStrength] = HealthEffectStats.HYDRATED_WATER_STRENGTH,
-                [ConstGame.HungryStrength] = HealthEffectStats.HUNGRY_STRENGTH,
-                [ConstGame.RestReduceHungerStrength] = HealthEffectStats.REST_REDUCE_HUNGER_STRENGTH,
+                [ConstGameFloat.RestedStrength] = HealthEffectStats.RESTED_STRENGTH,
+                [ConstGameFloat.DrowsyStrength] = HealthEffectStats.DROWSY_STRENGTH,
+                [ConstGameFloat.HydratedStrength] = HealthEffectStats.HYDRATED_WATER_STRENGTH,
+                [ConstGameFloat.HungryStrength] = HealthEffectStats.HUNGRY_STRENGTH,
+                [ConstGameFloat.RestReduceHungerStrength] = HealthEffectStats.REST_REDUCE_HUNGER_STRENGTH,
 
-                [ConstGame.MinStrength] = CovidStats.MIN_STRENGTH,
-                [ConstGame.StrengthRange] = CovidStats.STRENGTH_RANGE,
+                [ConstGameFloat.MinStrength] = CovidStats.MIN_STRENGTH,
+                [ConstGameFloat.StrengthRange] = CovidStats.STRENGTH_RANGE,
 
-                [ConstGame.VirusBaseDuration] = CovidStats.VIRUS_BASE_DURATION,
-                [ConstGame.VirusPersistChance] = CovidStats.VIRUS_CHANCE_TO_SURVIVE,
-                [ConstGame.VirusPersistMultiplier] = CovidStats.VIRUS_SURVIVE_MULTIPLIER,
-                [ConstGame.VirusSpreadChance] = CovidStats.SPREAD_CHANCE,
-                [ConstGame.VirusTimeBeforeSpread] = CovidStats.TIME_TO_SPREAD,
-                [ConstGame.VirusTimeBeforeOutbreak] = CovidStats.TIME_BEFORE_OUTBREAK,
-                [ConstGame.VirusAsymptomaticTime] = CovidStats.ASYMPTOMATIC_TIME,
-                [ConstGame.VirusMortalityRate] = CovidStats.MORTALITY_RATE,
+                [ConstGameFloat.VirusBaseDuration] = CovidStats.VIRUS_BASE_DURATION,
+                [ConstGameFloat.VirusPersistChance] = CovidStats.VIRUS_CHANCE_TO_SURVIVE,
+                [ConstGameFloat.VirusPersistMultiplier] = CovidStats.VIRUS_SURVIVE_MULTIPLIER,
+                [ConstGameFloat.VirusSpreadChance] = CovidStats.SPREAD_CHANCE,
+                [ConstGameFloat.VirusTimeBeforeSpread] = CovidStats.TIME_TO_SPREAD,
+                [ConstGameFloat.VirusTimeBeforeOutbreak] = CovidStats.TIME_BEFORE_OUTBREAK,
+                [ConstGameFloat.VirusAsymptomaticTime] = CovidStats.ASYMPTOMATIC_TIME,
+                [ConstGameFloat.VirusMortalityRate] = CovidStats.MORTALITY_RATE,
             };
         }
 

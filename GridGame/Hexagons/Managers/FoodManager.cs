@@ -31,9 +31,9 @@ namespace GridGame.Hexagons.Managers {
 
             this.hexagonMap = hexagonMap;
 
-            Dictionary<ConstGame, int> gameInts = Constants.GetGameInts();
-            foodToAddCitizen = gameInts[ConstGame.FoodToAddCitizen];
-            foodRation = gameInts[ConstGame.CitizenFoodRation];
+            Dictionary<ConstGameInt, int> gameInts = Constants.GetGameInts();
+            foodToAddCitizen = gameInts[ConstGameInt.FoodToAddCitizen];
+            foodRation = gameInts[ConstGameInt.CitizenFoodRation];
         }
 
         public void Update(GameTime gameTime) {

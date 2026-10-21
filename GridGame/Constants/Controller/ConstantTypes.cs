@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Controller {
     public enum ConstantTypes {
         COLOR,
-        GAME,
+        GAME_INT,
+        GAME_FLOAT,
         USER_INTERFACE,
     }
 }

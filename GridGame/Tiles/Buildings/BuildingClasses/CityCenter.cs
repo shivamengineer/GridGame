@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        private Dictionary<ConstGame, int> GameInts;
+        private Dictionary<ConstGameInt, int> GameInts;
 
         public CityCenter(ConstantsController Constants) {
             this.Constants = Constants;
@@ -28,7 +28,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             Dictionary<ConstColors, Color> Colors = Constants.GetColors(); 
             BuildingType = BuildingType.CityCenter;
             hexColor = Colors[ConstColors.CityCenter];
-            production_needed = GameInts[ConstGame.CityCenterProductionCost];
+            production_needed = GameInts[ConstGameInt.CityCenterProductionCost];
         }
 
         public override void SetInfo() {
@@ -52,10 +52,10 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Food, GameInts[ConstGame.CityFoodResourceRate]);
-            displayManager.AddResource(ResourceType.Gold, GameInts[ConstGame.CityGoldResourceRate]);
-            displayManager.AddResource(ResourceType.Production, GameInts[ConstGame.CityProductionResourceRate]);
-            displayManager.AddResource(ResourceType.Science, GameInts[ConstGame.CityScienceResourceRate]);
+            displayManager.AddResource(ResourceType.Food, GameInts[ConstGameInt.CityFoodResourceRate]);
+            displayManager.AddResource(ResourceType.Gold, GameInts[ConstGameInt.CityGoldResourceRate]);
+            displayManager.AddResource(ResourceType.Production, GameInts[ConstGameInt.CityProductionResourceRate]);
+            displayManager.AddResource(ResourceType.Science, GameInts[ConstGameInt.CityScienceResourceRate]);
             displayManager.resourceManager.resourceDisplay.UpdateAllResources(displayManager.resourceManager.playerResources.GetResourceCounts());
             map.playerData.AddProduction(CityBaseStats.PRODUCTION_RATE);
             resourcePopup = new TemporaryPopup(content, "+1ALL", 1f);

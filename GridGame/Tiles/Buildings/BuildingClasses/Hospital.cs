@@ -17,7 +17,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        private Dictionary<ConstGame, int> GameInts;
+        private Dictionary<ConstGameInt, int> GameInts;
 
         public Hospital(ConstantsController Constants) {
             this.Constants = Constants;
@@ -25,7 +25,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             Dictionary<ConstColors, Color> Colors = Constants.GetColors();
             BuildingType = BuildingType.Hospital;
             hexColor = Colors[ConstColors.Hospital];
-            production_needed = GameInts[ConstGame.HospitalProductionCost];
+            production_needed = GameInts[ConstGameInt.HospitalProductionCost];
         }
 
         public override void SetInfo() {

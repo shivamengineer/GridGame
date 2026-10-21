@@ -25,8 +25,8 @@ namespace GridGame.Virus.BaseVirus.Viruses {
         private VirusNames virusName;
 
         private ConstantsController Constants;
-        private Dictionary<ConstGame, int> GameInts;
-        private Dictionary<ConstGame, float> GameFloats;
+        private Dictionary<ConstGameInt, int> GameInts;
+        private Dictionary<ConstGameFloat, float> GameFloats;
 
         public Coronavirus(CitizenManager citizenManager, Citizen citizen, float strength, ConstantsController Constants) {
             this.citizen = citizen;
@@ -42,8 +42,8 @@ namespace GridGame.Virus.BaseVirus.Viruses {
             Infect = new AirborneInfect(citizenManager, citizen, this, Constants);
             AttackCitizen = new DefaultAttackCitizen(citizenManager, citizen, strength);
 
-            VirusStrength attackStrength = new VirusStrength(GameFloats[ConstGame.VirusMortalityRate], strength);
-            VirusTime attackTime = new VirusTime(GameFloats[ConstGame.VirusTimeBeforeSpread], GameFloats[ConstGame.VirusBaseDuration]);
+            VirusStrength attackStrength = new VirusStrength(GameFloats[ConstGameFloat.VirusMortalityRate], strength);
+            VirusTime attackTime = new VirusTime(GameFloats[ConstGameFloat.VirusTimeBeforeSpread], GameFloats[ConstGameFloat.VirusBaseDuration]);
             AttackCitizen.SetStats(attackStrength, attackTime);
         }
 

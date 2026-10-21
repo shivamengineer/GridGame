@@ -14,8 +14,8 @@ namespace GridGame.Constants.Controller {
         public void ResetConstants();
 
         public Dictionary<ConstColors, Color> GetColors();
-        public Dictionary<ConstGame, int> GetGameInts();
-        public Dictionary<ConstGame, float> GetGameFloats();
+        public Dictionary<ConstGameInt, int> GetGameInts();
+        public Dictionary<ConstGameFloat, float> GetGameFloats();
         public Dictionary<ConstUserInterface, int> GetUIInts();
 
     }

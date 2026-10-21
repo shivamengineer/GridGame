@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace GridGame.Constants.Interface.ConstantBlockClasses {
     public class GameFloatConstantBlock : AbstractConstantBlock {
 
-        private ConstGame ConstType;
+        private ConstGameFloat ConstType;
 
-        public GameFloatConstantBlock(ConstGame ConstType) {
+        public GameFloatConstantBlock(ConstGameFloat ConstType) {
             this.ConstType = ConstType;
         }
 

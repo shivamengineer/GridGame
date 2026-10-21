@@ -34,8 +34,8 @@ namespace GridGame.Hexagons.Managers {
             };
 
             this.hexMap = hexMap;
-            Dictionary<ConstGame, int> GameInts = Constants.GetGameInts();
-            CanBuildRadiusFromCity = GameInts[ConstGame.CanBuildMaxDistanceFromCity];
+            Dictionary<ConstGameInt, int> GameInts = Constants.GetGameInts();
+            CanBuildRadiusFromCity = GameInts[ConstGameInt.CanBuildMaxDistanceFromCity];
         }
 
         public void UnlockBuilding(BuildingType buildingType) {

@@ -30,7 +30,7 @@ namespace GridGame.Tiles.Terrain {
         private float timeElapsed = 0f;
 
         public ConstantsController Constants;
-        private Dictionary<ConstGame, float> GameFloats;
+        private Dictionary<ConstGameFloat, float> GameFloats;
 
         public void SetTextures(Texture2D borderTexture, Texture2D baseTexture) {
             this.borderTexture = borderTexture;
@@ -68,8 +68,8 @@ namespace GridGame.Tiles.Terrain {
         public void Update(GameTime gameTime, DisplayManager displayManager) {
             timeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
             
-            if(timeElapsed >= GameFloats[ConstGame.CollectResourceInterval]) {
-                timeElapsed -= GameFloats[ConstGame.CollectResourceInterval];
+            if(timeElapsed >= GameFloats[ConstGameFloat.CollectResourceInterval]) {
+                timeElapsed -= GameFloats[ConstGameFloat.CollectResourceInterval];
                 UpdateEvent(displayManager);
             }
         }

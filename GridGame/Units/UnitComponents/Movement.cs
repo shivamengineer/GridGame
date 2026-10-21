@@ -18,8 +18,8 @@ namespace GridGame.Units.UnitComponents {
 
         private HexagonMap hexagonMap = hexagonMap;
         private Transform transform = transform;
-        private Dictionary<ConstGame, int> GameInts = Constants.GetGameInts();
-        private Dictionary<ConstGame, float> GameFloats = Constants.GetGameFloats();
+        private Dictionary<ConstGameInt, int> GameInts = Constants.GetGameInts();
+        private Dictionary<ConstGameFloat, float> GameFloats = Constants.GetGameFloats();
 
         public void ResetTime() {
             TimeElapsed = 0f;
@@ -84,7 +84,7 @@ namespace GridGame.Units.UnitComponents {
 
         public void UpdatePos(GameTime gameTime) {
             TimeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            progress = TimeElapsed / GameFloats[ConstGame.CitizenMoveTime];
+            progress = TimeElapsed / GameFloats[ConstGameFloat.CitizenMoveTime];
             if(progress >= 1.0f) {
                 FinishMoving();
                 UpdateHexagonMap();
@@ -99,7 +99,7 @@ namespace GridGame.Units.UnitComponents {
 
         private void UpdateHexagonMap() {
             hexagonMap.citizenManager.UpdatePos();
-            hexagonMap.hexMap.UpdateVision(transform.Coords, GameInts[ConstGame.CitizenVisionRadius]);
+            hexagonMap.hexMap.UpdateVision(transform.Coords, GameInts[ConstGameInt.CitizenVisionRadius]);
             hexagonMap.hexMap.HexMath.FocusCamera();
             hexagonMap.SetHover(hexagonMap.hexMap.HoveredTile);
         }

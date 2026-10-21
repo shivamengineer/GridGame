@@ -32,12 +32,12 @@ namespace GridGame.Constants.Controller {
             return ConstantsManagers[ConstantTypes.COLOR].GetColors();
         }
 
-        public Dictionary<ConstGame, int> GetGameInts() {
-            return ConstantsManagers[ConstantTypes.GAME].GetGameInts();
+        public Dictionary<ConstGameInt, int> GetGameInts() {
+            return ConstantsManagers[ConstantTypes.GAME_INT].GetGameInts();
         }
 
-        public Dictionary<ConstGame, float> GetGameFloats() {
-            return ConstantsManagers[ConstantTypes.GAME].GetGameFloats();
+        public Dictionary<ConstGameFloat, float> GetGameFloats() {
+            return ConstantsManagers[ConstantTypes.GAME_FLOAT].GetGameFloats();
         }
 
         public Dictionary<ConstUserInterface, int> GetUIInts() {

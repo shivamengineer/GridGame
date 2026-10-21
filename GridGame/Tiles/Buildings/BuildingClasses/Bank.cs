@@ -20,7 +20,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
 
         private Color hexColor;
 
-        private Dictionary<ConstGame, int> GameInts;
+        private Dictionary<ConstGameInt, int> GameInts;
 
         public Bank(ConstantsController Constants) {
             this.Constants = Constants;
@@ -28,7 +28,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
             Dictionary<ConstColors, Color> Colors = Constants.GetColors();
             BuildingType = BuildingType.Bank;
             hexColor = Colors[ConstColors.Bank];
-            production_needed = GameInts[ConstGame.BankProductionCost];
+            production_needed = GameInts[ConstGameInt.BankProductionCost];
         }
 
         public override void SetInfo() {
@@ -52,7 +52,7 @@ namespace GridGame.Tiles.Buildings.BuildingClasses {
         }
 
         public override void UpdateEvent(DisplayManager displayManager) {
-            displayManager.AddResource(ResourceType.Gold, GameInts[ConstGame.BankResourceRate]);
+            displayManager.AddResource(ResourceType.Gold, GameInts[ConstGameInt.BankResourceRate]);
             displayManager.UpdateResource(ResourceType.Gold);
             resourcePopup = new TemporaryPopup(content, "+1G", 1f);
         }

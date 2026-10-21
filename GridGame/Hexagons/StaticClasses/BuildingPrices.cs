@@ -12,14 +12,14 @@ namespace GridGame.Hexagons.StaticClasses {
     public static class BuildingPrices {
 
         public static Dictionary<BuildingType, int> GetPriceDictionary(ConstantsController Constants) {
-            Dictionary<ConstGame, int> gameInts = Constants.GetGameInts(); 
+            Dictionary<ConstGameInt, int> gameInts = Constants.GetGameInts(); 
             return new Dictionary<BuildingType, int> {
-                [BuildingType.Bank] = gameInts[ConstGame.BankGoldCost],
-                [BuildingType.CityCenter] = gameInts[ConstGame.CityCenterGoldCost],
-                [BuildingType.Factory] = gameInts[ConstGame.FactoryGoldCost],
-                [BuildingType.Farm] = gameInts[ConstGame.FarmGoldCost],
-                [BuildingType.Hospital] = gameInts[ConstGame.HospitalGoldCost],
-                [BuildingType.Laboratory] = gameInts[ConstGame.LaboratoryGoldCost],
+                [BuildingType.Bank] = gameInts[ConstGameInt.BankGoldCost],
+                [BuildingType.CityCenter] = gameInts[ConstGameInt.CityCenterGoldCost],
+                [BuildingType.Factory] = gameInts[ConstGameInt.FactoryGoldCost],
+                [BuildingType.Farm] = gameInts[ConstGameInt.FarmGoldCost],
+                [BuildingType.Hospital] = gameInts[ConstGameInt.HospitalGoldCost],
+                [BuildingType.Laboratory] = gameInts[ConstGameInt.LaboratoryGoldCost],
             };
         }
 

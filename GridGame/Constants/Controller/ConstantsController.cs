@@ -39,11 +39,11 @@ namespace GridGame.Constants.Controller {
             return ConstantsFiles[currentFile].GetColors();
         }
 
-        public Dictionary<ConstGame, int> GetGameInts() {
+        public Dictionary<ConstGameInt, int> GetGameInts() {
             return ConstantsFiles[currentFile].GetGameInts();
         }
 
-        public Dictionary<ConstGame, float> GetGameFloats() {
+        public Dictionary<ConstGameFloat, float> GetGameFloats() {
             return ConstantsFiles[currentFile].GetGameFloats();
         }
 

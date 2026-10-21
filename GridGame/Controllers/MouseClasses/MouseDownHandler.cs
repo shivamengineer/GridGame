@@ -39,9 +39,9 @@ namespace GridGame.Controllers.MouseClasses {
             selectedButton = buttonDisplay.GetButton(selectedBuilding);
             selectedButton.SetRectSelected(true);
 
-            Dictionary<ConstGame, int> GameInts = Constants.GetGameInts();
-            BuildingRadiusFromPlayer = GameInts[ConstGame.CanBuildMaxDistanceFromPlayer];
-            BuildingRadiusFromCity = GameInts[ConstGame.CanBuildMaxDistanceFromCity];
+            Dictionary<ConstGameInt, int> GameInts = Constants.GetGameInts();
+            BuildingRadiusFromPlayer = GameInts[ConstGameInt.CanBuildMaxDistanceFromPlayer];
+            BuildingRadiusFromCity = GameInts[ConstGameInt.CanBuildMaxDistanceFromCity];
         }
 
         public void OnMouseDown(int x, int y, HexagonMap hexagonMap) {
