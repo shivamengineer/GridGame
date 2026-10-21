@@ -22,8 +22,6 @@ namespace GridGame.Constants.Interface {
         private ContentLoader Content;
         private ConstantsController Constants;
 
-        private int cameraY = 0;
-
         public ConstantsInterfaceController(ContentLoader Content, ConstantsController Constants) {
             this.Content = Content;
             this.Constants = Constants;
@@ -40,8 +38,14 @@ namespace GridGame.Constants.Interface {
             };
         }
 
+        public void Scroll(int y) {
+            ConstantPages[CurrentPage].CameraY += y;
+            if(ConstantPages[CurrentPage].CameraY < 0) ConstantPages[CurrentPage].CameraY = 0;
+            ConstantPages[CurrentPage].UpdateCamera();
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
-            ConstantPages[CurrentPage].Draw(spriteBatch, cameraY);
+            ConstantPages[CurrentPage].Draw(spriteBatch);
         }
 
     }

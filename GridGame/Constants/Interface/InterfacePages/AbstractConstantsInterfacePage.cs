@@ -60,7 +60,7 @@ namespace GridGame.Constants.Interface.InterfacePages {
             return ConstantsBlocks.GetRange(FirstBlock, last);
         }
 
-        public void Draw(SpriteBatch spriteBatch, int CameraY) {
+        public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(Background, destRect, Color.Azure);
 
             for(int i = FirstBlock; i < LastBlock; i++) {

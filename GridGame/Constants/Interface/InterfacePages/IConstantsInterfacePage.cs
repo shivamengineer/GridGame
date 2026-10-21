@@ -14,8 +14,9 @@ namespace GridGame.Constants.Interface.InterfacePages {
         public int CameraY { get; set; }
 
         public void SetContent(ContentLoader Content, ConstantsController Constants);
+        public void UpdateCamera();
         public List<IConstantBlock> GetActiveBlocks();
-        public void Draw(SpriteBatch spriteBatch, int cameraY);
+        public void Draw(SpriteBatch spriteBatch);
 
     }
 }

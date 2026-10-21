@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GridGame.Tiles.Terrain.TerrainClasses;
 using static System.Net.Mime.MediaTypeNames;
+using System.Diagnostics;
 
 namespace GridGame.Constants.Interface.ConstantBlocks {
     public abstract class AbstractConstantBlock : IConstantBlock {
@@ -74,7 +75,7 @@ namespace GridGame.Constants.Interface.ConstantBlocks {
             }
 
             spriteBatch.Draw(backgroundTexture, Background, BackgroundColor);
-            spriteBatch.DrawString(font, KeyText + " = " + ValueText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
+            spriteBatch.DrawString(font, KeyText + " = " + ValueText, new Vector2(Background.X + 10, Background.Y + 10), Color.Black);
         }
 
         public abstract void SetValue(ConstantsController Constants);
