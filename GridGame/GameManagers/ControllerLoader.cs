@@ -25,7 +25,7 @@ namespace GridGame.GameManagers {
         }
 
         public static void LoadDebugMouseController(Dictionary<ControllerTypes, IController> controllers, GameManager gameManager) {
-            ConstantsInterfaceMouseDownHandler mouseDownHandler = new ConstantsInterfaceMouseDownHandler(gameManager);
+            ConstantsInterfaceMouseDownHandler mouseDownHandler = new ConstantsInterfaceMouseDownHandler(gameManager.displayManager);
             controllers.Add(ControllerTypes.MOUSE, new MouseController(gameManager.hexagonMap, mouseDownHandler));
         }
 

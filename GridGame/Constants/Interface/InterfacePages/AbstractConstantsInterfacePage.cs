@@ -2,6 +2,7 @@
 using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Interface.ConstantBlocks;
 using GridGame.Constants.TechTreeInfo;
+using GridGame.GameManagers;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Visual.TechnologyBlocks;
 using GridGame.TextureLoading;
@@ -77,14 +78,18 @@ namespace GridGame.Constants.Interface.InterfacePages {
             SelectedBlock = null;
         }
 
-        public bool OnClick(int x, int y) {
-            if(SelectedBlock != null) SelectedBlock.StopTyping();
+        public bool OnClick(DisplayManager displayManager, int x, int y) {
+            if(SelectedBlock != null) {
+                SelectedBlock.StopTyping();
+                displayManager.ToggleTyping();
+            }
             Point point = new Point(x, y);
             List<IConstantBlock> BlockLists = GetActiveBlocks();
             foreach(IConstantBlock constBlock in BlockLists) {
                 if(constBlock.Background.Contains(point)) {
                     SelectedBlock = constBlock;
                     SelectedBlock.OnClick();
+                    displayManager.ToggleTyping();
                     return true;
                 }
             }

@@ -20,13 +20,16 @@ namespace GridGame.GameManagers {
         public ButtonDisplay buttonDisplay;
         public TechnologyController technologyController;
         public ConstantsInterfaceController interfaceController;
+        public bool typing = false;
 
         public DisplayManager(ContentLoader content, ConstantsController Constants) {
             resourceManager = new ResourcesManager(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL), Constants);
             buttonDisplay = new ButtonDisplay(content.GetTexture(TextureNames.BLANK_RECTANGLE), content.GetFont(FontNames.ARIAL), Constants);
             technologyController = new TechnologyController(content, Constants, resourceManager.playerResources);
-            interfaceController = new ConstantsInterfaceController(content, Constants);
+            interfaceController = new ConstantsInterfaceController(this, content, Constants);
         }
+
+        public void ToggleTyping() { typing = !typing; }
 
         public void AddResource(ResourceType resourceType, int amount) {
             resourceManager.playerResources.AddResource(resourceType, amount);

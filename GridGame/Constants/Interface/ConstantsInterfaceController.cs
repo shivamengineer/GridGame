@@ -3,6 +3,7 @@ using GridGame.Constants.Controller.ConstantsEnums;
 using GridGame.Constants.Interface.ConstantBlocks.ConstantBlockClasses;
 using GridGame.Constants.Interface.InterfacePages;
 using GridGame.Constants.Interface.InterfacePages.InterfacePageClasses;
+using GridGame.GameManagers;
 using GridGame.TextureLoading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,10 +21,12 @@ namespace GridGame.Constants.Interface {
         public Dictionary<ConstantTypes, IConstantsInterfacePage> ConstantPages;
         public int CurrentPage;
 
+        private DisplayManager displayManager;
         private ContentLoader Content;
         private ConstantsController Constants;
 
-        public ConstantsInterfaceController(ContentLoader Content, ConstantsController Constants) {
+        public ConstantsInterfaceController(DisplayManager displayManager, ContentLoader Content, ConstantsController Constants) {
+            this.displayManager = displayManager;
             this.Content = Content;
             this.Constants = Constants;
             CurrentPage = 0;
@@ -67,6 +70,7 @@ namespace GridGame.Constants.Interface {
 
         public void StopTyping() {
             GetCurrentPage().StopTyping();
+            displayManager.ToggleTyping();
         }
 
         public void Draw(SpriteBatch spriteBatch) {

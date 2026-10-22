@@ -13,21 +13,22 @@ using System.Threading.Tasks;
 using GridGame.Constants.Interface.InterfacePages;
 using GridGame.Constants.Interface.ConstantBlocks;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace GridGame.Controllers.MouseClasses {
     public class ConstantsInterfaceMouseDownHandler : IMouseHandler {
 
-        private GameManager gameManager;
+        private DisplayManager displayManager;
         private ConstantsInterfaceController interfaceController;
 
-        public ConstantsInterfaceMouseDownHandler(GameManager gameManager) {
-            this.gameManager = gameManager;
-            this.interfaceController = gameManager.displayManager.interfaceController;
+        public ConstantsInterfaceMouseDownHandler(DisplayManager displayManager) {
+            this.displayManager = displayManager;
+            interfaceController = displayManager.interfaceController;
         }
 
         public bool OnMouseDown(int x, int y) {
             IConstantsInterfacePage currentPage = interfaceController.GetCurrentPage();
-            if(currentPage.OnClick(x, y)) gameManager.ToggleTyping();
+            currentPage.OnClick(displayManager, x, y);
             return false;
         }
 

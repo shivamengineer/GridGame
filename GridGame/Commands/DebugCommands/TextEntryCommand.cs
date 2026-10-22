@@ -15,7 +15,7 @@ namespace GridGame.Commands.DebugCommands {
         }
 
         public void Execute() {
-            gameManager.ToggleTyping();
+            gameManager.displayManager.ToggleTyping();
         }
 
     }

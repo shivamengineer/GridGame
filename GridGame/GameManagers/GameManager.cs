@@ -35,7 +35,6 @@ namespace GridGame.GameManagers {
 
         private bool paused = false;
         private bool debug = false;
-        private bool typing = false;
         
         public GameManager() {
             Constants = new ConstantsController();
@@ -58,11 +57,10 @@ namespace GridGame.GameManagers {
 
         public void TogglePaused() { paused = !paused; }
         public void ToggleDebug() { debug = !debug; }
-        public void ToggleTyping() { typing = !typing; }
 
         public void Update(GameTime gameTime) {
             UpdateControllers(gameTime);
-            keyboardHandler.Update(gameTime, paused, debug, typing);
+            keyboardHandler.Update(gameTime, paused, debug, displayManager.typing);
             if(!paused) {
                 hexagonMap.Update(gameTime, displayManager);
             }

@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants.Controller;
 using GridGame.Constants.Interface.ConstantBlocks;
+using GridGame.GameManagers;
 using GridGame.TextureLoading;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,7 +20,7 @@ namespace GridGame.Constants.Interface.InterfacePages {
         public void TypeLetter(char c);
         public void DeleteLetter();
         public void StopTyping();
-        public bool OnClick(int x, int y);
+        public bool OnClick(DisplayManager displayManager, int x, int y);
         public void Draw(SpriteBatch spriteBatch);
 
     }
