@@ -65,8 +65,12 @@ namespace GridGame.Constants.Interface {
             else CurrentPage = PageTypes.Count - 1;
         }
 
+        public void StopTyping() {
+            GetCurrentPage().StopTyping();
+        }
+
         public void Draw(SpriteBatch spriteBatch) {
-            ConstantPages[PageTypes[CurrentPage]].Draw(spriteBatch);
+            GetCurrentPage().Draw(spriteBatch);
         }
 
     }

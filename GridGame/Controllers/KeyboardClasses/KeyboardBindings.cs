@@ -87,6 +87,7 @@ namespace GridGame.Controllers.KeyboardClasses {
             keyboardController.AddOnPressBinding(Keys.Space, new TypeCommand(interfaceController, ' '));
 
             keyboardController.AddOnPressBinding(Keys.Back, new DeleteLetterCommand(interfaceController));
+            keyboardController.AddOnPressBinding(Keys.Enter, new StopTypingCommand(interfaceController));
         }
 
     }

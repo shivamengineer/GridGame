@@ -18,6 +18,7 @@ namespace GridGame.Constants.Interface.InterfacePages {
         public List<IConstantBlock> GetActiveBlocks();
         public void TypeLetter(char c);
         public void DeleteLetter();
+        public void StopTyping();
         public bool OnClick(int x, int y);
         public void Draw(SpriteBatch spriteBatch);
 

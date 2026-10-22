@@ -35,6 +35,9 @@ namespace GridGame.Constants.Interface.ConstantBlocks {
         public string KeyText;
         public string ValueText;
 
+        public string inputText;
+        public bool typing = false;
+
         public void SetContent(ContentLoader content, ConstantsController Constants) {
             this.content = content;
             this.Constants = Constants;
@@ -64,8 +67,17 @@ namespace GridGame.Constants.Interface.ConstantBlocks {
             SetBackgroundPos(x, y);
         }
 
+        public void TypeLetter(char c) {
+            inputText += c;
+        }
+
+        public void DeleteLetter() {
+            if(inputText.Length > 0) inputText = inputText.Substring(0, inputText.Length - 1);
+        }
+
         public void OnClick() {
-            //
+            typing = true;
+            inputText = "";
         }
 
         public void Draw(SpriteBatch spriteBatch, int camY) {
@@ -73,11 +85,14 @@ namespace GridGame.Constants.Interface.ConstantBlocks {
                 cameraY = camY;
                 UpdatePositionFromCamera();
             }
+            string text = ValueText;
+            if(typing) text = inputText;
 
             spriteBatch.Draw(backgroundTexture, Background, BackgroundColor);
-            spriteBatch.DrawString(font, KeyText + " = " + ValueText, new Vector2(Background.X + 10, Background.Y + 10), Color.Black);
+            spriteBatch.DrawString(font, KeyText + " = " + text, new Vector2(Background.X + 10, Background.Y + 10), Color.Black);
         }
 
+        public abstract void StopTyping();
         public abstract void SetValue(ConstantsController Constants);
         public abstract IConstantBlock NewInstance();
 

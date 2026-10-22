@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants.Controller.ConstantsEnums;
 using Microsoft.Xna.Framework;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -72,7 +73,15 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         public override bool TrySetColor(ConstColors Color, string input) { return false; }
         public override bool TrySetGameInt(ConstGameInt gameInt, string input) { return false; }
         public override bool TrySetGameFloat(ConstGameFloat gameFloat, string input) { return false; }
-        public override bool TrySetUIInt(ConstUserInterface UIInt, string input) { return false; }
+        public override bool TrySetUIInt(ConstUserInterface UIInt, string input) {
+            if(UserInterfaceValues.ContainsKey(UIInt)) {
+                if(int.TryParse(input, NumberStyles.Integer, CultureInfo.InvariantCulture, out int result)) {
+                    UserInterfaceValues[UIInt] = result;
+                    return true;
+                }
+            }
+            return false; 
+        }
 
         public override Dictionary<ConstColors, Color> GetColors() { return null; }
         public override Dictionary<ConstGameInt, int> GetGameInts() { return null; }

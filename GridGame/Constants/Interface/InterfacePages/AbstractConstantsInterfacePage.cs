@@ -72,6 +72,11 @@ namespace GridGame.Constants.Interface.InterfacePages {
             SelectedBlock.DeleteLetter();
         }
 
+        public void StopTyping() {
+            SelectedBlock.StopTyping();
+            SelectedBlock = null;
+        }
+
         public bool OnClick(int x, int y) {
             if(SelectedBlock != null) SelectedBlock.StopTyping();
             Point point = new Point(x, y);

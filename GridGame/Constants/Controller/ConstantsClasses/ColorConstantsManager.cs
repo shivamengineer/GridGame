@@ -1,5 +1,6 @@
 ﻿using GridGame.Constants.Controller.ConstantsEnums;
 using Microsoft.Xna.Framework;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -73,7 +74,19 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
             return lines;
         }
 
-        public override bool TrySetColor(ConstColors Color, string input) { return false; }
+        public override bool TrySetColor(ConstColors Color, string input) {
+            PropertyInfo property = typeof(Color).GetProperty(input, BindingFlags.Public | BindingFlags.Static | BindingFlags.IgnoreCase);
+
+            Color inputColor;
+            if(property != null) {
+                inputColor = (Color)property.GetValue(null, null);
+            } else {  
+                return false;
+            }
+
+            Colors[Color] = inputColor;
+            return true;
+        }
         public override bool TrySetGameInt(ConstGameInt gameInt, string input) { return false; }
         public override bool TrySetGameFloat(ConstGameFloat gameFloat, string input) { return false; }
         public override bool TrySetUIInt(ConstUserInterface UIInt, string input) { return false; }
