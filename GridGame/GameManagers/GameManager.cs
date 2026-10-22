@@ -29,6 +29,7 @@ namespace GridGame.GameManagers {
         private Dictionary<ControllerTypes, IController> PausedControllers;
         private Dictionary<ControllerTypes, IController> DebugControllers;
         private KeyboardHandler keyboardHandler;
+        private KeyboardHandler typingHandler;
 
         public DisplayManager displayManager { get; private set; }
 
@@ -52,7 +53,7 @@ namespace GridGame.GameManagers {
 
             ControllerLoader.LoadMouseController(MainControllers, hexagonMap, displayManager, Constants);
             ControllerLoader.LoadPauseMouseController(PausedControllers, hexagonMap);
-            ControllerLoader.LoadDebugMouseController(DebugControllers, hexagonMap, displayManager);
+            ControllerLoader.LoadDebugMouseController(DebugControllers, this);
         }
 
         public void TogglePaused() { paused = !paused; }
@@ -61,7 +62,7 @@ namespace GridGame.GameManagers {
 
         public void Update(GameTime gameTime) {
             UpdateControllers(gameTime);
-            keyboardHandler.Update(gameTime, paused, debug);
+            keyboardHandler.Update(gameTime, paused, debug, typing);
             if(!paused) {
                 hexagonMap.Update(gameTime, displayManager);
             }

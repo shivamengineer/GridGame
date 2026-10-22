@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -23,6 +24,7 @@ namespace GridGame.Constants.Interface.InterfacePages {
         public ConstantTypes Type;
 
         public List<IConstantBlock> ConstantsBlocks;
+        public IConstantBlock SelectedBlock;
 
         public ContentLoader Content;
         public ConstantsController Constants;
@@ -58,6 +60,31 @@ namespace GridGame.Constants.Interface.InterfacePages {
         public List<IConstantBlock> GetActiveBlocks() {
             int last = Math.Min(LastBlock + 1, ConstantsBlocks.Count - 1) - FirstBlock;
             return ConstantsBlocks.GetRange(FirstBlock, last);
+        }
+
+        public void TypeLetter(char c) {
+            if(SelectedBlock == null) return;
+            SelectedBlock.TypeLetter(c);
+        }
+
+        public void DeleteLetter() {
+            if(SelectedBlock == null) return;
+            SelectedBlock.DeleteLetter();
+        }
+
+        public bool OnClick(int x, int y) {
+            if(SelectedBlock != null) SelectedBlock.StopTyping();
+            Point point = new Point(x, y);
+            List<IConstantBlock> BlockLists = GetActiveBlocks();
+            foreach(IConstantBlock constBlock in BlockLists) {
+                if(constBlock.Background.Contains(point)) {
+                    SelectedBlock = constBlock;
+                    SelectedBlock.OnClick();
+                    return true;
+                }
+            }
+            SelectedBlock = null;
+            return false;
         }
 
         public void Draw(SpriteBatch spriteBatch) {

@@ -26,5 +26,9 @@ namespace GridGame.Constants.Interface.ConstantBlocks.ConstantBlockClasses {
             return newBlock;
         }
 
+        public override void StopTyping() {
+            typing = false;
+        }
+
     }
 }

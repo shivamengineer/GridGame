@@ -48,8 +48,8 @@ namespace GridGame.Controllers.KeyboardClasses {
         public static void InitializeMenuBindings(KeyboardController keyboardController, GameManager gameManager) {
             TechnologyController techController = gameManager.displayManager.technologyController;
 
-            keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
-            keyboardController.AddOnPressBinding(Keys.D2, new OpenDebugCommand(gameManager));
+            keyboardController.AddOnPressBinding(Keys.B, new PauseCommand(gameManager));
+            keyboardController.AddOnPressBinding(Keys.N, new OpenDebugCommand(gameManager));
         }
 
         public static void InitializeDebugBindings(KeyboardController keyboardController, GameManager gameManager) {
@@ -61,6 +61,32 @@ namespace GridGame.Controllers.KeyboardClasses {
 
             keyboardController.AddHeldBinding(Keys.Up, new DebugScrollUpCommand(interfaceController, Constants));
             keyboardController.AddHeldBinding(Keys.Down, new DebugScrollDownCommand(interfaceController, Constants));
+        }
+
+        public static void InitializeTypingBindings(KeyboardController keyboardController, GameManager gameManager) {
+            ConstantsInterfaceController interfaceController = gameManager.displayManager.interfaceController;
+
+            keyboardController.AddOnPressBinding(Keys.R, new TypeCommand(interfaceController, 'R'));
+            keyboardController.AddOnPressBinding(Keys.G, new TypeCommand(interfaceController, 'G'));
+            keyboardController.AddOnPressBinding(Keys.B, new TypeCommand(interfaceController, 'B'));
+            keyboardController.AddOnPressBinding(Keys.A, new TypeCommand(interfaceController, 'A'));
+
+            keyboardController.AddOnPressBinding(Keys.D0, new TypeCommand(interfaceController, '0'));
+            keyboardController.AddOnPressBinding(Keys.D1, new TypeCommand(interfaceController, '1'));
+            keyboardController.AddOnPressBinding(Keys.D2, new TypeCommand(interfaceController, '2'));
+            keyboardController.AddOnPressBinding(Keys.D3, new TypeCommand(interfaceController, '3'));
+            keyboardController.AddOnPressBinding(Keys.D4, new TypeCommand(interfaceController, '4'));
+            keyboardController.AddOnPressBinding(Keys.D5, new TypeCommand(interfaceController, '5'));
+            keyboardController.AddOnPressBinding(Keys.D6, new TypeCommand(interfaceController, '6'));
+            keyboardController.AddOnPressBinding(Keys.D7, new TypeCommand(interfaceController, '7'));
+            keyboardController.AddOnPressBinding(Keys.D8, new TypeCommand(interfaceController, '8'));
+            keyboardController.AddOnPressBinding(Keys.D9, new TypeCommand(interfaceController, '9'));
+
+            keyboardController.AddOnPressBinding(Keys.OemSemicolon, new TypeCommand(interfaceController, ':'));
+            keyboardController.AddOnPressBinding(Keys.OemComma, new TypeCommand(interfaceController, ','));
+            keyboardController.AddOnPressBinding(Keys.Space, new TypeCommand(interfaceController, ' '));
+
+            keyboardController.AddOnPressBinding(Keys.Back, new DeleteLetterCommand(interfaceController));
         }
 
     }

@@ -17,22 +17,17 @@ using Microsoft.Xna.Framework;
 namespace GridGame.Controllers.MouseClasses {
     public class ConstantsInterfaceMouseDownHandler : IMouseHandler {
 
+        private GameManager gameManager;
         private ConstantsInterfaceController interfaceController;
 
-        public ConstantsInterfaceMouseDownHandler(ConstantsInterfaceController interfaceController) {
-            this.interfaceController = interfaceController;
+        public ConstantsInterfaceMouseDownHandler(GameManager gameManager) {
+            this.gameManager = gameManager;
+            this.interfaceController = gameManager.displayManager.interfaceController;
         }
 
         public bool OnMouseDown(int x, int y) {
-            Point point = new Point(x, y);
             IConstantsInterfacePage currentPage = interfaceController.GetCurrentPage();
-            List<IConstantBlock> BlockLists = currentPage.GetActiveBlocks();
-            foreach(IConstantBlock constBlock  in BlockLists) {
-                if(constBlock.Background.Contains(point)) {
-                    constBlock.OnClick();
-                    return true;
-                }
-            }
+            if(currentPage.OnClick(x, y)) gameManager.ToggleTyping();
             return false;
         }
 

@@ -18,7 +18,10 @@ namespace GridGame.Constants.Interface.ConstantBlocks {
 
         public void SetContent(ContentLoader content, ConstantsController Constants);
         public void SetPosition(int position);
+        public void TypeLetter(char c);
+        public void DeleteLetter();
         public void OnClick();
+        public void StopTyping();
         public void Draw(SpriteBatch spriteBatch, int camY);
         public IConstantBlock NewInstance();
 

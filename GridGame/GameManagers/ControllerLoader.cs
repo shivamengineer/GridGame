@@ -24,10 +24,9 @@ namespace GridGame.GameManagers {
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
         }
 
-        public static void LoadDebugMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager) {
-            ConstantsInterfaceController interfaceController = displayManager.interfaceController;
-            ConstantsInterfaceMouseDownHandler mouseDownHandler = new ConstantsInterfaceMouseDownHandler(interfaceController);
-            controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
+        public static void LoadDebugMouseController(Dictionary<ControllerTypes, IController> controllers, GameManager gameManager) {
+            ConstantsInterfaceMouseDownHandler mouseDownHandler = new ConstantsInterfaceMouseDownHandler(gameManager);
+            controllers.Add(ControllerTypes.MOUSE, new MouseController(gameManager.hexagonMap, mouseDownHandler));
         }
 
     }
