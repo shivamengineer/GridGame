@@ -16,7 +16,7 @@ namespace GridGame.Commands.DebugCommands {
 
         public DebugScrollUpCommand(ConstantsInterfaceController interfaceController, ConstantsController Constants) {
             this.interfaceController = interfaceController;
-            scrollSpeed = Constants.GetUIInts()[ConstUserInterface.TechTreeScrollSpeed];
+            scrollSpeed = Constants.GetUIInts()[ConstUserInterface.ConstGraphScrollSpeed];
         }
 
         public void Execute() {

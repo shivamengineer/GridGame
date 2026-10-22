@@ -16,8 +16,9 @@ namespace GridGame.Constants.Interface {
     public class ConstantsInterfaceController {
 
         public Rectangle Background;
+        public List<ConstantTypes> PageTypes;
         public Dictionary<ConstantTypes, IConstantsInterfacePage> ConstantPages;
-        public ConstantTypes CurrentPage;
+        public int CurrentPage;
 
         private ContentLoader Content;
         private ConstantsController Constants;
@@ -25,11 +26,17 @@ namespace GridGame.Constants.Interface {
         public ConstantsInterfaceController(ContentLoader Content, ConstantsController Constants) {
             this.Content = Content;
             this.Constants = Constants;
-            CurrentPage = ConstantTypes.COLOR;
+            CurrentPage = 0;
             Initialize();
         }
 
         private void Initialize() {
+            PageTypes = new List<ConstantTypes>() {
+                ConstantTypes.COLOR,
+                ConstantTypes.GAME_INT,
+                ConstantTypes.GAME_FLOAT,
+                ConstantTypes.USER_INTERFACE,
+            };
             ConstantPages = new Dictionary<ConstantTypes, IConstantsInterfacePage>() {
                 [ConstantTypes.COLOR] = new ColorConstantsInterfacePage(Content, Constants),
                 [ConstantTypes.GAME_INT] = new GameIntConstantsInterfacePage(Content, Constants),
@@ -39,13 +46,23 @@ namespace GridGame.Constants.Interface {
         }
 
         public void Scroll(int y) {
-            ConstantPages[CurrentPage].CameraY += y;
-            if(ConstantPages[CurrentPage].CameraY < 0) ConstantPages[CurrentPage].CameraY = 0;
-            ConstantPages[CurrentPage].UpdateCamera();
+            ConstantPages[PageTypes[CurrentPage]].CameraY += y;
+            if(ConstantPages[PageTypes[CurrentPage]].CameraY < 0) ConstantPages[PageTypes[CurrentPage]].CameraY = 0;
+            ConstantPages[PageTypes[CurrentPage]].UpdateCamera();
+        }
+
+        public void SwitchPageRight() {
+            if(CurrentPage < PageTypes.Count - 1) CurrentPage++;
+            else CurrentPage = 0;
+        }
+
+        public void SwitchPageLeft() {
+            if(CurrentPage > 0) CurrentPage--;
+            else CurrentPage = PageTypes.Count - 1;
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            ConstantPages[CurrentPage].Draw(spriteBatch);
+            ConstantPages[PageTypes[CurrentPage]].Draw(spriteBatch);
         }
 
     }

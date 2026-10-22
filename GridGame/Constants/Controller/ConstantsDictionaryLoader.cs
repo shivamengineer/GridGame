@@ -192,6 +192,8 @@ namespace GridGame.Constants.Controller {
                 [ConstUserInterface.ConstBlockHeight] = ConstInterfaceUIInfo.BLOCK_HEIGHT,
                 [ConstUserInterface.ConstBlockSpacing] = ConstInterfaceUIInfo.BLOCK_SPACING,
 
+                [ConstUserInterface.ConstGraphScrollSpeed] = ConstInterfaceUIInfo.SCROLL_SPEED,
+
                 [ConstUserInterface.ProgressBarWidth] = PopupInfo.PROGRESS_BAR_WIDTH,
                 [ConstUserInterface.ProgressBarHeight] = PopupInfo.PROGRESS_BAR_HEIGHT,
 

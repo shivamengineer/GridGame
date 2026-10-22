@@ -47,14 +47,17 @@ namespace GridGame.Controllers.KeyboardClasses {
 
         public static void InitializeMenuBindings(KeyboardController keyboardController, GameManager gameManager) {
             TechnologyController techController = gameManager.displayManager.technologyController;
-            ConstantsInterfaceController interfaceController = gameManager.displayManager.interfaceController;
-            ConstantsController Constants = gameManager.Constants;
 
             keyboardController.AddOnPressBinding(Keys.D1, new PauseCommand(gameManager));
             keyboardController.AddOnPressBinding(Keys.D2, new OpenDebugCommand(gameManager));
+        }
 
-            keyboardController.AddHeldBinding(Keys.Left, new TechScrollLeftCommand(techController, Constants));
-            keyboardController.AddHeldBinding(Keys.Right, new TechScrollRightCommand(techController, Constants));
+        public static void InitializeDebugBindings(KeyboardController keyboardController, GameManager gameManager) {
+            ConstantsInterfaceController interfaceController = gameManager.displayManager.interfaceController;
+            ConstantsController Constants = gameManager.Constants;
+
+            keyboardController.AddOnPressBinding(Keys.Right, new SwitchPageRightCommand(interfaceController));
+            keyboardController.AddOnPressBinding(Keys.Left, new SwitchPageLeftCommand(interfaceController));
 
             keyboardController.AddHeldBinding(Keys.Up, new DebugScrollUpCommand(interfaceController, Constants));
             keyboardController.AddHeldBinding(Keys.Down, new DebugScrollDownCommand(interfaceController, Constants));

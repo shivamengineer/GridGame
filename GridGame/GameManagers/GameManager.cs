@@ -58,7 +58,7 @@ namespace GridGame.GameManagers {
 
         public void Update(GameTime gameTime) {
             UpdateControllers(gameTime);
-            keyboardHandler.Update(gameTime, paused, false);
+            keyboardHandler.Update(gameTime, paused, debug);
             if(!paused) {
                 hexagonMap.Update(gameTime, displayManager);
             }

@@ -47,7 +47,7 @@ namespace GridGame.Constants.Interface.InterfacePages {
         }
 
         public void UpdateCamera() {
-            NumBlocks = UIInts[ConstUserInterface.WindowHeight] / (UIInts[ConstUserInterface.ConstBlockHeight] + UIInts[ConstUserInterface.ConstBlockSpacing]);
+            NumBlocks = (UIInts[ConstUserInterface.WindowHeight] * 5 / 4) / (UIInts[ConstUserInterface.ConstBlockHeight] + UIInts[ConstUserInterface.ConstBlockSpacing]);
             FirstBlock = CameraY / (UIInts[ConstUserInterface.ConstBlockHeight] + UIInts[ConstUserInterface.ConstBlockSpacing]);
             LastBlock = FirstBlock + NumBlocks;
 
