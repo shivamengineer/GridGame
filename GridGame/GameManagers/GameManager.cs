@@ -29,7 +29,6 @@ namespace GridGame.GameManagers {
         private Dictionary<ControllerTypes, IController> PausedControllers;
         private Dictionary<ControllerTypes, IController> DebugControllers;
         private KeyboardHandler keyboardHandler;
-        private KeyboardHandler typingHandler;
 
         public DisplayManager displayManager { get; private set; }
 
@@ -57,6 +56,10 @@ namespace GridGame.GameManagers {
 
         public void TogglePaused() { paused = !paused; }
         public void ToggleDebug() { debug = !debug; }
+
+        public void SaveData() {
+            //
+        }
 
         public void Update(GameTime gameTime) {
             UpdateControllers(gameTime);
