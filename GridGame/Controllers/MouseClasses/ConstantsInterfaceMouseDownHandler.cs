@@ -23,15 +23,17 @@ namespace GridGame.Controllers.MouseClasses {
             this.interfaceController = interfaceController;
         }
 
-        public void OnMouseDown(int x, int y) {
+        public bool OnMouseDown(int x, int y) {
             Point point = new Point(x, y);
             IConstantsInterfacePage currentPage = interfaceController.GetCurrentPage();
             List<IConstantBlock> BlockLists = currentPage.GetActiveBlocks();
             foreach(IConstantBlock constBlock  in BlockLists) {
                 if(constBlock.Background.Contains(point)) {
                     constBlock.OnClick();
+                    return true;
                 }
             }
+            return false;
         }
 
     }

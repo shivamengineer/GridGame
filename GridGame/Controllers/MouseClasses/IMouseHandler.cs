@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GridGame.Controllers.MouseClasses {
     public interface IMouseHandler {
 
-        public void OnMouseDown(int x, int y);
+        public bool OnMouseDown(int x, int y);
 
     }
 }

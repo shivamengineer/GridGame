@@ -47,7 +47,7 @@ namespace GridGame.Controllers.MouseClasses {
             BuildingRadiusFromCity = GameInts[ConstGameInt.CanBuildMaxDistanceFromCity];
         }
 
-        public void OnMouseDown(int x, int y) {
+        public bool OnMouseDown(int x, int y) {
             Point point = new Point(x, y);
 
             if(resourceDisplay.MouseOnDisplay(point)) {
@@ -57,6 +57,7 @@ namespace GridGame.Controllers.MouseClasses {
             } else if(selectedBuilding != BuildingType.NIL){
                 TryBuild(x, y, hexagonMap);
             }
+            return false;
         }
 
         private void SelectResource(Point point) {

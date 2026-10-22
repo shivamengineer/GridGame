@@ -35,7 +35,7 @@ namespace GridGame.Controllers.MouseClasses {
             technologyController = displayManager.technologyController;
         }
 
-        public void OnMouseDown(int x, int y) {
+        public bool OnMouseDown(int x, int y) {
             Point point = new Point(x, y);
 
             if(resourceDisplay.MouseOnDisplay(point)) {
@@ -43,6 +43,7 @@ namespace GridGame.Controllers.MouseClasses {
             } else {
                 SelectTechBlock(point);
             }
+            return false;
         }
 
         private void SelectResource(Point point) {
