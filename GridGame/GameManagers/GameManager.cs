@@ -57,9 +57,7 @@ namespace GridGame.GameManagers {
         public void TogglePaused() { paused = !paused; }
         public void ToggleDebug() { debug = !debug; }
 
-        public void SaveData() {
-            //
-        }
+        public void SaveData() { Constants.SaveCurrentFile(); }
 
         public void Update(GameTime gameTime) {
             UpdateControllers(gameTime);

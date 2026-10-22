@@ -29,6 +29,12 @@ namespace GridGame.Constants.Controller {
             }
         }
 
+        public void SaveCurrentFile() {
+            foreach(var file in ConstantsFiles) {
+                ConstantsFiles[currentFile].WriteConstantsToFile(currentFile);
+            }
+        }
+
         public void Save(string filename) {
             foreach(var file in ConstantsFiles) {
                 ConstantsFiles[file.Key].WriteConstantsToFile(filename);
