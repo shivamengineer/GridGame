@@ -1,4 +1,4 @@
-BuildingColor=Color.White
-CitizenColor=Color.Blue
-SandColor=Color.Red
-HoverColor=Color.Green 
+BuildingColor=White
+CitizenActive=Blue
+Coast=Red
+LandHover=Green 
