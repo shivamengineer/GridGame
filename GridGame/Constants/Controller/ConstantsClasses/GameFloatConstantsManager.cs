@@ -34,7 +34,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
 
         public override void Read(string variable, string value) {
             if(Enum.TryParse<ConstGameFloat>(variable, out ConstGameFloat input)) {
-                if(GameFloats.ContainsKey(input)) {
+                if(!GameFloats.ContainsKey(input)) {
                     if(float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float result)) {
                         GameFloats[input] = result;
                     }
@@ -58,7 +58,6 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
 
         public override void WriteConstantsToFile(string filename) {
             string file = filename + "ConstantGameFloats.txt";
-            Debug.WriteLine("WRITING TO " + file);
 
             string[] GameConstants = printLines();
 

@@ -28,11 +28,9 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         }
 
         public override void Read(string variable, string value) {
-            Debug.WriteLine("READING " + variable + " = " + value);
             if(Enum.TryParse<ConstUserInterface>(variable, out ConstUserInterface input)) {
-                if(UserInterfaceValues.ContainsKey(input)) {
+                if(!UserInterfaceValues.ContainsKey(input)) {
                     if(int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int result)) {
-                        Debug.WriteLine(input.ToString() + " = " + result);
                         UserInterfaceValues[input] = result;
                     }
                 }

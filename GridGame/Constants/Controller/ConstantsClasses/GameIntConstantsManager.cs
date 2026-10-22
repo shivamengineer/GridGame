@@ -34,7 +34,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
 
         public override void Read(string variable, string value) {
             if(Enum.TryParse<ConstGameInt>(variable, out ConstGameInt input)) {
-                if(GameInts.ContainsKey(input)) {
+                if(!GameInts.ContainsKey(input)) {
                     if(int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int result)) {
                         GameInts[input] = result;
                     }
