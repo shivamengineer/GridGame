@@ -1,2 +1,2 @@
-Virus_Spread_Range=2
-Virus_Duration=5
+VirusSpreadRange=2
+VirusDuration=5
