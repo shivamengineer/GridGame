@@ -17,12 +17,10 @@ using Microsoft.Xna.Framework;
 namespace GridGame.Controllers.MouseClasses {
     public class ConstantsInterfaceMouseDownHandler : IMouseHandler {
 
-        private GameManager gameManager;
         private ConstantsInterfaceController interfaceController;
 
-        public ConstantsInterfaceMouseDownHandler(GameManager gameManager) {
-            this.gameManager = gameManager;
-            interfaceController = gameManager.displayManager.interfaceController;
+        public ConstantsInterfaceMouseDownHandler(ConstantsInterfaceController interfaceController) {
+            this.interfaceController = interfaceController;
         }
 
         public bool OnMouseDown(int x, int y) {
