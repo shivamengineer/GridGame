@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
 
             GameFloats = new Dictionary<ConstGameFloat, float>();
 
-            ReadConstantsFromFile(filename);
+            ReadConstantsFromFile(filename + "ConstantGameFloats.txt");
             FillUndeclaredFloats();
         }
 
@@ -56,7 +57,9 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         }
 
         public override void WriteConstantsToFile(string filename) {
-            string file = filename + "ConstantGame.txt";
+            string file = filename + "ConstantGameFloats.txt";
+            Debug.WriteLine("WRITING TO " + file);
+
             string[] GameConstants = printLines();
 
             File.WriteAllLines(file, GameConstants);

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +19,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         public ColorConstantsManager(string filename) {
             DefaultColors = ConstantsDictionaryLoader.GetDefaultColorConstants();
             Colors = new Dictionary<ConstColors, Color>();
-            ReadConstantsFromFile(filename);
+            ReadConstantsFromFile(filename + "ConstantColor.txt");
             FillUndeclaredConstants();
         }
 
@@ -57,6 +58,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
 
         public override void WriteConstantsToFile(string filename) {
             string file = filename + "ConstantColor.txt";
+            Debug.WriteLine("WRITING TO " + file);
             string[] ColorConstants = printLines();
 
             File.WriteAllLines(file, ColorConstants);

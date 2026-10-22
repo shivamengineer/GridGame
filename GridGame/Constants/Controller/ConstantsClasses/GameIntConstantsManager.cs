@@ -24,7 +24,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
 
             GameInts = new Dictionary<ConstGameInt, int>();
 
-            ReadConstantsFromFile(filename);
+            ReadConstantsFromFile(filename + "ConstantGameInt.txt");
             FillUndeclaredInts();
         }
 
