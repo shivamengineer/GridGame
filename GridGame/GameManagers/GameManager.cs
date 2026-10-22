@@ -34,6 +34,7 @@ namespace GridGame.GameManagers {
 
         private bool paused = false;
         private bool debug = false;
+        private bool typing = false;
         
         public GameManager() {
             Constants = new ConstantsController();
@@ -51,11 +52,12 @@ namespace GridGame.GameManagers {
 
             ControllerLoader.LoadMouseController(MainControllers, hexagonMap, displayManager, Constants);
             ControllerLoader.LoadPauseMouseController(PausedControllers, hexagonMap);
-            ControllerLoader.LoadDebugMouseController(DebugControllers, hexagonMap, displayManager);
+            ControllerLoader.LoadDebugMouseController(DebugControllers, this);
         }
 
         public void TogglePaused() { paused = !paused; }
         public void ToggleDebug() { debug = !debug; }
+        public void ToggleTyping() { typing = !typing; }
 
         public void Update(GameTime gameTime) {
             UpdateControllers(gameTime);
