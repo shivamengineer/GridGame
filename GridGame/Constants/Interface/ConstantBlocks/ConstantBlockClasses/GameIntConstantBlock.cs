@@ -28,6 +28,9 @@ namespace GridGame.Constants.Interface.ConstantBlocks.ConstantBlockClasses {
 
         public override void StopTyping() {
             typing = false;
+            if(Constants.TrySetGameInt(ConstType, inputText)) {
+                //
+            }
         }
 
     }

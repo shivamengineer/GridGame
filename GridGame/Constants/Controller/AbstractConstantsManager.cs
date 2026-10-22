@@ -41,6 +41,11 @@ namespace GridGame.Constants.Controller {
         public abstract void Read(string variable, string value);
         public abstract void WriteConstantsToFile(string filename);
 
+        public abstract bool TrySetColor(ConstColors Color, string input);
+        public abstract bool TrySetGameInt(ConstGameInt gameInt, string input);
+        public abstract bool TrySetGameFloat(ConstGameFloat gameFloat, string input);
+        public abstract bool TrySetUIInt(ConstUserInterface UIInt, string input);
+
         public abstract Dictionary<ConstColors, Color> GetColors();
         public abstract Dictionary<ConstGameInt, int> GetGameInts();
         public abstract Dictionary<ConstGameFloat, float> GetGameFloats();

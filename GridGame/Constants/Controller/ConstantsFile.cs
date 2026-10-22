@@ -28,6 +28,22 @@ namespace GridGame.Constants.Controller {
             }
         }
 
+        public bool TrySetColor(ConstColors Color, string input) {
+            return ConstantsManagers[ConstantTypes.COLOR].TrySetColor(Color, input);
+        }
+
+        public bool TrySetGameInt(ConstGameInt gameInt, string input) {
+            return ConstantsManagers[ConstantTypes.GAME_INT].TrySetGameInt(gameInt, input);
+        }
+
+        public bool TrySetGameFloat(ConstGameFloat gameFloat, string input) {
+            return ConstantsManagers[ConstantTypes.GAME_FLOAT].TrySetGameFloat(gameFloat, input);
+        }
+
+        public bool TrySetUIInt(ConstUserInterface UIInt, string input) {
+            return ConstantsManagers[ConstantTypes.USER_INTERFACE].TrySetUIInt(UIInt, input);
+        }
+
         public Dictionary<ConstColors, Color> GetColors() {
             return ConstantsManagers[ConstantTypes.COLOR].GetColors();
         }

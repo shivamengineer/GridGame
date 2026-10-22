@@ -73,6 +73,11 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
             return lines;
         }
 
+        public override bool TrySetColor(ConstColors Color, string input) { return false; }
+        public override bool TrySetGameInt(ConstGameInt gameInt, string input) { return false; }
+        public override bool TrySetGameFloat(ConstGameFloat gameFloat, string input) { return false; }
+        public override bool TrySetUIInt(ConstUserInterface UIInt, string input) { return false; }
+
         public override Dictionary<ConstColors, Color> GetColors() { return Colors; }
         public override Dictionary<ConstGameInt, int> GetGameInts() { return null; }
         public override Dictionary<ConstGameFloat, float> GetGameFloats() { return null; }
