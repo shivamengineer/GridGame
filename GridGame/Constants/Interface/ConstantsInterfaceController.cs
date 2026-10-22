@@ -51,6 +51,10 @@ namespace GridGame.Constants.Interface {
             ConstantPages[PageTypes[CurrentPage]].UpdateCamera();
         }
 
+        public IConstantsInterfacePage GetCurrentPage() {
+            return ConstantPages[PageTypes[CurrentPage]];
+        }
+
         public void SwitchPageRight() {
             if(CurrentPage < PageTypes.Count - 1) CurrentPage++;
             else CurrentPage = 0;
