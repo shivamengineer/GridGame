@@ -1,4 +1,5 @@
 ﻿using GridGame.Constants.Controller;
+using GridGame.Constants.Interface;
 using GridGame.Controllers;
 using GridGame.Controllers.MouseClasses;
 using GridGame.GameManagers.ManagerEnums;
@@ -14,12 +15,18 @@ namespace GridGame.GameManagers {
     public static class ControllerLoader {
         
         public static void LoadMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager, ConstantsController Constants) {
-            MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager, Constants);
+            MouseDownHandler mouseDownHandler = new MouseDownHandler(displayManager, hexagonMap, Constants);
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
         }
 
         public static void LoadPauseMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap) {
             TechTreeMouseDownHandler mouseDownHandler = new TechTreeMouseDownHandler(hexagonMap);
+            controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
+        }
+
+        public static void LoadDebugMouseController(Dictionary<ControllerTypes, IController> controllers, HexagonMap hexagonMap, DisplayManager displayManager) {
+            ConstantsInterfaceController interfaceController = displayManager.interfaceController;
+            ConstantsInterfaceMouseDownHandler mouseDownHandler = new ConstantsInterfaceMouseDownHandler(interfaceController);
             controllers.Add(ControllerTypes.MOUSE, new MouseController(hexagonMap, mouseDownHandler));
         }
 

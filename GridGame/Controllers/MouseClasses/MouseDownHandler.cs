@@ -25,6 +25,8 @@ namespace GridGame.Controllers.MouseClasses {
         private ResourceDisplay resourceDisplay;
         private ButtonDisplay buttonDisplay;
 
+        private HexagonMap hexagonMap;
+
         private bool builtCityCenter = false;
         private BuildingType selectedBuilding = BuildingType.CityCenter;
 
@@ -33,9 +35,10 @@ namespace GridGame.Controllers.MouseClasses {
         private int BuildingRadiusFromPlayer;
         private int BuildingRadiusFromCity;
 
-        public MouseDownHandler(DisplayManager displayManager, ConstantsController Constants) {
+        public MouseDownHandler(DisplayManager displayManager, HexagonMap hexagonMap, ConstantsController Constants) {
             resourceDisplay = displayManager.resourceManager.resourceDisplay;
             buttonDisplay = displayManager.buttonDisplay;
+            this.hexagonMap = hexagonMap;
             selectedButton = buttonDisplay.GetButton(selectedBuilding);
             selectedButton.SetRectSelected(true);
 
@@ -44,7 +47,7 @@ namespace GridGame.Controllers.MouseClasses {
             BuildingRadiusFromCity = GameInts[ConstGameInt.CanBuildMaxDistanceFromCity];
         }
 
-        public void OnMouseDown(int x, int y, HexagonMap hexagonMap) {
+        public void OnMouseDown(int x, int y) {
             Point point = new Point(x, y);
 
             if(resourceDisplay.MouseOnDisplay(point)) {

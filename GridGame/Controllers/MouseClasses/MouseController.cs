@@ -41,7 +41,7 @@ namespace GridGame.Controllers.MouseClasses {
 
             if(mouseState.LeftButton == ButtonState.Pressed) {
                 if(lastMouseState.LeftButton == ButtonState.Released) {
-                    mouseDownHandler.OnMouseDown(mouseState.X, mouseState.Y, hexagonMap);
+                    mouseDownHandler.OnMouseDown(mouseState.X, mouseState.Y);
                 } else {
                     OnLeftMouseStay(mouseState);
                 }

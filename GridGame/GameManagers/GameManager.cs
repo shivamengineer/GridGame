@@ -51,6 +51,7 @@ namespace GridGame.GameManagers {
 
             ControllerLoader.LoadMouseController(MainControllers, hexagonMap, displayManager, Constants);
             ControllerLoader.LoadPauseMouseController(PausedControllers, hexagonMap);
+            ControllerLoader.LoadDebugMouseController(DebugControllers, hexagonMap, displayManager);
         }
 
         public void TogglePaused() { paused = !paused; }

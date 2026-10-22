@@ -35,7 +35,7 @@ namespace GridGame.Controllers.MouseClasses {
             technologyController = displayManager.technologyController;
         }
 
-        public void OnMouseDown(int x, int y, HexagonMap hexagonMap) {
+        public void OnMouseDown(int x, int y) {
             Point point = new Point(x, y);
 
             if(resourceDisplay.MouseOnDisplay(point)) {
