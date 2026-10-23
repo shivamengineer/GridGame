@@ -17,5 +17,13 @@ namespace GridGame.Constants.Colors {
         public static readonly Color LaboratoryColor = Color.Aquamarine;
         public static readonly Color NILColor = Color.Purple;
 
+        public static readonly string BankColorString = "Gold";
+        public static readonly string CityCenterColorString = "Plum";
+        public static readonly string EmptyColorString = "LightSlateGray";
+        public static readonly string FactoryColorString = "DarkOrange";
+        public static readonly string FarmColorString = "SaddleBrown";
+        public static readonly string HospitalColorString = "Red";
+        public static readonly string LaboratoryColorString = "Aquamarine";
+        public static readonly string NILColorString = "Purple";
     }
 }

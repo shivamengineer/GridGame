@@ -24,7 +24,21 @@ namespace GridGame.Constants.Colors {
         public static readonly Color CanBuildColor = Color.GreenYellow;
         public static readonly Color CannotBuildColor = Color.IndianRed;
 
-        //river grass #2EE829
+        public static readonly string OceanColorString = "CadetBlue";
+        public static readonly string LandColorString = "Green";
+        public static readonly string CoastColorString = "SandyBrown";
+        public static readonly string Land_RiverColorString = "LightGreen";
+        public static readonly string UnknownColorString = "Moccasin";
+        public static readonly string UnknownBorderColorString = "DarkGray";
+
+        public static readonly string OceanHoverColorString = "LightSkyBlue";
+        public static readonly string LandHoverColorString = "GreenYellow";
+        public static readonly string CoastHoverColorString = "LightGoldenrodYellow";
+        public static readonly string Land_RiverHoverColorString = "LawnGreen";
+        public static readonly string DefaultHoverColorString = "LightYellow";
+
+        public static readonly string CanBuildColorString = "GreenYellow";
+        public static readonly string CannotBuildColorString = "IndianRed";
 
     }
 }

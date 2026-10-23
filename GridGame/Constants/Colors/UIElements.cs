@@ -12,5 +12,10 @@ namespace GridGame.Constants.Colors {
         public static readonly Color ButtonNotSelectedColor = Color.LightGray;
 
         public static readonly Color ButtonTextColor = Color.Red;
+
+        public static readonly string ButtonSelectedColorString = "Yellow";
+        public static readonly string ButtonNotSelectedColorString = "LightGray";
+
+        public static readonly string ButtonTextColorString = "Red";
     }
 }

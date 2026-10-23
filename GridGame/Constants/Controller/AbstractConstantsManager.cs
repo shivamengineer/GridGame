@@ -46,6 +46,7 @@ namespace GridGame.Constants.Controller {
         public abstract bool TrySetGameFloat(ConstGameFloat gameFloat, string input);
         public abstract bool TrySetUIInt(ConstUserInterface UIInt, string input);
 
+        public abstract Dictionary<ConstColors, string> GetColorStrings();
         public abstract Dictionary<ConstColors, Color> GetColors();
         public abstract Dictionary<ConstGameInt, int> GetGameInts();
         public abstract Dictionary<ConstGameFloat, float> GetGameFloats();

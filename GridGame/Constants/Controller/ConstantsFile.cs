@@ -43,6 +43,10 @@ namespace GridGame.Constants.Controller {
             return ConstantsManagers[ConstantTypes.USER_INTERFACE].TrySetUIInt(UIInt, input);
         }
 
+        public Dictionary<ConstColors, string> GetColorStrings() {
+            return ConstantsManagers[ConstantTypes.COLOR].GetColorStrings();
+        }
+
         public Dictionary<ConstColors, Color> GetColors() {
             return ConstantsManagers[ConstantTypes.COLOR].GetColors();
         }

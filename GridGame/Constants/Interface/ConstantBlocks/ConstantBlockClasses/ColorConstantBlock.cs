@@ -1,7 +1,10 @@
 ﻿using GridGame.Constants.Controller;
 using GridGame.Constants.Controller.ConstantsEnums;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +20,7 @@ namespace GridGame.Constants.Interface.ConstantBlocks.ConstantBlockClasses {
         }
 
         public override void SetValue(ConstantsController Constants) {
-            ValueText = Constants.GetColors()[ConstType].ToString();
+            ValueText = Constants.GetColorStrings()[ConstType];
         }
 
         public override IConstantBlock NewInstance() {

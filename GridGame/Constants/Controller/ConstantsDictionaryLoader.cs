@@ -88,6 +88,44 @@ namespace GridGame.Constants.Controller {
             };
         }
 
+        public static Dictionary<ConstColors, string> GetDefaultColorConstantsStrings() {
+            return new Dictionary<ConstColors, string>() {
+                [ConstColors.Bank] = BuildingColors.BankColorString,
+                [ConstColors.CityCenter] = BuildingColors.CityCenterColorString,
+                [ConstColors.Tile_Empty] = BuildingColors.EmptyColorString,
+                [ConstColors.Factory] = BuildingColors.FactoryColorString,
+                [ConstColors.Farm] = BuildingColors.FarmColorString,
+                [ConstColors.Hospital] = BuildingColors.HospitalColorString,
+                [ConstColors.Laboratory] = BuildingColors.LaboratoryColorString,
+                [ConstColors.Tile_NIL] = BuildingColors.NILColorString,
+
+                [ConstColors.Citizen_Active] = CitizenColors.ActiveColorString,
+                [ConstColors.Citizen_Inactive] = CitizenColors.InactiveColorString,
+                [ConstColors.Citizen_Infected] = CitizenColors.InfectColorString,
+                [ConstColors.Citizen_Asymptomatic] = CitizenColors.AsymptomaticColorString,
+
+                [ConstColors.Ocean] = TerrainColors.OceanColorString,
+                [ConstColors.Land] = TerrainColors.LandColorString,
+                [ConstColors.Coast] = TerrainColors.CoastColorString,
+                [ConstColors.LandRiver] = TerrainColors.Land_RiverColorString,
+                [ConstColors.Unknown] = TerrainColors.UnknownColorString,
+                [ConstColors.UnknownBorder] = TerrainColors.UnknownBorderColorString,
+
+                [ConstColors.OceanHover] = TerrainColors.OceanHoverColorString,
+                [ConstColors.LandHover] = TerrainColors.LandHoverColorString,
+                [ConstColors.CoastHover] = TerrainColors.CoastHoverColorString,
+                [ConstColors.LandRiverHover] = TerrainColors.Land_RiverHoverColorString,
+                [ConstColors.DefaultHover] = TerrainColors.DefaultHoverColorString,
+
+                [ConstColors.CanBuild] = TerrainColors.CanBuildColorString,
+                [ConstColors.CannotBuild] = TerrainColors.CannotBuildColorString,
+
+                [ConstColors.ButtonSelected] = UIElements.ButtonSelectedColorString,
+                [ConstColors.ButtonNotSelected] = UIElements.ButtonNotSelectedColorString,
+                [ConstColors.ButtonTextColor] = UIElements.ButtonTextColorString,
+            };
+        }
+
         public static Dictionary<ConstGameInt, int> GetDefaultGameInts() {
             return new Dictionary<ConstGameInt, int>() {
                 [ConstGameInt.StartFood] = StartingResources.STARTING_FOOD,
