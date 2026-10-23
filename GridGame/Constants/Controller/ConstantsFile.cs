@@ -13,7 +13,6 @@ namespace GridGame.Constants.Controller {
 
         public ConstantsFile(string filename) {
             ConstantsManagers = ConstantsDictionaryLoader.GetConstantsManagers(filename);
-            ReadConstantsFromFile(filename);
         }
 
         public void ReadConstantsFromFile(string filename) {
