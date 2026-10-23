@@ -1,1 +1,0 @@
-ResourceBarHeight=60 

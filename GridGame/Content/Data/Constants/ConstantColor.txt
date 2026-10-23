@@ -1,4 +1,0 @@
-BuildingColor=White
-CitizenActive=Blue
-Coast=Red
-LandHover=Green 
