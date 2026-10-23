@@ -35,7 +35,7 @@ namespace GridGame.Controllers.KeyboardClasses {
             } else if(debug) {
                 TypingKeyInput.Update(gameTime);
             }
-            MenuKeyInput.Update(gameTime);
+            if(!debug || !typing) MenuKeyInput.Update(gameTime);
         }
 
     }

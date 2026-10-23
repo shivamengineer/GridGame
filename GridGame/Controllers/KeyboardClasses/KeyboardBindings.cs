@@ -66,10 +66,32 @@ namespace GridGame.Controllers.KeyboardClasses {
         public static void InitializeTypingBindings(KeyboardController keyboardController, GameManager gameManager) {
             ConstantsInterfaceController interfaceController = gameManager.displayManager.interfaceController;
 
-            keyboardController.AddOnPressBinding(Keys.R, new TypeCommand(interfaceController, 'R'));
-            keyboardController.AddOnPressBinding(Keys.G, new TypeCommand(interfaceController, 'G'));
-            keyboardController.AddOnPressBinding(Keys.B, new TypeCommand(interfaceController, 'B'));
             keyboardController.AddOnPressBinding(Keys.A, new TypeCommand(interfaceController, 'A'));
+            keyboardController.AddOnPressBinding(Keys.B, new TypeCommand(interfaceController, 'B'));
+            keyboardController.AddOnPressBinding(Keys.C, new TypeCommand(interfaceController, 'C'));
+            keyboardController.AddOnPressBinding(Keys.D, new TypeCommand(interfaceController, 'D'));
+            keyboardController.AddOnPressBinding(Keys.E, new TypeCommand(interfaceController, 'E'));
+            keyboardController.AddOnPressBinding(Keys.F, new TypeCommand(interfaceController, 'F'));
+            keyboardController.AddOnPressBinding(Keys.G, new TypeCommand(interfaceController, 'G'));
+            keyboardController.AddOnPressBinding(Keys.H, new TypeCommand(interfaceController, 'H'));
+            keyboardController.AddOnPressBinding(Keys.I, new TypeCommand(interfaceController, 'I'));
+            keyboardController.AddOnPressBinding(Keys.J, new TypeCommand(interfaceController, 'J'));
+            keyboardController.AddOnPressBinding(Keys.K, new TypeCommand(interfaceController, 'K'));
+            keyboardController.AddOnPressBinding(Keys.L, new TypeCommand(interfaceController, 'L'));
+            keyboardController.AddOnPressBinding(Keys.M, new TypeCommand(interfaceController, 'M'));
+            keyboardController.AddOnPressBinding(Keys.N, new TypeCommand(interfaceController, 'N'));
+            keyboardController.AddOnPressBinding(Keys.O, new TypeCommand(interfaceController, 'O'));
+            keyboardController.AddOnPressBinding(Keys.P, new TypeCommand(interfaceController, 'P'));
+            keyboardController.AddOnPressBinding(Keys.Q, new TypeCommand(interfaceController, 'Q'));
+            keyboardController.AddOnPressBinding(Keys.R, new TypeCommand(interfaceController, 'R'));
+            keyboardController.AddOnPressBinding(Keys.S, new TypeCommand(interfaceController, 'S'));
+            keyboardController.AddOnPressBinding(Keys.T, new TypeCommand(interfaceController, 'T'));
+            keyboardController.AddOnPressBinding(Keys.U, new TypeCommand(interfaceController, 'U'));
+            keyboardController.AddOnPressBinding(Keys.V, new TypeCommand(interfaceController, 'V'));
+            keyboardController.AddOnPressBinding(Keys.W, new TypeCommand(interfaceController, 'W'));
+            keyboardController.AddOnPressBinding(Keys.X, new TypeCommand(interfaceController, 'X'));
+            keyboardController.AddOnPressBinding(Keys.Y, new TypeCommand(interfaceController, 'Y'));
+            keyboardController.AddOnPressBinding(Keys.Z, new TypeCommand(interfaceController, 'Z'));
 
             keyboardController.AddOnPressBinding(Keys.D0, new TypeCommand(interfaceController, '0'));
             keyboardController.AddOnPressBinding(Keys.D1, new TypeCommand(interfaceController, '1'));
@@ -84,7 +106,10 @@ namespace GridGame.Controllers.KeyboardClasses {
 
             keyboardController.AddOnPressBinding(Keys.OemSemicolon, new TypeCommand(interfaceController, ':'));
             keyboardController.AddOnPressBinding(Keys.OemComma, new TypeCommand(interfaceController, ','));
+            keyboardController.AddOnPressBinding(Keys.OemPeriod, new TypeCommand(interfaceController, '.'));
             keyboardController.AddOnPressBinding(Keys.Space, new TypeCommand(interfaceController, ' '));
+            keyboardController.AddOnPressBinding(Keys.OemOpenBrackets, new TypeCommand(interfaceController, '{'));
+            keyboardController.AddOnPressBinding(Keys.OemCloseBrackets, new TypeCommand(interfaceController, '}'));
 
             keyboardController.AddOnPressBinding(Keys.Back, new DeleteLetterCommand(interfaceController));
             keyboardController.AddOnPressBinding(Keys.Enter, new StopTypingCommand(interfaceController));
