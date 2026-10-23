@@ -1,3 +1,1 @@
-TechBlockWidth=20
-TechBlockHeight=10
-ResourceBarHeight=30 
+ResourceBarHeight=60 

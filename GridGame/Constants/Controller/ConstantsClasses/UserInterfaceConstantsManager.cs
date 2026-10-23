@@ -52,7 +52,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         }
 
         public override void WriteConstantsToFile(string filename) {
-            string file = filename + "ConstantUserInterface.txt";
+            string file = "Content/Data/Constants/" + filename + "ConstantUserInterface.txt";
             string[] UIConstants = printLines();
 
             File.WriteAllLines(file, UIConstants);

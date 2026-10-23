@@ -57,7 +57,7 @@ namespace GridGame.Constants.Controller.ConstantsClasses {
         }
 
         public override void WriteConstantsToFile(string filename) {
-            string file = filename + "ConstantColor.txt";
+            string file = "Content/Data/Constants/" + filename + "ConstantColor.txt";
             string[] ColorConstants = printLines();
 
             File.WriteAllLines(file, ColorConstants);
