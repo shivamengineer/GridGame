@@ -41,7 +41,7 @@ namespace GridGame.TechTree {
             TechBlockPositions = new List<Dictionary<TechnologyTypes, ITechBlock>>();
             Dictionary<ConstUserInterface, int> UIInts = Constants.GetUIInts();
 
-            NewTech = new NewTechBlock(content, UIInts, playerResources);
+            NewTech = new NewTechBlock(content, Constants, playerResources);
             Background = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             destRect = new Rectangle(0, 0, UIInts[ConstUserInterface.WindowWidth], UIInts[ConstUserInterface.WindowHeight]);
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GridGame.Constants.Controller.ConstantsEnums;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class FactoryTechBlock : AbstractTechBlock {
@@ -29,9 +30,13 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             };
         }
 
+        public override void SetCost() {
+            Cost = Constants.GetGameInts()[ConstGameInt.FactoryScienceCost];
+        }
+
         public override ITechBlock NewInstance() {
             ITechBlock block = new FactoryTechBlock();
-            block.SetContent(content, UIInts, playerResources);
+            block.SetContent(content, Constants, playerResources);
             return block;
         }
 

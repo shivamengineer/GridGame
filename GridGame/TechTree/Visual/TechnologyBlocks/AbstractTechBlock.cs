@@ -43,14 +43,16 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
         public int CameraX = 0;
 
         public ContentLoader content;
+        public ConstantsController Constants;
         public Dictionary<ConstUserInterface, int> UIInts;
 
         public PlayerResources playerResources;
         public int Cost;
 
-        public void SetContent(ContentLoader content, Dictionary<ConstUserInterface, int> UIInts, PlayerResources playerResources) {
+        public void SetContent(ContentLoader content, ConstantsController Constants, PlayerResources playerResources) {
             this.content = content;
-            this.UIInts = UIInts;
+            this.Constants = Constants;
+            UIInts = Constants.GetUIInts();
             this.playerResources = playerResources;
             backgroundTexture = content.GetTexture(TextureNames.BLANK_RECTANGLE);
             font = content.GetFont(FontNames.ARIAL);
@@ -140,6 +142,7 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks {
             spriteBatch.DrawString(font, drawText, new Vector2(Background.X + 10, Background.Y + 10), Color.Red);
         }
 
+        public abstract void SetCost();
         public abstract ITechBlock NewInstance();
 
     }

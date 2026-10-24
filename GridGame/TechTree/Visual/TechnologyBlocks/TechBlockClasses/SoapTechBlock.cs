@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GridGame.Constants.TechTreeInfo;
+using GridGame.Constants.Controller.ConstantsEnums;
 
 namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
     public class SoapTechBlock : AbstractTechBlock {
@@ -28,9 +29,13 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             };
         }
 
+        public override void SetCost() {
+            Cost = Constants.GetGameInts()[ConstGameInt.SoapScienceCost];
+        }
+
         public override ITechBlock NewInstance() {
             ITechBlock block = new SoapTechBlock();
-            block.SetContent(content, UIInts, playerResources);
+            block.SetContent(content, Constants, playerResources);
             return block;
         }
 

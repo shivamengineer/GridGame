@@ -1,4 +1,5 @@
-﻿using GridGame.Constants.TechTreeInfo;
+﻿using GridGame.Constants.Controller.ConstantsEnums;
+using GridGame.Constants.TechTreeInfo;
 using GridGame.TechTree.Backend;
 using GridGame.TechTree.Backend.Technology.TechnologyClasses;
 using GridGame.TechTree.Visual.TechnologyBlocks;
@@ -37,9 +38,13 @@ namespace GridGame.TechTree.Visual.TechnologyBlocks.TechBlockClasses {
             };
         }
 
+        public override void SetCost() {
+            Cost = Constants.GetGameInts()[ConstGameInt.FacemaskScienceCost];
+        }
+
         public override ITechBlock NewInstance() {
             ITechBlock block = new FacemaskTechBlock();
-            block.SetContent(content, UIInts, playerResources);
+            block.SetContent(content, Constants, playerResources);
             return block;
         }
 
